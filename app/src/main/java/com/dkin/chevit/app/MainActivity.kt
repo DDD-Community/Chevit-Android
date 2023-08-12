@@ -36,6 +36,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         navController.addOnDestinationChangedListener { _, _, _ ->
             hideSoftKeyboard()
         }
+        supportActionBar?.hide()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
