@@ -26,4 +26,10 @@
     <dimen name="body_medium">14sp</dimen>
     <dimen name="body_small">12sp</dimen>
     <dimen name="caption">11sp</dimen>
+
+    <!-- radius -->
+    <dimen name="radius_4">4dp</dimen>
+    <dimen name="radius_8">8dp</dimen>
+    <dimen name="radius_12">12dp</dimen>
+    <dimen name="radius_16">16dp</dimen>
 </resources>
