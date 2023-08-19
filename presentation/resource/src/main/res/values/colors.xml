@@ -33,4 +33,28 @@
     <color name="orange_3">#FFFFAE63</color>
     <color name="orange_2">#FFFFC38C</color>
     <color name="orange_1">#FFFFE9DC</color>
+
+    <color name="bg_basic">#FFFFFFFF</color>
+    <color name="bg_elevated">#FFFFFFFF</color>
+    <color name="bg_contents">#0D171717</color> <!-- 0.05 alpha gray_10 -->
+
+    <color name="dim_basic">#33171717</color> <!-- 0.2 alpha gray_10 -->
+    <color name="dim_thin">#80171717</color> <!-- 0.5 alpha gray_10 -->
+    <color name="dim_thick">#CC171717</color> <!-- 0.8 alpha gray_10 -->
+
+    <color name="pressed_light">#FFFFFFFF</color>
+    <color name="pressed_gray">#0D171717</color> <!-- 0.05 alpha gray_10 -->
+
+    <color name="border">#0D171717</color> <!-- 0.05 alpha gray_10 -->
+
+    <color name="shadow_basic">#1A171717</color> <!-- 0.1 alpha gray_10 -->
+    <color name="shadow_thick">#33171717</color> <!-- 0.2 alpha gray_10 -->
+
+    <color name="text_primary">#171717</color> <!-- gray_10 -->
+    <color name="text_secondary">#CC171717</color> <!-- 0.8 alpha gray_10 -->
+    <color name="text_caption">#33171717</color> <!-- 0.2 alpha gray_10 -->
+    <color name="text_disable">#1A171717</color> <!-- 0.1 alpha gray_10 -->
+
+    <color name="error">#FF4D4D</color>
+    <color name="notice">#21C389</color>
 </resources>
