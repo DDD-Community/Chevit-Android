@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ChevitButton">
-        <attr name="buttonStyle" format="enum">
+        <attr name="style" format="enum">
             <enum name="fill" value="0" />
             <enum name="outline" value="1" />
         </attr>
-        <attr name="buttonSize" format="enum">
+        <attr name="size" format="enum">
             <enum name="large" value="0" />
             <enum name="medium" value="1" />
         </attr>
-        <attr name="drawable" format="reference"/>
-        <attr name="text" format="string"/>
+        <attr name="drawable" format="reference" />
+        <attr name="text" format="string" />
+        <attr name="isEnabled" format="boolean" />
     </declare-styleable>
 </resources>
