@@ -31,7 +31,7 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
         binding.composeView.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                Text("Home")
+                HomeScreen()
             }
         }
         return view
