@@ -37,6 +37,9 @@ dagger = "2.47"
 okhttp = "4.11.0"
 retrofit = "2.9.0"
 
+# Coil
+coil = "2.4.0"
+
 # Logger
 timber = "5.0.1"
 junit = "4.13.2"
@@ -116,6 +119,9 @@ hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testi
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-ext-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltExt" }
 hilt-ext-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltExt" }
+
+#Coil
+coil-core = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 
 #Logger
 logger-timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }

@@ -1,39 +1,30 @@
 package com.dkin.chevit.presentation.auth
 
 import com.dkin.chevit.core.mvi.MVIViewModel
-import com.dkin.chevit.domain.base.get
-import com.dkin.chevit.domain.model.UserState
-import com.dkin.chevit.domain.usecase.GetUserStateUseCase
-import com.dkin.chevit.presentation.auth.AuthIntent.SignInFailure
-import com.dkin.chevit.presentation.auth.AuthIntent.SignInSuccess
+import com.dkin.chevit.presentation.auth.AuthIntent.NextClicked
+import com.dkin.chevit.presentation.auth.AuthIntent.SelectedIntro
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class AuthViewModel @Inject constructor(
-    private val getUserStateUseCase: GetUserStateUseCase,
-) : MVIViewModel<AuthIntent, AuthState, AuthEffect>() {
-    override fun createInitialState(): AuthState = AuthState
+class AuthViewModel @Inject constructor() : MVIViewModel<AuthIntent, AuthState, AuthEffect>() {
+    override fun createInitialState(): AuthState = AuthState()
 
     override suspend fun processIntent(intent: AuthIntent) = when (intent) {
-        SignInSuccess -> signIn()
-        is SignInFailure -> showSignInFailed()
+        NextClicked -> selectNext()
+        is SelectedIntro -> selectPosition(intent.position)
     }
 
-    private suspend fun signIn() {
-        val userState = getUserStateUseCase(Unit).get()
-        if (userState is UserState.User) {
-            navigateToHome()
-        } else {
-            showSignInFailed()
+    private fun selectNext() {
+        setState {
+            val nextPosition = selectedIntroGuideIndex + 1
+            copy(
+                selectedIntroGuideIndex = nextPosition.coerceAtMost(introGuideList.lastIndex),
+            )
         }
     }
 
-    private fun navigateToHome() {
-        setEffect { AuthEffect.NavigateToHome }
-    }
-
-    private fun showSignInFailed() {
-        setEffect { AuthEffect.ShowSignInFailed }
+    private fun selectPosition(position: Int) {
+        setState { copy(selectedIntroGuideIndex = position) }
     }
 }
