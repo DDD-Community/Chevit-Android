@@ -16,12 +16,16 @@ public val HomeIcons.Search: ImageVector
         if (_search != null) {
             return _search!!
         }
-        _search = Builder(name = "Search", defaultWidth = 25.0.dp, defaultHeight = 24.0.dp,
-                viewportWidth = 25.0f, viewportHeight = 24.0f).apply {
+        _search = Builder(
+            name = "Search", defaultWidth = 25.0.dp, defaultHeight = 24.0.dp,
+            viewportWidth = 25.0f, viewportHeight = 24.0f,
+        ).apply {
             group {
-                path(fill = SolidColor(Color(0xFFA2A2A2)), stroke = null, strokeLineWidth = 0.0f,
-                        strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                        pathFillType = NonZero) {
+                path(
+                    fill = SolidColor(Color(0xFFA2A2A2)), stroke = null, strokeLineWidth = 0.0f,
+                    strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
+                    pathFillType = NonZero,
+                ) {
                     moveTo(16.4113f, 14.6842f)
                     lineTo(22.2814f, 20.5535f)
                     lineTo(21.0535f, 21.7814f)
@@ -43,7 +47,7 @@ public val HomeIcons.Search: ImageVector
                 }
             }
         }
-        .build()
+            .build()
         return _search!!
     }
 

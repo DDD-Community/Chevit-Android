@@ -15,11 +15,17 @@ public val HomeIcons.Notification: ImageVector
         if (_notification != null) {
             return _notification!!
         }
-        _notification = Builder(name = "Notification", defaultWidth = 20.0.dp, defaultHeight =
-                20.0.dp, viewportWidth = 20.0f, viewportHeight = 20.0f).apply {
-            path(fill = SolidColor(Color(0xFF171717)), stroke = null, strokeLineWidth = 0.0f,
-                    strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                    pathFillType = NonZero) {
+        _notification = Builder(
+            name = "Notification", defaultWidth = 20.0.dp,
+            defaultHeight =
+            20.0.dp,
+            viewportWidth = 20.0f, viewportHeight = 20.0f,
+        ).apply {
+            path(
+                fill = SolidColor(Color(0xFF171717)), stroke = null, strokeLineWidth = 0.0f,
+                strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
+                pathFillType = NonZero,
+            ) {
                 moveTo(15.0001f, 8.3337f)
                 curveTo(15.0001f, 7.0076f, 14.4733f, 5.7358f, 13.5356f, 4.7981f)
                 curveTo(12.5979f, 3.8604f, 11.3262f, 3.3337f, 10.0001f, 3.3337f)
@@ -58,7 +64,7 @@ public val HomeIcons.Notification: ImageVector
                 close()
             }
         }
-        .build()
+            .build()
         return _notification!!
     }
 

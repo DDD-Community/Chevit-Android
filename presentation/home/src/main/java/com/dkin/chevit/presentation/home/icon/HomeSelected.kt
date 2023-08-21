@@ -16,12 +16,18 @@ public val HomeIcons.HomeSelected: ImageVector
         if (homeSelected != null) {
             return homeSelected!!
         }
-        homeSelected = Builder(name = "HomeSelected", defaultWidth = 25.0.dp, defaultHeight =
-                24.0.dp, viewportWidth = 25.0f, viewportHeight = 24.0f).apply {
+        homeSelected = Builder(
+            name = "HomeSelected", defaultWidth = 25.0.dp,
+            defaultHeight =
+            24.0.dp,
+            viewportWidth = 25.0f, viewportHeight = 24.0f,
+        ).apply {
             group {
-                path(fill = SolidColor(Color(0xFF171717)), stroke = null, strokeLineWidth = 0.0f,
-                        strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                        pathFillType = NonZero) {
+                path(
+                    fill = SolidColor(Color(0xFF171717)), stroke = null, strokeLineWidth = 0.0f,
+                    strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
+                    pathFillType = NonZero,
+                ) {
                     moveTo(21.5f, 20.0001f)
                     curveTo(21.5f, 20.2653f, 21.3946f, 20.5197f, 21.2071f, 20.7072f)
                     curveTo(21.0196f, 20.8947f, 20.7652f, 21.0001f, 20.5f, 21.0001f)
@@ -54,7 +60,7 @@ public val HomeIcons.HomeSelected: ImageVector
                 }
             }
         }
-        .build()
+            .build()
         return homeSelected!!
     }
 

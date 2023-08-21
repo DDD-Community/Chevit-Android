@@ -9,6 +9,8 @@ import com.dkin.chevit.presentation.splash.SplashEffect.NavigateToAuth
 import com.dkin.chevit.presentation.splash.SplashEffect.NavigateToHome
 import com.dkin.chevit.presentation.splash.SplashIntent.CheckAuth
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @HiltViewModel
@@ -22,10 +24,17 @@ class SplashViewModel @Inject constructor(
     }
 
     private suspend fun checkAuth() {
-        val effect = when (getUserStateUseCase(Unit).get()) {
+        val delayAsync = async { delay(SPLASH_DELAY) }
+        val userAsync = async { getUserStateUseCase(Unit).get() }
+        listOf(delayAsync, userAsync).awaitAll()
+        val effect = when (userAsync.await()) {
             Guest -> NavigateToAuth
             is User -> NavigateToHome
         }
         setEffect { effect }
+    }
+
+    companion object {
+        private const val SPLASH_DELAY = 2000L
     }
 }

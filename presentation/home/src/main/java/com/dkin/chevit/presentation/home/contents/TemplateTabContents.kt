@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun TemplateTabContents(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
         Text("템플릿")

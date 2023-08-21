@@ -17,12 +17,16 @@ public val HomeIcons.Logo: ImageVector
         if (_logo != null) {
             return _logo!!
         }
-        _logo = Builder(name = "Logo", defaultWidth = 102.0.dp, defaultHeight = 24.0.dp,
-                viewportWidth = 102.0f, viewportHeight = 24.0f).apply {
+        _logo = Builder(
+            name = "Logo", defaultWidth = 102.0.dp, defaultHeight = 24.0.dp,
+            viewportWidth = 102.0f, viewportHeight = 24.0f,
+        ).apply {
             group {
-                path(fill = SolidColor(Color(0xFF171717)), stroke = null, strokeLineWidth = 0.0f,
-                        strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                        pathFillType = NonZero) {
+                path(
+                    fill = SolidColor(Color(0xFF171717)), stroke = null, strokeLineWidth = 0.0f,
+                    strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
+                    pathFillType = NonZero,
+                ) {
                     moveTo(28.88f, 11.55f)
                     curveTo(28.88f, 7.662f, 31.166f, 5.434f, 35.192f, 5.434f)
                     curveTo(39.178f, 5.434f, 41.25f, 7.662f, 41.25f, 10.534f)
@@ -108,9 +112,11 @@ public val HomeIcons.Logo: ImageVector
                     horizontalLineTo(86.803f)
                     close()
                 }
-                path(fill = SolidColor(Color(0xFF3531FF)), stroke = null, strokeLineWidth = 0.0f,
-                        strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                        pathFillType = NonZero) {
+                path(
+                    fill = SolidColor(Color(0xFF3531FF)), stroke = null, strokeLineWidth = 0.0f,
+                    strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
+                    pathFillType = NonZero,
+                ) {
                     moveTo(6.335f, 5.357f)
                     lineTo(14.718f, 5.357f)
                     arcTo(5.251f, 5.251f, 0.0f, false, true, 19.969f, 10.608f)
@@ -122,9 +128,11 @@ public val HomeIcons.Logo: ImageVector
                     arcTo(5.251f, 5.251f, 0.0f, false, true, 6.335f, 5.357f)
                     close()
                 }
-                path(fill = SolidColor(Color(0xFF8785FF)), stroke = null, strokeLineWidth = 0.0f,
-                        strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                        pathFillType = EvenOdd) {
+                path(
+                    fill = SolidColor(Color(0xFF8785FF)), stroke = null, strokeLineWidth = 0.0f,
+                    strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
+                    pathFillType = EvenOdd,
+                ) {
                     moveTo(7.186f, 3.214f)
                     curveTo(6.105f, 3.214f, 5.229f, 4.09f, 5.229f, 5.171f)
                     verticalLineTo(11.615f)
@@ -142,9 +150,11 @@ public val HomeIcons.Logo: ImageVector
                     horizontalLineTo(7.186f)
                     close()
                 }
-                path(fill = SolidColor(Color(0xFF4A47FF)), stroke = null, strokeLineWidth = 0.0f,
-                        strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                        pathFillType = EvenOdd) {
+                path(
+                    fill = SolidColor(Color(0xFF4A47FF)), stroke = null, strokeLineWidth = 0.0f,
+                    strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
+                    pathFillType = EvenOdd,
+                ) {
                     moveTo(3.053f, 9.374f)
                     curveTo(1.966f, 9.374f, 1.084f, 10.256f, 1.084f, 11.343f)
                     verticalLineTo(14.669f)
@@ -163,9 +173,11 @@ public val HomeIcons.Logo: ImageVector
                     horizontalLineTo(3.053f)
                     close()
                 }
-                path(fill = SolidColor(Color(0xFF0400CC)), stroke = null, strokeLineWidth = 0.0f,
-                        strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                        pathFillType = NonZero) {
+                path(
+                    fill = SolidColor(Color(0xFF0400CC)), stroke = null, strokeLineWidth = 0.0f,
+                    strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
+                    pathFillType = NonZero,
+                ) {
                     moveTo(15.025f, 10.737f)
                     horizontalLineToRelative(3.211f)
                     verticalLineToRelative(7.704f)
@@ -174,7 +186,7 @@ public val HomeIcons.Logo: ImageVector
                 }
             }
         }
-        .build()
+            .build()
         return _logo!!
     }
 

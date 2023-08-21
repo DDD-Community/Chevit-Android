@@ -30,13 +30,13 @@ fun BottomNavigation(
     modifier: Modifier = Modifier,
     selectedIndex: Int,
     tabList: List<String>,
-    onChangeTab: (index: Int) -> Unit = {}
+    onChangeTab: (index: Int) -> Unit = {},
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .height(81.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         BottomIconMenu(
             modifier = Modifier.weight(1f),
@@ -44,7 +44,7 @@ fun BottomNavigation(
             inactiveImage = HomeIcons.Home,
             desc = tabList[0],
             selected = selectedIndex == 0,
-            onClickItem = { onChangeTab(0) }
+            onClickItem = { onChangeTab(0) },
         )
         BottomIconMenu(
             modifier = Modifier.weight(1f),
@@ -52,7 +52,7 @@ fun BottomNavigation(
             inactiveImage = HomeIcons.Search,
             desc = tabList[1],
             selected = selectedIndex == 1,
-            onClickItem = { onChangeTab(1) }
+            onClickItem = { onChangeTab(1) },
         )
         BottomIconMenu(
             modifier = Modifier.weight(1f),
@@ -60,7 +60,7 @@ fun BottomNavigation(
             inactiveImage = HomeIcons.Survey,
             desc = tabList[2],
             selected = selectedIndex == 2,
-            onClickItem = { onChangeTab(2) }
+            onClickItem = { onChangeTab(2) },
         )
         BottomIconMenu(
             modifier = Modifier.weight(1f),
@@ -68,7 +68,7 @@ fun BottomNavigation(
             inactiveImage = HomeIcons.User,
             desc = tabList[3],
             selected = selectedIndex == 3,
-            onClickItem = { onChangeTab(3) }
+            onClickItem = { onChangeTab(3) },
         )
     }
 }
@@ -80,11 +80,11 @@ private fun BottomIconMenu(
     inactiveImage: ImageVector,
     desc: String,
     selected: Boolean,
-    onClickItem: () -> Unit
+    onClickItem: () -> Unit,
 ) {
     Column(
         modifier = modifier.clickable { onClickItem() },
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(imageVector = if (selected) activeImage else inactiveImage, contentDescription = desc)
         Spacer(modifier = Modifier.height(4.dp))

@@ -16,12 +16,16 @@ public val HomeIcons.Survey: ImageVector
         if (_survey != null) {
             return _survey!!
         }
-        _survey = Builder(name = "Survey", defaultWidth = 25.0.dp, defaultHeight = 24.0.dp,
-                viewportWidth = 25.0f, viewportHeight = 24.0f).apply {
+        _survey = Builder(
+            name = "Survey", defaultWidth = 25.0.dp, defaultHeight = 24.0.dp,
+            viewportWidth = 25.0f, viewportHeight = 24.0f,
+        ).apply {
             group {
-                path(fill = SolidColor(Color(0xFFA2A2A2)), stroke = null, strokeLineWidth = 0.0f,
-                        strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                        pathFillType = NonZero) {
+                path(
+                    fill = SolidColor(Color(0xFFA2A2A2)), stroke = null, strokeLineWidth = 0.0f,
+                    strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
+                    pathFillType = NonZero,
+                ) {
                     moveTo(17.5f, 2.0f)
                     verticalLineTo(4.0f)
                     horizontalLineTo(20.507f)
@@ -73,7 +77,7 @@ public val HomeIcons.Survey: ImageVector
                 }
             }
         }
-        .build()
+            .build()
         return _survey!!
     }
 

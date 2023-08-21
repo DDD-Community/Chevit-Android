@@ -16,13 +16,13 @@ import com.dkin.chevit.presentation.home.icon.Notification
 
 @Composable
 fun HomeTopBar(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
             .height(56.dp)
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
         Row {
             Image(imageVector = HomeIcons.Logo, contentDescription = "Logo")

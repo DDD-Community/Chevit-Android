@@ -15,11 +15,17 @@ public val HomeIcons.SurveySelected: ImageVector
         if (_surveySelected != null) {
             return _surveySelected!!
         }
-        _surveySelected = Builder(name = "SurveySelected", defaultWidth = 25.0.dp, defaultHeight =
-                24.0.dp, viewportWidth = 25.0f, viewportHeight = 24.0f).apply {
-            path(fill = SolidColor(Color(0xFF171717)), stroke = null, strokeLineWidth = 0.0f,
-                    strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                    pathFillType = NonZero) {
+        _surveySelected = Builder(
+            name = "SurveySelected", defaultWidth = 25.0.dp,
+            defaultHeight =
+            24.0.dp,
+            viewportWidth = 25.0f, viewportHeight = 24.0f,
+        ).apply {
+            path(
+                fill = SolidColor(Color(0xFF171717)), stroke = null, strokeLineWidth = 0.0f,
+                strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
+                pathFillType = NonZero,
+            ) {
                 moveTo(6.5f, 4.0f)
                 verticalLineTo(8.0f)
                 horizontalLineTo(18.5f)
@@ -60,7 +66,7 @@ public val HomeIcons.SurveySelected: ImageVector
                 close()
             }
         }
-        .build()
+            .build()
         return _surveySelected!!
     }
 

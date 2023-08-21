@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun UserTabContents(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
         Text("내정보")

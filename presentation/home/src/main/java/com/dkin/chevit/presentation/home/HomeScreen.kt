@@ -41,14 +41,14 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(contentPadding)
+                .padding(contentPadding),
         ) {
             HorizontalPager(
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f),
                 state = pagerState,
-                pageCount = tabList.size
+                pageCount = tabList.size,
             ) {
                 Box(modifier = Modifier.fillMaxSize()) {
                     when (tabList[it]) {
@@ -59,10 +59,12 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                     }
                 }
             }
-            Box(modifier = Modifier
-                .fillMaxWidth()
-                .height(1.dp)
-                .background(color = Color.Gray))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(1.dp)
+                    .background(color = Color.Gray),
+            )
             BottomNavigation(
                 modifier = Modifier.fillMaxWidth(),
                 selectedIndex = tabIndex,
@@ -71,7 +73,8 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                     scope.launch {
                         pagerState.animateScrollToPage(it)
                     }
-                })
+                },
+            )
         }
     }
 }

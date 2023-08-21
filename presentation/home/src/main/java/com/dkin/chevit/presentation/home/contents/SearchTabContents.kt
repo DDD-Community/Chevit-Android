@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 
 @Composable
 fun SearchTabContents(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
         Text("탐색")
