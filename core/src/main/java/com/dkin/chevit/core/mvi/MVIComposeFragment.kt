@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.viewbinding.ViewBinding
-import com.dkin.chevit.core.base.BaseFragment
 
 abstract class MVIComposeFragment<I : ViewIntent, S : ViewState, E : ViewEffect> : Fragment(), MviView<I, S, E> {
     abstract val viewModel: MVIViewModel<I, S, E>

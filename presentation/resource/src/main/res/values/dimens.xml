@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- space -->
+    <dimen name="space_4">4dp</dimen>
+    <dimen name="space_8">8dp</dimen>
+    <dimen name="space_12">12dp</dimen>
+    <dimen name="space_16">16dp</dimen>
+    <dimen name="space_20">20dp</dimen>
+    <dimen name="space_24">24dp</dimen>
+    <dimen name="space_32">32dp</dimen>
+    <dimen name="space_40">40dp</dimen>
+    <dimen name="space_48">48dp</dimen>
+    <dimen name="space_56">56dp</dimen>
+    <dimen name="space_64">64dp</dimen>
+
+    <!-- title text -->
+    <dimen name="display_large">40sp</dimen>
+    <dimen name="display_medium">32sp</dimen>
+    <dimen name="display_small">28sp</dimen>
+    <dimen name="headline_large">24sp</dimen>
+    <dimen name="headline_medium">20sp</dimen>
+    <dimen name="headline_small">16sp</dimen>
+
+    <!-- body text -->
+    <dimen name="body_large">16sp</dimen>
+    <dimen name="body_medium">14sp</dimen>
+    <dimen name="body_small">12sp</dimen>
+    <dimen name="caption">11sp</dimen>
+
+    <!-- radius -->
+    <dimen name="radius_4">4dp</dimen>
+    <dimen name="radius_8">8dp</dimen>
+    <dimen name="radius_12">12dp</dimen>
+    <dimen name="radius_16">16dp</dimen>
+
+    <!-- button -->
+    <dimen name="btn_stroke_thickness">2dp</dimen>
+    <dimen name="btn_icon">24dp</dimen>
+</resources>
