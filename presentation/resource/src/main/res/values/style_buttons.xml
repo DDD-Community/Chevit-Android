@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Chevit.Button" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:maxLines">1</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="rippleColor">@null</item>
+        <item name="iconPadding">4dp</item>
+        <item name="iconSize">24dp</item>
+    </style>
+
+    <style name="Chevit.Button.Fill">
+        <item name="iconTint">@drawable/button_text_filled</item>
+        <item name="android:textColor">@drawable/button_text_filled</item>
+        <item name="android:background">@drawable/button_bg_filled</item>
+    </style>
+
+    <style name="Chevit.Button.Fill.Large">
+        <item name="android:textSize">@dimen/button_large</item>
+        <item name="android:paddingTop">@dimen/space_16</item>
+        <item name="android:paddingBottom">@dimen/space_16</item>
+        <item name="android:paddingLeft">@dimen/space_32</item>
+        <item name="android:paddingRight">@dimen/space_32</item>
+    </style>
+
+    <style name="Chevit.Button.Fill.Medium">
+        <item name="android:textSize">@dimen/button_medium</item>
+        <item name="android:paddingTop">@dimen/space_16</item>
+        <item name="android:paddingBottom">@dimen/space_16</item>
+        <item name="android:paddingLeft">@dimen/space_32</item>
+        <item name="android:paddingRight">@dimen/space_32</item>
+    </style>
+
+    <style name="Chevit.Button.Fill.Small">
+        <item name="android:textSize">@dimen/button_small</item>
+        <item name="android:paddingTop">@dimen/space_12</item>
+        <item name="android:paddingBottom">@dimen/space_12</item>
+        <item name="android:paddingLeft">@dimen/space_32</item>
+        <item name="android:paddingRight">@dimen/space_32</item>
+    </style>
+
+    <style name="Chevit.Button.Outline">
+        <item name="iconTint">@drawable/button_text_outline</item>
+        <item name="android:textColor">@drawable/button_text_outline</item>
+        <item name="android:background">@drawable/button_bg_outline</item>
+    </style>
+
+    <style name="Chevit.Button.Outline.Large">
+        <item name="android:textSize">@dimen/button_large</item>
+        <item name="android:paddingTop">@dimen/space_16</item>
+        <item name="android:paddingBottom">@dimen/space_16</item>
+        <item name="android:paddingLeft">@dimen/space_32</item>
+        <item name="android:paddingRight">@dimen/space_32</item>
+    </style>
+
+    <style name="Chevit.Button.Outline.Medium">
+        <item name="android:textSize">@dimen/button_medium</item>
+        <item name="android:paddingTop">@dimen/space_16</item>
+        <item name="android:paddingBottom">@dimen/space_16</item>
+        <item name="android:paddingLeft">@dimen/space_32</item>
+        <item name="android:paddingRight">@dimen/space_32</item>
+    </style>
+
+    <style name="Chevit.Button.Outline.Small">
+        <item name="android:textSize">@dimen/button_small</item>
+        <item name="android:paddingTop">@dimen/space_12</item>
+        <item name="android:paddingBottom">@dimen/space_12</item>
+        <item name="android:paddingLeft">@dimen/space_32</item>
+        <item name="android:paddingRight">@dimen/space_32</item>
+    </style>
+</resources>

@@ -21,6 +21,10 @@
     <dimen name="headline_medium">20sp</dimen>
     <dimen name="headline_small">16sp</dimen>
 
+    <dimen name="button_large">20dp</dimen>
+    <dimen name="button_medium">16dp</dimen>
+    <dimen name="button_small">14dp</dimen>
+
     <!-- body text -->
     <dimen name="body_large">16sp</dimen>
     <dimen name="body_medium">14sp</dimen>

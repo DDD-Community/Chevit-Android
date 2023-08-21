@@ -61,6 +61,7 @@ androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "
 androidx-constraintLayout = { module = "androidx.constraintlayout:constraintlayout", version = "2.1.4" }
 androidx-recyclerView = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerView" }
 androidx-startup = { module = "androidx.startup:startup-runtime", version.ref = "startup" }
+androidx-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 #Compose
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
@@ -121,7 +122,6 @@ logger-timber = { group = "com.jakewharton.timber", name = "timber", version.ref
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
@@ -159,7 +159,8 @@ androidx-base = [
     "androidx-fragment",
     "androidx-appcompat",
     "androidx-constraintLayout",
-    "androidx-recyclerView"
+    "androidx-recyclerView",
+    "androidx-material"
 ]
 
 androidx-lifecycle = [
