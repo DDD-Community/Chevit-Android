@@ -30,13 +30,13 @@ data class ChevitTyphography(
         fontSize = 24.sp,
         letterSpacing = (-0.6).sp
     ),
-    val headMedium: TextStyle = TextStyle(
+    val headlineMedium: TextStyle = TextStyle(
         fontWeight = FontWeight.Bold,
         lineHeight = 28.sp,
         fontSize = 20.sp,
         letterSpacing = (-0.6).sp
     ),
-    val headSmall: TextStyle = TextStyle(
+    val headlineSmall: TextStyle = TextStyle(
         fontWeight = FontWeight.Bold,
         lineHeight = 22.sp,
         fontSize = 16.sp,

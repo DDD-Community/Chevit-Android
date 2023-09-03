@@ -14,7 +14,7 @@ public val HomeIcons.AllIcons: ____KtList<ImageVector>
         }
         __HomeIcons = listOf(
             Search, User, Home, UserSelected, HomeSelected, Survey, SearchSelected,
-            SurveySelected, Notification, Logo,
+            SurveySelected, Notification, Logo, IconAddCircleLine,
         )
         return __HomeIcons!!
     }

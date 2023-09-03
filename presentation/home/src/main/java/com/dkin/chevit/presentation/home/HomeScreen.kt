@@ -15,7 +15,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.home.component.BottomNavigation
 import com.dkin.chevit.presentation.home.component.HomeTopBar
@@ -28,7 +27,10 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(
+    modifier: Modifier = Modifier,
+    homeViewModel: HomeViewModel
+) {
     val scope = rememberCoroutineScope()
     val pagerState = rememberPagerState(initialPage = 0)
     val tabIndex = pagerState.currentPage
@@ -53,7 +55,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
             ) {
                 Box(modifier = Modifier.fillMaxSize()) {
                     when (tabList[it]) {
-                        HomeTab.HOME -> HomeTabContents()
+                        HomeTab.HOME -> HomeTabContents(homeViewModel = homeViewModel)
                         HomeTab.SEARCH -> SearchTabContents()
                         HomeTab.TEMPLATE -> TemplateTabContents()
                         HomeTab.USER -> UserTabContents()

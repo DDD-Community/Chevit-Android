@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
 import com.dkin.chevit.core.mvi.MVIComposeFragment
@@ -28,7 +30,10 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
         binding.composeView.apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                HomeScreen()
+                HomeScreen(
+                    modifier = Modifier.fillMaxSize(),
+                    homeViewModel = viewModel
+                )
             }
         }
         return view

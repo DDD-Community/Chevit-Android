@@ -6,8 +6,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor() : MVIViewModel<HomeIntent, HomeState, HomeEffect>() {
-    override fun createInitialState(): HomeState = HomeState
+    override fun createInitialState(): HomeState = HomeState.empty()
 
     override suspend fun processIntent(intent: HomeIntent) {
+    }
+
+    fun onClickAddChecklist() {
+
+    }
+
+    fun onClickChecklist(id: Int) {
+
     }
 }
