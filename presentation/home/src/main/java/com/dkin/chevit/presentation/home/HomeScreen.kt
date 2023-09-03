@@ -23,6 +23,7 @@ import com.dkin.chevit.presentation.home.contents.HomeTabContents
 import com.dkin.chevit.presentation.home.contents.SearchTabContents
 import com.dkin.chevit.presentation.home.contents.TemplateTabContents
 import com.dkin.chevit.presentation.home.contents.UserTabContents
+import com.dkin.chevit.presentation.resource.ChevitTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -63,7 +64,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(1.dp)
-                    .background(color = Color.Gray),
+                    .background(color = ChevitTheme.colors.grey1),
             )
             BottomNavigation(
                 modifier = Modifier.fillMaxWidth(),

@@ -24,6 +24,7 @@ import com.dkin.chevit.presentation.home.icon.SurveySelected
 import com.dkin.chevit.presentation.home.icon.User
 import com.dkin.chevit.presentation.home.icon.UserSelected
 import com.dkin.chevit.presentation.home.textDp
+import com.dkin.chevit.presentation.resource.ChevitTheme
 
 @Composable
 fun BottomNavigation(
@@ -94,6 +95,7 @@ private fun BottomIconMenu(
             fontSize = 14.textDp,
             lineHeight = 18.textDp,
             fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
+            color = if (selected) ChevitTheme.colors.grey10 else ChevitTheme.colors.grey4
         )
     }
 }
