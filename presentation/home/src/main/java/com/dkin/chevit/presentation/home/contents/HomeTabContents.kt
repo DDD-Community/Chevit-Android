@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -31,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.home.HomeState
 import com.dkin.chevit.presentation.home.HomeViewModel
+import com.dkin.chevit.presentation.home.component.HomeTopBar
 import com.dkin.chevit.presentation.home.icon.HomeIcons
 import com.dkin.chevit.presentation.home.icon.IconAddCircleLine
 import com.dkin.chevit.presentation.resource.ChevitButtonFillLarge
@@ -44,118 +46,121 @@ fun HomeTabContents(
     val scrollState = rememberScrollState()
     val homeState = homeViewModel.state.collectAsState().value
 
-    Column(modifier = modifier.verticalScroll(scrollState)) {
-        Spacer(Modifier.height(24.dp))
-
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Column(
-                    modifier = Modifier.weight(1f),
-                    horizontalAlignment = Alignment.Start
-                ) {
-                    Text(
-                        text = "${homeState.userName}님!",
-                        style = ChevitTheme.typhography.headlineLarge.copy(
-                            color = ChevitTheme.colors.textPrimary
-                        )
-                    )
-                    Text(
-                        text = "여행 준비를 시작해볼까요?",
-                        style = ChevitTheme.typhography.headlineMedium.copy(
-                            color = ChevitTheme.colors.textPrimary
-                        )
-                    )
-                }
-                Box(
-                    modifier = Modifier
-                        .size(58.dp)
-                        .background(color = ChevitTheme.colors.grey2, shape = CircleShape)
-                )
-            }
-            Spacer(Modifier.height(32.dp))
-            Text(
-                text = "준비물을 빼먹지 않도록 Chevit과 함께\n체크리스트를 작성해 보아요!",
-                style = ChevitTheme.typhography.bodyLarge.copy(
-                    color = ChevitTheme.colors.textPrimary
-                )
-            )
+    Column(modifier = modifier.fillMaxWidth()) {
+        HomeTopBar()
+        Column(modifier = Modifier.verticalScroll(scrollState)) {
             Spacer(Modifier.height(24.dp))
-            ChevitButtonFillLarge(
-                modifier = Modifier.fillMaxWidth(),
-                onClick = { homeViewModel.onClickAddChecklist() }
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        imageVector = HomeIcons.IconAddCircleLine,
-                        contentDescription = "",
-                        tint = ChevitTheme.colors.white
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text("여행 추가하기")
-                }
-            }
-        }
-
-        Spacer(Modifier.height(40.dp))
-
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(4.dp)
-                .background(color = ChevitTheme.colors.grey0)
-        )
-
-        Spacer(Modifier.height(24.dp))
-
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        ) {
-            Text(
-                text = "나의 체크리스트",
-                style = ChevitTheme.typhography.headlineMedium.copy(
-                    color = ChevitTheme.colors.textPrimary
-                )
-            )
-            val checkList = homeState.checkList
-            if (checkList.isEmpty()) {
-                Spacer(Modifier.height(24.dp))
-                Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                    Image(
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Column(
+                        modifier = Modifier.weight(1f),
+                        horizontalAlignment = Alignment.Start
+                    ) {
+                        Text(
+                            text = "${homeState.userName}님!",
+                            style = ChevitTheme.typhography.headlineLarge.copy(
+                                color = ChevitTheme.colors.textPrimary
+                            )
+                        )
+                        Text(
+                            text = "여행 준비를 시작해볼까요?",
+                            style = ChevitTheme.typhography.headlineMedium.copy(
+                                color = ChevitTheme.colors.textPrimary
+                            )
+                        )
+                    }
+                    Box(
                         modifier = Modifier
-                            .align(Alignment.Center)
-                            .size(130.dp),
-                        painter = painterResource(id = com.dkin.chevit.presentation.resource.R.drawable.ic_empty_checklist),
-                        contentDescription = "",
+                            .size(58.dp)
+                            .background(color = ChevitTheme.colors.grey2, shape = CircleShape)
                     )
                 }
-                Spacer(modifier = Modifier.height(12.dp))
+                Spacer(Modifier.height(32.dp))
                 Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "생성된 체크리스트가 없어요\n여행 일정을 추가해서 만들어 보아요!",
+                    text = "준비물을 빼먹지 않도록 Chevit과 함께\n체크리스트를 작성해 보아요!",
                     style = ChevitTheme.typhography.bodyLarge.copy(
-                        color = ChevitTheme.colors.textSecondary
-                    ),
-                    textAlign = TextAlign.Center
-                )
-            } else {
-                Spacer(Modifier.height(20.dp))
-                checkList.forEach {
-                    CheckListContents(
-                        item = it,
-                        onClickLink = { id -> homeViewModel.onClickChecklist(id) },
-                        modifier = Modifier.fillMaxWidth()
+                        color = ChevitTheme.colors.textPrimary
                     )
+                )
+                Spacer(Modifier.height(24.dp))
+                ChevitButtonFillLarge(
+                    modifier = Modifier.fillMaxWidth(),
+                    onClick = { homeViewModel.onClickAddChecklist() }
+                ) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = HomeIcons.IconAddCircleLine,
+                            contentDescription = "",
+                            tint = ChevitTheme.colors.white
+                        )
+                        Spacer(modifier = Modifier.width(4.dp))
+                        Text("여행 추가하기")
+                    }
                 }
             }
-            Spacer(modifier = Modifier.height(36.dp))
+
+            Spacer(Modifier.height(40.dp))
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+                    .background(color = ChevitTheme.colors.grey0)
+            )
+
+            Spacer(Modifier.height(24.dp))
+
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp)
+            ) {
+                Text(
+                    text = "나의 체크리스트",
+                    style = ChevitTheme.typhography.headlineMedium.copy(
+                        color = ChevitTheme.colors.textPrimary
+                    )
+                )
+                val checkList = homeState.checkList
+                if (checkList.isEmpty()) {
+                    Spacer(Modifier.height(24.dp))
+                    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                        Image(
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .size(130.dp),
+                            painter = painterResource(id = com.dkin.chevit.presentation.resource.R.drawable.ic_empty_checklist),
+                            contentDescription = "",
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(12.dp))
+                    Text(
+                        modifier = Modifier.fillMaxWidth(),
+                        text = "생성된 체크리스트가 없어요\n여행 일정을 추가해서 만들어 보아요!",
+                        style = ChevitTheme.typhography.bodyLarge.copy(
+                            color = ChevitTheme.colors.textSecondary
+                        ),
+                        textAlign = TextAlign.Center
+                    )
+                } else {
+                    Spacer(Modifier.height(20.dp))
+                    checkList.forEach {
+                        CheckListContents(
+                            item = it,
+                            onClickLink = { id -> homeViewModel.onClickChecklist(id) },
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(36.dp))
+            }
         }
     }
 }

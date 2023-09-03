@@ -25,7 +25,7 @@ import com.dkin.chevit.presentation.home.contents.UserTabContents
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
@@ -37,49 +37,42 @@ fun HomeScreen(
     val tabList: List<HomeTab> =
         listOf(HomeTab.HOME, HomeTab.SEARCH, HomeTab.TEMPLATE, HomeTab.USER)
 
-    Scaffold(
-        modifier = modifier,
-        topBar = { HomeTopBar() },
-    ) { contentPadding ->
-        Column(
+    Column(
+        modifier = modifier.fillMaxSize()
+    ) {
+        HorizontalPager(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(contentPadding),
+                .fillMaxWidth()
+                .weight(1f),
+            state = pagerState,
+            pageCount = tabList.size,
+            userScrollEnabled = false
         ) {
-            HorizontalPager(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                state = pagerState,
-                pageCount = tabList.size,
-                userScrollEnabled = false
-            ) {
-                Box(modifier = Modifier.fillMaxSize()) {
-                    when (tabList[it]) {
-                        HomeTab.HOME -> HomeTabContents(homeViewModel = homeViewModel)
-                        HomeTab.SEARCH -> SearchTabContents()
-                        HomeTab.TEMPLATE -> TemplateTabContents()
-                        HomeTab.USER -> UserTabContents()
-                    }
+            Box(modifier = Modifier.fillMaxSize()) {
+                when (tabList[it]) {
+                    HomeTab.HOME -> HomeTabContents(homeViewModel = homeViewModel)
+                    HomeTab.SEARCH -> SearchTabContents()
+                    HomeTab.TEMPLATE -> TemplateTabContents()
+                    HomeTab.USER -> UserTabContents()
                 }
             }
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(1.dp)
-                    .background(color = ChevitTheme.colors.grey1),
-            )
-            BottomNavigation(
-                modifier = Modifier.fillMaxWidth(),
-                selectedIndex = tabIndex,
-                tabList = tabList.map { it.desc },
-                onChangeTab = {
-                    scope.launch {
-                        pagerState.animateScrollToPage(it)
-                    }
-                },
-            )
         }
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(1.dp)
+                .background(color = ChevitTheme.colors.grey1),
+        )
+        BottomNavigation(
+            modifier = Modifier.fillMaxWidth(),
+            selectedIndex = tabIndex,
+            tabList = tabList.map { it.desc },
+            onChangeTab = {
+                scope.launch {
+                    pagerState.animateScrollToPage(it)
+                }
+            },
+        )
     }
 }
 
