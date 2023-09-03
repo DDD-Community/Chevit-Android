@@ -21,8 +21,8 @@ fun HomeTopBar(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .height(56.dp)
-            .padding(16.dp),
+            .height(58.dp)
+            .padding(vertical = 18.dp, horizontal = 24.dp),
     ) {
         Row {
             Image(imageVector = HomeIcons.Logo, contentDescription = "Logo")

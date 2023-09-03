@@ -52,6 +52,7 @@ fun HomeScreen(
                     .weight(1f),
                 state = pagerState,
                 pageCount = tabList.size,
+                userScrollEnabled = false
             ) {
                 Box(modifier = Modifier.fillMaxSize()) {
                     when (tabList[it]) {
