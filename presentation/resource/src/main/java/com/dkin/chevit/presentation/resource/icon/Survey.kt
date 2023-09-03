@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.home.icon
+package com.dkin.chevit.presentation.resource.icon
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
-public val HomeIcons.Survey: ImageVector
+public val ChevitIcon.Survey: ImageVector
     get() {
         if (_survey != null) {
             return _survey!!

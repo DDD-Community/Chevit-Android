@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -33,10 +32,10 @@ import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.home.HomeState
 import com.dkin.chevit.presentation.home.HomeViewModel
 import com.dkin.chevit.presentation.home.component.HomeTopBar
-import com.dkin.chevit.presentation.home.icon.HomeIcons
-import com.dkin.chevit.presentation.home.icon.IconAddCircleLine
 import com.dkin.chevit.presentation.resource.ChevitButtonFillLarge
 import com.dkin.chevit.presentation.resource.ChevitTheme
+import com.dkin.chevit.presentation.resource.icon.ChevitIcon
+import com.dkin.chevit.presentation.resource.icon.IconAddCircleLine
 
 @Composable
 fun HomeTabContents(
@@ -96,7 +95,7 @@ fun HomeTabContents(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
-                            imageVector = HomeIcons.IconAddCircleLine,
+                            imageVector = ChevitIcon.IconAddCircleLine,
                             contentDescription = "",
                             tint = ChevitTheme.colors.white
                         )

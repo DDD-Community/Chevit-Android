@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.home.icon
+package com.dkin.chevit.presentation.resource.icon
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
@@ -11,18 +11,20 @@ import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
-public val HomeIcons.Search: ImageVector
+public val ChevitIcon.SearchSelected: ImageVector
     get() {
-        if (_search != null) {
-            return _search!!
+        if (_searchSelected != null) {
+            return _searchSelected!!
         }
-        _search = Builder(
-            name = "Search", defaultWidth = 25.0.dp, defaultHeight = 24.0.dp,
+        _searchSelected = Builder(
+            name = "SearchSelected", defaultWidth = 25.0.dp,
+            defaultHeight =
+            24.0.dp,
             viewportWidth = 25.0f, viewportHeight = 24.0f,
         ).apply {
             group {
                 path(
-                    fill = SolidColor(Color(0xFFA2A2A2)), stroke = null, strokeLineWidth = 0.0f,
+                    fill = SolidColor(Color(0xFF171717)), stroke = null, strokeLineWidth = 0.0f,
                     strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
                     pathFillType = NonZero,
                 ) {
@@ -48,7 +50,7 @@ public val HomeIcons.Search: ImageVector
             }
         }
             .build()
-        return _search!!
+        return _searchSelected!!
     }
 
-private var _search: ImageVector? = null
+private var _searchSelected: ImageVector? = null

@@ -9,7 +9,8 @@ sealed interface HomeIntent : ViewIntent
 data class HomeState(
     val userName: String,
     val profileUrl: String,
-    val checkList: List<CheckListItem>
+    val checkList: List<CheckListItem>,
+    val alarmEnabled: Boolean
 ) : ViewState {
     data class CheckListItem(
         val id: Int,
@@ -24,7 +25,8 @@ data class HomeState(
             HomeState(
                 userName = "",
                 profileUrl = "",
-                checkList = listOf()
+                checkList = listOf(),
+                alarmEnabled = false
             )
 
         fun dummy(): HomeState =
@@ -37,9 +39,10 @@ data class HomeState(
                         title = "파리, 프랑스",
                         date = "2023.07.16 ~ 2023.07.20",
                         isProgress = true,
-                        backgroundUrl = ""
+                        backgroundUrl = "",
                     )
-                )
+                ),
+                alarmEnabled = false
             )
     }
 }

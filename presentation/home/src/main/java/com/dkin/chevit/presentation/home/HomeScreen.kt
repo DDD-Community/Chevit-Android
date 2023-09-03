@@ -29,7 +29,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
-    homeViewModel: HomeViewModel
+    homeViewModel: HomeViewModel,
+    versionName: String
 ) {
     val scope = rememberCoroutineScope()
     val pagerState = rememberPagerState(initialPage = 0)
@@ -53,7 +54,10 @@ fun HomeScreen(
                     HomeTab.HOME -> HomeTabContents(homeViewModel = homeViewModel)
                     HomeTab.SEARCH -> SearchTabContents()
                     HomeTab.TEMPLATE -> TemplateTabContents()
-                    HomeTab.USER -> UserTabContents()
+                    HomeTab.USER -> UserTabContents(
+                        homeViewModel = homeViewModel,
+                        versionName = versionName
+                    )
                 }
             }
         }

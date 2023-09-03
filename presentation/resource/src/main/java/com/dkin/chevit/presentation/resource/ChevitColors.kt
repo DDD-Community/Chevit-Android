@@ -1,7 +1,9 @@
 package com.dkin.chevit.presentation.resource
 
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.graphics.Color
 
+@Stable
 data class ChevitColors(
     val black: Color = Color(0xFF000000),
     val white: Color = Color(0xFFFFFFFF),

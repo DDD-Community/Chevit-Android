@@ -1,11 +1,13 @@
 package com.dkin.chevit.presentation.home
 
+import android.os.Build
 import com.dkin.chevit.core.mvi.MVIViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor() : MVIViewModel<HomeIntent, HomeState, HomeEffect>() {
+
     override fun createInitialState(): HomeState = HomeState.empty()
 
     override suspend fun processIntent(intent: HomeIntent) {
@@ -17,5 +19,13 @@ class HomeViewModel @Inject constructor() : MVIViewModel<HomeIntent, HomeState, 
 
     fun onClickChecklist(id: Int) {
 
+    }
+
+    fun onClickProfileSetting() {
+
+    }
+
+    fun onClickAlarmEnabled(enabled: Boolean) {
+        setState { copy(alarmEnabled = enabled) }
     }
 }

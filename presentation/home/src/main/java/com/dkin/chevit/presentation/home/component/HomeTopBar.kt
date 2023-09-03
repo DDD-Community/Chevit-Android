@@ -10,9 +10,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.dkin.chevit.presentation.home.icon.HomeIcons
-import com.dkin.chevit.presentation.home.icon.Logo
-import com.dkin.chevit.presentation.home.icon.Notification
+import com.dkin.chevit.presentation.resource.icon.ChevitIcon
+import com.dkin.chevit.presentation.resource.icon.Logo
+import com.dkin.chevit.presentation.resource.icon.Notification
 
 @Composable
 fun HomeTopBar(
@@ -25,9 +25,9 @@ fun HomeTopBar(
             .padding(vertical = 18.dp, horizontal = 24.dp),
     ) {
         Row {
-            Image(imageVector = HomeIcons.Logo, contentDescription = "Logo")
+            Image(imageVector = ChevitIcon.Logo, contentDescription = "Logo")
             Spacer(modifier = Modifier.weight(1f, true))
-            Image(imageVector = HomeIcons.Notification, contentDescription = "Notification")
+            Image(imageVector = ChevitIcon.Notification, contentDescription = "Notification")
         }
     }
 }

@@ -49,7 +49,11 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
                         .fillMaxSize()
                         .statusBarsPadding()
                         .navigationBarsPadding(),
-                    homeViewModel = viewModel
+                    homeViewModel = viewModel,
+                    versionName = requireContext().packageManager.getPackageInfo(
+                        requireContext().packageName,
+                        0
+                    ).versionName
                 )
             }
         }
