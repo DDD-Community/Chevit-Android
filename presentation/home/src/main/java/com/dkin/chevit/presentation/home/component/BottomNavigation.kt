@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.dkin.chevit.presentation.home.HomeTab
 import com.dkin.chevit.presentation.home.textDp
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
@@ -29,9 +30,8 @@ import com.dkin.chevit.presentation.resource.icon.UserSelected
 @Composable
 fun BottomNavigation(
     modifier: Modifier = Modifier,
-    selectedIndex: Int,
-    tabList: List<String>,
-    onChangeTab: (index: Int) -> Unit = {},
+    selectedItem: HomeTab,
+    onChangeTab: (item: HomeTab) -> Unit = {},
 ) {
     Row(
         modifier = modifier
@@ -43,33 +43,33 @@ fun BottomNavigation(
             modifier = Modifier.weight(1f),
             activeImage = ChevitIcon.HomeSelected,
             inactiveImage = ChevitIcon.Home,
-            desc = tabList[0],
-            selected = selectedIndex == 0,
-            onClickItem = { onChangeTab(0) },
+            desc = HomeTab.HOME.desc,
+            selected = selectedItem == HomeTab.HOME,
+            onClickItem = { onChangeTab(HomeTab.HOME) },
         )
-        BottomIconMenu(
-            modifier = Modifier.weight(1f),
-            activeImage = ChevitIcon.SearchSelected,
-            inactiveImage = ChevitIcon.Search,
-            desc = tabList[1],
-            selected = selectedIndex == 1,
-            onClickItem = { onChangeTab(1) },
-        )
+//        BottomIconMenu(
+//            modifier = Modifier.weight(1f),
+//            activeImage = ChevitIcon.SearchSelected,
+//            inactiveImage = ChevitIcon.Search,
+//            desc = HomeTab.SEARCH.desc,
+//            selected = selectedItem == HomeTab.SEARCH,
+//            onClickItem = { onChangeTab(HomeTab.SEARCH) },
+//        )
         BottomIconMenu(
             modifier = Modifier.weight(1f),
             activeImage = ChevitIcon.SurveySelected,
             inactiveImage = ChevitIcon.Survey,
-            desc = tabList[2],
-            selected = selectedIndex == 2,
-            onClickItem = { onChangeTab(2) },
+            desc = HomeTab.TEMPLATE.desc,
+            selected = selectedItem == HomeTab.TEMPLATE,
+            onClickItem = { onChangeTab(HomeTab.TEMPLATE) },
         )
         BottomIconMenu(
             modifier = Modifier.weight(1f),
             activeImage = ChevitIcon.UserSelected,
             inactiveImage = ChevitIcon.User,
-            desc = tabList[3],
-            selected = selectedIndex == 3,
-            onClickItem = { onChangeTab(3) },
+            desc = HomeTab.USER.desc,
+            selected = selectedItem == HomeTab.USER,
+            onClickItem = { onChangeTab(HomeTab.USER) },
         )
     }
 }

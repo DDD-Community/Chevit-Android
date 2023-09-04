@@ -32,7 +32,7 @@ fun HomeScreen(
     val pagerState = rememberPagerState(initialPage = 0)
     val tabIndex = pagerState.currentPage
     val tabList: List<HomeTab> =
-        listOf(HomeTab.HOME, HomeTab.SEARCH, HomeTab.TEMPLATE, HomeTab.USER)
+        listOf(HomeTab.HOME, HomeTab.TEMPLATE, HomeTab.USER)
 
     Column(
         modifier = modifier.fillMaxSize(),
@@ -65,14 +65,13 @@ fun HomeScreen(
         )
         BottomNavigation(
             modifier = Modifier.fillMaxWidth(),
-            selectedIndex = tabIndex,
-            tabList = tabList.map { it.desc },
-            onChangeTab = {
-                scope.launch {
-                    pagerState.animateScrollToPage(it)
-                }
-            },
-        )
+            selectedItem = tabList[tabIndex],
+        ) { item ->
+            scope.launch {
+                val target = tabList.indexOfFirst { item == it }
+                pagerState.animateScrollToPage(target)
+            }
+        }
     }
 }
 
