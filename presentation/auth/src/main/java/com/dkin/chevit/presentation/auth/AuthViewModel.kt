@@ -15,12 +15,13 @@ class AuthViewModel @Inject constructor() : MVIViewModel<AuthIntent, AuthState, 
         is SelectedIntro -> selectPosition(intent.position)
     }
 
-    private fun selectNext() {
-        setState {
-            val nextPosition = selectedIntroGuideIndex + 1
-            copy(
-                selectedIntroGuideIndex = nextPosition.coerceAtMost(introGuideList.lastIndex),
-            )
+    private fun selectNext() = currentState {
+        val nextPosition = selectedIntroGuideIndex + 1
+        val lastIndex = introGuideList.lastIndex
+        if (nextPosition > lastIndex) {
+            setEffect { AuthEffect.NavigateSignIn }
+        } else {
+            setState { copy(selectedIntroGuideIndex = nextPosition.coerceAtMost(lastIndex)) }
         }
     }
 

@@ -11,6 +11,10 @@ sealed interface DeepLink {
         override val deepLink: String = "$SCHEME://auth"
     }
 
+    object SignIn : DeepLink {
+        override val deepLink: String = "$SCHEME://auth/signin"
+    }
+
     object Home : DeepLink {
         override val deepLink: String = "$SCHEME://home"
     }

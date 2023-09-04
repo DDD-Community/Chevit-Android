@@ -5,6 +5,8 @@ import androidx.viewpager2.widget.ViewPager2
 import com.dkin.chevit.core.mvi.MVIFragment
 import com.dkin.chevit.presentation.auth.AuthEffect.NavigateSignIn
 import com.dkin.chevit.presentation.auth.databinding.FragmentAuthBinding
+import com.dkin.chevit.presentation.deeplink.DeepLink
+import com.dkin.chevit.presentation.deeplink.deepLink
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,6 +37,8 @@ class Auth : MVIFragment<FragmentAuthBinding, AuthIntent, AuthState, AuthEffect>
     }
 
     override fun processEffect(effect: AuthEffect) = when (effect) {
-        NavigateSignIn -> TODO()
+        NavigateSignIn -> deepLink(DeepLink.SignIn) {
+            popUpTo(R.id.auth) { inclusive = true }
+        }
     }
 }

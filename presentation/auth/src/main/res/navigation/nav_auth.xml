@@ -12,4 +12,11 @@
         tools:layout="@layout/fragment_auth">
         <deepLink app:uri="chevit://auth" />
     </fragment>
+    <fragment
+        android:id="@+id/signIn"
+        android:name="com.dkin.chevit.presentation.auth.signin.SignIn"
+        android:label="SignIn"
+        tools:layout="@layout/fragment_sign_in">
+        <deepLink app:uri="chevit://auth/signin" />
+    </fragment>
 </navigation>
