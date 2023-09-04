@@ -65,4 +65,6 @@ sealed interface HomeEffect : ViewEffect {
     object NavigateToMyCheckList : HomeEffect
 
     object NavigateToTerms : HomeEffect
+
+    object NavigateToNotificationSetting : HomeEffect
 }

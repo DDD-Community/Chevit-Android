@@ -46,9 +46,12 @@ class HomeViewModel @Inject constructor() : MVIViewModel<HomeIntent, HomeState, 
     }
 
     fun onClickAlarmEnabled(enabled: Boolean) {
+        setState { copy(alarmEnabled = enabled) }
         launch {
             processIntent(HomeIntent.NoticeClicked(enabled))
-            setState { copy(alarmEnabled = enabled) }
         }
+    }
+    fun onClickNotificationSetting() {
+        setEffect { HomeEffect.NavigateToNotificationSetting }
     }
 }

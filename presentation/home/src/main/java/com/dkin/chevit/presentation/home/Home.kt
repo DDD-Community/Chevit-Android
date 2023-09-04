@@ -1,8 +1,10 @@
 package com.dkin.chevit.presentation.home
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,7 @@ import androidx.fragment.app.viewModels
 import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
@@ -60,12 +63,13 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
     }
 
     override fun processEffect(effect: HomeEffect) {
-        when(effect) {
+        when (effect) {
             HomeEffect.NavigateToAddCheckList -> TODO()
             is HomeEffect.NavigateToCheckList -> TODO()
             HomeEffect.NavigateToMyCheckList -> TODO()
             HomeEffect.NavigateToProfileSetting -> TODO()
             HomeEffect.NavigateToTerms -> TODO()
+            HomeEffect.NavigateToNotificationSetting -> TODO()
         }
     }
 
