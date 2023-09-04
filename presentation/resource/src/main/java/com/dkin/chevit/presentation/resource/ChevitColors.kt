@@ -38,28 +38,28 @@ data class ChevitColors(
     val orange2: Color = Color(0xFFFFC38C),
     val orange1: Color = Color(0xFFFFE9DC),
 
-    val backgroundBasic : Color = Color(0xFFFFFFFF),
-    val backgroundElevated : Color = Color(0xFFFFFFFF),
-    val backgroundContents : Color = Color(0x0D171717),
+    val backgroundBasic: Color = Color(0xFFFFFFFF),
+    val backgroundElevated: Color = Color(0xFFFFFFFF),
+    val backgroundContents: Color = Color(0x0D171717),
 
-    val pressLight : Color = Color(0xFFFFFFFF),
-    val pressGrey : Color = Color(0x0D171717),
+    val pressLight: Color = Color(0xFFFFFFFF),
+    val pressGrey: Color = Color(0x0D171717),
 
-    val shadowBasic : Color = Color(0x1A171717),
-    val shadowThick : Color = Color(0x33171717),
+    val shadowBasic: Color = Color(0x1A171717),
+    val shadowThick: Color = Color(0x33171717),
 
-    val statusError : Color = Color(0xFFFF4D4D),
-    val statusCancel : Color = Color(0xFFFF4D4D),
-    val statusNotice : Color = Color(0xFF21C389),
+    val statusError: Color = Color(0xFFFF4D4D),
+    val statusCancel: Color = Color(0xFFFF4D4D),
+    val statusNotice: Color = Color(0xFF21C389),
 
-    val dimBasic : Color = Color(0x33171717),
-    val dimThin : Color = Color(0x80171717),
-    val dimThick : Color = Color(0xCC171717),
+    val dimBasic: Color = Color(0x33171717),
+    val dimThin: Color = Color(0x80171717),
+    val dimThick: Color = Color(0xCC171717),
 
-    val border : Color = Color(0x0D171717),
+    val border: Color = Color(0x0D171717),
 
-    val textPrimary : Color = Color(0xFF171717),
-    val textSecondary : Color = Color(0xCC171717),
-    val textCaption : Color = Color(0x33171717),
-    val textDisabled : Color = Color(0x1A171717),
+    val textPrimary: Color = Color(0xFF171717),
+    val textSecondary: Color = Color(0xCC171717),
+    val textCaption: Color = Color(0x33171717),
+    val textDisabled: Color = Color(0x1A171717),
 )

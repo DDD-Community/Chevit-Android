@@ -15,11 +15,17 @@ public val ChevitIcon.IconArrowRight: ImageVector
         if (_iconArrowRight != null) {
             return _iconArrowRight!!
         }
-        _iconArrowRight = Builder(name = "IconArrowRight", defaultWidth = 7.0.dp, defaultHeight =
-                10.0.dp, viewportWidth = 7.0f, viewportHeight = 10.0f).apply {
-            path(fill = SolidColor(Color(0xFF171717)), stroke = null, strokeLineWidth = 0.0f,
-                    strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                    pathFillType = EvenOdd) {
+        _iconArrowRight = Builder(
+            name = "IconArrowRight", defaultWidth = 7.0.dp,
+            defaultHeight =
+            10.0.dp,
+            viewportWidth = 7.0f, viewportHeight = 10.0f,
+        ).apply {
+            path(
+                fill = SolidColor(Color(0xFF171717)), stroke = null, strokeLineWidth = 0.0f,
+                strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
+                pathFillType = EvenOdd,
+            ) {
                 moveTo(0.9697f, 0.2357f)
                 curveTo(1.2626f, -0.0572f, 1.7374f, -0.0572f, 2.0303f, 0.2357f)
                 lineTo(6.0303f, 4.2357f)
@@ -33,7 +39,7 @@ public val ChevitIcon.IconArrowRight: ImageVector
                 close()
             }
         }
-        .build()
+            .build()
         return _iconArrowRight!!
     }
 

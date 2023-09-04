@@ -1,6 +1,5 @@
 package com.dkin.chevit.presentation.home
 
-import android.os.Build
 import com.dkin.chevit.core.mvi.MVIViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -14,15 +13,12 @@ class HomeViewModel @Inject constructor() : MVIViewModel<HomeIntent, HomeState, 
     }
 
     fun onClickAddChecklist() {
-
     }
 
     fun onClickChecklist(id: Int) {
-
     }
 
     fun onClickProfileSetting() {
-
     }
 
     fun onClickAlarmEnabled(enabled: Boolean) {

@@ -53,51 +53,51 @@ fun HomeTabContents(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 24.dp)
+                    .padding(horizontal = 24.dp),
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Column(
                         modifier = Modifier.weight(1f),
-                        horizontalAlignment = Alignment.Start
+                        horizontalAlignment = Alignment.Start,
                     ) {
                         Text(
                             text = "${homeState.userName}님!",
                             style = ChevitTheme.typhography.headlineLarge.copy(
-                                color = ChevitTheme.colors.textPrimary
-                            )
+                                color = ChevitTheme.colors.textPrimary,
+                            ),
                         )
                         Text(
                             text = "여행 준비를 시작해볼까요?",
                             style = ChevitTheme.typhography.headlineMedium.copy(
-                                color = ChevitTheme.colors.textPrimary
-                            )
+                                color = ChevitTheme.colors.textPrimary,
+                            ),
                         )
                     }
                     Box(
                         modifier = Modifier
                             .size(58.dp)
-                            .background(color = ChevitTheme.colors.grey2, shape = CircleShape)
+                            .background(color = ChevitTheme.colors.grey2, shape = CircleShape),
                     )
                 }
                 Spacer(Modifier.height(32.dp))
                 Text(
                     text = "준비물을 빼먹지 않도록 Chevit과 함께\n체크리스트를 작성해 보아요!",
                     style = ChevitTheme.typhography.bodyLarge.copy(
-                        color = ChevitTheme.colors.textPrimary
-                    )
+                        color = ChevitTheme.colors.textPrimary,
+                    ),
                 )
                 Spacer(Modifier.height(24.dp))
                 ChevitButtonFillLarge(
                     modifier = Modifier.fillMaxWidth(),
-                    onClick = { homeViewModel.onClickAddChecklist() }
+                    onClick = { homeViewModel.onClickAddChecklist() },
                 ) {
                     Row(
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Icon(
                             imageVector = ChevitIcon.IconAddCircleLine,
                             contentDescription = "",
-                            tint = ChevitTheme.colors.white
+                            tint = ChevitTheme.colors.white,
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text("여행 추가하기")
@@ -111,7 +111,7 @@ fun HomeTabContents(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(4.dp)
-                    .background(color = ChevitTheme.colors.grey0)
+                    .background(color = ChevitTheme.colors.grey0),
             )
 
             Spacer(Modifier.height(24.dp))
@@ -119,13 +119,13 @@ fun HomeTabContents(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = 24.dp)
+                    .padding(horizontal = 24.dp),
             ) {
                 Text(
                     text = "나의 체크리스트",
                     style = ChevitTheme.typhography.headlineMedium.copy(
-                        color = ChevitTheme.colors.textPrimary
-                    )
+                        color = ChevitTheme.colors.textPrimary,
+                    ),
                 )
                 val checkList = homeState.checkList
                 if (checkList.isEmpty()) {
@@ -144,9 +144,9 @@ fun HomeTabContents(
                         modifier = Modifier.fillMaxWidth(),
                         text = "생성된 체크리스트가 없어요\n여행 일정을 추가해서 만들어 보아요!",
                         style = ChevitTheme.typhography.bodyLarge.copy(
-                            color = ChevitTheme.colors.textSecondary
+                            color = ChevitTheme.colors.textSecondary,
                         ),
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
                     )
                 } else {
                     Spacer(Modifier.height(20.dp))
@@ -154,7 +154,7 @@ fun HomeTabContents(
                         CheckListContents(
                             item = it,
                             onClickLink = { id -> homeViewModel.onClickChecklist(id) },
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth(),
                         )
                     }
                 }
@@ -168,21 +168,21 @@ fun HomeTabContents(
 private fun CheckListContents(
     item: HomeState.CheckListItem,
     onClickLink: (id: Int) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            //Todo 이미지로 배경 변경
+            // Todo 이미지로 배경 변경
             .background(color = Color.Gray)
-            .padding(vertical = 12.5.dp, horizontal = 14.5.dp)
+            .padding(vertical = 12.5.dp, horizontal = 14.5.dp),
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .heightIn(min = 26.dp),
-            contentAlignment = Alignment.CenterEnd
+            contentAlignment = Alignment.CenterEnd,
         ) {
             if (item.isProgress) {
                 Box(
@@ -190,30 +190,30 @@ private fun CheckListContents(
                         .clickable { onClickLink(item.id) }
                         .background(
                             color = ChevitTheme.colors.grey10,
-                            shape = RoundedCornerShape(100.dp)
+                            shape = RoundedCornerShape(100.dp),
                         )
                         .border(
                             width = 1.dp,
                             color = ChevitTheme.colors.grey4,
-                            shape = RoundedCornerShape(100.dp)
+                            shape = RoundedCornerShape(100.dp),
                         )
                         .padding(horizontal = 14.dp, vertical = 4.dp),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     Text(
                         text = "진행중",
-                        style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.white)
+                        style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.white),
                     )
                 }
             }
         }
         Text(
             text = item.title,
-            style = ChevitTheme.typhography.headlineSmall.copy(color = ChevitTheme.colors.white)
+            style = ChevitTheme.typhography.headlineSmall.copy(color = ChevitTheme.colors.white),
         )
         Text(
             text = item.date,
-            style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.white)
+            style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.white),
         )
     }
     Spacer(modifier = Modifier.height(20.dp))

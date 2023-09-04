@@ -15,17 +15,17 @@ import androidx.compose.ui.unit.dp
 internal fun ChevitLabel(
     text: String,
     backgroundColor: Color,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Box(
         modifier = Modifier
             .padding(horizontal = 14.dp, vertical = 4.dp)
             .background(color = backgroundColor, shape = RoundedCornerShape(100.dp))
-            .clickable { onClick() }
+            .clickable { onClick() },
     ) {
         Text(
             text = text,
-            style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.white)
+            style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.white),
         )
     }
 }

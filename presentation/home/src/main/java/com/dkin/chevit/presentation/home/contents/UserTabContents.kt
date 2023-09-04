@@ -34,7 +34,7 @@ import com.dkin.chevit.presentation.resource.icon.IconArrowRight
 fun UserTabContents(
     modifier: Modifier = Modifier,
     homeViewModel: HomeViewModel,
-    versionName: String
+    versionName: String,
 ) {
     val scrollState = rememberScrollState()
     val homeState = homeViewModel.state.collectAsState().value
@@ -45,38 +45,38 @@ fun UserTabContents(
                 .fillMaxWidth()
                 .height(58.dp)
                 .padding(vertical = 10.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
                 text = "마이페이지",
                 style = ChevitTheme.typhography.headlineMedium.copy(
-                    color = ChevitTheme.colors.textPrimary
-                )
+                    color = ChevitTheme.colors.textPrimary,
+                ),
             )
         }
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(scrollState),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.height(20.dp))
             Box(
                 modifier = Modifier
                     .size(128.dp)
-                    .background(color = ChevitTheme.colors.grey2, shape = CircleShape)
+                    .background(color = ChevitTheme.colors.grey2, shape = CircleShape),
             )
             Spacer(modifier = Modifier.height(20.dp))
             Text(
                 text = "${homeState.userName} 님",
                 style = ChevitTheme.typhography.headlineMedium.copy(
-                    color = ChevitTheme.colors.textPrimary
-                )
+                    color = ChevitTheme.colors.textPrimary,
+                ),
             )
             Spacer(modifier = Modifier.height(12.dp))
             ChevitButtonChip(
                 onClick = { homeViewModel.onClickProfileSetting() },
-                text = "프로필 설정"
+                text = "프로필 설정",
             )
             Spacer(modifier = Modifier.height(52.dp))
 
@@ -84,20 +84,20 @@ fun UserTabContents(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(4.dp)
-                    .background(color = ChevitTheme.colors.grey0)
+                    .background(color = ChevitTheme.colors.grey0),
             )
 
             UserItem(title = "내 체크리스트") {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,
                     contentDescription = "",
-                    tint = ChevitTheme.colors.grey10
+                    tint = ChevitTheme.colors.grey10,
                 )
             }
             UserItem(title = "버전정보") {
                 Text(
                     text = versionName,
-                    style = ChevitTheme.typhography.headlineSmall.copy(color = ChevitTheme.colors.grey8)
+                    style = ChevitTheme.typhography.headlineSmall.copy(color = ChevitTheme.colors.grey8),
                 )
             }
             UserItem(title = "알림설정") {
@@ -111,29 +111,29 @@ fun UserTabContents(
                         checkedBorderColor = Color.Unspecified,
                         uncheckedThumbColor = ChevitTheme.colors.white,
                         uncheckedTrackColor = ChevitTheme.colors.grey2,
-                        uncheckedBorderColor = Color.Unspecified
-                    )
+                        uncheckedBorderColor = Color.Unspecified,
+                    ),
                 )
             }
             UserItem(title = "이용약관") {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,
                     contentDescription = "",
-                    tint = ChevitTheme.colors.grey10
+                    tint = ChevitTheme.colors.grey10,
                 )
             }
             UserItem(title = "로그아웃") {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,
                     contentDescription = "",
-                    tint = ChevitTheme.colors.grey10
+                    tint = ChevitTheme.colors.grey10,
                 )
             }
             UserItem(title = "탈퇴하기", isLastItem = true) {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,
                     contentDescription = "",
-                    tint = ChevitTheme.colors.grey10
+                    tint = ChevitTheme.colors.grey10,
                 )
             }
         }
@@ -144,21 +144,21 @@ fun UserTabContents(
 private fun UserItem(
     title: String,
     isLastItem: Boolean = false,
-    tailContent: @Composable RowScope.() -> Unit
+    tailContent: @Composable RowScope.() -> Unit,
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(73.dp)
             .padding(top = 24.dp, bottom = 24.dp, start = 24.dp, end = 16.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             modifier = Modifier.weight(1f),
             text = title,
             style = ChevitTheme.typhography.bodyLarge.copy(
-                color = ChevitTheme.colors.grey10
-            )
+                color = ChevitTheme.colors.grey10,
+            ),
         )
         tailContent()
     }
@@ -167,7 +167,7 @@ private fun UserItem(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(1.dp)
-                .background(color = ChevitTheme.colors.grey3)
+                .background(color = ChevitTheme.colors.grey3),
         )
     }
 }

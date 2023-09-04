@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -52,8 +51,8 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
                     homeViewModel = viewModel,
                     versionName = requireContext().packageManager.getPackageInfo(
                         requireContext().packageName,
-                        0
-                    ).versionName
+                        0,
+                    ).versionName,
                 )
             }
         }

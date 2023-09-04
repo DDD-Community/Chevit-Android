@@ -10,16 +10,15 @@ import androidx.compose.runtime.staticCompositionLocalOf
 fun ChevitTheme(
     typhography: ChevitTyphography = ChevitTheme.typhography,
     colors: ChevitColors = ChevitTheme.colors,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(
         LocalColors provides colors,
-        LocalTypography provides typhography
+        LocalTypography provides typhography,
     ) {
         ProvideTextStyle(typhography.bodyMedium, content = content)
     }
 }
-
 
 val LocalColors = staticCompositionLocalOf { ChevitColors() }
 val LocalTypography = staticCompositionLocalOf { ChevitTyphography() }

@@ -17,12 +17,16 @@ public val ChevitIcon.Logo: ImageVector
         if (_logo != null) {
             return _logo!!
         }
-        _logo = Builder(name = "Logo", defaultWidth = 102.0.dp, defaultHeight = 24.0.dp,
-            viewportWidth = 102.0f, viewportHeight = 24.0f).apply {
+        _logo = Builder(
+            name = "Logo", defaultWidth = 102.0.dp, defaultHeight = 24.0.dp,
+            viewportWidth = 102.0f, viewportHeight = 24.0f,
+        ).apply {
             group {
-                path(fill = SolidColor(Color(0xFF3531FF)), stroke = null, strokeLineWidth = 0.0f,
+                path(
+                    fill = SolidColor(Color(0xFF3531FF)), stroke = null, strokeLineWidth = 0.0f,
                     strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                    pathFillType = NonZero) {
+                    pathFillType = NonZero,
+                ) {
                     moveTo(6.743f, 2.071f)
                     lineTo(21.175f, 4.603f)
                     arcTo(1.895f, 1.895f, 54.954f, false, true, 22.713f, 6.797f)
@@ -34,9 +38,11 @@ public val ChevitIcon.Logo: ImageVector
                     arcTo(1.895f, 1.895f, 54.954f, false, true, 6.743f, 2.071f)
                     close()
                 }
-                path(fill = SolidColor(Color(0xFF4A47FF)), stroke = null, strokeLineWidth = 0.0f,
+                path(
+                    fill = SolidColor(Color(0xFF4A47FF)), stroke = null, strokeLineWidth = 0.0f,
                     strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                    pathFillType = EvenOdd) {
+                    pathFillType = EvenOdd,
+                ) {
                     moveTo(8.245f, 6.078f)
                     curveTo(8.245f, 5.849f, 8.06f, 5.664f, 7.832f, 5.664f)
                     horizontalLineTo(3.395f)
@@ -56,9 +62,11 @@ public val ChevitIcon.Logo: ImageVector
                     verticalLineTo(6.078f)
                     close()
                 }
-                path(fill = SolidColor(Color(0x00000000)), stroke = SolidColor(Color(0xFF3532FE)),
+                path(
+                    fill = SolidColor(Color(0x00000000)), stroke = SolidColor(Color(0xFF3532FE)),
                     strokeLineWidth = 1.36922f, strokeLineCap = Butt, strokeLineJoin = Miter,
-                    strokeLineMiter = 4.0f, pathFillType = NonZero) {
+                    strokeLineMiter = 4.0f, pathFillType = NonZero,
+                ) {
                     moveTo(8.328f, 3.408f)
                     lineTo(8.415f, 2.903f)
                     curveTo(8.593f, 1.872f, 9.574f, 1.181f, 10.605f, 1.359f)
@@ -66,9 +74,11 @@ public val ChevitIcon.Logo: ImageVector
                     curveTo(18.93f, 2.798f, 19.621f, 3.778f, 19.443f, 4.809f)
                     lineTo(19.355f, 5.315f)
                 }
-                path(fill = SolidColor(Color(0xFFffffff)), stroke = null, strokeLineWidth = 0.0f,
+                path(
+                    fill = SolidColor(Color(0xFFffffff)), stroke = null, strokeLineWidth = 0.0f,
                     strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                    pathFillType = NonZero) {
+                    pathFillType = NonZero,
+                ) {
                     moveTo(15.84f, 10.499f)
                     lineTo(12.245f, 14.342f)
                     curveTo(12.064f, 14.535f, 11.759f, 14.543f, 11.569f, 14.358f)
@@ -84,18 +94,22 @@ public val ChevitIcon.Logo: ImageVector
                     curveTo(16.287f, 10.299f, 16.008f, 10.319f, 15.84f, 10.499f)
                     close()
                 }
-                path(fill = SolidColor(Color(0xFF000000)), stroke = null, strokeLineWidth = 0.0f,
+                path(
+                    fill = SolidColor(Color(0xFF000000)), stroke = null, strokeLineWidth = 0.0f,
                     strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                    pathFillType = NonZero) {
+                    pathFillType = NonZero,
+                ) {
                     moveTo(85.003f, 9.191f)
                     horizontalLineToRelative(3.025f)
                     verticalLineToRelative(10.549f)
                     horizontalLineToRelative(-3.025f)
                     close()
                 }
-                path(fill = SolidColor(Color(0xFF000000)), stroke = null, strokeLineWidth = 0.0f,
+                path(
+                    fill = SolidColor(Color(0xFF000000)), stroke = null, strokeLineWidth = 0.0f,
                     strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                    pathFillType = NonZero) {
+                    pathFillType = NonZero,
+                ) {
                     moveTo(76.283f, 18.528f)
                     lineTo(80.704f, 5.477f)
                     horizontalLineTo(83.639f)
@@ -106,9 +120,11 @@ public val ChevitIcon.Logo: ImageVector
                     lineTo(76.283f, 18.528f)
                     close()
                 }
-                path(fill = SolidColor(Color(0xFF000000)), stroke = null, strokeLineWidth = 0.0f,
+                path(
+                    fill = SolidColor(Color(0xFF000000)), stroke = null, strokeLineWidth = 0.0f,
                     strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                    pathFillType = EvenOdd) {
+                    pathFillType = EvenOdd,
+                ) {
                     moveTo(36.337f, 19.178f)
                     lineTo(36.34f, 19.179f)
                     lineTo(36.344f, 19.181f)
@@ -183,9 +199,11 @@ public val ChevitIcon.Logo: ImageVector
                     lineTo(44.71f, 7.301f)
                     close()
                 }
-                path(fill = SolidColor(Color(0xFF000000)), stroke = null, strokeLineWidth = 0.0f,
+                path(
+                    fill = SolidColor(Color(0xFF000000)), stroke = null, strokeLineWidth = 0.0f,
                     strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                    pathFillType = EvenOdd) {
+                    pathFillType = EvenOdd,
+                ) {
                     moveTo(49.603f, 12.198f)
                     curveTo(49.375f, 12.645f, 49.25f, 13.22f, 49.25f, 13.943f)
                     verticalLineTo(19.741f)
@@ -208,9 +226,11 @@ public val ChevitIcon.Logo: ImageVector
                     curveTo(50.18f, 11.417f, 49.845f, 11.75f, 49.603f, 12.198f)
                     close()
                 }
-                path(fill = SolidColor(Color(0xFF000000)), stroke = null, strokeLineWidth = 0.0f,
+                path(
+                    fill = SolidColor(Color(0xFF000000)), stroke = null, strokeLineWidth = 0.0f,
                     strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                    pathFillType = EvenOdd) {
+                    pathFillType = EvenOdd,
+                ) {
                     moveTo(59.166f, 16.937f)
                     curveTo(59.678f, 17.805f, 60.39f, 18.488f, 61.295f, 18.983f)
                     lineTo(61.298f, 18.984f)
@@ -294,9 +314,11 @@ public val ChevitIcon.Logo: ImageVector
                     curveTo(66.105f, 11.264f, 66.458f, 11.621f, 66.715f, 12.089f)
                     close()
                 }
-                path(fill = SolidColor(Color(0xFF000000)), stroke = null, strokeLineWidth = 0.0f,
+                path(
+                    fill = SolidColor(Color(0xFF000000)), stroke = null, strokeLineWidth = 0.0f,
                     strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                    pathFillType = EvenOdd) {
+                    pathFillType = EvenOdd,
+                ) {
                     moveTo(93.885f, 6.023f)
                     horizontalLineTo(91.213f)
                     verticalLineTo(8.324f)
@@ -350,9 +372,11 @@ public val ChevitIcon.Logo: ImageVector
                     lineTo(91.597f, 6.408f)
                     close()
                 }
-                path(fill = SolidColor(Color(0xFF000000)), stroke = null, strokeLineWidth = 0.0f,
+                path(
+                    fill = SolidColor(Color(0xFF000000)), stroke = null, strokeLineWidth = 0.0f,
                     strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                    pathFillType = NonZero) {
+                    pathFillType = NonZero,
+                ) {
                     moveTo(84.978f, 6.652f)
                     arcToRelative(1.538f, 1.538f, 0.0f, true, false, 3.075f, 0.0f)
                     arcToRelative(1.538f, 1.538f, 0.0f, true, false, -3.075f, 0.0f)

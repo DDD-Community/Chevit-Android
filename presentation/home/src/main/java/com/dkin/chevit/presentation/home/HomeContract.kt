@@ -10,7 +10,7 @@ data class HomeState(
     val userName: String,
     val profileUrl: String,
     val checkList: List<CheckListItem>,
-    val alarmEnabled: Boolean
+    val alarmEnabled: Boolean,
 ) : ViewState {
     data class CheckListItem(
         val id: Int,
@@ -26,7 +26,7 @@ data class HomeState(
                 userName = "",
                 profileUrl = "",
                 checkList = listOf(),
-                alarmEnabled = false
+                alarmEnabled = false,
             )
 
         fun dummy(): HomeState =
@@ -40,12 +40,11 @@ data class HomeState(
                         date = "2023.07.16 ~ 2023.07.20",
                         isProgress = true,
                         backgroundUrl = "",
-                    )
+                    ),
                 ),
-                alarmEnabled = false
+                alarmEnabled = false,
             )
     }
 }
-
 
 sealed interface HomeEffect : ViewEffect

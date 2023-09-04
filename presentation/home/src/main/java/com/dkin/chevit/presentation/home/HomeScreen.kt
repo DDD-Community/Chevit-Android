@@ -7,17 +7,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.home.component.BottomNavigation
-import com.dkin.chevit.presentation.home.component.HomeTopBar
 import com.dkin.chevit.presentation.home.contents.HomeTabContents
 import com.dkin.chevit.presentation.home.contents.SearchTabContents
 import com.dkin.chevit.presentation.home.contents.TemplateTabContents
@@ -30,7 +26,7 @@ import kotlinx.coroutines.launch
 fun HomeScreen(
     modifier: Modifier = Modifier,
     homeViewModel: HomeViewModel,
-    versionName: String
+    versionName: String,
 ) {
     val scope = rememberCoroutineScope()
     val pagerState = rememberPagerState(initialPage = 0)
@@ -39,7 +35,7 @@ fun HomeScreen(
         listOf(HomeTab.HOME, HomeTab.SEARCH, HomeTab.TEMPLATE, HomeTab.USER)
 
     Column(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier.fillMaxSize(),
     ) {
         HorizontalPager(
             modifier = Modifier
@@ -47,7 +43,7 @@ fun HomeScreen(
                 .weight(1f),
             state = pagerState,
             pageCount = tabList.size,
-            userScrollEnabled = false
+            userScrollEnabled = false,
         ) {
             Box(modifier = Modifier.fillMaxSize()) {
                 when (tabList[it]) {
@@ -56,7 +52,7 @@ fun HomeScreen(
                     HomeTab.TEMPLATE -> TemplateTabContents()
                     HomeTab.USER -> UserTabContents(
                         homeViewModel = homeViewModel,
-                        versionName = versionName
+                        versionName = versionName,
                     )
                 }
             }

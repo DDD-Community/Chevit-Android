@@ -15,11 +15,15 @@ public val ChevitIcon.IconAddCircleLine: ImageVector
         if (_iconAddCircleLine != null) {
             return _iconAddCircleLine!!
         }
-        _iconAddCircleLine = Builder(name = "IconAddCircleLine", defaultWidth = 24.0.dp,
-                defaultHeight = 24.0.dp, viewportWidth = 24.0f, viewportHeight = 24.0f).apply {
-            path(fill = SolidColor(Color(0xFFffffff)), stroke = null, strokeLineWidth = 0.0f,
-                    strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
-                    pathFillType = NonZero) {
+        _iconAddCircleLine = Builder(
+            name = "IconAddCircleLine", defaultWidth = 24.0.dp,
+            defaultHeight = 24.0.dp, viewportWidth = 24.0f, viewportHeight = 24.0f,
+        ).apply {
+            path(
+                fill = SolidColor(Color(0xFFffffff)), stroke = null, strokeLineWidth = 0.0f,
+                strokeLineCap = Butt, strokeLineJoin = Miter, strokeLineMiter = 4.0f,
+                pathFillType = NonZero,
+            ) {
                 moveTo(11.0f, 11.0f)
                 verticalLineTo(7.0f)
                 horizontalLineTo(13.0f)
@@ -52,7 +56,7 @@ public val ChevitIcon.IconAddCircleLine: ImageVector
                 close()
             }
         }
-        .build()
+            .build()
         return _iconAddCircleLine!!
     }
 
