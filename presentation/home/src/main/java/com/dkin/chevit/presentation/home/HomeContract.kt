@@ -4,7 +4,15 @@ import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
 
-sealed interface HomeIntent : ViewIntent
+sealed interface HomeIntent : ViewIntent {
+    data class NoticeClicked(
+        val checked: Boolean
+    ) : HomeIntent
+
+    object LogoutClicked : HomeIntent
+
+    object WithdrawClicked : HomeIntent
+}
 
 data class HomeState(
     val userName: String,
@@ -47,4 +55,14 @@ data class HomeState(
     }
 }
 
-sealed interface HomeEffect : ViewEffect
+sealed interface HomeEffect : ViewEffect {
+    object NavigateToAddCheckList : HomeEffect
+
+    data class NavigateToCheckList(val id: Int) : HomeEffect
+
+    object NavigateToProfileSetting : HomeEffect
+
+    object NavigateToMyCheckList : HomeEffect
+
+    object NavigateToTerms : HomeEffect
+}

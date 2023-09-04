@@ -1,6 +1,7 @@
 package com.dkin.chevit.presentation.home.contents
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -87,7 +88,10 @@ fun UserTabContents(
                     .background(color = ChevitTheme.colors.grey0),
             )
 
-            UserItem(title = "내 체크리스트") {
+            UserItem(
+                title = "내 체크리스트",
+                onClickItem = { homeViewModel.onClickMyCheckList() }
+            ) {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,
                     contentDescription = "",
@@ -115,21 +119,31 @@ fun UserTabContents(
                     ),
                 )
             }
-            UserItem(title = "이용약관") {
+            UserItem(
+                title = "이용약관",
+                onClickItem = { homeViewModel.onClickTerms() }
+            ) {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,
                     contentDescription = "",
                     tint = ChevitTheme.colors.grey10,
                 )
             }
-            UserItem(title = "로그아웃") {
+            UserItem(
+                title = "로그아웃",
+                onClickItem = { homeViewModel.onClickLogout() }
+            ) {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,
                     contentDescription = "",
                     tint = ChevitTheme.colors.grey10,
                 )
             }
-            UserItem(title = "탈퇴하기", isLastItem = true) {
+            UserItem(
+                title = "탈퇴하기",
+                onClickItem = { homeViewModel.onClickWithdraw() },
+                isLastItem = true
+            ) {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,
                     contentDescription = "",
@@ -144,13 +158,15 @@ fun UserTabContents(
 private fun UserItem(
     title: String,
     isLastItem: Boolean = false,
+    onClickItem: () -> Unit = {},
     tailContent: @Composable RowScope.() -> Unit,
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(73.dp)
-            .padding(top = 24.dp, bottom = 24.dp, start = 24.dp, end = 16.dp),
+            .padding(top = 24.dp, bottom = 24.dp, start = 24.dp, end = 16.dp)
+            .clickable { onClickItem() },
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(

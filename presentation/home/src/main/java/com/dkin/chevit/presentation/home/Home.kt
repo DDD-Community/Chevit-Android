@@ -60,6 +60,13 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
     }
 
     override fun processEffect(effect: HomeEffect) {
+        when(effect) {
+            HomeEffect.NavigateToAddCheckList -> TODO()
+            is HomeEffect.NavigateToCheckList -> TODO()
+            HomeEffect.NavigateToMyCheckList -> TODO()
+            HomeEffect.NavigateToProfileSetting -> TODO()
+            HomeEffect.NavigateToTerms -> TODO()
+        }
     }
 
     override fun processState(state: HomeState) {
