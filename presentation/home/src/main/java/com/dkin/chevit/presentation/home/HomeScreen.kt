@@ -49,7 +49,9 @@ fun HomeScreen(
                 when (tabList[it]) {
                     HomeTab.HOME -> HomeTabContents(homeViewModel = homeViewModel)
                     HomeTab.SEARCH -> SearchTabContents()
-                    HomeTab.TEMPLATE -> TemplateTabContents()
+                    HomeTab.TEMPLATE -> TemplateTabContents(
+                        homeViewModel = homeViewModel
+                    )
                     HomeTab.USER -> UserTabContents(
                         homeViewModel = homeViewModel,
                         versionName = versionName,

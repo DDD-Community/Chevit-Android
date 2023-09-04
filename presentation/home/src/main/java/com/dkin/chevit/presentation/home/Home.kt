@@ -70,6 +70,7 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
             HomeEffect.NavigateToProfileSetting -> TODO()
             HomeEffect.NavigateToTerms -> TODO()
             HomeEffect.NavigateToNotificationSetting -> TODO()
+            HomeEffect.NavigateToAddTemplate -> TODO()
         }
     }
 

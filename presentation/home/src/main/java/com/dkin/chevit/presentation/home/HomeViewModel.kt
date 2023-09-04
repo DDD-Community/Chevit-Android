@@ -51,7 +51,12 @@ class HomeViewModel @Inject constructor() : MVIViewModel<HomeIntent, HomeState, 
             processIntent(HomeIntent.NoticeClicked(enabled))
         }
     }
+
     fun onClickNotificationSetting() {
         setEffect { HomeEffect.NavigateToNotificationSetting }
+    }
+
+    fun onClickAddTemplate() {
+        setEffect { HomeEffect.NavigateToAddTemplate }
     }
 }

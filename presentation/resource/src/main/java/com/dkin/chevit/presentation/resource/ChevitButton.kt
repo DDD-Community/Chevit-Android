@@ -74,6 +74,29 @@ fun ChevitButtonFillLarge(
 }
 
 @Composable
+fun ChevitButtonFillMedium(
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    onClick: () -> Unit = {},
+    content: @Composable RowScope.() -> Unit,
+) {
+    ChevitButton(
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        shape = RoundedCornerShape(12.dp),
+        containerColor = ChevitTheme.colors.blue7,
+        pressedContainerColor = ChevitTheme.colors.blue8,
+        contentColor = ChevitTheme.colors.white,
+        disabledContainerColor = ChevitTheme.colors.blue1,
+        disabledContentColor = ChevitTheme.colors.white,
+        contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
+        textStyle = ChevitTheme.typhography.headlineSmall,
+        content = content,
+    )
+}
+
+@Composable
 internal fun ChevitButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,

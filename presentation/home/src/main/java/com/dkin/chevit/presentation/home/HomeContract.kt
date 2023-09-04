@@ -67,4 +67,6 @@ sealed interface HomeEffect : ViewEffect {
     object NavigateToTerms : HomeEffect
 
     object NavigateToNotificationSetting : HomeEffect
+
+    object NavigateToAddTemplate : HomeEffect
 }
