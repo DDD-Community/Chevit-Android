@@ -79,8 +79,8 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
                     .putExtra("android.provider.extra.APP_PACKAGE", requireContext().packageName)
                 startActivity(settingsIntent)
             }
-
             HomeEffect.NavigateToAddTemplate -> {}
+            HomeEffect.NavigateToSortTemplate -> {}
         }
     }
 

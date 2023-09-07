@@ -1,8 +1,10 @@
 package com.dkin.chevit.presentation.home
 
+import androidx.compose.runtime.Stable
 import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
+import com.dkin.chevit.presentation.home.model.Template
 
 sealed interface HomeIntent : ViewIntent {
     data class NoticeClicked(
@@ -14,6 +16,7 @@ sealed interface HomeIntent : ViewIntent {
     object WithdrawClicked : HomeIntent
 }
 
+@Stable
 data class HomeState(
     val userName: String,
     val profileUrl: String,
@@ -69,4 +72,14 @@ sealed interface HomeEffect : ViewEffect {
     object NavigateToNotificationSetting : HomeEffect
 
     object NavigateToAddTemplate : HomeEffect
+
+    object NavigateToSortTemplate : HomeEffect
+}
+
+@Stable
+sealed interface TemplateState {
+    object EMPTY : TemplateState
+    data class Available(
+        val templateList: List<Template>
+    ) : TemplateState
 }
