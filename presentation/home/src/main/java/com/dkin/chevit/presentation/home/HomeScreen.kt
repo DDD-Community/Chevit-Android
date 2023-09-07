@@ -26,6 +26,8 @@ import kotlinx.coroutines.launch
 fun HomeScreen(
     modifier: Modifier = Modifier,
     homeViewModel: HomeViewModel,
+    templateViewModel: TemplateViewModel,
+    myPageViewModel: MyPageViewModel,
     versionName: String,
 ) {
     val scope = rememberCoroutineScope()
@@ -50,10 +52,10 @@ fun HomeScreen(
                     HomeTab.HOME -> HomeTabContents(homeViewModel = homeViewModel)
                     HomeTab.SEARCH -> SearchTabContents()
                     HomeTab.TEMPLATE -> TemplateTabContents(
-                        homeViewModel = homeViewModel
+                        templateViewModel = templateViewModel
                     )
                     HomeTab.USER -> UserTabContents(
-                        homeViewModel = homeViewModel,
+                        myViewModel = myPageViewModel,
                         versionName = versionName,
                     )
                 }

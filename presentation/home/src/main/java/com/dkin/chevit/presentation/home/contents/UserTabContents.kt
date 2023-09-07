@@ -29,14 +29,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
-import com.dkin.chevit.presentation.home.HomeViewModel
+import com.dkin.chevit.presentation.home.MyPageViewModel
 import com.dkin.chevit.presentation.home.util.rememberLifecycleEvent
 import com.dkin.chevit.presentation.resource.ChevitButtonChip
 import com.dkin.chevit.presentation.resource.ChevitTheme
@@ -47,11 +46,11 @@ import com.dkin.chevit.presentation.resource.icon.IconWarningFill
 @Composable
 fun UserTabContents(
     modifier: Modifier = Modifier,
-    homeViewModel: HomeViewModel,
+    myViewModel: MyPageViewModel,
     versionName: String,
 ) {
     val scrollState = rememberScrollState()
-    val homeState = homeViewModel.state.collectAsState().value
+    val homeState = myViewModel.state.collectAsState().value
 
     Column(modifier = modifier) {
         Column(
@@ -89,7 +88,7 @@ fun UserTabContents(
             )
             Spacer(modifier = Modifier.height(12.dp))
             ChevitButtonChip(
-                onClick = { homeViewModel.onClickProfileSetting() },
+                onClick = { myViewModel.onClickProfileSetting() },
                 text = "프로필 설정",
             )
             Spacer(modifier = Modifier.height(52.dp))
@@ -103,7 +102,7 @@ fun UserTabContents(
 
             UserItem(
                 title = "내 체크리스트",
-                onClickItem = { homeViewModel.onClickMyCheckList() }
+                onClickItem = { myViewModel.onClickMyCheckList() }
             ) {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,
@@ -119,12 +118,12 @@ fun UserTabContents(
             }
             AlarmSetting(
                 checked = homeState.alarmEnabled,
-                onClickItem = { homeViewModel.onClickAlarmEnabled(it) },
-                onClickNotificationSetting = { homeViewModel.onClickNotificationSetting() }
+                onClickItem = { myViewModel.onClickAlarmEnabled(it) },
+                onClickNotificationSetting = { myViewModel.onClickNotificationSetting() }
             )
             UserItem(
                 title = "이용약관",
-                onClickItem = { homeViewModel.onClickTerms() }
+                onClickItem = { myViewModel.onClickTerms() }
             ) {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,
@@ -134,7 +133,7 @@ fun UserTabContents(
             }
             UserItem(
                 title = "로그아웃",
-                onClickItem = { homeViewModel.onClickLogout() }
+                onClickItem = { myViewModel.onClickLogout() }
             ) {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,
@@ -144,7 +143,7 @@ fun UserTabContents(
             }
             UserItem(
                 title = "탈퇴하기",
-                onClickItem = { homeViewModel.onClickWithdraw() },
+                onClickItem = { myViewModel.onClickWithdraw() },
                 isLastItem = true
             ) {
                 Icon(

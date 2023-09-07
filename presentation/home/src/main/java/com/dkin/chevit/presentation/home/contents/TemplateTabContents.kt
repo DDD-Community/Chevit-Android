@@ -22,14 +22,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.dkin.chevit.presentation.home.HomeViewModel
 import com.dkin.chevit.presentation.home.TemplateState
+import com.dkin.chevit.presentation.home.TemplateViewModel
 import com.dkin.chevit.presentation.home.model.Template
 import com.dkin.chevit.presentation.resource.ChevitButtonFillMedium
 import com.dkin.chevit.presentation.resource.ChevitFloatingButton
@@ -37,18 +36,13 @@ import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.R
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconFilterFill
-import com.dkin.chevit.presentation.resource.icon.TemplateAfternoon
-import com.dkin.chevit.presentation.resource.icon.TemplateDawn
-import com.dkin.chevit.presentation.resource.icon.TemplateMorning
-import com.dkin.chevit.presentation.resource.icon.TemplateNight
-import com.dkin.chevit.presentation.resource.icon.TemplateSunset
 
 @Composable
 fun TemplateTabContents(
     modifier: Modifier = Modifier,
-    homeViewModel: HomeViewModel,
+    templateViewModel: TemplateViewModel,
 ) {
-    val state = homeViewModel.templateState.collectAsState().value
+    val state = templateViewModel.templateState.collectAsState().value
 
     Column(modifier = modifier) {
         Row(
@@ -66,7 +60,7 @@ fun TemplateTabContents(
                 ),
             )
             Icon(
-                modifier = Modifier.clickable { homeViewModel.onClickSortTemplate() },
+                modifier = Modifier.clickable { templateViewModel.onClickSortTemplate() },
                 imageVector = ChevitIcon.IconFilterFill,
                 contentDescription = "",
             )
@@ -87,7 +81,9 @@ fun TemplateTabContents(
                         verticalArrangement = Arrangement.spacedBy(24.dp)
                     ) {
                         items(count = templateList.size) {
-                            TemplateItem(template = templateList[it])
+                            TemplateItem(
+                                template = templateList[it],
+                                onClick = { id -> templateViewModel.onClickTemplate(id) })
                         }
                     }
                     Box(
@@ -98,7 +94,7 @@ fun TemplateTabContents(
                     ) {
                         ChevitFloatingButton(
                             modifier = Modifier.align(Alignment.BottomEnd),
-                            onClick = { homeViewModel.onClickAddTemplate() }
+                            onClick = { templateViewModel.onClickAddTemplate() }
                         )
                     }
                 }
@@ -128,7 +124,7 @@ fun TemplateTabContents(
                         Spacer(modifier = Modifier.height(18.dp))
                         ChevitButtonFillMedium(
                             modifier = Modifier.size(width = 187.dp, height = 54.dp),
-                            onClick = { homeViewModel.onClickAddTemplate() }
+                            onClick = { templateViewModel.onClickAddTemplate() }
                         ) {
                             Text(text = "추가하기")
                         }
@@ -143,13 +139,16 @@ fun TemplateTabContents(
 
 @Composable
 private fun TemplateItem(
-    template: Template
+    template: Template,
+    onClick: (id: Int) -> Unit
 ) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(90.dp)
-            .background(color = template.colorType.color, shape = RoundedCornerShape(12.dp))
+            .clip(RoundedCornerShape(12.dp))
+            .background(color = template.colorType.color)
+            .clickable { onClick(template.id) }
     ) {
         Column(
             modifier = Modifier
