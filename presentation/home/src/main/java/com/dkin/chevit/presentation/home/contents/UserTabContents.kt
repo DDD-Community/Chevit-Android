@@ -25,13 +25,19 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
 import com.dkin.chevit.presentation.home.HomeViewModel
+import com.dkin.chevit.presentation.home.util.rememberLifecycleEvent
 import com.dkin.chevit.presentation.resource.ChevitButtonChip
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
@@ -191,6 +197,19 @@ private fun AlarmSetting(
     onClickItem: (checked: Boolean) -> Unit = {},
     onClickNotificationSetting: () -> Unit = {},
 ) {
+    val systemNotificationEnabled = remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    val lifecycle = rememberLifecycleEvent()
+
+    LaunchedEffect(lifecycle) {
+        when (lifecycle) {
+            Lifecycle.Event.ON_RESUME -> {
+                systemNotificationEnabled.value = !areNotificationsEnabled(context)
+            }
+            else -> {}
+        }
+    }
+
     Column(modifier = Modifier.fillMaxWidth()) {
         Row(
             modifier = Modifier

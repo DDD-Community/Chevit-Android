@@ -17,6 +17,7 @@ import androidx.fragment.app.viewModels
 import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -63,14 +64,23 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
     }
 
     override fun processEffect(effect: HomeEffect) {
+        Timber.tag("Home").d("processEffect")
         when (effect) {
-            HomeEffect.NavigateToAddCheckList -> TODO()
-            is HomeEffect.NavigateToCheckList -> TODO()
-            HomeEffect.NavigateToMyCheckList -> TODO()
-            HomeEffect.NavigateToProfileSetting -> TODO()
-            HomeEffect.NavigateToTerms -> TODO()
-            HomeEffect.NavigateToNotificationSetting -> TODO()
-            HomeEffect.NavigateToAddTemplate -> TODO()
+            HomeEffect.NavigateToAddCheckList -> {}
+            is HomeEffect.NavigateToCheckList -> {}
+            HomeEffect.NavigateToMyCheckList -> {}
+            HomeEffect.NavigateToProfileSetting -> {}
+            HomeEffect.NavigateToTerms -> {}
+            HomeEffect.NavigateToNotificationSetting -> {
+                val settingsIntent: Intent = Intent("android.settings.APP_NOTIFICATION_SETTINGS")
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    .putExtra("app_package", requireContext().packageName)
+                    .putExtra("app_uid", requireContext().applicationInfo.uid)
+                    .putExtra("android.provider.extra.APP_PACKAGE", requireContext().packageName)
+                startActivity(settingsIntent)
+            }
+
+            HomeEffect.NavigateToAddTemplate -> {}
         }
     }
 

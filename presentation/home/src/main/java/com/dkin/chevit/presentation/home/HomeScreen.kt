@@ -71,7 +71,7 @@ fun HomeScreen(
         ) { item ->
             scope.launch {
                 val target = tabList.indexOfFirst { item == it }
-                pagerState.animateScrollToPage(target)
+                pagerState.scrollToPage(target)
             }
         }
     }

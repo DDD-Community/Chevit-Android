@@ -14,13 +14,9 @@ abstract class MVIComposeFragment<I : ViewIntent, S : ViewState, E : ViewEffect>
         viewModel.dispatch(intent)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View? {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initCollect()
-        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     private fun initCollect() {
