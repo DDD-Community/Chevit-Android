@@ -27,7 +27,8 @@ fun HomeTopBar(
         Row {
             Image(imageVector = ChevitIcon.Logo, contentDescription = "Logo")
             Spacer(modifier = Modifier.weight(1f, true))
-            Image(imageVector = ChevitIcon.Notification, contentDescription = "Notification")
+            //알림 오픈스펙 제외
+            //Image(imageVector = ChevitIcon.Notification, contentDescription = "Notification")
         }
     }
 }
