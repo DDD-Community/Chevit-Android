@@ -22,7 +22,7 @@ fun WhenContents(
         Text(
             modifier = Modifier,
             text = "언제 떠나시나요?",
-            style = ChevitTheme.typhography.displaySmall.copy(color = ChevitTheme.colors.textPrimary)
+            style = ChevitTheme.typhography.headlineLarge.copy(color = ChevitTheme.colors.textPrimary)
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
