@@ -13,4 +13,8 @@ class StepViewModel @Inject constructor() : MVIViewModel<StepIntent, StepState, 
             else -> {}
         }
     }
+
+    fun createCheckList() {
+
+    }
 }

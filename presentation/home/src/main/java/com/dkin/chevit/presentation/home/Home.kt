@@ -38,7 +38,7 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
     ): View {
         val window = requireActivity().window
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.setDecorFitsSystemWindows(false)
+            window.setDecorFitsSystemWindows(true)
             window.statusBarColor = Color.TRANSPARENT
         } else {
             window.statusBarColor = Color.TRANSPARENT
@@ -76,9 +76,7 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
     override fun processEffect(effect: HomeEffect) {
         when (effect) {
             HomeEffect.NavigateToAddCheckList ->
-                deepLink(DeepLink.Step) {
-                    popUpTo(R.id.home) { inclusive = true }
-                }
+                deepLink(DeepLink.Step) { popUpTo(R.id.home) }
 
             is HomeEffect.NavigateToCheckList -> {}
         }
