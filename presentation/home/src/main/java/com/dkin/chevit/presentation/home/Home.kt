@@ -15,9 +15,10 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.dkin.chevit.core.mvi.MVIComposeFragment
+import com.dkin.chevit.presentation.deeplink.DeepLink
+import com.dkin.chevit.presentation.deeplink.deepLink
 import com.dkin.chevit.presentation.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -74,7 +75,11 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
 
     override fun processEffect(effect: HomeEffect) {
         when (effect) {
-            HomeEffect.NavigateToAddCheckList -> {}
+            HomeEffect.NavigateToAddCheckList ->
+                deepLink(DeepLink.Step) {
+                    popUpTo(R.id.home) { inclusive = true }
+                }
+
             is HomeEffect.NavigateToCheckList -> {}
         }
     }
@@ -98,6 +103,7 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
                     .putExtra("android.provider.extra.APP_PACKAGE", requireContext().packageName)
                 startActivity(settingsIntent)
             }
+
             MyPageEffect.NavigateToProfileSetting -> {}
             MyPageEffect.NavigateToTerms -> {}
         }

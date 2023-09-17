@@ -61,6 +61,7 @@ dependencies {
     implementation(project(":presentation:splash"))
     implementation(project(":presentation:auth"))
     implementation(project(":presentation:home"))
+    implementation(project(":presentation:step"))
 
     implementation(libs.androidx.startup)
 }
