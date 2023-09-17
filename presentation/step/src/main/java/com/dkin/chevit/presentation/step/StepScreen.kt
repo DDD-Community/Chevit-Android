@@ -2,13 +2,9 @@ package com.dkin.chevit.presentation.step
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.material3.Tab
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,7 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.dkin.chevit.presentation.step.component.ChevitTabRow
+import com.dkin.chevit.presentation.step.component.ChevitProgressBar
 import com.dkin.chevit.presentation.step.component.StepTopBar
 import com.dkin.chevit.presentation.step.contents.WhatContents
 import com.dkin.chevit.presentation.step.contents.WhenContents
@@ -43,17 +39,11 @@ fun StepScreen(
                 .padding(start = 24.dp, end = 24.dp, bottom = 24.dp)
         ) {
             Spacer(modifier = Modifier.height(6.dp))
-            ChevitTabRow(
+            ChevitProgressBar(
+                modifier = Modifier.fillMaxWidth(),
                 selectedTabIndex = tabIndex,
-            ) {
-                tabs.forEachIndexed { index, _ ->
-                    Tab(
-                        text = {},
-                        selected = tabIndex == index,
-                        onClick = {}
-                    )
-                }
-            }
+                tabSize = tabs.size
+            )
             when (tabIndex) {
                 0 -> WhereContents(
                     modifier = Modifier
