@@ -10,7 +10,7 @@
         android:name="com.dkin.chevit.presentation.auth.Auth"
         android:label="Auth"
         tools:layout="@layout/fragment_auth">
-        <deepLink app:uri="chevit://auth" />
+        <deepLink app:uri="chevit://auth/onboarding" />
     </fragment>
     <fragment
         android:id="@+id/signIn"
@@ -18,5 +18,12 @@
         android:label="SignIn"
         tools:layout="@layout/fragment_sign_in">
         <deepLink app:uri="chevit://auth/signin" />
+    </fragment>
+    <fragment
+        android:id="@+id/signUp"
+        android:name="com.dkin.chevit.presentation.auth.signup.SignUp"
+        android:label="SignUp"
+        tools:layout="@layout/fragment_sign_up">
+        <deepLink app:uri="chevit://auth/signup" />
     </fragment>
 </navigation>

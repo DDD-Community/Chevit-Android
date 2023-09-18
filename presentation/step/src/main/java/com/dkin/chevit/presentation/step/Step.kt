@@ -44,7 +44,7 @@ class Step : MVIComposeFragment<StepIntent, StepState, StepEffect>() {
             setContent {
                 StepScreen(
                     viewModel = viewModel,
-                    onClickClose = { requireActivity().onBackPressed() }
+                    onClickClose = { requireActivity().onBackPressed() },
                 )
             }
         }

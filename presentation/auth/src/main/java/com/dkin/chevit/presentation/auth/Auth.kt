@@ -17,28 +17,34 @@ class Auth : MVIFragment<FragmentAuthBinding, AuthIntent, AuthState, AuthEffect>
     override val viewModel: AuthViewModel by viewModels()
     private val introAdapter by lazy { IntroAdapter() }
 
-    override fun initView() = binding {
-        pager.adapter = introAdapter
-        pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                setIntent(AuthIntent.SelectedIntro(position))
-            }
-        })
-        TabLayoutMediator(tlIntro, pager) { _, _ -> }.attach()
-        btnNext.setOnClickListener { setIntent(AuthIntent.NextClicked) }
-    }
-
-    override fun processState(state: AuthState) = binding {
-        introAdapter.submitList(state.introGuideList)
-        pager.setCurrentItem(state.selectedIntroGuideIndex, true)
-        tvTitle.text = state.title
-        tvDescription.text = state.description
-        btnNext.text = state.nextButtonText
-    }
-
-    override fun processEffect(effect: AuthEffect) = when (effect) {
-        NavigateSignIn -> deepLink(DeepLink.SignIn) {
-            popUpTo(R.id.auth) { inclusive = true }
+    override fun initView() =
+        binding {
+            pager.adapter = introAdapter
+            pager.registerOnPageChangeCallback(
+                object : ViewPager2.OnPageChangeCallback() {
+                    override fun onPageSelected(position: Int) {
+                        setIntent(AuthIntent.SelectedIntro(position))
+                    }
+                },
+            )
+            TabLayoutMediator(tlIntro, pager) { _, _ -> }.attach()
+            btnNext.setOnClickListener { setIntent(AuthIntent.NextClicked) }
         }
-    }
+
+    override fun processState(state: AuthState) =
+        binding {
+            introAdapter.submitList(state.introGuideList)
+            pager.setCurrentItem(state.selectedIntroGuideIndex, true)
+            tvTitle.text = state.title
+            tvDescription.text = state.description
+            btnNext.text = state.nextButtonText
+        }
+
+    override fun processEffect(effect: AuthEffect) =
+        when (effect) {
+            NavigateSignIn ->
+                deepLink(DeepLink.SignIn) {
+                    popUpTo(R.id.auth) { inclusive = true }
+                }
+        }
 }

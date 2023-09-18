@@ -10,7 +10,6 @@ abstract class ViewBindingListAdapter<BINDING : ViewBinding, ITEM>(
     diffCallback: DiffUtil.ItemCallback<ITEM>,
     private val inflater: (LayoutInflater, ViewGroup?, Boolean) -> BINDING,
 ) : ListAdapter<ITEM, ViewBindingViewHolder<BINDING, ITEM>>(diffCallback) {
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,

@@ -14,16 +14,17 @@ class IntroAdapter : ViewBindingListAdapter<HolderIntroBinding, IntroPagerUiMode
     }
 
     companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<IntroPagerUiModel>() {
-            override fun areItemsTheSame(
-                oldItem: IntroPagerUiModel,
-                newItem: IntroPagerUiModel,
-            ): Boolean = oldItem.id == newItem.id
+        private val diffCallback =
+            object : DiffUtil.ItemCallback<IntroPagerUiModel>() {
+                override fun areItemsTheSame(
+                    oldItem: IntroPagerUiModel,
+                    newItem: IntroPagerUiModel,
+                ): Boolean = oldItem.id == newItem.id
 
-            override fun areContentsTheSame(
-                oldItem: IntroPagerUiModel,
-                newItem: IntroPagerUiModel,
-            ): Boolean = oldItem == newItem
-        }
+                override fun areContentsTheSame(
+                    oldItem: IntroPagerUiModel,
+                    newItem: IntroPagerUiModel,
+                ): Boolean = oldItem == newItem
+            }
     }
 }

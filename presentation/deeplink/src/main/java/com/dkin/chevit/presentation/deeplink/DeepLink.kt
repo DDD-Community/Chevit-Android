@@ -7,12 +7,16 @@ sealed interface DeepLink {
     val uri: Uri
         get() = Uri.parse(deepLink)
 
-    object Auth : DeepLink {
-        override val deepLink: String = "$SCHEME://auth"
+    object OnBoarding : DeepLink {
+        override val deepLink: String = "$SCHEME://auth/onboarding"
     }
 
     object SignIn : DeepLink {
         override val deepLink: String = "$SCHEME://auth/signin"
+    }
+
+    object SignUp : DeepLink {
+        override val deepLink: String = "$SCHEME://auth/signup"
     }
 
     object Home : DeepLink {

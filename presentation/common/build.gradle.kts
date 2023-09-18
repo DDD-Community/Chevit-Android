@@ -10,3 +10,6 @@ apply(from = project.rootProject.file("gradle-scripts/dagger.gradle"))
 android {
     namespace = "com.dkin.chevit.presentation.common"
 }
+dependencies {
+    implementation(project(":core"))
+}

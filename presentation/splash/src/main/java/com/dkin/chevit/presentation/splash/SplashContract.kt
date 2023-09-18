@@ -11,6 +11,7 @@ sealed interface SplashIntent : ViewIntent {
 object SplashState : ViewState
 
 sealed interface SplashEffect : ViewEffect {
-    object NavigateToAuth : SplashEffect
+    object NavigateToOnBoarding : SplashEffect
+    object NavigateToSignUp : SplashEffect
     object NavigateToHome : SplashEffect
 }

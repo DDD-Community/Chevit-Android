@@ -6,5 +6,8 @@ sealed interface UserState : DomainModel {
     object Guest : UserState
 
     @JvmInline
+    value class NotRegister(val token: String) : UserState
+
+    @JvmInline
     value class User(val token: String) : UserState
 }
