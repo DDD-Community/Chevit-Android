@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.home.util
+package com.dkin.chevit.presentation.resource.util
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect

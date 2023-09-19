@@ -31,6 +31,8 @@ fun StepScreen(
         val tabs = listOf("Where", "When", "Who", "What")
         StepTopBar(
             modifier = Modifier.fillMaxWidth(),
+            backButtonEnabled = tabIndex > 0,
+            onClickBack = { if (tabIndex > 0) tabIndex -= 1 },
             onClickClose = onClickClose
         )
         Column(
@@ -49,7 +51,11 @@ fun StepScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f),
-                    onClickNext = { tabIndex = 1 }
+                    viewModel = viewModel,
+                    onClickNext = {
+                        tabIndex = 1
+                        viewModel.clearCountryList()
+                    },
                 )
 
                 1 -> WhenContents(

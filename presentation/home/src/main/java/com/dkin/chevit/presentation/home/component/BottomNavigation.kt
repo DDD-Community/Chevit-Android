@@ -14,8 +14,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.home.HomeTab
-import com.dkin.chevit.presentation.home.textDp
-import com.dkin.chevit.presentation.home.util.clickableNoRipple
+import com.dkin.chevit.presentation.resource.util.textDp
+import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.Home

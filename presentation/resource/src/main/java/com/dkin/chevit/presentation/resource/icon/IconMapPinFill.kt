@@ -11,12 +11,12 @@ import androidx.compose.ui.graphics.vector.group
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
-public val ChevitIcon.`IconMapPinFill-24`: ImageVector
+public val ChevitIcon.IconMapPinFill: ImageVector
     get() {
-        if (`_iconMapPinFill-24` != null) {
-            return `_iconMapPinFill-24`!!
+        if (_iconMapPinFill != null) {
+            return _iconMapPinFill!!
         }
-        `_iconMapPinFill-24` = Builder(name = "IconMapPinFill-24", defaultWidth = 21.0.dp,
+        _iconMapPinFill = Builder(name = "IconMapPinFill", defaultWidth = 21.0.dp,
                 defaultHeight = 20.0.dp, viewportWidth = 21.0f, viewportHeight = 20.0f).apply {
             group {
                 path(fill = SolidColor(Color(0xFF171717)), stroke = null, strokeLineWidth = 0.0f,
@@ -58,7 +58,7 @@ public val ChevitIcon.`IconMapPinFill-24`: ImageVector
             }
         }
         .build()
-        return `_iconMapPinFill-24`!!
+        return _iconMapPinFill!!
     }
 
-private var `_iconMapPinFill-24`: ImageVector? = null
+private var _iconMapPinFill: ImageVector? = null

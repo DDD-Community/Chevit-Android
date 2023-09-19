@@ -100,7 +100,7 @@ fun ChevitButtonFillMedium(
 internal fun ChevitButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true,
+    enabled: Boolean = false,
     shape: Shape = ButtonDefaults.shape,
     containerColor: Color,
     pressedContainerColor: Color = containerColor,

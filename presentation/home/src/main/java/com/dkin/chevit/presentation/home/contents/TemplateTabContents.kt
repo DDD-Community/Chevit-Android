@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.home.TemplateState
 import com.dkin.chevit.presentation.home.TemplateViewModel
 import com.dkin.chevit.presentation.home.model.Template
-import com.dkin.chevit.presentation.home.util.clickableNoRipple
+import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 import com.dkin.chevit.presentation.resource.ChevitButtonFillMedium
 import com.dkin.chevit.presentation.resource.ChevitFloatingButton
 import com.dkin.chevit.presentation.resource.ChevitTheme
