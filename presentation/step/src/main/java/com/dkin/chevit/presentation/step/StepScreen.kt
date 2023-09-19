@@ -62,6 +62,7 @@ fun StepScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f),
+                    viewModel = viewModel,
                     onClickNext = { tabIndex = 2 }
                 )
 
@@ -69,6 +70,7 @@ fun StepScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f),
+                    viewModel = viewModel,
                     onClickNext = { tabIndex = 3 }
                 )
 
@@ -76,6 +78,7 @@ fun StepScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .weight(1f),
+                    viewModel = viewModel,
                     onClickNext = { viewModel.createCheckList() }
                 )
             }
