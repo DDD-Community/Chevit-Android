@@ -41,10 +41,7 @@ fun ChevitButtonChip(
         focusedContentColor = ChevitTheme.colors.blue4,
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
         textStyle = ChevitTheme.typhography.bodyLarge,
-        border = BorderStroke(
-            width = 1.dp,
-            color = if (selected) ChevitTheme.colors.blue7 else ChevitTheme.colors.grey4,
-        ),
+        borderColor = if (selected) ChevitTheme.colors.blue7 else ChevitTheme.colors.grey4
     ) {
         Text(text = text)
     }
@@ -97,6 +94,33 @@ fun ChevitButtonFillMedium(
 }
 
 @Composable
+fun ChevitButtonLineLarge(
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    selected: Boolean = false,
+    onClick: () -> Unit = {},
+    content: @Composable RowScope.() -> Unit,
+) {
+    ChevitButton(
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        shape = RoundedCornerShape(12.dp),
+        containerColor = if (selected) ChevitTheme.colors.blue1 else Color.Transparent,
+        pressedContainerColor = ChevitTheme.colors.blue1,
+        disabledContainerColor = Color.Transparent,
+        contentColor = if (selected) ChevitTheme.colors.blue8 else ChevitTheme.colors.blue6,
+        pressedContentColor = ChevitTheme.colors.blue8,
+        disabledContentColor = ChevitTheme.colors.blue2,
+        borderColor = if (selected) ChevitTheme.colors.blue8 else ChevitTheme.colors.blue6,
+        pressedBorderColor = ChevitTheme.colors.blue8,
+        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp),
+        textStyle = ChevitTheme.typhography.headlineMedium,
+        content = content,
+    )
+}
+
+@Composable
 internal fun ChevitButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
@@ -111,7 +135,8 @@ internal fun ChevitButton(
     focusedContentColor: Color = contentColor,
     disabledContentColor: Color = contentColor,
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
-    border: BorderStroke? = null,
+    borderColor: Color? = null,
+    pressedBorderColor: Color? = borderColor,
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     textStyle: TextStyle,
@@ -132,7 +157,12 @@ internal fun ChevitButton(
             disabledContentColor = disabledContentColor,
         ),
         elevation = elevation,
-        border = border,
+        border = borderColor?.let {
+            BorderStroke(
+                width = 1.dp,
+                color = if (isPressed && pressedBorderColor != null) pressedBorderColor else it
+            )
+        },
         contentPadding = contentPadding,
         interactionSource = interactionSource,
     ) {

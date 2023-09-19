@@ -2,6 +2,7 @@ package com.dkin.chevit.presentation.step
 
 import com.dkin.chevit.core.mvi.MVIViewModel
 import com.dkin.chevit.presentation.step.model.CountryModel
+import com.dkin.chevit.presentation.step.model.TravelWith
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -46,7 +47,35 @@ class StepViewModel @Inject constructor() : MVIViewModel<StepIntent, StepState, 
         }
     }
 
-    fun createCheckList() {
+    fun createCheckList(useRecommend: Boolean = true) {
 
+    }
+
+    fun setTravelWith(with: TravelWith) {
+        //TODO move to composable
+        val currentList = state.value.travelWith.toMutableList()
+        val itemIndex = currentList.indexOf(with)
+        val newList = if (with == TravelWith.ALONE) {
+            listOf(TravelWith.ALONE)
+        } else if (itemIndex > -1) {
+            currentList.remove(with)
+            currentList
+        } else {
+            currentList.add(with)
+            currentList
+        }
+        setState {
+            copy(
+                travelWith = newList
+            )
+        }
+    }
+
+    fun clearTravelWith() {
+        setState {
+            copy(
+                travelWith = listOf()
+            )
+        }
     }
 }
