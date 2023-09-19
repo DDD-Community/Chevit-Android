@@ -32,7 +32,22 @@ fun StepScreen(
         StepTopBar(
             modifier = Modifier.fillMaxWidth(),
             backButtonEnabled = tabIndex > 0,
-            onClickBack = { if (tabIndex > 0) tabIndex -= 1 },
+            onClickBack = {
+                when (tabIndex) {
+                    1 -> {
+                        viewModel.clearCountry()
+                        tabIndex = 0
+                    }
+                    2 -> {
+                        viewModel.clearDate()
+                        tabIndex = 1
+                    }
+                    3 -> {
+                        viewModel.clearTravelWith()
+                        tabIndex = 2
+                    }
+                }
+            },
             onClickClose = onClickClose
         )
         Column(
@@ -52,10 +67,7 @@ fun StepScreen(
                         .fillMaxWidth()
                         .weight(1f),
                     viewModel = viewModel,
-                    onClickNext = {
-                        tabIndex = 1
-                        viewModel.clearCountryList()
-                    },
+                    onClickNext = { tabIndex = 1 },
                 )
 
                 1 -> WhenContents(

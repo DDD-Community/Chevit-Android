@@ -123,7 +123,8 @@ fun WhoContents(
         Spacer(modifier = Modifier.height(12.dp))
         ChevitButtonFillLarge(
             modifier = Modifier.fillMaxWidth(),
-            onClick = onClickNext
+            onClick = onClickNext,
+            enabled = stepState.travelWith.isNotEmpty()
         ) {
             Text(text = "다음")
         }

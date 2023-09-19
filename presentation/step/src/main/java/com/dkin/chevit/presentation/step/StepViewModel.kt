@@ -21,8 +21,30 @@ class StepViewModel @Inject constructor() : MVIViewModel<StepIntent, StepState, 
         }
     }
 
-    fun clearCountryList() {
+    fun clearCountry() {
         _countryList.value = listOf()
+        setState {
+            copy(
+                country = null
+            )
+        }
+    }
+
+    fun clearDate() {
+        setState {
+            copy(
+                startDate = null,
+                endDate = null
+            )
+        }
+    }
+
+    fun clearTravelWith() {
+        setState {
+            copy(
+                travelWith = listOf()
+            )
+        }
     }
 
     fun searchCountryList(input: String) {
@@ -67,14 +89,6 @@ class StepViewModel @Inject constructor() : MVIViewModel<StepIntent, StepState, 
         setState {
             copy(
                 travelWith = newList
-            )
-        }
-    }
-
-    fun clearTravelWith() {
-        setState {
-            copy(
-                travelWith = listOf()
             )
         }
     }
