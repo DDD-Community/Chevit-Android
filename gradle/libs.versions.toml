@@ -40,6 +40,9 @@ retrofit = "2.9.0"
 # Coil
 coil = "2.4.0"
 
+# Lottie
+lottie-compose = "6.1.0"
+
 # Logger
 timber = "5.0.1"
 junit = "4.13.2"
@@ -71,7 +74,7 @@ compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-
 compose-ui = { group = "androidx.compose.ui", name = "ui" }
 compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.1.0-alpha07" }
 compose-uiGraphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose-uiTooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-uiToolingPreview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
@@ -122,6 +125,9 @@ hilt-ext-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hi
 
 #Coil
 coil-core = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+
+#Lottie
+lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottie-compose" }
 
 #Logger
 logger-timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }

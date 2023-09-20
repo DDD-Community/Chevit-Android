@@ -22,5 +22,5 @@ sealed interface TemplateEffect : ViewEffect {
 
     object NavigateToSortTemplate : TemplateEffect
 
-    data class NavigateToTemplate(val id: Int) : TemplateEffect
+    data class NavigateToTemplate(val id: String) : TemplateEffect
 }

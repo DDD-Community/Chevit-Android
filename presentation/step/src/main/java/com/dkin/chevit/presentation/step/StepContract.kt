@@ -5,6 +5,7 @@ import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
 import com.dkin.chevit.presentation.step.model.CountryModel
+import com.dkin.chevit.presentation.step.model.TravelKind
 import com.dkin.chevit.presentation.step.model.TravelWith
 import java.time.LocalDate
 
@@ -17,7 +18,7 @@ data class StepState(
     val startDate: LocalDate? = null,
     val endDate: LocalDate? = null,
     val travelWith: List<TravelWith> = listOf(),
-    val travelKind: String? = null
+    val travelKind: List<TravelKind> = listOf()
 ) : ViewState {
     fun getWhereLabel(): String = country?.text?.split(",")?.getOrNull(0) ?: ""
     fun getWhenLabel(): String {
@@ -40,4 +41,5 @@ data class StepState(
 }
 
 sealed interface StepEffect : ViewEffect {
+    data class NavigateToCheckList(val id: String) : StepEffect
 }

@@ -20,4 +20,6 @@ dependencies {
     implementation(project(":presentation:resource"))
     implementation(project(":presentation:common"))
     implementation(project(":presentation:deeplink"))
+
+    implementation(libs.lottie.compose)
 }

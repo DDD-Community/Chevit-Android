@@ -18,7 +18,7 @@ data class HomeState(
     val checkList: List<CheckListItem>,
 ) : ViewState {
     data class CheckListItem(
-        val id: Int,
+        val id: String,
         val title: String,
         val date: String,
         val isProgress: Boolean,
@@ -39,7 +39,7 @@ data class HomeState(
                 profileUrl = "",
                 checkList = listOf(
                     CheckListItem(
-                        id = 0,
+                        id = "0",
                         title = "파리, 프랑스",
                         date = "2023.07.16 ~ 2023.07.20",
                         isProgress = true,
@@ -53,5 +53,5 @@ data class HomeState(
 sealed interface HomeEffect : ViewEffect {
     object NavigateToAddCheckList : HomeEffect
 
-    data class NavigateToCheckList(val id: Int) : HomeEffect
+    data class NavigateToCheckList(val id: String) : HomeEffect
 }

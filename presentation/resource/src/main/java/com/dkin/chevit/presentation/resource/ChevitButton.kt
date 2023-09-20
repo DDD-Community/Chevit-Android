@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -41,7 +42,8 @@ fun ChevitButtonChip(
         focusedContentColor = ChevitTheme.colors.blue4,
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
         textStyle = ChevitTheme.typhography.bodyLarge,
-        borderColor = if (selected) ChevitTheme.colors.blue7 else ChevitTheme.colors.grey4
+        borderColor = if (selected) ChevitTheme.colors.blue7 else ChevitTheme.colors.grey4,
+        borderWidth = if (selected) 2.dp else 1.dp
     ) {
         Text(text = text)
     }
@@ -136,6 +138,7 @@ internal fun ChevitButton(
     disabledContentColor: Color = contentColor,
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
     borderColor: Color? = null,
+    borderWidth: Dp = 1.dp,
     pressedBorderColor: Color? = borderColor,
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
@@ -159,7 +162,7 @@ internal fun ChevitButton(
         elevation = elevation,
         border = borderColor?.let {
             BorderStroke(
-                width = 1.dp,
+                width = borderWidth,
                 color = if (isPressed && pressedBorderColor != null) pressedBorderColor else it
             )
         },

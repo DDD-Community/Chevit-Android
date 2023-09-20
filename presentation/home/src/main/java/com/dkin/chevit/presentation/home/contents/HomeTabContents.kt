@@ -167,7 +167,7 @@ fun HomeTabContents(
 @Composable
 private fun CheckListContents(
     item: HomeState.CheckListItem,
-    onClickLink: (id: Int) -> Unit,
+    onClickLink: (id: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(

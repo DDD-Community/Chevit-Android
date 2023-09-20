@@ -19,7 +19,7 @@ class HomeViewModel @Inject constructor() : MVIViewModel<HomeIntent, HomeState, 
         setEffect { HomeEffect.NavigateToAddCheckList }
     }
 
-    fun onClickChecklist(id: Int) {
+    fun onClickChecklist(id: String) {
         setEffect { HomeEffect.NavigateToCheckList(id) }
     }
 }

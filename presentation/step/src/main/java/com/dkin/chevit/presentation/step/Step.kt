@@ -20,7 +20,9 @@ class Step : MVIComposeFragment<StepIntent, StepState, StepEffect>() {
 
     override fun processEffect(effect: StepEffect) {
         when (effect) {
-            else -> {}
+            is StepEffect.NavigateToCheckList -> {
+
+            }
         }
     }
 

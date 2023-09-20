@@ -141,7 +141,7 @@ fun TemplateTabContents(
 @Composable
 private fun TemplateItem(
     template: Template,
-    onClick: (id: Int) -> Unit
+    onClick: (id: String) -> Unit
 ) {
     Box(
         modifier = Modifier

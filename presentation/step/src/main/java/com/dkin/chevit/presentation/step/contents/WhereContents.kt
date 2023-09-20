@@ -167,7 +167,11 @@ fun CountryList(
     LazyColumn(
         modifier = modifier
             .clip(RoundedCornerShape(4.dp))
-            .border(width = 1.dp, color = ChevitTheme.colors.grey3)
+            .border(
+                width = 1.dp,
+                color = ChevitTheme.colors.grey3,
+                shape = RoundedCornerShape(4.dp)
+            )
     ) {
         items(countryList) { item ->
             CountryItem(
