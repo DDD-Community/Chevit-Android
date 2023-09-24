@@ -62,6 +62,8 @@ dependencies {
     implementation(project(":presentation:auth"))
     implementation(project(":presentation:home"))
     implementation(project(":presentation:step"))
+    implementation(project(":presentation:checklist"))
+
 
     implementation(libs.androidx.startup)
 }

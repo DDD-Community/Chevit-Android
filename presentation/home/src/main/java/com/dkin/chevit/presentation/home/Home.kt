@@ -78,7 +78,9 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
             HomeEffect.NavigateToAddCheckList ->
                 deepLink(DeepLink.Step) { popUpTo(R.id.home) }
 
-            is HomeEffect.NavigateToCheckList -> {}
+            is HomeEffect.NavigateToCheckList -> {
+                deepLink(DeepLink.CheckList) { popUpTo(R.id.home) }
+            }
         }
     }
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_checklist"
+    app:startDestination="@id/checklist">
+
+    <fragment
+        android:id="@+id/checklist"
+        android:name="com.dkin.chevit.presentation.checklist.CheckList"
+        android:label="Checklist"
+        tools:layout="@layout/fragment_checklist">
+        <deepLink app:uri="chevit://checklist" />
+    </fragment>
+</navigation>

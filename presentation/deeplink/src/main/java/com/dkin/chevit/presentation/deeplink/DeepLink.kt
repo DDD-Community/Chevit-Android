@@ -23,6 +23,10 @@ sealed interface DeepLink {
         override val deepLink: String = "$SCHEME://step"
     }
 
+    object CheckList : DeepLink {
+        override val deepLink: String = "$SCHEME://checklist"
+    }
+
     companion object {
         private const val SCHEME = "chevit"
     }
