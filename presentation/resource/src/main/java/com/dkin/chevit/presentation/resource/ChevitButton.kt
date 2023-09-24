@@ -116,8 +116,35 @@ fun ChevitButtonLineLarge(
         disabledContentColor = ChevitTheme.colors.blue2,
         borderColor = if (selected) ChevitTheme.colors.blue8 else ChevitTheme.colors.blue6,
         pressedBorderColor = ChevitTheme.colors.blue8,
-        contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp),
+        contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
         textStyle = ChevitTheme.typhography.headlineMedium,
+        content = content,
+    )
+}
+
+@Composable
+fun ChevitButtonLineMedium(
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    selected: Boolean = false,
+    onClick: () -> Unit = {},
+    content: @Composable RowScope.() -> Unit,
+) {
+    ChevitButton(
+        onClick = onClick,
+        modifier = modifier,
+        enabled = enabled,
+        shape = RoundedCornerShape(12.dp),
+        containerColor = if (selected) ChevitTheme.colors.blue1 else Color.Transparent,
+        pressedContainerColor = ChevitTheme.colors.blue1,
+        disabledContainerColor = Color.Transparent,
+        contentColor = if (selected) ChevitTheme.colors.blue7 else ChevitTheme.colors.blue6,
+        pressedContentColor = ChevitTheme.colors.blue7,
+        disabledContentColor = ChevitTheme.colors.blue2,
+        borderColor = if (selected) ChevitTheme.colors.blue7 else ChevitTheme.colors.blue6,
+        pressedBorderColor = ChevitTheme.colors.blue7,
+        contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
+        textStyle = ChevitTheme.typhography.headlineSmall,
         content = content,
     )
 }

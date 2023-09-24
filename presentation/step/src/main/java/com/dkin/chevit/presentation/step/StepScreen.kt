@@ -3,12 +3,17 @@ package com.dkin.chevit.presentation.step
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -21,10 +26,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
+import com.dkin.chevit.presentation.resource.ChevitButtonFillMedium
+import com.dkin.chevit.presentation.resource.ChevitButtonLineMedium
+import com.dkin.chevit.presentation.resource.ChevitDialog
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.step.component.ChevitProgressBar
 import com.dkin.chevit.presentation.step.component.StepTopBar
@@ -40,8 +49,19 @@ fun StepScreen(
 ) {
     val createLoadingState by viewModel.createLoadingVisible.collectAsState()
     val loadingState by viewModel.loadingVisible.collectAsState()
+    var showDialog by remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxSize()) {
+        if (showDialog) {
+            ChevitDialog(
+                title = "체크리스트 생성 중단하기",
+                body = "체크리스트 만들기를\n중단하고 나가시겠습니까?",
+                onClickCancel = { showDialog = false },
+                onClickConfirm = { onClickClose() },
+                onDismissRequest = { showDialog = false }
+
+            )
+        }
         Column(
             modifier = Modifier.fillMaxSize()
         ) {
@@ -68,7 +88,7 @@ fun StepScreen(
                         }
                     }
                 },
-                onClickClose = onClickClose
+                onClickClose = { showDialog = true }
             )
             Column(
                 modifier = Modifier
@@ -139,7 +159,9 @@ fun CreateCheckListLoading(
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(com.dkin.chevit.presentation.resource.R.raw.checklist_making))
             LottieAnimation(
-                modifier = Modifier.fillMaxWidth().height(94.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(94.dp),
                 composition = composition,
                 iterations = LottieConstants.IterateForever,
             )
