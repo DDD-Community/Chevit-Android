@@ -7,7 +7,6 @@ import com.dkin.chevit.domain.model.Gender
 import com.dkin.chevit.presentation.auth.databinding.FragmentSignUpBinding
 import com.dkin.chevit.presentation.common.ext.setTextIfNewWithSelection
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class SignUp : MVIFragment<FragmentSignUpBinding, SignUpIntent, SignUpState, SignUpEffect>(
@@ -45,10 +44,9 @@ class SignUp : MVIFragment<FragmentSignUpBinding, SignUpIntent, SignUpState, Sig
 
     override fun processState(state: SignUpState) =
         binding {
-            Timber.d("state: $state")
             etName.setTextIfNewWithSelection(state.name)
             etBirthDay.setTextIfNewWithSelection(state.birthDay)
-//        groupGender.check(state.selectedGenderResId)
+            groupGender.check(state.selectedGenderResId)
             cbTermsAll.isChecked = state.hasTermsAllClicked
             cbServiceTerms.isChecked = state.termsServiceChecked
             cbPrivacyTerms.isChecked = state.termsPrivacyChecked

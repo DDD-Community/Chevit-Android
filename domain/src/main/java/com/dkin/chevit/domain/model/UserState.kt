@@ -8,6 +8,12 @@ sealed interface UserState : DomainModel {
     @JvmInline
     value class NotRegister(val token: String) : UserState
 
-    @JvmInline
-    value class User(val token: String) : UserState
+    data class User(
+        val token: String,
+        val id: String,
+        val name: String,
+        val gender: Gender,
+        val birthYear: String,
+        val profileImageUrl: String,
+    ) : UserState
 }

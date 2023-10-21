@@ -5,10 +5,10 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 internal class CoroutineDispatcherProviderImpl : CoroutineDispatcherProvider {
-    override val dispatcherDefault: CoroutineDispatcher
+    override val default: CoroutineDispatcher
         get() = Dispatchers.Default
-    override val dispatcherIO: CoroutineDispatcher
+    override val io: CoroutineDispatcher
         get() = Dispatchers.IO
-    override val dispatcherMain: CoroutineDispatcher
+    override val main: CoroutineDispatcher
         get() = Dispatchers.Main
 }

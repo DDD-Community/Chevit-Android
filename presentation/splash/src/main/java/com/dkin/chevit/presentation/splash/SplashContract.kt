@@ -12,6 +12,8 @@ object SplashState : ViewState
 
 sealed interface SplashEffect : ViewEffect {
     object NavigateToOnBoarding : SplashEffect
+
     object NavigateToSignUp : SplashEffect
+
     object NavigateToHome : SplashEffect
 }

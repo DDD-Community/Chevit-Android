@@ -15,6 +15,8 @@ object SignInState : ViewState
 
 sealed interface SignInEffect : ViewEffect {
     object NavigateSignUp : SignInEffect
+
     object NavigateHome : SignInEffect
+
     object ShowSignInFailed : SignInEffect
 }
