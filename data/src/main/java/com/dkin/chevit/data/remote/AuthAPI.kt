@@ -21,7 +21,9 @@ internal interface AuthAPI {
 
     @POST("signUpUser")
     suspend fun signUpUser(
-        @Body body: SignUpPayload,
+        @Header("Device-Id") deviceId: String,
+        @Header("Authorization") token: String,
+        @Body body: SignUpPayload
     ): UserResponse
 
     @POST("validationNickname")

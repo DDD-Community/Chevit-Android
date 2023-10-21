@@ -12,30 +12,28 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SignInViewModel
-    @Inject
-    constructor(
-        private val getUserStateUseCase: GetUserStateUseCase,
-    ) : MVIViewModel<SignInIntent, SignInState, SignInEffect>() {
-        override fun createInitialState(): SignInState = SignInState
+class SignInViewModel @Inject constructor(
+    private val getUserStateUseCase: GetUserStateUseCase,
+) : MVIViewModel<SignInIntent, SignInState, SignInEffect>() {
+    override fun createInitialState(): SignInState = SignInState
 
-        override suspend fun processIntent(intent: SignInIntent) =
-            when (intent) {
-                SignInSuccess -> signIn()
-                is SignInFailure -> showSignInFailed()
+    override suspend fun processIntent(intent: SignInIntent) =
+        when (intent) {
+            SignInSuccess -> signIn()
+            is SignInFailure -> showSignInFailed()
+        }
+
+    private suspend fun signIn() {
+        val effect =
+            when (getUserStateUseCase(Unit).get()) {
+                is User -> SignInEffect.NavigateHome
+                is NotRegister -> SignInEffect.NavigateSignUp
+                Guest -> SignInEffect.ShowSignInFailed
             }
-
-        private suspend fun signIn() {
-            val effect =
-                when (getUserStateUseCase(Unit).get()) {
-                    is User -> SignInEffect.NavigateHome
-                    is NotRegister -> SignInEffect.NavigateSignUp
-                    Guest -> SignInEffect.ShowSignInFailed
-                }
-            setEffect { effect }
-        }
-
-        private fun showSignInFailed() {
-            setEffect { SignInEffect.ShowSignInFailed }
-        }
+        setEffect { effect }
     }
+
+    private fun showSignInFailed() {
+        setEffect { SignInEffect.ShowSignInFailed }
+    }
+}

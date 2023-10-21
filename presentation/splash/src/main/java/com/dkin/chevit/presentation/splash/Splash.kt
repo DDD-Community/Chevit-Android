@@ -27,19 +27,16 @@ class Splash : MVIFragment<FragmentSplashBinding, SplashIntent, SplashState, Spl
 
     override fun processEffect(effect: SplashEffect) =
         when (effect) {
-            NavigateToOnBoarding ->
-                deepLink(OnBoarding) {
-                    popUpTo(R.id.splash) { inclusive = true }
-                }
+            NavigateToOnBoarding -> deepLink(OnBoarding) {
+                popUpTo(R.id.splash) { inclusive = true }
+            }
 
-            NavigateToHome ->
-                deepLink(Home) {
-                    popUpTo(R.id.splash) { inclusive = true }
-                }
+            NavigateToHome -> deepLink(Home) {
+                popUpTo(R.id.splash) { inclusive = true }
+            }
 
-            NavigateToSignUp ->
-                deepLink(SignUp) {
-                    popUpTo(R.id.splash) { inclusive = true }
-                }
+            NavigateToSignUp -> deepLink(SignUp) {
+                popUpTo(R.id.splash) { inclusive = true }
+            }
         }
 }

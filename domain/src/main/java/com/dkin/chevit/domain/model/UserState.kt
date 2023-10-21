@@ -12,8 +12,6 @@ sealed interface UserState : DomainModel {
         val token: String,
         val id: String,
         val name: String,
-        val gender: Gender,
-        val birthYear: String,
         val profileImageUrl: String,
     ) : UserState
 }

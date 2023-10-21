@@ -4,4 +4,6 @@ import com.dkin.chevit.domain.model.UserState
 
 interface AuthRepository {
     suspend fun getUserState(): UserState
+
+    suspend fun signUpUser(name: String): UserState
 }

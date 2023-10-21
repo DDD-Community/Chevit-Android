@@ -6,7 +6,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 internal data class SignUpPayload(
-    @SerialName("nickname") val name: String,
-    @SerialName("yearOfBirth") val birthYear: Int,
-    @SerialName("gender") val gender: String,
+    @SerialName("nickname") val name: String
 ) : DataModel
