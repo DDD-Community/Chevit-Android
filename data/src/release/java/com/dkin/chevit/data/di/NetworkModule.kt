@@ -35,20 +35,35 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient() =
-        OkHttpClient.Builder()
-            .connectTimeout(20, TimeUnit.SECONDS)
-            .readTimeout(20, TimeUnit.SECONDS)
-            .writeTimeout(20, TimeUnit.SECONDS)
-            .build()
+    fun provideDeviceIdInterceptor(
+        deviceIdProvider: DeviceIdProvider
+    ) = DeviceIdInterceptor(deviceIdProvider)
+
+    @Provides
+    @Singleton
+    fun provideTokenInterceptor(
+        tokenProvider: TokenProvider
+    ) = TokenInterceptor(tokenProvider)
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(
+        deviceIdInterceptor: DeviceIdInterceptor,
+        tokenInterceptor: TokenInterceptor,
+    ) = OkHttpClient.Builder()
+        .connectTimeout(20, TimeUnit.SECONDS)
+        .readTimeout(20, TimeUnit.SECONDS)
+        .writeTimeout(20, TimeUnit.SECONDS)
+        .addInterceptor(deviceIdInterceptor)
+        .addInterceptor(tokenInterceptor)
+        .build()
 
     @Provides
     @Singleton
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         @JsonConverter jsonConverter: Converter.Factory,
-    ): Retrofit =
-        Retrofit.Builder()
+    ): Retrofit = Retrofit.Builder()
             .client(okHttpClient)
             .addConverterFactory(jsonConverter)
             .baseUrl(BuildConfig.API_URL)

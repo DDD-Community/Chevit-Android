@@ -14,17 +14,10 @@ import retrofit2.http.POST
  */
 internal interface AuthAPI {
     @GET("getUser")
-    suspend fun getUser(
-        @Header("Device-Id") deviceId: String,
-        @Header("Authorization") token: String,
-    ): UserResponse
+    suspend fun getUser(): UserResponse
 
     @POST("signUpUser")
-    suspend fun signUpUser(
-        @Header("Device-Id") deviceId: String,
-        @Header("Authorization") token: String,
-        @Body body: SignUpPayload
-    ): UserResponse
+    suspend fun signUpUser(@Body body: SignUpPayload): UserResponse
 
     @POST("validationNickname")
     suspend fun validationNickname(

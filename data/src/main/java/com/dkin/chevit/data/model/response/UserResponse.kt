@@ -13,12 +13,10 @@ internal data class UserResponse(
     @SerialName("needSignUp") val needSignUp: Boolean = true
 ) : DataModel
 
-internal fun UserResponse.toUser(token: String): UserState {
+internal fun UserResponse.toUser(): UserState {
     return when {
-        token.isBlank() -> UserState.Guest
-        needSignUp -> UserState.NotRegister(token = token)
+        needSignUp -> UserState.NotRegister
         else -> UserState.User(
-            token = token,
             id = id,
             name = name,
             profileImageUrl = profileImageUrl
