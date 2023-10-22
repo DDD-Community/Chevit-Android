@@ -6,6 +6,7 @@ import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
 
 sealed interface MyPageIntent : ViewIntent {
+    object ViewCreated : MyPageIntent
     object LogoutClicked : MyPageIntent
 
     object WithdrawClicked : MyPageIntent

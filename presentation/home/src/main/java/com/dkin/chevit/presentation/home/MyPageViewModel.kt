@@ -1,21 +1,32 @@
 package com.dkin.chevit.presentation.home
 
 import com.dkin.chevit.core.mvi.MVIViewModel
+import com.dkin.chevit.domain.base.get
+import com.dkin.chevit.domain.usecase.GetUserUseCase
+import com.dkin.chevit.presentation.home.MyPageIntent.AlarmSwitchClicked
+import com.dkin.chevit.presentation.home.MyPageIntent.LogoutClicked
+import com.dkin.chevit.presentation.home.MyPageIntent.ViewCreated
+import com.dkin.chevit.presentation.home.MyPageIntent.WithdrawClicked
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MyPageViewModel @Inject constructor() :
-    MVIViewModel<MyPageIntent, MyPageState, MyPageEffect>() {
+class MyPageViewModel @Inject constructor(
+    private val getUserUseCase: GetUserUseCase
+) : MVIViewModel<MyPageIntent, MyPageState, MyPageEffect>() {
 
     override fun createInitialState(): MyPageState = MyPageState.empty()
 
-    override suspend fun processIntent(intent: MyPageIntent) {
-        when (intent) {
-            MyPageIntent.LogoutClicked -> {}
-            MyPageIntent.WithdrawClicked -> {}
-            is MyPageIntent.AlarmSwitchClicked -> {}
-        }
+    override suspend fun processIntent(intent: MyPageIntent) = when (intent) {
+        LogoutClicked -> {}
+        WithdrawClicked -> {}
+        is AlarmSwitchClicked -> {}
+        ViewCreated -> setup()
+    }
+
+    private suspend fun setup() {
+        val user = getUserUseCase(Unit).get()
+        setState { copy(userName = user.name, profileUrl = user.profileImageUrl) }
     }
 
     fun onClickProfileSetting() {
@@ -31,17 +42,17 @@ class MyPageViewModel @Inject constructor() :
     }
 
     fun onClickLogout() {
-        launch { processIntent(MyPageIntent.LogoutClicked) }
+        launch { processIntent(LogoutClicked) }
     }
 
     fun onClickWithdraw() {
-        launch { processIntent(MyPageIntent.WithdrawClicked) }
+        launch { processIntent(WithdrawClicked) }
     }
 
     fun onClickAlarmEnabled(enabled: Boolean) {
         setState { copy(alarmEnabled = enabled) }
         launch {
-            processIntent(MyPageIntent.AlarmSwitchClicked(enabled))
+            processIntent(AlarmSwitchClicked(enabled))
         }
     }
 

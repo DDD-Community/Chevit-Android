@@ -71,6 +71,7 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initCollect()
+        myPageViewModel.dispatch(MyPageIntent.ViewCreated)
     }
 
     override fun processEffect(effect: HomeEffect) {
