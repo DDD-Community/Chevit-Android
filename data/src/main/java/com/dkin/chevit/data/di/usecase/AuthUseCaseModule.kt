@@ -2,9 +2,9 @@ package com.dkin.chevit.data.di.usecase
 
 import com.dkin.chevit.domain.base.CoroutineDispatcherProvider
 import com.dkin.chevit.domain.repository.AuthRepository
-import com.dkin.chevit.domain.usecase.GetUserStateUseCase
-import com.dkin.chevit.domain.usecase.GetUserUseCase
-import com.dkin.chevit.domain.usecase.SignUpUserUseCase
+import com.dkin.chevit.domain.usecase.auth.GetUserStateUseCase
+import com.dkin.chevit.domain.usecase.auth.GetUserUseCase
+import com.dkin.chevit.domain.usecase.auth.SignUpUserUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,7 +12,7 @@ import dagger.hilt.android.components.ViewModelComponent
 
 @Module
 @InstallIn(ViewModelComponent::class)
-internal object AuthUseCase {
+internal object AuthUseCaseModule {
     @Provides
     fun provideGetUserStateUseCase(
         coroutineDispatcherProvider: CoroutineDispatcherProvider,

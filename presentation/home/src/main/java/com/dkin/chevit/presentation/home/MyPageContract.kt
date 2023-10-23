@@ -18,7 +18,7 @@ sealed interface MyPageIntent : ViewIntent {
 data class MyPageState(
     val userName: String,
     val profileUrl: String,
-    val alarmEnabled: Boolean,
+    val notificationEnabled: Boolean,
 ) : ViewState {
     companion object {
         fun empty(): MyPageState = MyPageState("", "", false)

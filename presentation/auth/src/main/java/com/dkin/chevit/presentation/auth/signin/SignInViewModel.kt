@@ -5,7 +5,7 @@ import com.dkin.chevit.domain.base.get
 import com.dkin.chevit.domain.model.UserState.Guest
 import com.dkin.chevit.domain.model.UserState.NotRegister
 import com.dkin.chevit.domain.model.UserState.User
-import com.dkin.chevit.domain.usecase.GetUserStateUseCase
+import com.dkin.chevit.domain.usecase.auth.GetUserStateUseCase
 import com.dkin.chevit.presentation.auth.signin.SignInIntent.SignInFailure
 import com.dkin.chevit.presentation.auth.signin.SignInIntent.SignInSuccess
 import dagger.hilt.android.lifecycle.HiltViewModel

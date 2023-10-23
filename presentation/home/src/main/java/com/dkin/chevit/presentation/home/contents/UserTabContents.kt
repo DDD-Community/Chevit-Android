@@ -35,13 +35,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
+import com.dkin.chevit.presentation.home.MyPageIntent.AlarmSwitchClicked
 import com.dkin.chevit.presentation.home.MyPageViewModel
-import com.dkin.chevit.presentation.resource.util.rememberLifecycleEvent
 import com.dkin.chevit.presentation.resource.ChevitButtonChip
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconArrowRight
 import com.dkin.chevit.presentation.resource.icon.IconWarningFill
+import com.dkin.chevit.presentation.resource.util.rememberLifecycleEvent
 
 @Composable
 fun UserTabContents(
@@ -117,8 +118,8 @@ fun UserTabContents(
                 )
             }
             AlarmSetting(
-                checked = homeState.alarmEnabled,
-                onClickItem = { myViewModel.onClickAlarmEnabled(it) },
+                checked = homeState.notificationEnabled,
+                onClickItem = { myViewModel.dispatch(AlarmSwitchClicked(it)) },
                 onClickNotificationSetting = { myViewModel.onClickNotificationSetting() }
             )
             UserItem(
@@ -205,6 +206,7 @@ private fun AlarmSetting(
             Lifecycle.Event.ON_RESUME -> {
                 systemNotificationEnabled.value = !areNotificationsEnabled(context)
             }
+
             else -> {}
         }
     }

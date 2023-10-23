@@ -1,4 +1,4 @@
-package com.dkin.chevit.domain.usecase
+package com.dkin.chevit.domain.usecase.auth
 
 import com.dkin.chevit.domain.base.CoroutineDispatcherProvider
 import com.dkin.chevit.domain.base.IOUseCase

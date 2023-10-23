@@ -1,10 +1,10 @@
-package com.dkin.chevit.domain.usecase
+package com.dkin.chevit.domain.usecase.auth
 
 import com.dkin.chevit.domain.base.CoroutineDispatcherProvider
 import com.dkin.chevit.domain.base.IOUseCase
 import com.dkin.chevit.domain.model.UserState
 import com.dkin.chevit.domain.repository.AuthRepository
-import com.dkin.chevit.domain.usecase.SignUpUserUseCase.Param
+import com.dkin.chevit.domain.usecase.auth.SignUpUserUseCase.Param
 
 class SignUpUserUseCase(
     coroutineDispatcherProvider: CoroutineDispatcherProvider,

@@ -5,7 +5,7 @@ import com.dkin.chevit.domain.base.get
 import com.dkin.chevit.domain.model.UserState.Guest
 import com.dkin.chevit.domain.model.UserState.NotRegister
 import com.dkin.chevit.domain.model.UserState.User
-import com.dkin.chevit.domain.usecase.GetUserStateUseCase
+import com.dkin.chevit.domain.usecase.auth.GetUserStateUseCase
 import com.dkin.chevit.presentation.splash.SplashEffect.NavigateToHome
 import com.dkin.chevit.presentation.splash.SplashEffect.NavigateToOnBoarding
 import com.dkin.chevit.presentation.splash.SplashEffect.NavigateToSignUp

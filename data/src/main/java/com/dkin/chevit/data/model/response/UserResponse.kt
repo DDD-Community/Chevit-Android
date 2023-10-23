@@ -10,6 +10,7 @@ internal data class UserResponse(
     @SerialName("userId") val id: String = "",
     @SerialName("nickname") val name: String = "",
     @SerialName("imageURL") val profileImageUrl: String = "",
+    @SerialName("isNotificationAllowed") val notificationEnabled: Boolean = false,
     @SerialName("needSignUp") val needSignUp: Boolean = true
 ) : DataModel
 
@@ -19,7 +20,8 @@ internal fun UserResponse.toUser(): UserState {
         else -> UserState.User(
             id = id,
             name = name,
-            profileImageUrl = profileImageUrl
+            profileImageUrl = profileImageUrl,
+            notificationEnabled = notificationEnabled
         )
     }
 }

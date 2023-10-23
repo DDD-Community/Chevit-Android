@@ -3,7 +3,7 @@ package com.dkin.chevit.presentation.auth.signup
 import com.dkin.chevit.core.mvi.MVIViewModel
 import com.dkin.chevit.domain.base.get
 import com.dkin.chevit.domain.model.UserState.User
-import com.dkin.chevit.domain.usecase.SignUpUserUseCase
+import com.dkin.chevit.domain.usecase.auth.SignUpUserUseCase
 import com.dkin.chevit.presentation.auth.signup.SignUpIntent.NameChanged
 import com.dkin.chevit.presentation.auth.signup.SignUpIntent.SubmitClicked
 import com.dkin.chevit.presentation.auth.signup.SignUpIntent.TermsAllClicked
