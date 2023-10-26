@@ -3,6 +3,7 @@ package com.dkin.chevit.presentation.home
 import com.dkin.chevit.core.mvi.MVIViewModel
 import com.dkin.chevit.domain.base.get
 import com.dkin.chevit.domain.base.onComplete
+import com.dkin.chevit.domain.usecase.auth.WithDrawUserUseCase
 import com.dkin.chevit.domain.usecase.auth.GetUserUseCase
 import com.dkin.chevit.domain.usecase.auth.SignOutUseCase
 import com.dkin.chevit.domain.usecase.notification.GetNotificationSettingUseCase
@@ -19,6 +20,7 @@ import kotlinx.coroutines.awaitAll
 class MyPageViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase,
     private val signOutUseCase: SignOutUseCase,
+    private val withDrawUserUseCase: WithDrawUserUseCase,
     private val getNotificationSettingUseCase: GetNotificationSettingUseCase,
     private val updateNotificationEnableStateUseCase: UpdateNotificationEnableStateUseCase
 ) : MVIViewModel<MyPageIntent, MyPageState, MyPageEffect>() {
@@ -29,7 +31,7 @@ class MyPageViewModel @Inject constructor(
         ViewCreated -> setup()
         is AlarmSwitchClicked -> onClickAlarmEnabled(intent.enabled)
         SignOutClicked -> onClickSignOut()
-        WithdrawClicked -> {}
+        WithdrawClicked -> onClickWithdraw()
     }
 
     private suspend fun setup() {
@@ -59,6 +61,12 @@ class MyPageViewModel @Inject constructor(
         }
     }
 
+    private suspend fun onClickWithdraw() {
+        withDrawUserUseCase(Unit).onComplete {
+            setEffect { MyPageEffect.NavigateToOnBoarding }
+        }
+    }
+
     fun onClickProfileSetting() {
         setEffect { MyPageEffect.NavigateToProfileSetting }
     }
@@ -69,14 +77,6 @@ class MyPageViewModel @Inject constructor(
 
     fun onClickTerms() {
         setEffect { MyPageEffect.NavigateToTerms }
-    }
-
-    fun onClickLogout() {
-        launch { processIntent(SignOutClicked) }
-    }
-
-    fun onClickWithdraw() {
-        launch { processIntent(WithdrawClicked) }
     }
 
     fun onClickNotificationSetting() {

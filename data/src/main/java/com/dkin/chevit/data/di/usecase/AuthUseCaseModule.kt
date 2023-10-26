@@ -2,6 +2,7 @@ package com.dkin.chevit.data.di.usecase
 
 import com.dkin.chevit.domain.base.CoroutineDispatcherProvider
 import com.dkin.chevit.domain.repository.AuthRepository
+import com.dkin.chevit.domain.usecase.auth.WithDrawUserUseCase
 import com.dkin.chevit.domain.usecase.auth.GetUserStateUseCase
 import com.dkin.chevit.domain.usecase.auth.GetUserUseCase
 import com.dkin.chevit.domain.usecase.auth.SignOutUseCase
@@ -46,6 +47,15 @@ internal object AuthUseCaseModule {
         coroutineDispatcherProvider: CoroutineDispatcherProvider,
         authRepository: AuthRepository,
     ) = SignOutUseCase(
+        coroutineDispatcherProvider,
+        authRepository
+    )
+
+    @Provides
+    fun provideDeleteUserUseCase(
+        coroutineDispatcherProvider: CoroutineDispatcherProvider,
+        authRepository: AuthRepository,
+    ) = WithDrawUserUseCase(
         coroutineDispatcherProvider,
         authRepository
     )

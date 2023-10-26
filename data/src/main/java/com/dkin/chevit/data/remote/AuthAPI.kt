@@ -3,10 +3,10 @@ package com.dkin.chevit.data.remote
 import com.dkin.chevit.data.model.request.SignUpPayload
 import com.dkin.chevit.data.model.request.ValidationNicknamePayload
 import com.dkin.chevit.data.model.response.UserResponse
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.POST
 
 /**
@@ -20,10 +20,8 @@ internal interface AuthAPI {
     suspend fun signUpUser(@Body body: SignUpPayload): UserResponse
 
     @POST("validationNickname")
-    suspend fun validationNickname(
-        @Body body: ValidationNicknamePayload,
-    )
+    suspend fun validationNickname(@Body body: ValidationNicknamePayload)
 
     @DELETE("deleteUser")
-    suspend fun deleteUser()
+    suspend fun deleteUser(): Response<Unit>
 }

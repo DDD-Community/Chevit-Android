@@ -29,4 +29,10 @@ internal class AuthRepositoryImpl @Inject constructor(
         auth.signOut()
         return getUserState()
     }
+
+    override suspend fun withDrawUser(): UserState {
+        authAPI.deleteUser()
+        auth.signOut()
+        return getUserState()
+    }
 }

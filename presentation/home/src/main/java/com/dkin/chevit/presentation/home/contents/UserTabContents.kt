@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import com.dkin.chevit.presentation.home.MyPageIntent
 import com.dkin.chevit.presentation.home.MyPageIntent.AlarmSwitchClicked
+import com.dkin.chevit.presentation.home.MyPageIntent.WithdrawClicked
 import com.dkin.chevit.presentation.home.MyPageViewModel
 import com.dkin.chevit.presentation.resource.ChevitButtonChip
 import com.dkin.chevit.presentation.resource.ChevitTheme
@@ -145,7 +146,7 @@ fun UserTabContents(
             }
             UserItem(
                 title = "탈퇴하기",
-                onClickItem = { myViewModel.onClickWithdraw() },
+                onClickItem = { myViewModel.dispatch(WithdrawClicked) },
                 isLastItem = true
             ) {
                 Icon(
