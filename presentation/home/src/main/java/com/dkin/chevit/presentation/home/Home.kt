@@ -16,7 +16,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.deeplink.DeepLink
+import com.dkin.chevit.presentation.deeplink.DeepLink.OnBoarding
 import com.dkin.chevit.presentation.deeplink.deepLink
+import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToMyCheckList
+import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToNotificationSetting
+import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToOnBoarding
+import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToProfileSetting
+import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToTerms
 import com.dkin.chevit.presentation.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -95,8 +101,8 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
 
     private fun processEffect(effect: MyPageEffect) {
         when (effect) {
-            MyPageEffect.NavigateToMyCheckList -> {}
-            MyPageEffect.NavigateToNotificationSetting -> {
+            NavigateToMyCheckList -> {}
+            NavigateToNotificationSetting -> {
                 val settingsIntent: Intent = Intent("android.settings.APP_NOTIFICATION_SETTINGS")
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     .putExtra("app_package", requireContext().packageName)
@@ -105,8 +111,11 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
                 startActivity(settingsIntent)
             }
 
-            MyPageEffect.NavigateToProfileSetting -> {}
-            MyPageEffect.NavigateToTerms -> {}
+            NavigateToProfileSetting -> {}
+            NavigateToTerms -> {}
+            NavigateToOnBoarding -> deepLink(OnBoarding) {
+                popUpTo(R.id.home) { inclusive = true }
+            }
         }
     }
 

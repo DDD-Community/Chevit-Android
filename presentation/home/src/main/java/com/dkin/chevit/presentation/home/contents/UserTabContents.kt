@@ -35,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
+import com.dkin.chevit.presentation.home.MyPageIntent
 import com.dkin.chevit.presentation.home.MyPageIntent.AlarmSwitchClicked
 import com.dkin.chevit.presentation.home.MyPageViewModel
 import com.dkin.chevit.presentation.resource.ChevitButtonChip
@@ -134,7 +135,7 @@ fun UserTabContents(
             }
             UserItem(
                 title = "로그아웃",
-                onClickItem = { myViewModel.onClickLogout() }
+                onClickItem = { myViewModel.dispatch(MyPageIntent.SignOutClicked) }
             ) {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,

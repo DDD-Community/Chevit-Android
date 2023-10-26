@@ -6,4 +6,6 @@ interface AuthRepository {
     suspend fun getUserState(): UserState
 
     suspend fun signUpUser(name: String): UserState
+
+    suspend fun signOutUser(): UserState
 }

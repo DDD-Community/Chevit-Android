@@ -2,21 +2,23 @@ package com.dkin.chevit.presentation.home
 
 import com.dkin.chevit.core.mvi.MVIViewModel
 import com.dkin.chevit.domain.base.get
+import com.dkin.chevit.domain.base.onComplete
 import com.dkin.chevit.domain.usecase.auth.GetUserUseCase
+import com.dkin.chevit.domain.usecase.auth.SignOutUseCase
 import com.dkin.chevit.domain.usecase.notification.GetNotificationSettingUseCase
 import com.dkin.chevit.domain.usecase.notification.UpdateNotificationEnableStateUseCase
 import com.dkin.chevit.presentation.home.MyPageIntent.AlarmSwitchClicked
-import com.dkin.chevit.presentation.home.MyPageIntent.LogoutClicked
+import com.dkin.chevit.presentation.home.MyPageIntent.SignOutClicked
 import com.dkin.chevit.presentation.home.MyPageIntent.ViewCreated
 import com.dkin.chevit.presentation.home.MyPageIntent.WithdrawClicked
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.awaitAll
-import timber.log.Timber
 
 @HiltViewModel
 class MyPageViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase,
+    private val signOutUseCase: SignOutUseCase,
     private val getNotificationSettingUseCase: GetNotificationSettingUseCase,
     private val updateNotificationEnableStateUseCase: UpdateNotificationEnableStateUseCase
 ) : MVIViewModel<MyPageIntent, MyPageState, MyPageEffect>() {
@@ -26,7 +28,7 @@ class MyPageViewModel @Inject constructor(
     override suspend fun processIntent(intent: MyPageIntent) = when (intent) {
         ViewCreated -> setup()
         is AlarmSwitchClicked -> onClickAlarmEnabled(intent.enabled)
-        LogoutClicked -> {}
+        SignOutClicked -> onClickSignOut()
         WithdrawClicked -> {}
     }
 
@@ -51,6 +53,12 @@ class MyPageViewModel @Inject constructor(
         setState { copy(notificationEnabled = notificationSetting.notificationEnabled) }
     }
 
+    private suspend fun onClickSignOut() {
+        signOutUseCase(Unit).onComplete {
+            setEffect { MyPageEffect.NavigateToOnBoarding }
+        }
+    }
+
     fun onClickProfileSetting() {
         setEffect { MyPageEffect.NavigateToProfileSetting }
     }
@@ -64,7 +72,7 @@ class MyPageViewModel @Inject constructor(
     }
 
     fun onClickLogout() {
-        launch { processIntent(LogoutClicked) }
+        launch { processIntent(SignOutClicked) }
     }
 
     fun onClickWithdraw() {

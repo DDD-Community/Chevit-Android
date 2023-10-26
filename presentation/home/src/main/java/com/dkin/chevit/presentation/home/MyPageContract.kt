@@ -7,7 +7,7 @@ import com.dkin.chevit.core.mvi.ViewState
 
 sealed interface MyPageIntent : ViewIntent {
     object ViewCreated : MyPageIntent
-    object LogoutClicked : MyPageIntent
+    object SignOutClicked : MyPageIntent
 
     object WithdrawClicked : MyPageIntent
 
@@ -34,4 +34,5 @@ sealed interface MyPageEffect : ViewEffect {
 
     object NavigateToNotificationSetting : MyPageEffect
 
+    object NavigateToOnBoarding : MyPageEffect
 }

@@ -4,6 +4,7 @@ import com.dkin.chevit.domain.base.CoroutineDispatcherProvider
 import com.dkin.chevit.domain.repository.AuthRepository
 import com.dkin.chevit.domain.usecase.auth.GetUserStateUseCase
 import com.dkin.chevit.domain.usecase.auth.GetUserUseCase
+import com.dkin.chevit.domain.usecase.auth.SignOutUseCase
 import com.dkin.chevit.domain.usecase.auth.SignUpUserUseCase
 import dagger.Module
 import dagger.Provides
@@ -36,6 +37,15 @@ internal object AuthUseCaseModule {
         coroutineDispatcherProvider: CoroutineDispatcherProvider,
         authRepository: AuthRepository,
     ) = SignUpUserUseCase(
+        coroutineDispatcherProvider,
+        authRepository
+    )
+
+    @Provides
+    fun provideSignOutUseCase(
+        coroutineDispatcherProvider: CoroutineDispatcherProvider,
+        authRepository: AuthRepository,
+    ) = SignOutUseCase(
         coroutineDispatcherProvider,
         authRepository
     )
