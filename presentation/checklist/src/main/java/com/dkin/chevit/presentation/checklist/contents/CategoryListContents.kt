@@ -64,8 +64,7 @@ fun CategoryListContents(
                             .background(color = ChevitTheme.colors.white, shape = CircleShape),
                         contentAlignment = Alignment.Center
                     ) {
-//                        Image(imageVector = category.categoryType.getCategoryIcon(), contentDescription = "")
-                        Image(imageVector = ChevitIcon.CategoryToiletries, contentDescription = "")
+                        Image(imageVector = category.categoryType.getCategoryIcon(), contentDescription = "")
                     }
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(
