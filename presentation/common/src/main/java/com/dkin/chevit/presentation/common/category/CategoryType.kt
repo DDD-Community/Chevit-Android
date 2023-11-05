@@ -1,6 +1,6 @@
 package com.dkin.chevit.presentation.common.category
 
-enum class Category(val title: String) {
+enum class CategoryType(val title: String) {
     REQUIRES("필수준비물"),
     ELECTRONICS("전자기기"),
     EXERCISE("운동"),

@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.resource.icon
+package com.dkin.chevit.presentation.resource.icon.category
 
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
 import androidx.compose.ui.graphics.StrokeCap.Companion.Butt
@@ -7,14 +7,15 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
+import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 
-public val ChevitIcon.CategoryEtc: ImageVector
+public val ChevitIcon.CategoryCamping: ImageVector
     get() {
-        if (_categoryEtc != null) {
-            return _categoryEtc!!
+        if (_categoryCamping != null) {
+            return _categoryCamping!!
         }
-        _categoryEtc = Builder(name = "CategoryEtc", defaultWidth = 48.0.dp, defaultHeight = 48.0.dp, viewportWidth
-                = 48.0f, viewportHeight = 48.0f).apply {
+        _categoryCamping = Builder(name = "CategoryCamping", defaultWidth = 48.0.dp, defaultHeight = 48.0.dp,
+                viewportWidth = 48.0f, viewportHeight = 48.0f).apply {
             path(fill = null, stroke = null, strokeLineWidth = 0.0f, strokeLineCap = Butt,
                     strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType = NonZero) {
                 moveTo(0.0f, 0.0f)
@@ -25,7 +26,7 @@ public val ChevitIcon.CategoryEtc: ImageVector
             }
         }
         .build()
-        return _categoryEtc!!
+        return _categoryCamping!!
     }
 
-private var _categoryEtc: ImageVector? = null
+private var _categoryCamping: ImageVector? = null

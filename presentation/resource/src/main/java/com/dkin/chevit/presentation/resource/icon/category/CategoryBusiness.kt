@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.resource.icon
+package com.dkin.chevit.presentation.resource.icon.category
 
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
 import androidx.compose.ui.graphics.StrokeCap.Companion.Butt
@@ -7,13 +7,14 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
+import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 
-public val ChevitIcon.CategoryExercise: ImageVector
+public val ChevitIcon.CategoryBusiness: ImageVector
     get() {
-        if (_categoryExercise != null) {
-            return _categoryExercise!!
+        if (_categoryBusiness != null) {
+            return _categoryBusiness!!
         }
-        _categoryExercise = Builder(name = "CategoryExercise", defaultWidth = 48.0.dp, defaultHeight = 48.0.dp,
+        _categoryBusiness = Builder(name = "CategoryBusiness", defaultWidth = 48.0.dp, defaultHeight = 48.0.dp,
                 viewportWidth = 48.0f, viewportHeight = 48.0f).apply {
             path(fill = null, stroke = null, strokeLineWidth = 0.0f, strokeLineCap = Butt,
                     strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType = NonZero) {
@@ -25,7 +26,7 @@ public val ChevitIcon.CategoryExercise: ImageVector
             }
         }
         .build()
-        return _categoryExercise!!
+        return _categoryBusiness!!
     }
 
-private var _categoryExercise: ImageVector? = null
+private var _categoryBusiness: ImageVector? = null

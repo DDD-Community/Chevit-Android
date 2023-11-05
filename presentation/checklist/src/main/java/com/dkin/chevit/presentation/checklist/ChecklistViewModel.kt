@@ -12,7 +12,15 @@ class ChecklistViewModel @Inject constructor() :
 
     override suspend fun processIntent(intent: ChecklistIntent) {
         when (intent) {
-            else -> {}
+            is ChecklistIntent.ChangeTemplateOpenSetting -> {}
         }
+    }
+
+    fun onClickUrl(url: String) {
+        setEffect { ChecklistEffect.NavigateToLink(url) }
+    }
+
+    fun onClickCategory(id: Int) {
+        setEffect { ChecklistEffect.NavigateToCategory(id) }
     }
 }

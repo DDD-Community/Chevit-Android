@@ -10,3 +10,6 @@ apply(from = project.rootProject.file("gradle-scripts/compose.gradle"))
 android {
     namespace = "com.dkin.chevit.presentation.resource"
 }
+dependencies {
+    implementation(project(":presentation:common"))
+}

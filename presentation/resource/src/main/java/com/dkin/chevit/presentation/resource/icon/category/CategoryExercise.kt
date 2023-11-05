@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.resource.icon
+package com.dkin.chevit.presentation.resource.icon.category
 
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
 import androidx.compose.ui.graphics.StrokeCap.Companion.Butt
@@ -7,14 +7,15 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
+import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 
-public val ChevitIcon.Electronics: ImageVector
+public val ChevitIcon.CategoryExercise: ImageVector
     get() {
-        if (_categoryElectronics != null) {
-            return _categoryElectronics!!
+        if (_categoryExercise != null) {
+            return _categoryExercise!!
         }
-        _categoryElectronics = Builder(name = "CategoryElectronics", defaultWidth = 48.0.dp, defaultHeight =
-                48.0.dp, viewportWidth = 48.0f, viewportHeight = 48.0f).apply {
+        _categoryExercise = Builder(name = "CategoryExercise", defaultWidth = 48.0.dp, defaultHeight = 48.0.dp,
+                viewportWidth = 48.0f, viewportHeight = 48.0f).apply {
             path(fill = null, stroke = null, strokeLineWidth = 0.0f, strokeLineCap = Butt,
                     strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType = NonZero) {
                 moveTo(0.0f, 0.0f)
@@ -25,7 +26,7 @@ public val ChevitIcon.Electronics: ImageVector
             }
         }
         .build()
-        return _categoryElectronics!!
+        return _categoryExercise!!
     }
 
-private var _categoryElectronics: ImageVector? = null
+private var _categoryExercise: ImageVector? = null

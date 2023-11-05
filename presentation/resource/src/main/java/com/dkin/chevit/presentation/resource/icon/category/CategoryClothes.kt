@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.resource.icon
+package com.dkin.chevit.presentation.resource.icon.category
 
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
 import androidx.compose.ui.graphics.StrokeCap.Companion.Butt
@@ -7,13 +7,14 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
+import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 
-public val ChevitIcon.CategoryPhoto: ImageVector
+public val ChevitIcon.CategoryClothes: ImageVector
     get() {
-        if (_categoryPhoto != null) {
-            return _categoryPhoto!!
+        if (_categoryClothes != null) {
+            return _categoryClothes!!
         }
-        _categoryPhoto = Builder(name = "CategoryPhoto", defaultWidth = 48.0.dp, defaultHeight = 48.0.dp,
+        _categoryClothes = Builder(name = "CategoryClothes", defaultWidth = 48.0.dp, defaultHeight = 48.0.dp,
                 viewportWidth = 48.0f, viewportHeight = 48.0f).apply {
             path(fill = null, stroke = null, strokeLineWidth = 0.0f, strokeLineCap = Butt,
                     strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType = NonZero) {
@@ -25,8 +26,7 @@ public val ChevitIcon.CategoryPhoto: ImageVector
             }
         }
         .build()
-        return _categoryPhoto!!
+        return _categoryClothes!!
     }
 
-private var _categoryPhoto: ImageVector? = null
-
+private var _categoryClothes: ImageVector? = null

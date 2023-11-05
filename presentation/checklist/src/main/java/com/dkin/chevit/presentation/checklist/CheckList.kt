@@ -21,6 +21,8 @@ class CheckList : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
     override fun processEffect(effect: ChecklistEffect) {
         when (effect) {
             ChecklistEffect.NavigateToAddCategory -> {}
+            is ChecklistEffect.NavigateToLink -> {}
+            is ChecklistEffect.NavigateToCategory -> {}
         }
     }
 

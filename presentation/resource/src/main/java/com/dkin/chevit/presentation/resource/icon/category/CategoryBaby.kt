@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.resource.icon
+package com.dkin.chevit.presentation.resource.icon.category
 
 import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
 import androidx.compose.ui.graphics.StrokeCap.Companion.Butt
@@ -7,14 +7,15 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
+import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 
-public val ChevitIcon.EmergencyMedicine: ImageVector
+public val ChevitIcon.CategoryBaby: ImageVector
     get() {
-        if (_categoryEmergencyMedicine != null) {
-            return _categoryEmergencyMedicine!!
+        if (_categoryBaby != null) {
+            return _categoryBaby!!
         }
-        _categoryEmergencyMedicine = Builder(name = "CategoryEmergencyMedicine", defaultWidth = 48.0.dp,
-                defaultHeight = 48.0.dp, viewportWidth = 48.0f, viewportHeight = 48.0f).apply {
+        _categoryBaby = Builder(name = "CategoryBaby", defaultWidth = 48.0.dp, defaultHeight = 48.0.dp,
+                viewportWidth = 48.0f, viewportHeight = 48.0f).apply {
             path(fill = null, stroke = null, strokeLineWidth = 0.0f, strokeLineCap = Butt,
                     strokeLineJoin = Miter, strokeLineMiter = 4.0f, pathFillType = NonZero) {
                 moveTo(0.0f, 0.0f)
@@ -25,7 +26,7 @@ public val ChevitIcon.EmergencyMedicine: ImageVector
             }
         }
         .build()
-        return _categoryEmergencyMedicine!!
+        return _categoryBaby!!
     }
 
-private var _categoryEmergencyMedicine: ImageVector? = null
+private var _categoryBaby: ImageVector? = null
