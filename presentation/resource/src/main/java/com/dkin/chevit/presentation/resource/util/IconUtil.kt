@@ -1,40 +1,24 @@
 package com.dkin.chevit.presentation.resource.util
 
-import androidx.compose.ui.graphics.vector.ImageVector
 import com.dkin.chevit.presentation.common.category.CategoryType
-import com.dkin.chevit.presentation.resource.icon.ChevitIcon
-import com.dkin.chevit.presentation.resource.icon.category.CategoryBaby
-import com.dkin.chevit.presentation.resource.icon.category.CategoryBeautyProducts
-import com.dkin.chevit.presentation.resource.icon.category.CategoryBusiness
-import com.dkin.chevit.presentation.resource.icon.category.CategoryCamping
-import com.dkin.chevit.presentation.resource.icon.category.CategoryClothes
-import com.dkin.chevit.presentation.resource.icon.category.CategoryCompanionAnimal
-import com.dkin.chevit.presentation.resource.icon.category.CategoryElectronics
-import com.dkin.chevit.presentation.resource.icon.category.CategoryEmergencyMedicine
-import com.dkin.chevit.presentation.resource.icon.category.CategoryEtc
-import com.dkin.chevit.presentation.resource.icon.category.CategoryExercise
-import com.dkin.chevit.presentation.resource.icon.category.CategoryMountain
-import com.dkin.chevit.presentation.resource.icon.category.CategoryPhoto
-import com.dkin.chevit.presentation.resource.icon.category.CategoryRequires
-import com.dkin.chevit.presentation.resource.icon.category.CategorySwimming
-import com.dkin.chevit.presentation.resource.icon.category.CategoryToiletries
+import com.dkin.chevit.presentation.resource.R
 
-fun CategoryType.getCategoryIcon(): ImageVector {
-    return when(this) {
-        CategoryType.REQUIRES -> ChevitIcon.CategoryRequires
-        CategoryType.ELECTRONICS -> ChevitIcon.CategoryElectronics
-        CategoryType.EXERCISE -> ChevitIcon.CategoryExercise
-        CategoryType.TOILETRIES -> ChevitIcon.CategoryToiletries
-        CategoryType.EMERGENCY_MEDICINE -> ChevitIcon.CategoryEmergencyMedicine
-        CategoryType.BEAUTY_PRODUCTS -> ChevitIcon.CategoryBeautyProducts
-        CategoryType.BABY -> ChevitIcon.CategoryBaby
-        CategoryType.COMPANION_ANIMAL -> ChevitIcon.CategoryCompanionAnimal
-        CategoryType.MOUNTAIN -> ChevitIcon.CategoryMountain
-        CategoryType.BUSINESS -> ChevitIcon.CategoryBusiness
-        CategoryType.PHOTO -> ChevitIcon.CategoryPhoto
-        CategoryType.CAMPING -> ChevitIcon.CategoryCamping
-        CategoryType.SWIMMING -> ChevitIcon.CategorySwimming
-        CategoryType.CLOTHES -> ChevitIcon.CategoryClothes
-        CategoryType.ETC -> ChevitIcon.CategoryEtc
+fun CategoryType.getCategoryIconResId(): Int {
+    return when (this) {
+        CategoryType.REQUIRES -> R.drawable.ic_category_requires
+        CategoryType.ELECTRONICS -> R.drawable.ic_category_electronics
+        CategoryType.EXERCISE -> R.drawable.ic_category_exercise
+        CategoryType.TOILETRIES -> R.drawable.ic_category_toiletries
+        CategoryType.EMERGENCY_MEDICINE -> R.drawable.ic_category_emergency_medicine
+        CategoryType.BEAUTY_PRODUCTS -> R.drawable.ic_category_beauty_product
+        CategoryType.BABY -> R.drawable.ic_category_baby
+        CategoryType.COMPANION_ANIMAL -> R.drawable.ic_category_companion_animal
+        CategoryType.MOUNTAIN -> R.drawable.ic_category_mountain
+        CategoryType.BUSINESS -> R.drawable.ic_category_business
+        CategoryType.PHOTO -> R.drawable.ic_category_photo
+        CategoryType.CAMPING -> R.drawable.ic_category_camping
+        CategoryType.SWIMMING -> R.drawable.ic_category_swimming
+        CategoryType.CLOTHES -> R.drawable.ic_category_clothes
+        CategoryType.ETC -> R.drawable.ic_category_etc
     }
 }

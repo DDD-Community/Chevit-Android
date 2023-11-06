@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.checklist.ChecklistState
@@ -30,8 +31,7 @@ import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.TemplateCheckOff
 import com.dkin.chevit.presentation.resource.icon.TemplateCheckOn
-import com.dkin.chevit.presentation.resource.icon.category.CategoryToiletries
-import com.dkin.chevit.presentation.resource.util.getCategoryIcon
+import com.dkin.chevit.presentation.resource.util.getCategoryIconResId
 
 @Composable
 fun CategoryListContents(
@@ -54,8 +54,8 @@ fun CategoryListContents(
                     modifier = Modifier
                         .clip(RoundedCornerShape(8.dp))
                         .background(color = if (completed) ChevitTheme.colors.grey0 else ChevitTheme.colors.grey1)
-                        .padding(vertical = 12.dp, horizontal = 12.dp)
-                        .clickable { onClickCategory(category.categoryId) },
+                        .clickable { onClickCategory(category.categoryId) }
+                        .padding(vertical = 12.dp, horizontal = 12.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Box(
@@ -64,7 +64,7 @@ fun CategoryListContents(
                             .background(color = ChevitTheme.colors.white, shape = CircleShape),
                         contentAlignment = Alignment.Center
                     ) {
-                        Image(imageVector = category.categoryType.getCategoryIcon(), contentDescription = "")
+                        Image(painter = painterResource(id = category.categoryType.getCategoryIconResId()), contentDescription = "")
                     }
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(

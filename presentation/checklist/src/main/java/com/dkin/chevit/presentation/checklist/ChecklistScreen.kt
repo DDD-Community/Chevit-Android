@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
@@ -23,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.checklist.component.ChecklistTopBar
@@ -66,7 +68,7 @@ fun ChecklistScreen(
         Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
             if (showCountryInfo) {
                 Icon(
-                    modifier = Modifier.clickable { showCountryInfo = false },
+                    modifier = Modifier.clip(RoundedCornerShape(8.dp)).clickable { showCountryInfo = false },
                     imageVector = ChevitIcon.IconArrowUpLine,
                     contentDescription = "",
                     tint = ChevitTheme.colors.grey10,
@@ -74,7 +76,7 @@ fun ChecklistScreen(
                 Spacer(modifier = Modifier.height(12.dp))
             } else {
                 Icon(
-                    modifier = Modifier.clickable { showCountryInfo = true },
+                    modifier = Modifier.clip(RoundedCornerShape(8.dp)).clickable { showCountryInfo = true },
                     imageVector = ChevitIcon.IconArrowDownLine,
                     contentDescription = "",
                     tint = ChevitTheme.colors.grey10,

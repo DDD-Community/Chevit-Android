@@ -29,6 +29,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.dkin.chevit.presentation.checklist.ChecklistState
 import com.dkin.chevit.presentation.resource.ChevitTheme
+import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -57,8 +58,8 @@ fun CountryInfo(
                         color = ChevitTheme.colors.grey2,
                         shape = RoundedCornerShape(12.dp),
                     )
-                    .padding(horizontal = 24.dp, vertical = 14.dp)
                     .clickable { onClickUrl(notice.url) }
+                    .padding(horizontal = 24.dp, vertical = 14.dp)
             ) {
                 Notice(notice.title)
             }
@@ -93,7 +94,7 @@ fun CountryInfo(
             }
             Spacer(modifier = Modifier.height(12.dp))
             Text(
-                modifier = Modifier.clickable { onClickUrl(weatherDetailUrl) },
+                modifier = Modifier.clickableNoRipple { onClickUrl(weatherDetailUrl) },
                 text = "날씨 정보 더보기",
                 style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.textCaption)
             )
