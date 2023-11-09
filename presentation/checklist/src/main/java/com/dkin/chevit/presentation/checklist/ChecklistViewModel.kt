@@ -23,4 +23,16 @@ class ChecklistViewModel @Inject constructor() :
     fun onClickCategory(id: Int) {
         setEffect { ChecklistEffect.NavigateToCategory(id) }
     }
+
+    fun addCategory() {
+        setEffect { ChecklistEffect.NavigateToAddCategory }
+    }
+
+    fun bringTemplate() {
+        setEffect { ChecklistEffect.NavigateToBringTemplate }
+    }
+
+    fun saveTemplate() {
+        setEffect { ChecklistEffect.NavigateToSaveTemplate }
+    }
 }

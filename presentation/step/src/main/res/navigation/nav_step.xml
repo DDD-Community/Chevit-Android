@@ -8,8 +8,7 @@
     <fragment
         android:id="@+id/step"
         android:name="com.dkin.chevit.presentation.step.Step"
-        android:label="Step"
-        tools:layout="@layout/fragment_step">
+        android:label="Step">
         <deepLink app:uri="chevit://step" />
     </fragment>
 </navigation>

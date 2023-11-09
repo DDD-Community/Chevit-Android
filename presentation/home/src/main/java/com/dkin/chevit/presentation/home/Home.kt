@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -23,17 +24,12 @@ import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToNotificationSett
 import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToOnBoarding
 import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToProfileSetting
 import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToTerms
-import com.dkin.chevit.presentation.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
-    private var _binding: FragmentHomeBinding? = null
-
     override val viewModel: HomeViewModel by viewModels()
 
-    private val binding get() = _binding!!
     private val templateViewModel: TemplateViewModel by viewModels()
     private val myPageViewModel: MyPageViewModel by viewModels()
 
@@ -51,9 +47,7 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
             window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         }
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val view = binding.root
-        binding.composeView.apply {
+        return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 HomeScreen(
@@ -71,7 +65,6 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
                 )
             }
         }
-        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

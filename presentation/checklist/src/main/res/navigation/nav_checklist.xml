@@ -8,8 +8,7 @@
     <fragment
         android:id="@+id/checklist"
         android:name="com.dkin.chevit.presentation.checklist.CheckList"
-        android:label="Checklist"
-        tools:layout="@layout/fragment_checklist">
+        android:label="Checklist">
         <deepLink app:uri="chevit://checklist" />
     </fragment>
 </navigation>

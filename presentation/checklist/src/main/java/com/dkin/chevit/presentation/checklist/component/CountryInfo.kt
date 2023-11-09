@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -49,9 +50,10 @@ fun CountryInfo(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
                     .background(
                         color = ChevitTheme.colors.white,
-                        shape = RoundedCornerShape(100.dp),
+                        shape = RoundedCornerShape(12.dp),
                     )
                     .border(
                         width = 1.dp,
@@ -70,9 +72,10 @@ fun CountryInfo(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .clip(RoundedCornerShape(12.dp))
                     .background(
                         color = ChevitTheme.colors.white,
-                        shape = RoundedCornerShape(100.dp),
+                        shape = RoundedCornerShape(12.dp),
                     )
                     .border(
                         width = 1.dp,
