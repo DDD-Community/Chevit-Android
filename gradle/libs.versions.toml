@@ -210,7 +210,6 @@ compose = [
     "compose-bom",
     "compose-ui",
     "compose-activity",
-    "compose-navigation",
     "compose-material3",
     "compose-uiGraphics",
     "compose-uiTooling",

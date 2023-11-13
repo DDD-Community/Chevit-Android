@@ -21,4 +21,5 @@ dependencies {
     implementation(project(":presentation:common"))
     implementation(project(":presentation:deeplink"))
     implementation(libs.coil.compose)
+    implementation(libs.compose.navigation)
 }

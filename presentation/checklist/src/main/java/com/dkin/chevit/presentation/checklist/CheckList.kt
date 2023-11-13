@@ -7,7 +7,12 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.findNavController
 import com.dkin.chevit.core.mvi.MVIComposeFragment
+import com.dkin.chevit.presentation.common.category.AddCategoryContents
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,7 +22,6 @@ class CheckList : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
 
     override fun processEffect(effect: ChecklistEffect) {
         when (effect) {
-            ChecklistEffect.NavigateToAddCategory -> {}
             ChecklistEffect.NavigateToBringTemplate -> {}
             ChecklistEffect.NavigateToSaveTemplate -> {}
             is ChecklistEffect.NavigateToLink -> {}
@@ -35,11 +39,36 @@ class CheckList : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
         return ComposeView(requireContext()).apply {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
-                ChecklistScreen(
-                    viewModel = viewModel,
-                    onClickBack = { requireActivity().onBackPressed() }
-                )
+                val navController = rememberNavController()
+                NavHost(navController = navController, startDestination = "checklist") {
+                    composable("checklist") {
+                        ChecklistScreen(
+                            viewModel = viewModel,
+                            onClickBack = {
+                                findNavController().popBackStack()
+                            },
+                            navigateAddCategory = {
+                                navController.navigate("addCategory")
+                            }
+                        )
+                    }
+                    composable("addCategory") {
+                        AddCategoryContents(
+                            saveCategory = { title, category ->
+                                viewModel.addCategory(title, category)
+                                navController.popBackStack()
+                            },
+                            onClickBack = { navController.popBackStack() }
+                        )
+                    }
+                }
             }
         }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val id = arguments?.getString("checklistId")
+        id?.let { viewModel.getChecklist(it) }
     }
 }

@@ -125,7 +125,6 @@ data class ChecklistState(
 }
 
 sealed interface ChecklistEffect : ViewEffect {
-    object NavigateToAddCategory : ChecklistEffect
     object NavigateToBringTemplate : ChecklistEffect
     object NavigateToSaveTemplate : ChecklistEffect
     data class NavigateToLink(val url: String) : ChecklistEffect

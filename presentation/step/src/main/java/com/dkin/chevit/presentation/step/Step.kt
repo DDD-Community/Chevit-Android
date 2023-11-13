@@ -20,7 +20,7 @@ class Step : MVIComposeFragment<StepIntent, StepState, StepEffect>() {
     override fun processEffect(effect: StepEffect) {
         when (effect) {
             is StepEffect.NavigateToCheckList -> {
-                deepLink(DeepLink.CheckList) {
+                deepLink(DeepLink.CheckList(effect.id)) {
                     popUpTo(R.id.step) { inclusive = true }
                 }
             }

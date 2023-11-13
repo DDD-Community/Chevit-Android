@@ -47,7 +47,8 @@ import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 @Composable
 fun ChecklistScreen(
     viewModel: ChecklistViewModel,
-    onClickBack: () -> Unit
+    onClickBack: () -> Unit,
+    navigateAddCategory: () -> Unit
 ) {
     val checklistState by viewModel.state.collectAsState()
     var showCountryInfo by remember { mutableStateOf(true) }
@@ -185,7 +186,7 @@ fun ChecklistScreen(
                             FloatingContentItem(
                                 icon = ChevitIcon.IconSuitcaseFill,
                                 title = "카테고리 추가하기",
-                                onClick = { viewModel.addCategory() }),
+                                onClick = { navigateAddCategory() }),
                             FloatingContentItem(
                                 icon = ChevitIcon.IconFolderReceivedFill,
                                 title = "템플릿에서 불러오기",

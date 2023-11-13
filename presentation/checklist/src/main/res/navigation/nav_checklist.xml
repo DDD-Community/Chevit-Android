@@ -9,6 +9,9 @@
         android:id="@+id/checklist"
         android:name="com.dkin.chevit.presentation.checklist.CheckList"
         android:label="Checklist">
-        <deepLink app:uri="chevit://checklist" />
+        <argument
+            android:name="checklistId"
+            app:argType="string" />
+        <deepLink app:uri="chevit://checklist/{checklistId}" />
     </fragment>
 </navigation>

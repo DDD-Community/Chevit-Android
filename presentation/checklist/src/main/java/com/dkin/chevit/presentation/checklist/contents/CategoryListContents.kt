@@ -62,7 +62,7 @@ fun CategoryListContents(
                 ) {
                     Box(
                         modifier = Modifier
-                            .size(54.dp)
+                            .size(48.dp)
                             .background(color = ChevitTheme.colors.white, shape = CircleShape),
                         contentAlignment = Alignment.Center
                     ) {

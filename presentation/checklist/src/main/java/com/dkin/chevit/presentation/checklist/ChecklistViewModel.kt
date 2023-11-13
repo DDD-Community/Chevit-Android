@@ -1,7 +1,9 @@
 package com.dkin.chevit.presentation.checklist
 
 import com.dkin.chevit.core.mvi.MVIViewModel
+import com.dkin.chevit.presentation.common.category.CategoryType
 import dagger.hilt.android.lifecycle.HiltViewModel
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -16,6 +18,10 @@ class ChecklistViewModel @Inject constructor() :
         }
     }
 
+    fun getChecklist(id: String) {
+        Timber.d("checklistId = $id")
+    }
+
     fun onClickUrl(url: String) {
         setEffect { ChecklistEffect.NavigateToLink(url) }
     }
@@ -24,15 +30,15 @@ class ChecklistViewModel @Inject constructor() :
         setEffect { ChecklistEffect.NavigateToCategory(id) }
     }
 
-    fun addCategory() {
-        setEffect { ChecklistEffect.NavigateToAddCategory }
-    }
-
     fun bringTemplate() {
         setEffect { ChecklistEffect.NavigateToBringTemplate }
     }
 
     fun saveTemplate() {
         setEffect { ChecklistEffect.NavigateToSaveTemplate }
+    }
+
+    fun addCategory(title: String, category: CategoryType) {
+        //TODO
     }
 }

@@ -91,7 +91,7 @@ class StepViewModel @Inject constructor() : MVIViewModel<StepIntent, StepState, 
                 delay(2000L)
                 //TODO call api
                 setEffect {
-                    StepEffect.NavigateToCheckList("")
+                    StepEffect.NavigateToCheckList("testId")
                 }
             }
         } else {
@@ -100,7 +100,7 @@ class StepViewModel @Inject constructor() : MVIViewModel<StepIntent, StepState, 
                 delay(2000L)
                 //TODO call api
                 setEffect {
-                    StepEffect.NavigateToCheckList("")
+                    StepEffect.NavigateToCheckList("testId")
                 }
             }
         }
