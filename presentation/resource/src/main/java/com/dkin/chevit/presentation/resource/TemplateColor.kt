@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.home.model
+package com.dkin.chevit.presentation.resource
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector

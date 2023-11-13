@@ -2,6 +2,7 @@ package com.dkin.chevit.presentation.checklist
 
 import com.dkin.chevit.core.mvi.MVIViewModel
 import com.dkin.chevit.presentation.common.category.CategoryType
+import com.dkin.chevit.presentation.resource.TemplateColor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import timber.log.Timber
 import javax.inject.Inject
@@ -34,11 +35,11 @@ class ChecklistViewModel @Inject constructor() :
         setEffect { ChecklistEffect.NavigateToBringTemplate }
     }
 
-    fun saveTemplate() {
-        setEffect { ChecklistEffect.NavigateToSaveTemplate }
+    fun addCategory(title: String, category: CategoryType) {
+        //TODO
     }
 
-    fun addCategory(title: String, category: CategoryType) {
+    fun saveTemplate(title: String, color: TemplateColor) {
         //TODO
     }
 }

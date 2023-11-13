@@ -2,7 +2,7 @@ package com.dkin.chevit.presentation.home
 
 import com.dkin.chevit.core.mvi.MVIViewModel
 import com.dkin.chevit.presentation.home.model.Template
-import com.dkin.chevit.presentation.home.model.TemplateColor
+import com.dkin.chevit.presentation.resource.TemplateColor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

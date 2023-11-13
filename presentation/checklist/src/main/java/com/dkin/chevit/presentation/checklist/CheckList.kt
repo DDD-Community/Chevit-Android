@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.viewModels
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.findNavController
 import com.dkin.chevit.core.mvi.MVIComposeFragment
-import com.dkin.chevit.presentation.common.category.AddCategoryContents
+import com.dkin.chevit.presentation.checklist.contents.AddCategoryContents
+import com.dkin.chevit.presentation.checklist.contents.SaveTemplateContents
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,7 +26,6 @@ class CheckList : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
     override fun processEffect(effect: ChecklistEffect) {
         when (effect) {
             ChecklistEffect.NavigateToBringTemplate -> {}
-            ChecklistEffect.NavigateToSaveTemplate -> {}
             is ChecklistEffect.NavigateToLink -> {}
             is ChecklistEffect.NavigateToCategory -> {}
         }
@@ -49,6 +51,9 @@ class CheckList : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                             },
                             navigateAddCategory = {
                                 navController.navigate("addCategory")
+                            },
+                            navigateSaveTemplate = {
+                                navController.navigate("saveTemplate")
                             }
                         )
                     }
@@ -60,6 +65,14 @@ class CheckList : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                             },
                             onClickBack = { navController.popBackStack() }
                         )
+                    }
+                    dialog(
+                        route = "saveTemplate",
+                        dialogProperties = DialogProperties(usePlatformDefaultWidth = false)
+                    ) {
+                        SaveTemplateContents(
+                            saveTemplate = { title, color -> viewModel.saveTemplate(title, color) },
+                            onClose = { navController.popBackStack() })
                     }
                 }
             }
