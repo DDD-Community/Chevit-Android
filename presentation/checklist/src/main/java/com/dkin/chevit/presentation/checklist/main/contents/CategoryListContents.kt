@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.checklist.contents
+package com.dkin.chevit.presentation.checklist.main.contents
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,12 +27,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.dkin.chevit.presentation.checklist.ChecklistState
+import com.dkin.chevit.presentation.checklist.main.ChecklistState
+import com.dkin.chevit.presentation.checklist.enum.getCategoryIconResId
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.TemplateCheckOff
 import com.dkin.chevit.presentation.resource.icon.TemplateCheckOn
-import com.dkin.chevit.presentation.resource.util.getCategoryIconResId
 
 @Composable
 fun CategoryListContents(

@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.checklist.component
+package com.dkin.chevit.presentation.checklist.main.component
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height

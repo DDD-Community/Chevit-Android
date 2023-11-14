@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.checklist.contents
+package com.dkin.chevit.presentation.checklist.main.contents
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

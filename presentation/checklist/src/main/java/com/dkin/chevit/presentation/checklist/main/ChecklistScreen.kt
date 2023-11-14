@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.checklist
+package com.dkin.chevit.presentation.checklist.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,7 +18,6 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,27 +28,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.dkin.chevit.presentation.checklist.component.ChecklistTopBar
-import com.dkin.chevit.presentation.checklist.component.CountryInfo
-import com.dkin.chevit.presentation.checklist.contents.CategoryEmptyContents
-import com.dkin.chevit.presentation.checklist.contents.CategoryListContents
-import com.dkin.chevit.presentation.resource.ChevitButtonFillLarge
+import com.dkin.chevit.presentation.checklist.main.component.ChecklistTopBar
+import com.dkin.chevit.presentation.checklist.main.component.CountryInfo
+import com.dkin.chevit.presentation.checklist.main.contents.CategoryEmptyContents
+import com.dkin.chevit.presentation.checklist.main.contents.CategoryListContents
 import com.dkin.chevit.presentation.resource.ChevitFloatingButton
 import com.dkin.chevit.presentation.resource.ChevitFloatingContent
-import com.dkin.chevit.presentation.resource.ChevitTextField
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.FloatingContentItem
-import com.dkin.chevit.presentation.resource.TemplateColor
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconArrowDownLine
 import com.dkin.chevit.presentation.resource.icon.IconArrowUpLine
-import com.dkin.chevit.presentation.resource.icon.IconCloseCircleFill
-import com.dkin.chevit.presentation.resource.icon.IconCloseFill
 import com.dkin.chevit.presentation.resource.icon.IconEditBoxFill
 import com.dkin.chevit.presentation.resource.icon.IconFolderReceivedFill
 import com.dkin.chevit.presentation.resource.icon.IconSuitcaseFill
 import com.dkin.chevit.presentation.resource.util.clickableNoRipple
-import kotlinx.coroutines.launch
 
 @Composable
 fun ChecklistScreen(

@@ -1,10 +1,10 @@
-package com.dkin.chevit.presentation.checklist
+package com.dkin.chevit.presentation.checklist.main
 
 import androidx.compose.runtime.Stable
 import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
-import com.dkin.chevit.presentation.common.category.CategoryType
+import com.dkin.chevit.presentation.checklist.enum.CategoryType
 
 sealed interface ChecklistIntent : ViewIntent {
     data class ChangeTemplateOpenSetting(val isOpen: Boolean) : ChecklistIntent

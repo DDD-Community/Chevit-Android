@@ -7,11 +7,24 @@
 
     <fragment
         android:id="@+id/checklist"
-        android:name="com.dkin.chevit.presentation.checklist.CheckList"
+        android:name="com.dkin.chevit.presentation.checklist.main.Checklist"
         android:label="Checklist">
         <argument
-            android:name="checklistId"
+            android:name="planId"
             app:argType="string" />
-        <deepLink app:uri="chevit://checklist/{checklistId}" />
+        <deepLink app:uri="chevit://checklist/{planId}" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checklistDetail"
+        android:name="com.dkin.chevit.presentation.checklist.detail.ChecklistDetail"
+        android:label="ChecklistDetail">
+        <argument
+            android:name="planId"
+            app:argType="string" />
+        <argument
+            android:name="categoryId"
+            app:argType="string" />
+        <deepLink app:uri="chevit://checklist/{planId}/{categoryId}" />
     </fragment>
 </navigation>

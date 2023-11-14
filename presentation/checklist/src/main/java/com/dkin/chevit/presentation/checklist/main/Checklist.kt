@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.checklist
+package com.dkin.chevit.presentation.checklist.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,12 +14,11 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.findNavController
 import com.dkin.chevit.core.mvi.MVIComposeFragment
-import com.dkin.chevit.presentation.checklist.contents.AddCategoryContents
-import com.dkin.chevit.presentation.checklist.contents.SaveTemplateContents
+import com.dkin.chevit.presentation.checklist.main.contents.SaveTemplateContents
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class CheckList : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistEffect>() {
+class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistEffect>() {
 
     override val viewModel: ChecklistViewModel by viewModels()
 
@@ -58,7 +57,7 @@ class CheckList : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                         )
                     }
                     composable("addCategory") {
-                        AddCategoryContents(
+                        AddCategoryScreen(
                             saveCategory = { title, category ->
                                 viewModel.addCategory(title, category)
                                 navController.popBackStack()
@@ -81,7 +80,7 @@ class CheckList : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val id = arguments?.getString("checklistId")
+        val id = arguments?.getString("planId")
         id?.let { viewModel.getChecklist(it) }
     }
 }

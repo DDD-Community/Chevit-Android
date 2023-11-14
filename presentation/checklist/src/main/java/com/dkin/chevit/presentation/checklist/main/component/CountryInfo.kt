@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.checklist.component
+package com.dkin.chevit.presentation.checklist.main.component
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -28,7 +28,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.dkin.chevit.presentation.checklist.ChecklistState
+import com.dkin.chevit.presentation.checklist.main.ChecklistState
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 

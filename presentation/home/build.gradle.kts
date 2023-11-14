@@ -18,6 +18,5 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":domain"))
     implementation(project(":presentation:resource"))
-    implementation(project(":presentation:common"))
     implementation(project(":presentation:deeplink"))
 }

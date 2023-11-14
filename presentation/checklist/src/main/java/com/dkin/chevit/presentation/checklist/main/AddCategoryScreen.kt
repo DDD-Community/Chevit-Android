@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.checklist.contents
+package com.dkin.chevit.presentation.checklist.main
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -31,7 +31,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.dkin.chevit.presentation.common.category.CategoryType
+import com.dkin.chevit.presentation.checklist.enum.CategoryType
+import com.dkin.chevit.presentation.checklist.enum.getCategoryIconResId
 import com.dkin.chevit.presentation.resource.ChevitButtonFillLarge
 import com.dkin.chevit.presentation.resource.ChevitTextField
 import com.dkin.chevit.presentation.resource.ChevitTheme
@@ -39,10 +40,9 @@ import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconArrowLeftLine
 import com.dkin.chevit.presentation.resource.icon.IconCloseCircleFill
 import com.dkin.chevit.presentation.resource.util.clickableNoRipple
-import com.dkin.chevit.presentation.resource.util.getCategoryIconResId
 
 @Composable
-fun AddCategoryContents(
+fun AddCategoryScreen(
     saveCategory: (title: String, category: CategoryType) -> Unit,
     onClickBack: () -> Unit,
 ) {
