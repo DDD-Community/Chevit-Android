@@ -28,7 +28,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.checklist.main.ChecklistState
-import com.dkin.chevit.presentation.checklist.enum.getCategoryIconResId
+import com.dkin.chevit.presentation.checklist.model.getCategoryIconResId
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.TemplateCheckOff

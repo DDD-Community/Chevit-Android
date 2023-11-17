@@ -31,8 +31,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.dkin.chevit.presentation.checklist.enum.CategoryType
-import com.dkin.chevit.presentation.checklist.enum.getCategoryIconResId
+import com.dkin.chevit.presentation.checklist.model.CategoryType
+import com.dkin.chevit.presentation.checklist.model.getCategoryIconResId
 import com.dkin.chevit.presentation.resource.ChevitButtonFillLarge
 import com.dkin.chevit.presentation.resource.ChevitTextField
 import com.dkin.chevit.presentation.resource.ChevitTheme

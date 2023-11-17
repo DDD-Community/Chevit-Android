@@ -1,7 +1,7 @@
 package com.dkin.chevit.presentation.checklist.main
 
 import com.dkin.chevit.core.mvi.MVIViewModel
-import com.dkin.chevit.presentation.checklist.enum.CategoryType
+import com.dkin.chevit.presentation.checklist.model.CategoryType
 import com.dkin.chevit.presentation.resource.TemplateColor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import timber.log.Timber

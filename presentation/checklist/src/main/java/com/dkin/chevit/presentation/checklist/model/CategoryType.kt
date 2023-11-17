@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.checklist.enum
+package com.dkin.chevit.presentation.checklist.model
 
 import com.dkin.chevit.presentation.resource.R
 
