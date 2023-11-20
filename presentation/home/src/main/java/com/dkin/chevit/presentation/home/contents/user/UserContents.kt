@@ -92,7 +92,7 @@ fun UserContents(
             )
             Spacer(modifier = Modifier.height(12.dp))
             ChevitButtonChip(
-                onClick = { myViewModel.onClickProfileSetting() },
+                onClick = { myViewModel.dispatch(MyPageIntent.ProfileSettingClicked) },
                 text = "프로필 설정",
             )
             Spacer(modifier = Modifier.height(52.dp))
@@ -123,11 +123,13 @@ fun UserContents(
             AlarmSetting(
                 checked = myPageState.notificationEnabled,
                 onClickItem = { myViewModel.dispatch(MyPageIntent.AlarmSwitchClicked(it)) },
-                onClickNotificationSetting = { myViewModel.onClickNotificationSetting() }
+                onClickNotificationSetting = {
+                    myViewModel.dispatch(MyPageIntent.NotificationSettingClicked)
+                }
             )
             UserItem(
                 title = "이용약관",
-                onClickItem = { myViewModel.onClickTerms() }
+                onClickItem = { myViewModel.dispatch(MyPageIntent.TermsClicked) }
             ) {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,

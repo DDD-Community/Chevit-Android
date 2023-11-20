@@ -8,6 +8,11 @@ import com.dkin.chevit.core.mvi.ViewState
 sealed interface MyPageIntent : ViewIntent {
     object ViewCreated : MyPageIntent
     data class AlarmSwitchClicked(val enabled: Boolean) : MyPageIntent
+    object SignOutClicked : MyPageIntent
+    object WithDrawClicked : MyPageIntent
+    object ProfileSettingClicked : MyPageIntent
+    object TermsClicked : MyPageIntent
+    object NotificationSettingClicked : MyPageIntent
 }
 
 @Stable

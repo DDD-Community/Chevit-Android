@@ -3,13 +3,18 @@ package com.dkin.chevit.presentation.home
 import com.dkin.chevit.core.mvi.MVIViewModel
 import com.dkin.chevit.domain.base.get
 import com.dkin.chevit.domain.base.onComplete
-import com.dkin.chevit.domain.usecase.auth.WithDrawUserUseCase
 import com.dkin.chevit.domain.usecase.auth.GetUserUseCase
 import com.dkin.chevit.domain.usecase.auth.SignOutUseCase
+import com.dkin.chevit.domain.usecase.auth.WithDrawUserUseCase
 import com.dkin.chevit.domain.usecase.notification.GetNotificationSettingUseCase
 import com.dkin.chevit.domain.usecase.notification.UpdateNotificationEnableStateUseCase
 import com.dkin.chevit.presentation.home.MyPageIntent.AlarmSwitchClicked
+import com.dkin.chevit.presentation.home.MyPageIntent.NotificationSettingClicked
+import com.dkin.chevit.presentation.home.MyPageIntent.ProfileSettingClicked
+import com.dkin.chevit.presentation.home.MyPageIntent.SignOutClicked
+import com.dkin.chevit.presentation.home.MyPageIntent.TermsClicked
 import com.dkin.chevit.presentation.home.MyPageIntent.ViewCreated
+import com.dkin.chevit.presentation.home.MyPageIntent.WithDrawClicked
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.awaitAll
@@ -19,7 +24,6 @@ class MyPageViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase,
     private val signOutUseCase: SignOutUseCase,
     private val withDrawUserUseCase: WithDrawUserUseCase,
-    private val getNotificationSettingUseCase: GetNotificationSettingUseCase,
     private val updateNotificationEnableStateUseCase: UpdateNotificationEnableStateUseCase
 ) : MVIViewModel<MyPageIntent, MyPageState, MyPageEffect>() {
 
@@ -28,19 +32,20 @@ class MyPageViewModel @Inject constructor(
     override suspend fun processIntent(intent: MyPageIntent) = when (intent) {
         ViewCreated -> setup()
         is AlarmSwitchClicked -> onClickAlarmEnabled(intent.enabled)
+        SignOutClicked -> onClickSignOut()
+        WithDrawClicked -> onClickWithdraw()
+        ProfileSettingClicked -> onClickProfileSetting()
+        TermsClicked -> onClickTerms()
+        NotificationSettingClicked -> onClickNotificationSetting()
     }
 
     private suspend fun setup() {
-        val asyncUser = async { getUserUseCase(Unit).get() }
-        val notificationSettingAsync = async { getNotificationSettingUseCase(Unit).get() }
-        listOf(asyncUser, notificationSettingAsync).awaitAll()
-        val user = asyncUser.await()
-        val notificationSetting = notificationSettingAsync.await()
+        val user = getUserUseCase(Unit).get()
         setState {
             copy(
                 userName = user.name,
                 profileUrl = user.profileImageUrl,
-                notificationEnabled = notificationSetting.notificationEnabled
+                notificationEnabled = user.notificationEnabled
             )
         }
     }
@@ -63,23 +68,15 @@ class MyPageViewModel @Inject constructor(
         }
     }
 
-    fun onClickProfileSetting() {
+    private fun onClickProfileSetting() {
         setEffect { MyPageEffect.NavigateToProfileSetting }
     }
 
-    fun onClickTerms() {
+    private fun onClickTerms() {
         setEffect { MyPageEffect.NavigateToTerms }
     }
 
-    fun onClickNotificationSetting() {
+    private fun onClickNotificationSetting() {
         setEffect { MyPageEffect.NavigateToNotificationSetting }
-    }
-
-    fun signOut() {
-        //todo
-    }
-
-    fun withdraw() {
-        //todo
     }
 }
