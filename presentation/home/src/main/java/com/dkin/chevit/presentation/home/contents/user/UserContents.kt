@@ -50,7 +50,9 @@ fun UserContents(
     myViewModel: MyPageViewModel,
     versionName: String,
     myPageState: MyPageState,
-    onClickMyCheckList: () -> Unit
+    onClickMyCheckList: () -> Unit,
+    onClickSignOut: () -> Unit,
+    onClickWithdraw: () -> Unit,
 ) {
     val scrollState = rememberScrollState()
 
@@ -135,7 +137,7 @@ fun UserContents(
             }
             UserItem(
                 title = "로그아웃",
-                onClickItem = { myViewModel.dispatch(MyPageIntent.SignOutClicked) }
+                onClickItem = { onClickSignOut() }
             ) {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,
@@ -145,7 +147,7 @@ fun UserContents(
             }
             UserItem(
                 title = "탈퇴하기",
-                onClickItem = { myViewModel.dispatch(MyPageIntent.WithdrawClicked) },
+                onClickItem = { onClickWithdraw() },
                 isLastItem = true
             ) {
                 Icon(

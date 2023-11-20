@@ -9,9 +9,7 @@ import com.dkin.chevit.domain.usecase.auth.SignOutUseCase
 import com.dkin.chevit.domain.usecase.notification.GetNotificationSettingUseCase
 import com.dkin.chevit.domain.usecase.notification.UpdateNotificationEnableStateUseCase
 import com.dkin.chevit.presentation.home.MyPageIntent.AlarmSwitchClicked
-import com.dkin.chevit.presentation.home.MyPageIntent.SignOutClicked
 import com.dkin.chevit.presentation.home.MyPageIntent.ViewCreated
-import com.dkin.chevit.presentation.home.MyPageIntent.WithdrawClicked
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.awaitAll
@@ -30,8 +28,6 @@ class MyPageViewModel @Inject constructor(
     override suspend fun processIntent(intent: MyPageIntent) = when (intent) {
         ViewCreated -> setup()
         is AlarmSwitchClicked -> onClickAlarmEnabled(intent.enabled)
-        SignOutClicked -> onClickSignOut()
-        WithdrawClicked -> onClickWithdraw()
     }
 
     private suspend fun setup() {
@@ -77,5 +73,13 @@ class MyPageViewModel @Inject constructor(
 
     fun onClickNotificationSetting() {
         setEffect { MyPageEffect.NavigateToNotificationSetting }
+    }
+
+    fun signOut() {
+        //todo
+    }
+
+    fun withdraw() {
+        //todo
     }
 }
