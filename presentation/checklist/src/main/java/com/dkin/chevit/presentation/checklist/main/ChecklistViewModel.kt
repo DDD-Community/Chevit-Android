@@ -27,7 +27,7 @@ class ChecklistViewModel @Inject constructor() :
         setEffect { ChecklistEffect.NavigateToLink(url) }
     }
 
-    fun onClickCategory(id: Int) {
+    fun onClickCategory(id: String) {
         setEffect { ChecklistEffect.NavigateToCategory(id) }
     }
 

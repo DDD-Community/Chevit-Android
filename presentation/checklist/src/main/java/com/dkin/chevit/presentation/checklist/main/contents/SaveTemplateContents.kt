@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import com.dkin.chevit.presentation.resource.ChevitBottomsheet
 import com.dkin.chevit.presentation.resource.ChevitButtonFillLarge
 import com.dkin.chevit.presentation.resource.ChevitTextField
 import com.dkin.chevit.presentation.resource.ChevitTheme
@@ -49,17 +50,11 @@ fun SaveTemplateContents(
         isValidInput = input.isNotBlank() && input.length < 18
     }
 
-    Box(
+    ChevitBottomsheet(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.BottomCenter
+        onClickBackground = onClose
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp))
-                .background(color = ChevitTheme.colors.white)
-                .padding(horizontal = 24.dp, vertical = 30.dp)
-        ) {
+        Column(modifier = Modifier.fillMaxWidth()) {
             Icon(
                 modifier = Modifier
                     .align(Alignment.End)

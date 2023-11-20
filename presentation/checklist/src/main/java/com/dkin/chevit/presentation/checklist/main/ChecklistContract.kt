@@ -33,7 +33,7 @@ data class ChecklistState(
     )
 
     data class Category(
-        val categoryId: Int,
+        val categoryId: String,
         val title: String,
         val categoryType: CategoryType,
         val checked: Int,
@@ -56,63 +56,63 @@ data class ChecklistState(
             weatherDetailUrl = "",
             categories = listOf(
                 Category(
-                    categoryId = 0,
+                    categoryId = "0",
                     title = CategoryType.REQUIRES.title,
                     categoryType = CategoryType.REQUIRES,
                     checked = 12,
                     total = 32
                 ),
                 Category(
-                    categoryId = 1,
+                    categoryId = "1",
                     title = CategoryType.TOILETRIES.title,
                     categoryType = CategoryType.TOILETRIES,
                     checked = 24,
                     total = 24
                 ),
                 Category(
-                    categoryId = 2,
+                    categoryId = "2",
                     title = CategoryType.CLOTHES.title,
                     categoryType = CategoryType.CLOTHES,
                     checked = 24,
                     total = 24
                 ),
                 Category(
-                    categoryId = 3,
+                    categoryId = "3",
                     title = CategoryType.CAMPING.title,
                     categoryType = CategoryType.CAMPING,
                     checked = 12,
                     total = 32
                 ),
                 Category(
-                    categoryId = 4,
+                    categoryId = "4",
                     title = CategoryType.ELECTRONICS.title,
                     categoryType = CategoryType.ELECTRONICS,
                     checked = 20,
                     total = 40
                 ),
                 Category(
-                    categoryId = 5,
+                    categoryId = "5",
                     title = CategoryType.BABY.title,
                     categoryType = CategoryType.BABY,
                     checked = 24,
                     total = 24
                 ),
                 Category(
-                    categoryId = 6,
+                    categoryId = "6",
                     title = CategoryType.BEAUTY_PRODUCTS.title,
                     categoryType = CategoryType.BEAUTY_PRODUCTS,
                     checked = 24,
                     total = 24
                 ),
                 Category(
-                    categoryId = 7,
+                    categoryId = "7",
                     title = CategoryType.EMERGENCY_MEDICINE.title,
                     categoryType = CategoryType.EMERGENCY_MEDICINE,
                     checked = 24,
                     total = 24
                 ),
                 Category(
-                    categoryId = 8,
+                    categoryId = "8",
                     title = CategoryType.ETC.title,
                     categoryType = CategoryType.ETC,
                     checked = 24,
@@ -127,5 +127,5 @@ data class ChecklistState(
 sealed interface ChecklistEffect : ViewEffect {
     object NavigateToBringTemplate : ChecklistEffect
     data class NavigateToLink(val url: String) : ChecklistEffect
-    data class NavigateToCategory(val categoryId: Int) : ChecklistEffect
+    data class NavigateToCategory(val categoryId: String) : ChecklistEffect
 }

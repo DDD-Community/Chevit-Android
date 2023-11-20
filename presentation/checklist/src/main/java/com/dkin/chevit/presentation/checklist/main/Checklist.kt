@@ -14,7 +14,10 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.findNavController
 import com.dkin.chevit.core.mvi.MVIComposeFragment
+import com.dkin.chevit.presentation.checklist.R
 import com.dkin.chevit.presentation.checklist.main.contents.SaveTemplateContents
+import com.dkin.chevit.presentation.deeplink.DeepLink
+import com.dkin.chevit.presentation.deeplink.deepLink
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,11 +25,20 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
 
     override val viewModel: ChecklistViewModel by viewModels()
 
+    lateinit var planId: String
+
     override fun processEffect(effect: ChecklistEffect) {
         when (effect) {
             ChecklistEffect.NavigateToBringTemplate -> {}
             is ChecklistEffect.NavigateToLink -> {}
-            is ChecklistEffect.NavigateToCategory -> {}
+            is ChecklistEffect.NavigateToCategory -> {
+                deepLink(
+                    DeepLink.CheckListDetail(
+                        planId = planId,
+                        categoryId = effect.categoryId
+                    )
+                ) { popUpTo(R.id.checklist) }
+            }
         }
     }
 
@@ -81,6 +93,10 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = arguments?.getString("planId")
-        id?.let { viewModel.getChecklist(it) }
+        id?.let {
+            planId = it
+            //todo if planId.isEmpty return
+            viewModel.getChecklist(it)
+        }
     }
 }
