@@ -25,9 +25,9 @@ internal object DataStoreModule {
         return DataStoreFactory.create(
             serializer = DeviceInfoSerializer(),
             corruptionHandler =
-                ReplaceFileCorruptionHandler {
-                    DeviceInfo.getDefaultInstance()
-                },
+            ReplaceFileCorruptionHandler {
+                DeviceInfo.getDefaultInstance()
+            },
             produceFile = {
                 context.dataStoreFile("device.pb")
             },

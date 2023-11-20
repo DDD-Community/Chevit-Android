@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class NotificationSettingUpdatePayload(
+internal data class NotificationSettingUpdatePayload(
     @SerialName("pushToken") val pushToken: String? = null,
     @SerialName("isNotificationAllowed") val notificationEnabled: Boolean? = null
 ) : DataModel
