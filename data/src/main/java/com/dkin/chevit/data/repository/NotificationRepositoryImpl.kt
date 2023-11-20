@@ -1,9 +1,13 @@
 package com.dkin.chevit.data.repository
 
+import com.dkin.chevit.data.model.mapper.NotificationMapper
+import com.dkin.chevit.data.model.mapper.mapDomainList
 import com.dkin.chevit.data.model.request.NotificationSettingUpdatePayload
 import com.dkin.chevit.data.model.response.toNotificationSetting
 import com.dkin.chevit.data.remote.NotificationAPI
+import com.dkin.chevit.domain.base.DomainListModel
 import com.dkin.chevit.domain.base.None
+import com.dkin.chevit.domain.model.Notification
 import com.dkin.chevit.domain.model.NotificationSetting
 import com.dkin.chevit.domain.repository.NotificationRepository
 import javax.inject.Inject
@@ -22,5 +26,9 @@ internal class NotificationRepositoryImpl @Inject constructor(
     ): NotificationSetting {
         val payload = NotificationSettingUpdatePayload(notificationEnabled = notificationEnabled)
         return notificationAPI.updateNotification(body = payload).toNotificationSetting()
+    }
+
+    override suspend fun fetchNotificationList(): DomainListModel<Notification> {
+        return notificationAPI.fetchNotificationList().mapDomainList(NotificationMapper::mapDomain)
     }
 }

@@ -3,6 +3,7 @@ package com.dkin.chevit.data.di.usecase
 import com.dkin.chevit.domain.base.CoroutineDispatcherProvider
 import com.dkin.chevit.domain.repository.AuthRepository
 import com.dkin.chevit.domain.repository.NotificationRepository
+import com.dkin.chevit.domain.usecase.notification.GetNotificationInBoxItemUseCase
 import com.dkin.chevit.domain.usecase.notification.GetNotificationSettingUseCase
 import com.dkin.chevit.domain.usecase.notification.UpdateNotificationEnableStateUseCase
 import com.dkin.chevit.domain.usecase.notification.UpdatePushTokenUseCase
@@ -37,6 +38,15 @@ internal object NotificationUseCaseModule {
         coroutineDispatcherProvider: CoroutineDispatcherProvider,
         notificationRepository: NotificationRepository
     ) = UpdateNotificationEnableStateUseCase(
+        coroutineDispatcherProvider,
+        notificationRepository
+    )
+
+    @Provides
+    fun provideGetNotificationInBoxItemUseCase(
+        coroutineDispatcherProvider: CoroutineDispatcherProvider,
+        notificationRepository: NotificationRepository
+    ) = GetNotificationInBoxItemUseCase(
         coroutineDispatcherProvider,
         notificationRepository
     )

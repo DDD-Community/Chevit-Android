@@ -1,8 +1,10 @@
 package com.dkin.chevit.data.remote
 
 import com.dkin.chevit.data.model.request.NotificationSettingUpdatePayload
+import com.dkin.chevit.data.model.response.NotificationResponse
 import com.dkin.chevit.data.model.response.NotificationSettingResponse
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.PUT
 
 /**
@@ -18,4 +20,7 @@ internal interface NotificationAPI {
     suspend fun updateNotification(
         @Body body: NotificationSettingUpdatePayload
     ): NotificationSettingResponse
+
+    @GET("fetchNotificationList")
+    suspend fun fetchNotificationList(): List<NotificationResponse>
 }
