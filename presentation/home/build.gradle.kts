@@ -19,4 +19,6 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":presentation:resource"))
     implementation(project(":presentation:deeplink"))
+    implementation(libs.compose.navigation)
+    implementation(libs.coil.compose)
 }

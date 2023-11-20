@@ -45,6 +45,20 @@ data class HomeState(
                         isProgress = true,
                         backgroundUrl = "",
                     ),
+                    CheckListItem(
+                        id = "1",
+                        title = "오사카, 일본",
+                        date = "2023.07.10 ~ 2023.07.12",
+                        isProgress = true,
+                        backgroundUrl = "",
+                    ),
+                    CheckListItem(
+                        id = "2",
+                        title = "토론토, 캐나다",
+                        date = "2023.07.01 ~ 2023.07.10",
+                        isProgress = true,
+                        backgroundUrl = "",
+                    ),
                 ),
             )
     }

@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.home.contents
+package com.dkin.chevit.presentation.home.contents.user
 
 import android.app.NotificationManager
 import android.content.Context
@@ -26,7 +26,6 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -36,8 +35,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import com.dkin.chevit.presentation.home.MyPageIntent
-import com.dkin.chevit.presentation.home.MyPageIntent.AlarmSwitchClicked
-import com.dkin.chevit.presentation.home.MyPageIntent.WithdrawClicked
+import com.dkin.chevit.presentation.home.MyPageState
 import com.dkin.chevit.presentation.home.MyPageViewModel
 import com.dkin.chevit.presentation.resource.ChevitButtonChip
 import com.dkin.chevit.presentation.resource.ChevitTheme
@@ -47,13 +45,14 @@ import com.dkin.chevit.presentation.resource.icon.IconWarningFill
 import com.dkin.chevit.presentation.resource.util.rememberLifecycleEvent
 
 @Composable
-fun UserTabContents(
+fun UserContents(
     modifier: Modifier = Modifier,
     myViewModel: MyPageViewModel,
     versionName: String,
+    myPageState: MyPageState,
+    onClickMyCheckList: () -> Unit
 ) {
     val scrollState = rememberScrollState()
-    val homeState = myViewModel.state.collectAsState().value
 
     Column(modifier = modifier) {
         Column(
@@ -84,7 +83,7 @@ fun UserTabContents(
             )
             Spacer(modifier = Modifier.height(20.dp))
             Text(
-                text = "${homeState.userName} 님",
+                text = "${myPageState.userName} 님",
                 style = ChevitTheme.typhography.headlineMedium.copy(
                     color = ChevitTheme.colors.textPrimary,
                 ),
@@ -105,7 +104,7 @@ fun UserTabContents(
 
             UserItem(
                 title = "내 체크리스트",
-                onClickItem = { myViewModel.onClickMyCheckList() }
+                onClickItem = { onClickMyCheckList() }
             ) {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,
@@ -120,8 +119,8 @@ fun UserTabContents(
                 )
             }
             AlarmSetting(
-                checked = homeState.notificationEnabled,
-                onClickItem = { myViewModel.dispatch(AlarmSwitchClicked(it)) },
+                checked = myPageState.notificationEnabled,
+                onClickItem = { myViewModel.dispatch(MyPageIntent.AlarmSwitchClicked(it)) },
                 onClickNotificationSetting = { myViewModel.onClickNotificationSetting() }
             )
             UserItem(
@@ -146,7 +145,7 @@ fun UserTabContents(
             }
             UserItem(
                 title = "탈퇴하기",
-                onClickItem = { myViewModel.dispatch(WithdrawClicked) },
+                onClickItem = { myViewModel.dispatch(MyPageIntent.WithdrawClicked) },
                 isLastItem = true
             ) {
                 Icon(
@@ -158,6 +157,7 @@ fun UserTabContents(
         }
     }
 }
+
 
 @Composable
 private fun UserItem(

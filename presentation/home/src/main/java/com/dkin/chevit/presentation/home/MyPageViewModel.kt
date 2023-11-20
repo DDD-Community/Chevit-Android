@@ -71,10 +71,6 @@ class MyPageViewModel @Inject constructor(
         setEffect { MyPageEffect.NavigateToProfileSetting }
     }
 
-    fun onClickMyCheckList() {
-        setEffect { MyPageEffect.NavigateToMyCheckList }
-    }
-
     fun onClickTerms() {
         setEffect { MyPageEffect.NavigateToTerms }
     }

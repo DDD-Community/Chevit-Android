@@ -7,12 +7,16 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor() : MVIViewModel<HomeIntent, HomeState, HomeEffect>() {
 
-    override fun createInitialState(): HomeState = HomeState.empty()
+    override fun createInitialState(): HomeState = HomeState.dummy()
 
     override suspend fun processIntent(intent: HomeIntent) {
         when (intent) {
             is HomeIntent.NoticeClicked -> {}
         }
+    }
+
+    fun refreshMyCheckList() {
+        //todo mypage에서 내 체크리스트 이동 시 사용
     }
 
     fun onClickAddChecklist() {

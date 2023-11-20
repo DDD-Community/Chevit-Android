@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.home.contents
+package com.dkin.chevit.presentation.home.contents.template
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

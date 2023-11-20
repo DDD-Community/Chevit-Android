@@ -26,8 +26,6 @@ data class MyPageState(
 sealed interface MyPageEffect : ViewEffect {
     object NavigateToProfileSetting : MyPageEffect
 
-    object NavigateToMyCheckList : MyPageEffect
-
     object NavigateToTerms : MyPageEffect
 
     object NavigateToNotificationSetting : MyPageEffect

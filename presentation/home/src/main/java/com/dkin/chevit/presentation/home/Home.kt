@@ -19,7 +19,6 @@ import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.deeplink.DeepLink
 import com.dkin.chevit.presentation.deeplink.DeepLink.OnBoarding
 import com.dkin.chevit.presentation.deeplink.deepLink
-import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToMyCheckList
 import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToNotificationSetting
 import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToOnBoarding
 import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToProfileSetting
@@ -94,7 +93,6 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
 
     private fun processEffect(effect: MyPageEffect) {
         when (effect) {
-            NavigateToMyCheckList -> {}
             NavigateToNotificationSetting -> {
                 val settingsIntent: Intent = Intent("android.settings.APP_NOTIFICATION_SETTINGS")
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
