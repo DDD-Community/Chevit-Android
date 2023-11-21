@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.home
+package com.dkin.chevit.presentation.home.contents.user
 
 import androidx.compose.runtime.Stable
 import com.dkin.chevit.core.mvi.ViewEffect

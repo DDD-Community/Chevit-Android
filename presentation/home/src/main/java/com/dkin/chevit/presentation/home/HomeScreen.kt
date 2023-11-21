@@ -17,6 +17,8 @@ import com.dkin.chevit.presentation.home.component.BottomNavigation
 import com.dkin.chevit.presentation.home.contents.HomeTabContents
 import com.dkin.chevit.presentation.home.contents.SearchTabContents
 import com.dkin.chevit.presentation.home.contents.template.TemplateTabContents
+import com.dkin.chevit.presentation.home.contents.template.TemplateViewModel
+import com.dkin.chevit.presentation.home.contents.user.MyPageViewModel
 import com.dkin.chevit.presentation.home.contents.user.UserTabContents
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import kotlinx.coroutines.launch

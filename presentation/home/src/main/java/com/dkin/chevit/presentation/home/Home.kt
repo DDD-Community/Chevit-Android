@@ -19,10 +19,17 @@ import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.deeplink.DeepLink
 import com.dkin.chevit.presentation.deeplink.DeepLink.OnBoarding
 import com.dkin.chevit.presentation.deeplink.deepLink
-import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToNotificationSetting
-import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToOnBoarding
-import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToProfileSetting
-import com.dkin.chevit.presentation.home.MyPageEffect.NavigateToTerms
+import com.dkin.chevit.presentation.home.contents.template.TemplateEffect
+import com.dkin.chevit.presentation.home.contents.template.TemplateState
+import com.dkin.chevit.presentation.home.contents.template.TemplateViewModel
+import com.dkin.chevit.presentation.home.contents.user.MyPageEffect
+import com.dkin.chevit.presentation.home.contents.user.MyPageEffect.NavigateToNotificationSetting
+import com.dkin.chevit.presentation.home.contents.user.MyPageEffect.NavigateToOnBoarding
+import com.dkin.chevit.presentation.home.contents.user.MyPageEffect.NavigateToProfileSetting
+import com.dkin.chevit.presentation.home.contents.user.MyPageEffect.NavigateToTerms
+import com.dkin.chevit.presentation.home.contents.user.MyPageIntent
+import com.dkin.chevit.presentation.home.contents.user.MyPageState
+import com.dkin.chevit.presentation.home.contents.user.MyPageViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

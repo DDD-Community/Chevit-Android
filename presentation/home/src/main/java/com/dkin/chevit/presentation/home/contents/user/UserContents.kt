@@ -34,9 +34,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
-import com.dkin.chevit.presentation.home.MyPageIntent
-import com.dkin.chevit.presentation.home.MyPageState
-import com.dkin.chevit.presentation.home.MyPageViewModel
 import com.dkin.chevit.presentation.resource.ChevitButtonChip
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon

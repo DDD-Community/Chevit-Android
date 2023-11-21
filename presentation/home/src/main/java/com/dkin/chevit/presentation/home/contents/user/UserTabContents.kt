@@ -13,8 +13,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import com.dkin.chevit.presentation.home.HomeViewModel
-import com.dkin.chevit.presentation.home.MyPageIntent
-import com.dkin.chevit.presentation.home.MyPageViewModel
 import com.dkin.chevit.presentation.resource.ChevitDialog
 import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 

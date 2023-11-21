@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.home.model
+package com.dkin.chevit.presentation.home.contents.template.model
 
 import com.dkin.chevit.presentation.resource.TemplateColor
 

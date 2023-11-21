@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.home
+package com.dkin.chevit.presentation.home.contents.user
 
 import com.dkin.chevit.core.mvi.MVIViewModel
 import com.dkin.chevit.domain.base.get
@@ -6,18 +6,19 @@ import com.dkin.chevit.domain.base.onComplete
 import com.dkin.chevit.domain.usecase.auth.GetUserUseCase
 import com.dkin.chevit.domain.usecase.auth.SignOutUseCase
 import com.dkin.chevit.domain.usecase.auth.WithDrawUserUseCase
-import com.dkin.chevit.domain.usecase.notification.GetNotificationSettingUseCase
 import com.dkin.chevit.domain.usecase.notification.UpdateNotificationEnableStateUseCase
-import com.dkin.chevit.presentation.home.MyPageIntent.AlarmSwitchClicked
-import com.dkin.chevit.presentation.home.MyPageIntent.NotificationSettingClicked
-import com.dkin.chevit.presentation.home.MyPageIntent.ProfileSettingClicked
-import com.dkin.chevit.presentation.home.MyPageIntent.SignOutClicked
-import com.dkin.chevit.presentation.home.MyPageIntent.TermsClicked
-import com.dkin.chevit.presentation.home.MyPageIntent.ViewCreated
-import com.dkin.chevit.presentation.home.MyPageIntent.WithDrawClicked
+import com.dkin.chevit.presentation.home.contents.user.MyPageEffect
+import com.dkin.chevit.presentation.home.contents.user.MyPageIntent
+import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.AlarmSwitchClicked
+import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.NotificationSettingClicked
+import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.ProfileSettingClicked
+import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.SignOutClicked
+import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.TermsClicked
+import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.ViewCreated
+import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.WithDrawClicked
+import com.dkin.chevit.presentation.home.contents.user.MyPageState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlinx.coroutines.awaitAll
 
 @HiltViewModel
 class MyPageViewModel @Inject constructor(

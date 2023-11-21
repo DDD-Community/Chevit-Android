@@ -1,7 +1,10 @@
-package com.dkin.chevit.presentation.home
+package com.dkin.chevit.presentation.home.contents.template
 
 import com.dkin.chevit.core.mvi.MVIViewModel
-import com.dkin.chevit.presentation.home.model.Template
+import com.dkin.chevit.presentation.home.contents.template.TemplateEffect
+import com.dkin.chevit.presentation.home.contents.template.TemplateIntent
+import com.dkin.chevit.presentation.home.contents.template.TemplateState
+import com.dkin.chevit.presentation.home.contents.template.model.Template
 import com.dkin.chevit.presentation.resource.TemplateColor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

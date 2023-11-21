@@ -1,10 +1,10 @@
-package com.dkin.chevit.presentation.home
+package com.dkin.chevit.presentation.home.contents.template
 
 import androidx.compose.runtime.Stable
 import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
-import com.dkin.chevit.presentation.home.model.Template
+import com.dkin.chevit.presentation.home.contents.template.model.Template
 
 sealed interface TemplateIntent : ViewIntent
 
