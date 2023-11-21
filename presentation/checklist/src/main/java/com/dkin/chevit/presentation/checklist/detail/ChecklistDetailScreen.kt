@@ -47,7 +47,7 @@ fun ChecklistDetailScreen(
     onClickBack: () -> Boolean,
     navigateAddItem: () -> Unit,
     openSortSheet: () -> Unit,
-    openMoreSheet: (itemId: String, title: String) -> Unit,
+    openMoreSheet: (itemId: String, title: String, memo: String, count: Int) -> Unit,
 ) {
     val detailState by viewModel.state.collectAsState()
     var input by remember { mutableStateOf("") }
@@ -107,9 +107,6 @@ fun ChecklistDetailScreen(
                         }
                     }
                 )
-                if (detailState.detailItems.isNotEmpty()) {
-
-                }
             }
             if (detailState.detailItems.isEmpty()) {
                 Spacer(modifier = Modifier.height(56.dp))

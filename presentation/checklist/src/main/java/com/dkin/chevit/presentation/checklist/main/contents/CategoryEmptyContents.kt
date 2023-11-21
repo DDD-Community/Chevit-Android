@@ -18,7 +18,9 @@ import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.R
 
 @Composable
-fun CategoryEmptyContents() {
+fun CategoryEmptyContents(
+    addCategory: () -> Unit
+) {
     Column(
         Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -41,7 +43,7 @@ fun CategoryEmptyContents() {
             Spacer(modifier = Modifier.height(18.dp))
             ChevitButtonFillMedium(
                 modifier = Modifier.size(width = 147.dp, height = 54.dp),
-                onClick = {  }
+                onClick = { addCategory() }
             ) {
                 Text(text = "추가하기")
             }

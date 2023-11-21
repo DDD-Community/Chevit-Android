@@ -1,5 +1,6 @@
 package com.dkin.chevit.presentation.checklist.detail.component
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -17,7 +18,7 @@ import com.dkin.chevit.presentation.resource.icon.IconFilterFill
 import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 
 @Composable
-fun  ChecklistDetailTopBar(
+fun ChecklistDetailTopBar(
     modifier: Modifier = Modifier,
     title: String,
     onClickBack: () -> Unit,
@@ -44,6 +45,34 @@ fun  ChecklistDetailTopBar(
             modifier = Modifier.clickableNoRipple { onClickFilter() },
             imageVector = ChevitIcon.IconFilterFill,
             contentDescription = "",
+        )
+    }
+}
+
+@Composable
+fun ChecklistDetailEditTopBar(
+    modifier: Modifier,
+    title: String,
+    onClickBack: () -> Unit
+) {
+    Box(
+        modifier = modifier
+            .height(58.dp)
+            .padding(vertical = 16.dp, horizontal = 24.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Icon(
+            modifier = Modifier
+                .align(Alignment.CenterStart)
+                .clickableNoRipple { onClickBack() },
+            imageVector = ChevitIcon.IconArrowLeftLine,
+            contentDescription = "",
+        )
+        Text(
+            modifier = Modifier.align(Alignment.Center),
+            text = title,
+            textAlign = TextAlign.Center,
+            style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
         )
     }
 }

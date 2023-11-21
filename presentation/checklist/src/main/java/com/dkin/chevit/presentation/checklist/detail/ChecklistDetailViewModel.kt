@@ -34,15 +34,19 @@ class ChecklistDetailViewModel @Inject constructor() :
         //TODO
     }
 
-    fun editItem(itemId: String) {
-        //TODO
-    }
-
     fun removeItem(itemId: String) {
         //TODO
     }
 
     fun sortItem(type: SortType) {
+        //TODO
+    }
+
+    fun addItem(title: String, memo: String, count: Int) {
+        //TODO
+    }
+
+    fun editItem(itemId: String, title: String, memo: String, count: Int) {
         //TODO
     }
 }

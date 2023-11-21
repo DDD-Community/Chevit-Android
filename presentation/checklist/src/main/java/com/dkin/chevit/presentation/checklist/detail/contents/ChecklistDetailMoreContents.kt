@@ -56,10 +56,11 @@ fun ChecklistDetailMoreContents(
                     maxLines = 1
                 )
             }
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(4.dp))
             Column(
-                modifier = Modifier.clickable { navigateEditItem() }
+                modifier = Modifier.fillMaxWidth().clickable { navigateEditItem() }
             ) {
+                Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = "수정하기",
                     style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textPrimary),
@@ -75,7 +76,7 @@ fun ChecklistDetailMoreContents(
                     .background(color = ChevitTheme.colors.grey0)
             )
             Column(
-                modifier = Modifier.clickable { deleteItem() }
+                modifier = Modifier.fillMaxWidth().clickable { deleteItem() }
             ) {
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(

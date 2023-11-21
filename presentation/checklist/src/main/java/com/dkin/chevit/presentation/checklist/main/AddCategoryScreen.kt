@@ -33,7 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.checklist.model.CategoryType
 import com.dkin.chevit.presentation.checklist.model.getCategoryIconResId
-import com.dkin.chevit.presentation.resource.ChevitButtonFillLarge
+import com.dkin.chevit.presentation.resource.ChevitButtonFillMedium
 import com.dkin.chevit.presentation.resource.ChevitTextField
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
@@ -152,7 +152,7 @@ fun AddCategoryScreen(
                     }
                 }
             }
-            ChevitButtonFillLarge(
+            ChevitButtonFillMedium(
                 modifier = Modifier.fillMaxWidth(),
                 enabled = saveable,
                 onClick = { selectedCategory?.let { saveCategory(input, it) } }

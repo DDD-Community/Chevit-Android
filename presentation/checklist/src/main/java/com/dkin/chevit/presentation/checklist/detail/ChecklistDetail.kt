@@ -51,15 +51,35 @@ class ChecklistDetail :
                             onClickBack = { findNavController().popBackStack() },
                             navigateAddItem = { navController.navigate("addItem") },
                             openSortSheet = { navController.navigate("sort") },
-                            openMoreSheet = { itemId, title -> navController.navigate("more/${itemId}?title=${title}") }
+                            openMoreSheet = { itemId, title, memo, count ->
+                                navController.navigate("more/${itemId}?title=${title}?memo=${memo}?count=${count}")
+                            }
                         )
                     }
                     composable("addItem") {
-                        AddItemScreen()
+                        AddItemScreen(
+                            viewModel = viewModel,
+                            onClickBack = { navController.popBackStack() },
+                        )
                     }
-                    composable("editItem/{itemId}") {
+                    composable(
+                        route = "editItem/{itemId}?title={title}?memo={memo}?count={count}",
+                        arguments = listOf(
+                            navArgument("itemId") { type = NavType.StringType },
+                            navArgument("title") { type = NavType.StringType; defaultValue = "" },
+                            navArgument("memo") { type = NavType.StringType; defaultValue = "" },
+                            navArgument("count") { type = NavType.IntType; defaultValue = 1 },
+                        ),
+                    ) {
                         val itemId = it.arguments?.getString("itemId") ?: ""
-                        EditItemScreen()
+                        val title = it.arguments?.getString("title") ?: ""
+                        val memo = it.arguments?.getString("memo") ?: ""
+                        val count = it.arguments?.getInt("count") ?: 1
+                        EditItemScreen(
+                            viewModel = viewModel,
+                            onClickBack = { navController.popBackStack() },
+                            itemId = itemId, savedTitle = title, savedMemo = memo, savedCount = count
+                        )
                     }
                     dialog(
                         route = "sort",
@@ -73,18 +93,24 @@ class ChecklistDetail :
                         )
                     }
                     dialog(
-                        route = "more/{itemId}?title={title}",
+                        route = "more/{itemId}?title={title}?memo={memo}?count={count}",
                         arguments = listOf(
                             navArgument("itemId") { type = NavType.StringType },
-                            navArgument("title") { defaultValue = "" }
+                            navArgument("title") { type = NavType.StringType; defaultValue = "" },
+                            navArgument("memo") { type = NavType.StringType; defaultValue = "" },
+                            navArgument("count") { type = NavType.IntType; defaultValue = 1 },
                         ),
                         dialogProperties = DialogProperties(usePlatformDefaultWidth = false)
                     ) {
                         val itemId = it.arguments?.getString("itemId") ?: ""
                         val title = it.arguments?.getString("title") ?: ""
+                        val memo = it.arguments?.getString("memo") ?: ""
+                        val count = it.arguments?.getInt("count") ?: 1
                         ChecklistDetailMoreContents(
                             title = title,
-                            navigateEditItem = { navController.navigate("editItem") },
+                            navigateEditItem = {
+                                navController.navigate("editItem/${itemId}?title=${title}?memo=${memo}?count=${count}")
+                            },
                             deleteItem = { viewModel.removeItem(itemId) },
                             onClose = { navController.popBackStack() }
                         )

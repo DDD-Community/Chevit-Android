@@ -17,6 +17,7 @@ fun ChevitTextField(
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     isInputError: Boolean = false,
+    maxLines: Int = 1,
     placeholder: @Composable (() -> Unit)? = null,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
@@ -25,8 +26,7 @@ fun ChevitTextField(
         modifier = modifier,
         value = value,
         onValueChange = onValueChange,
-        maxLines = 1,
-        singleLine = true,
+        maxLines = maxLines,
         shape = RoundedCornerShape(8.dp),
         textStyle = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey10),
         colors = TextFieldDefaults.outlinedTextFieldColors(

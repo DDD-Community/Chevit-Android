@@ -40,7 +40,7 @@ fun ChecklistDetailListContents(
     checkUnCompleted: Boolean,
     onClickItem: (itemId: String) -> Unit,
     navigateAddItem: () -> Unit,
-    openMoreSheet: (itemId: String, title: String) -> Unit,
+    openMoreSheet: (itemId: String, title: String, memo: String, count: Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val detailList = if (checkUnCompleted) {
@@ -91,7 +91,7 @@ fun ChecklistDetailListContents(
 private fun DetailItem(
     item: ChecklistDetailState.ChecklistDetailItem,
     onClickItem: (itemId: String) -> Unit,
-    openMoreSheet: (itemId: String, title: String) -> Unit
+    openMoreSheet: (itemId: String, title: String, memo: String, count: Int) -> Unit
 ) {
     Row(
         modifier = Modifier
@@ -136,7 +136,7 @@ private fun DetailItem(
         Icon(
             modifier = Modifier
                 .size(24.dp)
-                .clickableNoRipple { openMoreSheet(item.id, item.title) },
+                .clickableNoRipple { openMoreSheet(item.id, item.title, item.memo, item.count) },
             imageVector = ChevitIcon.IconMoreLine,
             contentDescription = item.title,
         )

@@ -153,7 +153,9 @@ fun ChecklistScreen(
                 }
                 Spacer(modifier = Modifier.height(24.dp))
                 if (checklistState.categories.isEmpty()) {
-                    CategoryEmptyContents()
+                    CategoryEmptyContents(
+                        addCategory = { navigateAddCategory() }
+                    )
                 } else {
                     CategoryListContents(
                         categories = checklistState.categories,
