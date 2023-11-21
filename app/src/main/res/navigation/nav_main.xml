@@ -9,4 +9,5 @@
     <include app:graph="@navigation/nav_home" />
     <include app:graph="@navigation/nav_step" />
     <include app:graph="@navigation/nav_checklist" />
+    <include app:graph="@navigation/nav_profile" />
 </navigation>

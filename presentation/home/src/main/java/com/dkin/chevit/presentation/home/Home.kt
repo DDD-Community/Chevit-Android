@@ -109,8 +109,10 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
                 startActivity(settingsIntent)
             }
 
-            NavigateToProfileSetting -> {}
+            NavigateToProfileSetting -> deepLink(DeepLink.Profile) { popUpTo(R.id.home) }
+
             NavigateToTerms -> {}
+
             NavigateToOnBoarding -> deepLink(OnBoarding) {
                 popUpTo(R.id.home) { inclusive = true }
             }

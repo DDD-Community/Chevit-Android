@@ -23,6 +23,10 @@ sealed interface DeepLink {
         override val deepLink: String = "$SCHEME://home"
     }
 
+    object Profile : DeepLink {
+        override val deepLink: String = "$SCHEME://profile"
+    }
+
     object Step : DeepLink {
         override val deepLink: String = "$SCHEME://step"
     }
