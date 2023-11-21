@@ -19,13 +19,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.dkin.chevit.presentation.home.HomeViewModel
 import com.dkin.chevit.presentation.home.component.HomeTopBar
 import com.dkin.chevit.presentation.home.contents.component.EmptyChecklist
 import com.dkin.chevit.presentation.home.contents.component.MyChecklistItem
 import com.dkin.chevit.presentation.resource.ChevitButtonFillLarge
 import com.dkin.chevit.presentation.resource.ChevitTheme
+import com.dkin.chevit.presentation.resource.R
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconAddCircleLine
 
@@ -68,8 +75,19 @@ fun HomeTabContents(
                     Box(
                         modifier = Modifier
                             .size(58.dp)
-                            .background(color = ChevitTheme.colors.grey2, shape = CircleShape),
-                    )
+                            .clip(CircleShape)
+                    ) {
+                        AsyncImage(
+                            modifier = Modifier.fillMaxWidth(),
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(homeState.profileUrl)
+                                .crossfade(true)
+                                .build(),
+                            contentDescription = "",
+                            contentScale = ContentScale.Fit,
+                            error = painterResource(id = R.drawable.ic_profile_empty)
+                        )
+                    }
                 }
                 Spacer(Modifier.height(32.dp))
                 Text(
