@@ -20,11 +20,12 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.dkin.chevit.presentation.home.HomeState
+import com.dkin.chevit.presentation.home.model.CheckListItem
 import com.dkin.chevit.presentation.resource.ChevitTheme
 
 @Composable
 fun MyChecklistItem(
-    item: HomeState.CheckListItem,
+    item: CheckListItem,
     onClickItem: (id: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {

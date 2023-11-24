@@ -35,6 +35,10 @@ sealed interface DeepLink {
         override val deepLink: String = "$SCHEME://checklist/$id"
     }
 
+    object MyCheckList : DeepLink {
+        override val deepLink: String = "$SCHEME://myChecklist"
+    }
+
     data class CheckListDetail(val planId: String, val categoryId: String) : DeepLink {
         override val deepLink: String = "$SCHEME://checklist/$planId/$categoryId"
     }

@@ -31,6 +31,7 @@ fun HomeScreen(
     templateViewModel: TemplateViewModel,
     myPageViewModel: MyPageViewModel,
     versionName: String,
+    openMyCheckList: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
     val pagerState = rememberPagerState(initialPage = 0)
@@ -57,9 +58,9 @@ fun HomeScreen(
                         templateViewModel = templateViewModel
                     )
                     HomeTab.USER -> UserTabContents(
-                        homeViewModel = homeViewModel,
                         myViewModel = myPageViewModel,
                         versionName = versionName,
+                        openMyCheckList = openMyCheckList
                     )
                 }
             }

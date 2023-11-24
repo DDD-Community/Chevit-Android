@@ -12,19 +12,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
-import com.dkin.chevit.presentation.home.HomeViewModel
 import com.dkin.chevit.presentation.resource.ChevitDialog
 import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 
 @Composable
 fun UserTabContents(
     modifier: Modifier = Modifier,
-    homeViewModel: HomeViewModel,
     myViewModel: MyPageViewModel,
     versionName: String,
+    openMyCheckList: () -> Unit
 ) {
     val myPageState by myViewModel.state.collectAsState()
-    val homeState by homeViewModel.state.collectAsState()
 
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "user") {
@@ -34,17 +32,9 @@ fun UserTabContents(
                 myViewModel = myViewModel,
                 versionName = versionName,
                 myPageState = myPageState,
-                onClickMyCheckList = { navController.navigate("myCheckList") },
+                onClickMyCheckList = { openMyCheckList() },
                 onClickSignOut = { navController.navigate("signOut") },
                 onClickWithdraw = { navController.navigate("withdraw") }
-            )
-        }
-        composable("myCheckList") {
-            homeViewModel.refreshMyCheckList()
-            MyCheckListContents(
-                onClickBack = { navController.popBackStack() },
-                checkList = homeState.checkList,
-                onClickChecklist = { id -> homeViewModel.onClickChecklist(id) }
             )
         }
         dialog(

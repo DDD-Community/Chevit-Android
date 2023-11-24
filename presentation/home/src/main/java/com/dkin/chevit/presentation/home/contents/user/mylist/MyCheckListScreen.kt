@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.home.contents.user
+package com.dkin.chevit.presentation.home.contents.user.mylist
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,15 +23,16 @@ import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.home.HomeState
 import com.dkin.chevit.presentation.home.contents.component.EmptyChecklist
 import com.dkin.chevit.presentation.home.contents.component.MyChecklistItem
+import com.dkin.chevit.presentation.home.model.CheckListItem
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconArrowLeftLine
 import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 
 @Composable
-fun MyCheckListContents(
+fun MyCheckListScreen(
     onClickBack: () -> Unit,
-    checkList: List<HomeState.CheckListItem>,
+    checkList: List<CheckListItem>,
     onClickChecklist: (id: String) -> Unit
 ) {
     Column(

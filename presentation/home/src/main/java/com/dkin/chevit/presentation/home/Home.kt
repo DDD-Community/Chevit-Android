@@ -68,6 +68,7 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
                         requireContext().packageName,
                         0,
                     ).versionName,
+                    openMyCheckList = { deepLink(DeepLink.MyCheckList) { popUpTo(R.id.home) } }
                 )
             }
         }

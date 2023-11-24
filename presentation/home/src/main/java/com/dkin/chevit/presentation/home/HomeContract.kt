@@ -4,6 +4,7 @@ import androidx.compose.runtime.Stable
 import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
+import com.dkin.chevit.presentation.home.model.CheckListItem
 
 sealed interface HomeIntent : ViewIntent {
     data class NoticeClicked(
@@ -17,14 +18,6 @@ data class HomeState(
     val profileUrl: String,
     val checkList: List<CheckListItem>,
 ) : ViewState {
-    data class CheckListItem(
-        val id: String,
-        val title: String,
-        val date: String,
-        val isProgress: Boolean,
-        val backgroundUrl: String,
-    )
-
     companion object {
         fun empty(): HomeState =
             HomeState(
