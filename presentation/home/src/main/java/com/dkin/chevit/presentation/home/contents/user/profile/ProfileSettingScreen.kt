@@ -31,10 +31,12 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.dkin.chevit.presentation.resource.R
 import com.dkin.chevit.presentation.resource.ChevitButtonFillLarge
+import com.dkin.chevit.presentation.resource.ChevitInput
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconArrowLeftLine
 import com.dkin.chevit.presentation.resource.icon.IconCameraFill
+import com.dkin.chevit.presentation.resource.icon.IconCloseCircleFill
 import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 
 @Composable
@@ -117,7 +119,41 @@ fun ProfileSettingScreen(
                 }
             }
 
-            //TODO input
+            Spacer(modifier = Modifier.height(32.dp))
+
+            ChevitInput(
+                value = name,
+                onValueChange = { name = it },
+                placeholder = {
+                    Text(
+                        modifier = Modifier,
+                        text = "닉네임 최대 8글자",
+                        style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
+                    )
+                },
+                trailingIcon = {
+                    if (name.isNotEmpty()) {
+                        Icon(
+                            modifier = Modifier
+                                .size(20.dp)
+                                .clickableNoRipple {
+                                    name = ""
+                                },
+                            imageVector = ChevitIcon.IconCloseCircleFill,
+                            contentDescription = "",
+                        )
+                    }
+                }
+            )
+            if (!isValidInput) {
+                Spacer(modifier = Modifier.height(12.dp))
+                Text(
+                    modifier = Modifier.fillMaxWidth(),
+                    text = "8자 이내 한글 혹은 영문을 입력해 주세요.",
+                    style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textCaption),
+                    textAlign = TextAlign.Center
+                )
+            }
         }
 
         Box(
