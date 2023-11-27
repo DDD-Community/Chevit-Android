@@ -1,7 +1,6 @@
 package com.dkin.chevit.presentation.checklist.main
 
 import com.dkin.chevit.core.mvi.MVIViewModel
-import com.dkin.chevit.presentation.checklist.model.CategoryType
 import com.dkin.chevit.presentation.resource.TemplateColor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import timber.log.Timber
@@ -11,11 +10,13 @@ import javax.inject.Inject
 class ChecklistViewModel @Inject constructor() :
     MVIViewModel<ChecklistIntent, ChecklistState, ChecklistEffect>() {
 
-    override fun createInitialState(): ChecklistState = ChecklistState.empty()
+    override fun createInitialState(): ChecklistState = ChecklistState.dummy()
 
     override suspend fun processIntent(intent: ChecklistIntent) {
         when (intent) {
-            is ChecklistIntent.ChangeTemplateOpenSetting -> {}
+            is ChecklistIntent.ChangeTemplateOpenSetting -> {
+                //todo
+            }
         }
     }
 

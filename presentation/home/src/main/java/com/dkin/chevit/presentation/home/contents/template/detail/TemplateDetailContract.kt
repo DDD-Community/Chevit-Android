@@ -1,37 +1,19 @@
-package com.dkin.chevit.presentation.checklist.main
+package com.dkin.chevit.presentation.home.contents.template.detail
 
-import androidx.compose.runtime.Stable
 import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
 import com.dkin.chevit.presentation.common.model.CategoryType
 
-sealed interface ChecklistIntent : ViewIntent {
-    data class ChangeTemplateOpenSetting(val isOpen: Boolean) : ChecklistIntent
+sealed interface TemplateDetailIntent : ViewIntent {
+    data class ChangeTemplateOpenSetting(val isOpen: Boolean) : TemplateDetailIntent
 }
 
-@Stable
-data class ChecklistState(
+data class TemplateDetailState(
     val title: String,
-    val date: String,
-    val notice: Notice,
-    val weathers: List<Weather>,
-    val weatherDetailUrl: String,
     val categories: List<Category>,
-    val isTemplateOpen: Boolean
+    val isTemplateOpen: Boolean,
 ) : ViewState {
-
-    data class Notice(
-        val title: String,
-        val url: String
-    )
-
-    data class Weather(
-        val date: String,
-        val iconUrl: String,
-        val temperature: String
-    )
-
     data class Category(
         val categoryId: String,
         val title: String,
@@ -41,19 +23,8 @@ data class ChecklistState(
     )
 
     companion object {
-        fun dummy(): ChecklistState = ChecklistState(
-            title = "파리, 프랑스",
-            date = "2023.07.16 ~ 2023.07.30",
-            notice = Notice(
-                title = "[주의] 프랑스, 폭력시위 관련 안전유의 공지",
-                url = ""
-            ),
-            weathers = listOf(
-                Weather(date = "7/16", iconUrl = "", temperature = "14°/25°"),
-                Weather(date = "7/17", iconUrl = "", temperature = "13°/22°"),
-                Weather(date = "7/18", iconUrl = "", temperature = "14°/21°"),
-            ),
-            weatherDetailUrl = "",
+        fun dummy(): TemplateDetailState = TemplateDetailState(
+            title = "테스트 타이틀",
             categories = listOf(
                 Category(
                     categoryId = "0",
@@ -124,8 +95,7 @@ data class ChecklistState(
     }
 }
 
-sealed interface ChecklistEffect : ViewEffect {
-    object NavigateToBringTemplate : ChecklistEffect
-    data class NavigateToLink(val url: String) : ChecklistEffect
-    data class NavigateToCategory(val categoryId: String) : ChecklistEffect
+sealed interface TemplateDetailEffect : ViewEffect {
+    data class NavigateToChecklistDetail(val categoryId: String) : TemplateDetailEffect
+    object NavigateToAddCategory : TemplateDetailEffect
 }

@@ -15,7 +15,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.findNavController
 import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.checklist.R
-import com.dkin.chevit.presentation.checklist.category.AddCategoryScreen
 import com.dkin.chevit.presentation.checklist.main.contents.SaveTemplateContents
 import com.dkin.chevit.presentation.deeplink.DeepLink
 import com.dkin.chevit.presentation.deeplink.deepLink

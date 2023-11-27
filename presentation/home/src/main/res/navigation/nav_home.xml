@@ -11,4 +11,28 @@
         android:label="Home">
         <deepLink app:uri="chevit://home" />
     </fragment>
+
+    <fragment
+        android:id="@+id/myChecklist"
+        android:name="com.dkin.chevit.presentation.home.contents.user.mylist.MyCheckList"
+        android:label="MyChecklist">
+        <deepLink app:uri="chevit://myChecklist" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.dkin.chevit.presentation.home.contents.user.profile.ProfileSetting"
+        android:label="Profile">
+        <deepLink app:uri="chevit://profile" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/templateDetail"
+        android:name="com.dkin.chevit.presentation.home.contents.template.detail.TemplateDetail"
+        android:label="TemplateDetail">
+        <argument
+            android:name="planId"
+            app:argType="string" />
+        <deepLink app:uri="chevit://template/{planId}" />
+    </fragment>
 </navigation>

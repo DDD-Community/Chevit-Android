@@ -14,7 +14,9 @@ import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.deeplink.DeepLink
 import com.dkin.chevit.presentation.deeplink.deepLink
 import com.dkin.chevit.presentation.home.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MyCheckList :
     MVIComposeFragment<MyCheckListIntent, MyCheckListState, MyCheckListEffect>() {
     override val viewModel: MyCheckListViewModel by viewModels()

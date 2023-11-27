@@ -1,7 +1,7 @@
 package com.dkin.chevit.presentation.checklist.category
 
 import com.dkin.chevit.core.mvi.MVIViewModel
-import com.dkin.chevit.presentation.checklist.model.CategoryType
+import com.dkin.chevit.presentation.common.model.CategoryType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

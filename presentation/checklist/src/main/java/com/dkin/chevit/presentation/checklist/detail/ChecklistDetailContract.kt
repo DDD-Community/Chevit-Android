@@ -44,5 +44,4 @@ data class ChecklistDetailState(
 }
 
 sealed interface ChecklistDetailEffect : ViewEffect {
-    object NavigateToAddItem : ChecklistDetailEffect
 }

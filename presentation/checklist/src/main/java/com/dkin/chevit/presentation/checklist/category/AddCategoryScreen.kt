@@ -31,11 +31,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.dkin.chevit.presentation.checklist.model.CategoryType
-import com.dkin.chevit.presentation.checklist.model.getCategoryIconResId
+import com.dkin.chevit.presentation.common.model.CategoryType
 import com.dkin.chevit.presentation.resource.ChevitButtonFillMedium
 import com.dkin.chevit.presentation.resource.ChevitTextField
 import com.dkin.chevit.presentation.resource.ChevitTheme
+import com.dkin.chevit.presentation.resource.getCategoryIconResId
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconArrowLeftLine
 import com.dkin.chevit.presentation.resource.icon.IconCloseCircleFill

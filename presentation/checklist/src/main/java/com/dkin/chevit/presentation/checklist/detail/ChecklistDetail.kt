@@ -27,11 +27,7 @@ class ChecklistDetail :
     MVIComposeFragment<ChecklistDetailIntent, ChecklistDetailState, ChecklistDetailEffect>() {
     override val viewModel: ChecklistDetailViewModel by viewModels()
 
-    override fun processEffect(effect: ChecklistDetailEffect) {
-        when (effect) {
-            ChecklistDetailEffect.NavigateToAddItem -> {}
-        }
-    }
+    override fun processEffect(effect: ChecklistDetailEffect) {}
 
     override fun processState(state: ChecklistDetailState) {}
 

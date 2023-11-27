@@ -47,6 +47,10 @@ sealed interface DeepLink {
         override val deepLink: String = "$SCHEME://addCategory/$planId"
     }
 
+    data class TemplateDetail(val id: String) : DeepLink {
+        override val deepLink: String = "$SCHEME://template/$id"
+    }
+
     companion object {
         private const val SCHEME = "chevit"
     }

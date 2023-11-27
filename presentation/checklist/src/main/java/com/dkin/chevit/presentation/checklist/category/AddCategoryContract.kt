@@ -4,7 +4,7 @@ import androidx.compose.runtime.Stable
 import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
-import com.dkin.chevit.presentation.checklist.model.CategoryType
+import com.dkin.chevit.presentation.common.model.CategoryType
 
 sealed interface AddCategoryIntent : ViewIntent {
 }

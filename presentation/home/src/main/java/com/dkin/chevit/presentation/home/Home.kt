@@ -93,7 +93,9 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
 
     private fun processEffect(effect: TemplateEffect) {
         when (effect) {
-            is TemplateEffect.NavigateToTemplate -> {}
+            is TemplateEffect.NavigateToTemplate -> {
+                deepLink(DeepLink.TemplateDetail(effect.id)) { popUpTo(R.id.home) }
+            }
         }
     }
 
