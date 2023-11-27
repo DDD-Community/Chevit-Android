@@ -1,8 +1,9 @@
 package com.dkin.chevit.presentation.checklist.main.contents
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,16 +29,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.checklist.main.ChecklistState
+import com.dkin.chevit.presentation.common.model.CategoryType
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.getCategoryIconResId
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.TemplateCheckOff
 import com.dkin.chevit.presentation.resource.icon.TemplateCheckOn
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CategoryListContents(
     categories: List<ChecklistState.Category>,
-    onClickCategory: (categoryId: String) -> Unit
+    onClickCategory: (categoryId: String) -> Unit,
+    onLongClickCategory: (categoryId: String, title: String, type: CategoryType) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -56,7 +60,10 @@ fun CategoryListContents(
                     modifier = Modifier
                         .clip(RoundedCornerShape(8.dp))
                         .background(color = if (completed) ChevitTheme.colors.grey0 else ChevitTheme.colors.grey1)
-                        .clickable { onClickCategory(category.categoryId) }
+                        .combinedClickable(
+                            onClick = {onClickCategory(category.categoryId)},
+                            onLongClick = {onLongClickCategory(category.categoryId, category.title, category.categoryType)}
+                        )
                         .padding(vertical = 12.dp, horizontal = 12.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {

@@ -23,7 +23,7 @@ import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconCheckboxCircleFill
 
 @Composable
-fun MoreTemplateBottomSheet(
+fun MoreBottomSheet(
     title: String,
     navigateEditItem: () -> Unit,
     deleteItem: () -> Unit,

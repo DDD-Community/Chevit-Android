@@ -8,14 +8,17 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.findNavController
+import androidx.navigation.navArgument
 import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.checklist.R
 import com.dkin.chevit.presentation.checklist.main.contents.FloatingContents
+import com.dkin.chevit.presentation.checklist.main.contents.MoreCategoryBottomSheet
 import com.dkin.chevit.presentation.checklist.main.contents.SaveTemplateContents
 import com.dkin.chevit.presentation.deeplink.DeepLink
 import com.dkin.chevit.presentation.deeplink.deepLink
@@ -66,7 +69,10 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                                     )
                                 ) { popUpTo(R.id.checklist) }
                             },
-                            openFloatingContents = { navController.navigate("floating") }
+                            openFloatingContents = { navController.navigate("floating") },
+                            openCategoryMoreSheet = { id, title, type ->
+                                navController.navigate("categoryMore/${id}?title=${title}?type=${type.name}")
+                            }
                         )
                     }
                     dialog(
@@ -92,6 +98,38 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                             },
                             onClickSaveTemplate = { navController.navigate("saveTemplate") },
                             onClickBringTemplate = { viewModel.bringTemplate() },
+                        )
+                    }
+                    dialog(
+                        route = "categoryMore/{categoryId}?title={title}?type={type}",
+                        arguments = listOf(
+                            navArgument("categoryId") { type = NavType.StringType },
+                            navArgument("title") { type = NavType.StringType; defaultValue = "" },
+                            navArgument("type") { type = NavType.StringType; defaultValue = "" },
+                        ),
+                        dialogProperties = DialogProperties(usePlatformDefaultWidth = false),
+                    ) {
+                        val categoryId = it.arguments?.getString("categoryId") ?: ""
+                        val title = it.arguments?.getString("title") ?: ""
+                        val type = it.arguments?.getString("type") ?: ""
+                        MoreCategoryBottomSheet(
+                            title = title,
+                            navigateEditItem = {
+                                navController.popBackStack()
+                                deepLink(
+                                    DeepLink.EditCategory(
+                                        planId = planId,
+                                        categoryId = categoryId,
+                                        title = title,
+                                        type = type
+                                    )
+                                ) { popUpTo(R.id.checklist) }
+                            },
+                            deleteItem = {
+                                navController.popBackStack()
+                                viewModel.deleteCategory(planId, categoryId)
+                            },
+                            onClose = { navController.popBackStack() }
                         )
                     }
                 }

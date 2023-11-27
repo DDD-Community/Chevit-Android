@@ -47,6 +47,15 @@ sealed interface DeepLink {
         override val deepLink: String = "$SCHEME://addCategory/$planId"
     }
 
+    data class EditCategory(
+        val planId: String,
+        val categoryId: String,
+        val title: String,
+        val type: String
+    ) : DeepLink {
+        override val deepLink: String = "$SCHEME://editCategory/$planId/$categoryId/$title/$type"
+    }
+
     data class TemplateDetail(val id: String) : DeepLink {
         override val deepLink: String = "$SCHEME://template/$id"
     }

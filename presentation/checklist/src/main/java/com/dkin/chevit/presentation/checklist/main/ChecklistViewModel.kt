@@ -32,6 +32,10 @@ class ChecklistViewModel @Inject constructor() :
         setEffect { ChecklistEffect.NavigateToCategory(id) }
     }
 
+    fun deleteCategory(planId: String, categoryId: String) {
+        //todo
+    }
+
     fun bringTemplate() {
         setEffect { ChecklistEffect.NavigateToBringTemplate }
     }

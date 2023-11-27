@@ -17,3 +17,8 @@ enum class CategoryType(val title: String) {
     CLOTHES("의류"),
     ETC("기타"),
 }
+
+fun getCategoryTypeByName(name: String): CategoryType {
+    val colors = CategoryType.values()
+    return colors.find { it.name == name } ?: CategoryType.REQUIRES
+}

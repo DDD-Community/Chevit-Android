@@ -25,6 +25,10 @@ class TemplateDetailViewModel @Inject constructor() :
         setEffect { TemplateDetailEffect.NavigateToAddCategory }
     }
 
+    fun deleteCategory(planId: String, categoryId: String) {
+        //todo
+    }
+
     fun onClickCategory(id: String) {
         setEffect { TemplateDetailEffect.NavigateToChecklistDetail(id) }
     }

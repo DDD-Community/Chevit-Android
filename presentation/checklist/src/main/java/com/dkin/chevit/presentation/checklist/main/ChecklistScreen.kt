@@ -32,6 +32,7 @@ import com.dkin.chevit.presentation.checklist.main.component.ChecklistTopBar
 import com.dkin.chevit.presentation.checklist.main.component.CountryInfo
 import com.dkin.chevit.presentation.checklist.main.contents.CategoryEmptyContents
 import com.dkin.chevit.presentation.checklist.main.contents.CategoryListContents
+import com.dkin.chevit.presentation.common.model.CategoryType
 import com.dkin.chevit.presentation.resource.ChevitFloatingButton
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
@@ -43,7 +44,8 @@ fun ChecklistScreen(
     viewModel: ChecklistViewModel,
     onClickBack: () -> Unit,
     navigateAddCategory: () -> Unit,
-    openFloatingContents: () -> Unit
+    openFloatingContents: () -> Unit,
+    openCategoryMoreSheet: (id: String, title: String, type: CategoryType) -> Unit,
 ) {
     val checklistState by viewModel.state.collectAsState()
     var showCountryInfo by remember { mutableStateOf(true) }
@@ -153,6 +155,7 @@ fun ChecklistScreen(
                     CategoryListContents(
                         categories = checklistState.categories,
                         onClickCategory = { id -> viewModel.onClickCategory(id) },
+                        onLongClickCategory = {id, title, type -> openCategoryMoreSheet(id, title, type)}
                     )
                 }
             }

@@ -1,8 +1,9 @@
 package com.dkin.chevit.presentation.home.contents.template.detail
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,6 +36,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.dkin.chevit.presentation.common.model.CategoryType
 import com.dkin.chevit.presentation.resource.ChevitButtonFillMedium
 import com.dkin.chevit.presentation.resource.ChevitFloatingButton
 import com.dkin.chevit.presentation.resource.ChevitTheme
@@ -50,7 +52,8 @@ import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 fun TemplateDetailScreen(
     modifier: Modifier,
     viewModel: TemplateDetailViewModel,
-    onClickBack: () -> Unit
+    onClickBack: () -> Unit,
+    openCategoryMoreSheet: (id: String, title: String, type: CategoryType) -> Unit,
 ) {
     val state by viewModel.state.collectAsState()
 
@@ -112,6 +115,7 @@ fun TemplateDetailScreen(
                 CategoryListContents(
                     categories = state.categories,
                     onClickCategory = { id -> viewModel.onClickCategory(id) },
+                    onLongClickCategory = openCategoryMoreSheet
                 )
                 Box(
                     modifier = Modifier
@@ -187,10 +191,12 @@ private fun CategoryEmptyContents(
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun CategoryListContents(
     categories: List<TemplateDetailState.Category>,
-    onClickCategory: (categoryId: String) -> Unit
+    onClickCategory: (categoryId: String) -> Unit,
+    onLongClickCategory: (id: String, title: String, type: CategoryType) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -209,7 +215,16 @@ private fun CategoryListContents(
                     modifier = Modifier
                         .clip(RoundedCornerShape(8.dp))
                         .background(color = if (completed) ChevitTheme.colors.grey0 else ChevitTheme.colors.grey1)
-                        .clickable { onClickCategory(category.categoryId) }
+                        .combinedClickable(
+                            onClick = { onClickCategory(category.categoryId) },
+                            onLongClick = {
+                                onLongClickCategory(
+                                    category.categoryId,
+                                    category.title,
+                                    category.categoryType
+                                )
+                            }
+                        )
                         .padding(vertical = 12.dp, horizontal = 12.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -219,7 +234,10 @@ private fun CategoryListContents(
                             .background(color = ChevitTheme.colors.white, shape = CircleShape),
                         contentAlignment = Alignment.Center
                     ) {
-                        Image(painter = painterResource(id = category.categoryType.getCategoryIconResId()), contentDescription = "")
+                        Image(
+                            painter = painterResource(id = category.categoryType.getCategoryIconResId()),
+                            contentDescription = ""
+                        )
                     }
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(

@@ -53,7 +53,7 @@ fun TemplateTabContents(
             val title = it.arguments?.getString("title") ?: ""
             val color = it.arguments?.getString("color") ?: ""
 
-            MoreTemplateBottomSheet(
+            MoreBottomSheet(
                 title = title,
                 navigateEditItem = {
                     navController.navigate("editTemplate/${planId}?title=${title}?color=${color}")
