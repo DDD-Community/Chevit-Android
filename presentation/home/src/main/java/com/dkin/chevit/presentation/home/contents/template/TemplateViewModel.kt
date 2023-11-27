@@ -1,14 +1,11 @@
 package com.dkin.chevit.presentation.home.contents.template
 
 import com.dkin.chevit.core.mvi.MVIViewModel
-import com.dkin.chevit.presentation.home.contents.template.TemplateEffect
-import com.dkin.chevit.presentation.home.contents.template.TemplateIntent
-import com.dkin.chevit.presentation.home.contents.template.TemplateState
-import com.dkin.chevit.presentation.home.contents.template.model.Template
-import com.dkin.chevit.presentation.resource.TemplateColor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import com.dkin.chevit.presentation.common.model.SortType
+import com.dkin.chevit.presentation.resource.TemplateColor
 import javax.inject.Inject
 
 @HiltViewModel
@@ -16,59 +13,12 @@ class TemplateViewModel @Inject constructor() :
     MVIViewModel<TemplateIntent, TemplateState, TemplateEffect>() {
 
     private val _templateState: MutableStateFlow<TemplateState> =
-        MutableStateFlow(TemplateState.EMPTY)
+        MutableStateFlow(TemplateState.dummy())
     val templateState = _templateState.asStateFlow()
+    private val _sortType: MutableStateFlow<SortType> = MutableStateFlow(SortType.NEW)
+    val sortType = _sortType.asStateFlow()
 
-    override fun createInitialState(): TemplateState = TemplateState.EMPTY
-
-    init {
-        _templateState.value = TemplateState.Available(
-            listOf(
-                Template(
-                    id = "0",
-                    title = "자주 빠뜨리는 것",
-                    date = "2023.08.10",
-                    colorType = TemplateColor.DAWN
-                ),
-                Template(
-                    id = "1",
-                    title = "가족이랑 갈 때 필수템",
-                    date = "2023.08.07",
-                    colorType = TemplateColor.AFTERNOON
-                ),
-                Template(
-                    id = "2",
-                    title = "유럽 여행 갈 때",
-                    date = "2023.08.05",
-                    colorType = TemplateColor.MORNING
-                ),
-                Template(
-                    id = "3",
-                    title = "영상 촬영시 필요한 것들",
-                    date = "2023.08.04",
-                    colorType = TemplateColor.NIGHT
-                ),
-                Template(
-                    id = "4",
-                    title = "일본 갈 때 필수",
-                    date = "2023.08.03",
-                    colorType = TemplateColor.SUNSET
-                ),
-                Template(
-                    id = "5",
-                    title = "일본 갈 때 필수2",
-                    date = "2023.08.02",
-                    colorType = TemplateColor.DAWN
-                ),
-                Template(
-                    id = "6",
-                    title = "일본 갈 때 필수3",
-                    date = "2023.08.01",
-                    colorType = TemplateColor.AFTERNOON
-                ),
-            )
-        )
-    }
+    override fun createInitialState(): TemplateState = TemplateState.dummy()
 
     override suspend fun processIntent(intent: TemplateIntent) {
         when (intent) {
@@ -76,15 +26,27 @@ class TemplateViewModel @Inject constructor() :
         }
     }
 
-    fun onClickAddTemplate() {
-        setEffect { TemplateEffect.NavigateToAddTemplate }
-    }
-
-    fun onClickSortTemplate() {
-        setEffect { TemplateEffect.NavigateToSortTemplate }
+    fun getTemplateList() {
+        //TODO
     }
 
     fun onClickTemplate(id: String) {
         setEffect { TemplateEffect.NavigateToTemplate(id) }
+    }
+
+    fun sortTemplate(type: SortType) {
+        //TODO
+    }
+
+    fun removeTemplate(planId: String) {
+        //TODO
+    }
+
+    fun saveTemplate(title: String, color: TemplateColor) {
+        //TODO
+    }
+
+    fun editTemplate(id: String,title: String, color: TemplateColor) {
+        //TODO
     }
 }

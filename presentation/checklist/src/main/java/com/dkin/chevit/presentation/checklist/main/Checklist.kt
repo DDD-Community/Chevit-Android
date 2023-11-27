@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.findNavController
 import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.checklist.R
+import com.dkin.chevit.presentation.checklist.category.AddCategoryScreen
 import com.dkin.chevit.presentation.checklist.main.contents.SaveTemplateContents
 import com.dkin.chevit.presentation.deeplink.DeepLink
 import com.dkin.chevit.presentation.deeplink.deepLink
@@ -61,20 +62,15 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                                 findNavController().popBackStack()
                             },
                             navigateAddCategory = {
-                                navController.navigate("addCategory")
+                                deepLink(
+                                    DeepLink.AddCategory(
+                                        planId = planId,
+                                    )
+                                ) { popUpTo(R.id.checklist) }
                             },
                             navigateSaveTemplate = {
                                 navController.navigate("saveTemplate")
                             }
-                        )
-                    }
-                    composable("addCategory") {
-                        AddCategoryScreen(
-                            saveCategory = { title, category ->
-                                viewModel.addCategory(title, category)
-                                navController.popBackStack()
-                            },
-                            onClickBack = { navController.popBackStack() }
                         )
                     }
                     dialog(

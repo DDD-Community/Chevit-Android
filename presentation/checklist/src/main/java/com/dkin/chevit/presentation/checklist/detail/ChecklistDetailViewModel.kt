@@ -1,7 +1,7 @@
 package com.dkin.chevit.presentation.checklist.detail
 
 import com.dkin.chevit.core.mvi.MVIViewModel
-import com.dkin.chevit.presentation.checklist.detail.model.SortType
+import com.dkin.chevit.presentation.common.model.SortType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

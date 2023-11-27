@@ -27,4 +27,11 @@
             app:argType="string" />
         <deepLink app:uri="chevit://checklist/{planId}/{categoryId}" />
     </fragment>
+
+    <fragment
+        android:id="@+id/addCategory"
+        android:name="com.dkin.chevit.presentation.checklist.category.AddCategory"
+        android:label="AddCategory">
+        <deepLink app:uri="chevit://addCategory/{planId}" />
+    </fragment>
 </navigation>

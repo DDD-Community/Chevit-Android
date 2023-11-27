@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.checklist.main
+package com.dkin.chevit.presentation.checklist.category
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -43,7 +43,7 @@ import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 
 @Composable
 fun AddCategoryScreen(
-    saveCategory: (title: String, category: CategoryType) -> Unit,
+    viewModel: AddCategoryViewModel,
     onClickBack: () -> Unit,
 ) {
     var input by remember { mutableStateOf("") }
@@ -155,7 +155,7 @@ fun AddCategoryScreen(
             ChevitButtonFillMedium(
                 modifier = Modifier.fillMaxWidth(),
                 enabled = saveable,
-                onClick = { selectedCategory?.let { saveCategory(input, it) } }
+                onClick = { selectedCategory?.let { viewModel.saveCategory(input, it) } }
             ) {
                 Text(text = "저장하기")
             }

@@ -43,6 +43,10 @@ sealed interface DeepLink {
         override val deepLink: String = "$SCHEME://checklist/$planId/$categoryId"
     }
 
+    data class AddCategory(val planId: String) : DeepLink {
+        override val deepLink: String = "$SCHEME://addCategory/$planId"
+    }
+
     companion object {
         private const val SCHEME = "chevit"
     }

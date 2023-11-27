@@ -1,4 +1,4 @@
-package com.dkin.chevit.presentation.checklist.detail.contents
+package com.dkin.chevit.presentation.home.contents.template
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -23,7 +23,7 @@ import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconCheckboxCircleFill
 
 @Composable
-fun ChecklistDetailMoreContents(
+fun MoreTemplateBottomSheet(
     title: String,
     navigateEditItem: () -> Unit,
     deleteItem: () -> Unit,

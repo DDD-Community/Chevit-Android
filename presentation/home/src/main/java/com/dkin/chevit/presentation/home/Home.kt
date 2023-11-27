@@ -93,8 +93,6 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
 
     private fun processEffect(effect: TemplateEffect) {
         when (effect) {
-            TemplateEffect.NavigateToAddTemplate -> {}
-            TemplateEffect.NavigateToSortTemplate -> {}
             is TemplateEffect.NavigateToTemplate -> {}
         }
     }

@@ -27,6 +27,7 @@ fun ChevitTextField(
         value = value,
         onValueChange = onValueChange,
         maxLines = maxLines,
+        singleLine = maxLines == 1,
         shape = RoundedCornerShape(8.dp),
         textStyle = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey10),
         colors = TextFieldDefaults.outlinedTextFieldColors(

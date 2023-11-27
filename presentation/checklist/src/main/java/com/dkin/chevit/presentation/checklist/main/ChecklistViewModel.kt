@@ -35,10 +35,6 @@ class ChecklistViewModel @Inject constructor() :
         setEffect { ChecklistEffect.NavigateToBringTemplate }
     }
 
-    fun addCategory(title: String, category: CategoryType) {
-        //TODO
-    }
-
     fun saveTemplate(title: String, color: TemplateColor) {
         //TODO
     }

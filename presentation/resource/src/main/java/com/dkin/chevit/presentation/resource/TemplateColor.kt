@@ -16,3 +16,8 @@ enum class TemplateColor(val color: Color, val icon: ImageVector) {
     SUNSET(color = Color(0xFFFF9534), icon = ChevitIcon.TemplateSunset),
     NIGHT(color = Color(0xFF030099), icon = ChevitIcon.TemplateNight)
 }
+
+fun getTemplateColorByName(name: String): TemplateColor {
+    val colors = TemplateColor.values()
+    return colors.find { it.name == name } ?: TemplateColor.DAWN
+}
