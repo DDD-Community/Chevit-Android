@@ -147,7 +147,14 @@ private fun ChevitCalendarDayContent(
     val backgroundModifier = when {
         isSelectedPeriod -> {
             if (isPeriod) {
-                if (isStartSelected) {
+                if (isStartSelected && isEndSelected) {
+                    Modifier
+                        .size(32.dp)
+                        .background(
+                            shape = CircleShape,
+                            color = ChevitTheme.colors.blue6
+                        )
+                } else if (isStartSelected) {
                     Modifier
                         .fillMaxWidth()
                         .background(
@@ -172,7 +179,7 @@ private fun ChevitCalendarDayContent(
         }
 
         isStartSelected -> Modifier
-            .fillMaxWidth()
+            .size(32.dp)
             .background(
                 shape = CircleShape,
                 color = ChevitTheme.colors.blue6
