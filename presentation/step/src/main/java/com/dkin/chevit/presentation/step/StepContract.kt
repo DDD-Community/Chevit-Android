@@ -23,11 +23,12 @@ data class StepState(
     fun getWhereLabel(): String = country?.text?.split(",")?.getOrNull(0) ?: ""
     fun getWhenLabel(): String {
         val startMonth = startDate?.month?.value.toString()
-        val startDay = startDate?.month?.value.toString()
-        val endMonth = startDate?.dayOfMonth.toString()
-        val endDay = startDate?.dayOfMonth.toString()
+        val startDay = startDate?.dayOfMonth.toString()
+        val endMonth = endDate?.month?.value.toString()
+        val endDay = endDate?.dayOfMonth.toString()
         return "${startMonth}/${startDay}~${endMonth}/${endDay}"
     }
+
     fun getWhoLabel(): String {
         return when (travelWith.getOrNull(0)) {
             null -> ""
@@ -35,6 +36,7 @@ data class StepState(
             else -> "동반자와"
         }
     }
+
     companion object {
         fun empty(): StepState = StepState()
     }

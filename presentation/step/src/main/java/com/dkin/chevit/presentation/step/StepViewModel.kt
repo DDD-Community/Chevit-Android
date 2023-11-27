@@ -10,6 +10,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
@@ -106,8 +107,16 @@ class StepViewModel @Inject constructor() : MVIViewModel<StepIntent, StepState, 
         }
     }
 
+    fun setTravelWhen(dates: Pair<LocalDate?, LocalDate?>) {
+        setState {
+            copy(
+                startDate = dates.first,
+                endDate = dates.second
+            )
+        }
+    }
+
     fun setTravelWith(with: TravelWith) {
-        //TODO move to composable
         val currentList = state.value.travelWith.toMutableList()
         val itemIndex = currentList.indexOf(with)
         val newList = if (with == TravelWith.ALONE) {
