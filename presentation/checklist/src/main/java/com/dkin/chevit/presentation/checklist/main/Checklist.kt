@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.findNavController
 import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.checklist.R
+import com.dkin.chevit.presentation.checklist.main.contents.FloatingContents
 import com.dkin.chevit.presentation.checklist.main.contents.SaveTemplateContents
 import com.dkin.chevit.presentation.deeplink.DeepLink
 import com.dkin.chevit.presentation.deeplink.deepLink
@@ -57,9 +58,7 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                     composable("checklist") {
                         ChecklistScreen(
                             viewModel = viewModel,
-                            onClickBack = {
-                                findNavController().popBackStack()
-                            },
+                            onClickBack = { findNavController().popBackStack() },
                             navigateAddCategory = {
                                 deepLink(
                                     DeepLink.AddCategory(
@@ -67,9 +66,7 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                                     )
                                 ) { popUpTo(R.id.checklist) }
                             },
-                            navigateSaveTemplate = {
-                                navController.navigate("saveTemplate")
-                            }
+                            openFloatingContents = { navController.navigate("floating") }
                         )
                     }
                     dialog(
@@ -79,6 +76,23 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                         SaveTemplateContents(
                             saveTemplate = { title, color -> viewModel.saveTemplate(title, color) },
                             onClose = { navController.popBackStack() })
+                    }
+                    dialog(
+                        route = "floating",
+                        dialogProperties = DialogProperties(usePlatformDefaultWidth = false)
+                    ) {
+                        FloatingContents(
+                            onClose = { navController.popBackStack() },
+                            onClickAddCategory = {
+                                deepLink(
+                                    DeepLink.AddCategory(
+                                        planId = planId,
+                                    )
+                                ) { popUpTo(R.id.checklist) }
+                            },
+                            onClickSaveTemplate = { navController.navigate("saveTemplate") },
+                            onClickBringTemplate = { viewModel.bringTemplate() },
+                        )
                     }
                 }
             }

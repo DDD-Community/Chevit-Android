@@ -33,27 +33,20 @@ import com.dkin.chevit.presentation.checklist.main.component.CountryInfo
 import com.dkin.chevit.presentation.checklist.main.contents.CategoryEmptyContents
 import com.dkin.chevit.presentation.checklist.main.contents.CategoryListContents
 import com.dkin.chevit.presentation.resource.ChevitFloatingButton
-import com.dkin.chevit.presentation.resource.ChevitFloatingContent
 import com.dkin.chevit.presentation.resource.ChevitTheme
-import com.dkin.chevit.presentation.resource.FloatingContentItem
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconArrowDownLine
 import com.dkin.chevit.presentation.resource.icon.IconArrowUpLine
-import com.dkin.chevit.presentation.resource.icon.IconEditBoxFill
-import com.dkin.chevit.presentation.resource.icon.IconFolderReceivedFill
-import com.dkin.chevit.presentation.resource.icon.IconSuitcaseFill
-import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 
 @Composable
 fun ChecklistScreen(
     viewModel: ChecklistViewModel,
     onClickBack: () -> Unit,
     navigateAddCategory: () -> Unit,
-    navigateSaveTemplate: () -> Unit
+    openFloatingContents: () -> Unit
 ) {
     val checklistState by viewModel.state.collectAsState()
     var showCountryInfo by remember { mutableStateOf(true) }
-    var floatingButtonOpened by remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Box(
@@ -165,42 +158,13 @@ fun ChecklistScreen(
             }
         }
 
-        //dim
-        if (floatingButtonOpened) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(color = Color(0x66000000))
-                    .clickableNoRipple { }
-            )
-        }
-        //floating button
         Box(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(end = 24.5.dp, bottom = 24.5.dp),
         ) {
             ChevitFloatingButton(
-                isOpened = floatingButtonOpened,
-                onClick = { floatingButtonOpened = !floatingButtonOpened },
-                floatingContent = {
-                    ChevitFloatingContent(
-                        contentList = listOf(
-                            FloatingContentItem(
-                                icon = ChevitIcon.IconSuitcaseFill,
-                                title = "카테고리 추가하기",
-                                onClick = { navigateAddCategory() }),
-                            FloatingContentItem(
-                                icon = ChevitIcon.IconFolderReceivedFill,
-                                title = "템플릿에서 불러오기",
-                                onClick = { viewModel.bringTemplate() }),
-                            FloatingContentItem(
-                                icon = ChevitIcon.IconEditBoxFill,
-                                title = "템플릿으로 저장하기",
-                                onClick = {navigateSaveTemplate()})
-                        )
-                    )
-                }
+                onClick = { openFloatingContents() },
             )
         }
     }
