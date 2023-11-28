@@ -3,7 +3,6 @@ package com.dkin.chevit.presentation.checklist.main
 import com.dkin.chevit.core.mvi.MVIViewModel
 import com.dkin.chevit.presentation.resource.TemplateColor
 import dagger.hilt.android.lifecycle.HiltViewModel
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,8 +19,18 @@ class ChecklistViewModel @Inject constructor() :
         }
     }
 
-    fun getChecklist(id: String) {
-        Timber.d("checklistId = $id")
+    fun setChecklistId(id: String) {
+        setState {
+            copy(id = id)
+        }
+    }
+
+    fun initChecklist() {
+        //todo
+    }
+
+    fun refreshChecklist() {
+        //todo
     }
 
     fun onClickUrl(url: String) {

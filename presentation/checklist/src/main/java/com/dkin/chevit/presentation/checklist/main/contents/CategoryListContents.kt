@@ -39,12 +39,13 @@ import com.dkin.chevit.presentation.resource.icon.TemplateCheckOn
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CategoryListContents(
+    modifier: Modifier = Modifier,
     categories: List<ChecklistState.Category>,
     onClickCategory: (categoryId: String) -> Unit,
-    onLongClickCategory: (categoryId: String, title: String, type: CategoryType) -> Unit
+    onLongClickCategory: (categoryId: String, title: String, type: CategoryType) -> Unit = { _, _, _ -> }
 ) {
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 24.dp),
     ) {
@@ -61,8 +62,14 @@ fun CategoryListContents(
                         .clip(RoundedCornerShape(8.dp))
                         .background(color = if (completed) ChevitTheme.colors.grey0 else ChevitTheme.colors.grey1)
                         .combinedClickable(
-                            onClick = {onClickCategory(category.categoryId)},
-                            onLongClick = {onLongClickCategory(category.categoryId, category.title, category.categoryType)}
+                            onClick = { onClickCategory(category.categoryId) },
+                            onLongClick = {
+                                onLongClickCategory(
+                                    category.categoryId,
+                                    category.title,
+                                    category.categoryType
+                                )
+                            }
                         )
                         .padding(vertical = 12.dp, horizontal = 12.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
@@ -73,7 +80,10 @@ fun CategoryListContents(
                             .background(color = ChevitTheme.colors.white, shape = CircleShape),
                         contentAlignment = Alignment.Center
                     ) {
-                        Image(painter = painterResource(id = category.categoryType.getCategoryIconResId()), contentDescription = "")
+                        Image(
+                            painter = painterResource(id = category.categoryType.getCategoryIconResId()),
+                            contentDescription = ""
+                        )
                     }
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(

@@ -60,6 +60,10 @@ sealed interface DeepLink {
         override val deepLink: String = "$SCHEME://template/$id"
     }
 
+    data class BringTemplate(val id: String) : DeepLink {
+        override val deepLink: String = "$SCHEME://bringTemplate/$id"
+    }
+
     companion object {
         private const val SCHEME = "chevit"
     }

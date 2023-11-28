@@ -12,6 +12,7 @@ sealed interface ChecklistIntent : ViewIntent {
 
 @Stable
 data class ChecklistState(
+    val id: String,
     val title: String,
     val date: String,
     val notice: Notice,
@@ -42,6 +43,7 @@ data class ChecklistState(
 
     companion object {
         fun dummy(): ChecklistState = ChecklistState(
+            id = "",
             title = "파리, 프랑스",
             date = "2023.07.16 ~ 2023.07.30",
             notice = Notice(

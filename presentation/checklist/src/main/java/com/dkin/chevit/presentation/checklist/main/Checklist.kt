@@ -1,12 +1,16 @@
 package com.dkin.chevit.presentation.checklist.main
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.URLUtil
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.window.DialogProperties
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -14,6 +18,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navArgument
 import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.checklist.R
@@ -33,8 +38,28 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
 
     override fun processEffect(effect: ChecklistEffect) {
         when (effect) {
-            ChecklistEffect.NavigateToBringTemplate -> {}
-            is ChecklistEffect.NavigateToLink -> {}
+            ChecklistEffect.NavigateToBringTemplate -> {
+                setFragmentResultListener(BRING_TEMPLATE_RESULT) { _, bundle ->
+                    val result = bundle.getBoolean(BRING_TEMPLATE_RESULT)
+                    if (result) viewModel.refreshChecklist()
+                }
+                deepLink(
+                    DeepLink.BringTemplate(
+                        id = planId,
+                    )
+                ) { popUpTo(R.id.checklist) }
+            }
+
+            is ChecklistEffect.NavigateToLink -> {
+                if (URLUtil.isValidUrl(effect.url)) {
+                    Intent(Intent.ACTION_VIEW).apply {
+                        data = Uri.parse(effect.url)
+                    }.run {
+                        startActivity(this)
+                    }
+                }
+            }
+
             is ChecklistEffect.NavigateToCategory -> {
                 deepLink(
                     DeepLink.CheckListDetail(
@@ -142,8 +167,11 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
         val id = arguments?.getString("planId")
         id?.let {
             planId = it
-            //todo if planId.isEmpty return
-            viewModel.getChecklist(it)
-        }
+            viewModel.setChecklistId(id)
+        } ?: findNavController().popBackStack()
+    }
+
+    companion object {
+        const val BRING_TEMPLATE_RESULT = "bring_template_result"
     }
 }

@@ -53,4 +53,14 @@
             app:argType="string" />
         <deepLink app:uri="chevit://editCategory/{planId}/{categoryId}/{title}/{type}" />
     </fragment>
+
+    <fragment
+        android:id="@+id/bringTemplate"
+        android:name="com.dkin.chevit.presentation.checklist.template.BringTemplate"
+        android:label="BringTemplate">
+        <argument
+            android:name="planId"
+            app:argType="string" />
+        <deepLink app:uri="chevit://bringTemplate/{planId}" />
+    </fragment>
 </navigation>
