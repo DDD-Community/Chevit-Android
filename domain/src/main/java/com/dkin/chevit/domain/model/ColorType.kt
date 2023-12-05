@@ -9,3 +9,8 @@ enum class ColorType : DomainModel {
     SUNSET,
     NIGHT;
 }
+
+fun String.getColorTypeByName(): ColorType {
+    val colors = ColorType.values()
+    return colors.find { it.name == this } ?: ColorType.DAWN
+}

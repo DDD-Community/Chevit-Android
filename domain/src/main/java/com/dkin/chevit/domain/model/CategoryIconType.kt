@@ -19,3 +19,8 @@ enum class CategoryIconType : DomainModel {
     CLOTHES,
     ETC;
 }
+
+fun String.getCategoryIconTypeByName(): CategoryIconType {
+    val colors = CategoryIconType.values()
+    return colors.find { it.name == this } ?: CategoryIconType.ETC
+}

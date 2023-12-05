@@ -22,10 +22,10 @@ interface PlanRepository {
 
     suspend fun postNewSchedule(
         country: Country,
-        scheduleStartTime: FormattedTime,
-        scheduleEndTime: FormattedTime,
-        travelWith: List<TravelWith>,
-        travelKind: List<TravelKind>,
+        scheduleStartTime: Long,
+        scheduleEndTime: Long,
+        travelWith: List<String>,
+        travelKind: List<String>,
         refPlanId: String?
     ): Plan
 

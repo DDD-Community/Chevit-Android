@@ -49,18 +49,18 @@ internal class PlanRepositoryImpl @Inject constructor(
 
     override suspend fun postNewSchedule(
         country: Country,
-        scheduleStartTime: FormattedTime,
-        scheduleEndTime: FormattedTime,
-        travelWith: List<TravelWith>,
-        travelKind: List<TravelKind>,
+        scheduleStartTime: Long,
+        scheduleEndTime: Long,
+        travelWith: List<String>,
+        travelKind: List<String>,
         refPlanId: String?
     ): Plan {
         val payload = NewSchedulePayload(
             country = country.id,
-            scheduleStartTime = scheduleStartTime.unixMillis,
-            scheduleEndTime = scheduleEndTime.unixMillis,
-            travelWith = travelWith.map { it.id },
-            travelKind = travelKind.map { it.id },
+            scheduleStartTime = scheduleStartTime,
+            scheduleEndTime = scheduleEndTime,
+            travelWith = travelWith,
+            travelKind = travelKind,
             refPlanId = refPlanId
         )
         return planAPI.postNewSchedule(payload).let(PlanMapper::mapDomain)
