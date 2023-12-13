@@ -1,15 +1,15 @@
 package com.dkin.chevit.data.di.usecase
 
 import com.dkin.chevit.domain.base.CoroutineDispatcherProvider
-import com.dkin.chevit.domain.repository.AuthRepository
+import com.dkin.chevit.domain.provider.DeviceIdProvider
 import com.dkin.chevit.domain.repository.PlanRepository
-import com.dkin.chevit.domain.usecase.auth.GetUserStateUseCase
 import com.dkin.chevit.domain.usecase.plan.CopyTemplateUseCase
 import com.dkin.chevit.domain.usecase.plan.DeleteCategoryUseCase
 import com.dkin.chevit.domain.usecase.plan.DeleteCheckItemUseCase
 import com.dkin.chevit.domain.usecase.plan.DeletePlanUseCase
 import com.dkin.chevit.domain.usecase.plan.GetCategoryUseCase
-import com.dkin.chevit.domain.usecase.plan.GetMyPlanListUseCase
+import com.dkin.chevit.domain.usecase.plan.GetMyChecklistUseCase
+import com.dkin.chevit.domain.usecase.plan.GetMyTemplateListUseCase
 import com.dkin.chevit.domain.usecase.plan.GetNewsUseCase
 import com.dkin.chevit.domain.usecase.plan.GetPlanUseCase
 import com.dkin.chevit.domain.usecase.plan.GetTravelKindsListUseCase
@@ -81,9 +81,22 @@ internal object PlanUseCaseModule {
     fun provideGetMyPlanListUseCase(
         coroutineDispatcherProvider: CoroutineDispatcherProvider,
         planRepository: PlanRepository,
-    ) = GetMyPlanListUseCase(
+        deviceIdProvider: DeviceIdProvider
+    ) = GetMyChecklistUseCase(
         coroutineDispatcherProvider,
         planRepository,
+        deviceIdProvider
+    )
+
+    @Provides
+    fun provideGetMyTemplateListUseCase(
+        coroutineDispatcherProvider: CoroutineDispatcherProvider,
+        planRepository: PlanRepository,
+        deviceIdProvider: DeviceIdProvider
+    ) = GetMyTemplateListUseCase(
+        coroutineDispatcherProvider,
+        planRepository,
+        deviceIdProvider
     )
 
     @Provides

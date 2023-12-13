@@ -123,7 +123,7 @@ fun StepScreen(
                             .fillMaxWidth()
                             .weight(1f),
                         viewModel = viewModel,
-                        onClickNext = { viewModel.createCheckList() }
+                        onClickNext = { viewModel.dispatch(StepIntent.CreateChecklist()) }
                     )
                 }
             }

@@ -6,5 +6,6 @@ data class Schedule(
     val backgroundImageUrl: String,
     val country: Country,
     val startTime: FormattedTime,
-    val endTime: FormattedTime
+    val endTime: FormattedTime,
+    val isProgress: Boolean
 ) : DomainModel

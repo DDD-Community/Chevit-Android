@@ -11,6 +11,7 @@ import java.time.LocalDate
 
 sealed interface StepIntent : ViewIntent {
     data class SearchCountry(val keyword: String) : StepIntent
+    data class CreateChecklist(val useRecommend: Boolean = true) : StepIntent
 }
 
 @Stable

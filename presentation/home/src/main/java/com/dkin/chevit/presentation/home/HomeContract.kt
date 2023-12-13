@@ -7,6 +7,7 @@ import com.dkin.chevit.core.mvi.ViewState
 import com.dkin.chevit.presentation.home.model.CheckListItem
 
 sealed interface HomeIntent : ViewIntent {
+    object ViewCreated : HomeIntent
     data class NoticeClicked(
         val checked: Boolean
     ) : HomeIntent

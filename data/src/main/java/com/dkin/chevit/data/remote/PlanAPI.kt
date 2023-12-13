@@ -59,7 +59,10 @@ internal interface PlanAPI {
      * 내 계획 (체크리스트 or 템플릿) 목록 가져오기
      */
     @GET("fetchMyPlanList")
-    suspend fun fetchMyPlanList(): List<PlanResponse>
+    suspend fun fetchMyPlanList(
+        @Query("Device-Id") deviceId: String,
+        @Query("typ") typ: String
+    ): List<PlanResponse>
 
     /**
      * 내 계획 (체크리스트 or 템플릿) 목록 수정

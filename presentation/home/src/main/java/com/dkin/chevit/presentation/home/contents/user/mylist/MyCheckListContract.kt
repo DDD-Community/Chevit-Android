@@ -16,6 +16,7 @@ data class MyCheckListState(
 ) : ViewState {
 
     companion object {
+        fun empty(): MyCheckListState = MyCheckListState(listOf())
         fun dummy(): MyCheckListState = MyCheckListState(
             listOf(
                 CheckListItem(

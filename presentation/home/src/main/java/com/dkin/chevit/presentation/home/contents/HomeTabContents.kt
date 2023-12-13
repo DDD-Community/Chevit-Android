@@ -91,7 +91,7 @@ fun HomeTabContents(
                 }
                 Spacer(Modifier.height(32.dp))
                 Text(
-                    text = "준비물을 빼먹지 않도록 Chevit과 함께\n체크리스트를 작성해 보아요!",
+                    text = "준비물을 빼먹지 않도록,\n채빗이 필수 아이템을 추천해 드려요.",
                     style = ChevitTheme.typhography.bodyLarge.copy(
                         color = ChevitTheme.colors.textPrimary,
                     ),

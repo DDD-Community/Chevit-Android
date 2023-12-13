@@ -22,6 +22,7 @@ import com.dkin.chevit.presentation.resource.ChevitButtonFillLarge
 import com.dkin.chevit.presentation.resource.ChevitTagLabel
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.util.clickableNoRipple
+import com.dkin.chevit.presentation.step.StepIntent
 import com.dkin.chevit.presentation.step.StepViewModel
 import com.dkin.chevit.presentation.step.model.TravelKind
 
@@ -73,7 +74,7 @@ fun WhatContents(
         Text(
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .clickableNoRipple { viewModel.createCheckList(false) },
+                .clickableNoRipple { viewModel.dispatch(StepIntent.CreateChecklist(false)) },
             text = "추천없이 만들기",
             style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textCaption),
             textAlign = TextAlign.Center,

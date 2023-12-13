@@ -23,9 +23,9 @@ import com.dkin.chevit.domain.model.CategoryIconType
 import com.dkin.chevit.domain.model.CheckItem
 import com.dkin.chevit.domain.model.ColorType
 import com.dkin.chevit.domain.model.Country
-import com.dkin.chevit.domain.model.FormattedTime
 import com.dkin.chevit.domain.model.News
 import com.dkin.chevit.domain.model.Plan
+import com.dkin.chevit.domain.model.PlanType
 import com.dkin.chevit.domain.model.TravelKind
 import com.dkin.chevit.domain.model.TravelWith
 import com.dkin.chevit.domain.model.WeatherList
@@ -75,8 +75,8 @@ internal class PlanRepositoryImpl @Inject constructor(
         return planAPI.newTemplate(payload).let(PlanMapper::mapDomain)
     }
 
-    override suspend fun fetchMyPlanList(): DomainListModel<Plan> {
-        return planAPI.fetchMyPlanList().mapDomainList(PlanMapper::mapDomain)
+    override suspend fun fetchMyPlanList(deviceId: String, typ: PlanType): DomainListModel<Plan> {
+        return planAPI.fetchMyPlanList(deviceId, typ.name).mapDomainList(PlanMapper::mapDomain)
     }
 
     override suspend fun updateTemplate(planId: String, subject: String, color: ColorType): Plan {

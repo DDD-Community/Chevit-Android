@@ -50,6 +50,7 @@ class StepViewModel @Inject constructor(
     override suspend fun processIntent(intent: StepIntent) {
         when (intent) {
             is StepIntent.SearchCountry -> searchCountryList(intent.keyword)
+            is StepIntent.CreateChecklist -> createCheckList(intent.useRecommend)
         }
     }
 
@@ -84,38 +85,6 @@ class StepViewModel @Inject constructor(
             copy(
                 country = countryModel
             )
-        }
-    }
-
-    fun createCheckList(useRecommend: Boolean = true) {
-        if (useRecommend) {
-            _createLoadingVisible.value = true
-        } else {
-            _loadingVisible.value = true
-        }
-        viewModelScope.launch {
-            val delayAsync = async { delay(2000L) }
-            val newScheduleAsync = async {
-                val stepState = state.value
-                postNewScheduleUseCase(
-                    PostNewScheduleUseCase.Param(
-                        country = Country(
-                            id = stepState.country?.id ?: "",
-                            name = stepState.country?.text ?: ""
-                        ),
-                        scheduleStartTime = stepState.startDate?.unixMillis() ?: 0,
-                        scheduleEndTime = stepState.endDate?.unixMillis() ?: 0,
-                        travelWith = stepState.travelWith.filter { it.key.isNotBlank() }
-                            .map { it.key },
-                        travelKind = stepState.travelKind.map { it.key },
-                    )
-                ).get()
-            }
-            listOf(delayAsync, newScheduleAsync).awaitAll()
-            val id = newScheduleAsync.await().id
-            setEffect {
-                StepEffect.NavigateToCheckList(id)
-            }
         }
     }
 
@@ -180,5 +149,36 @@ class StepViewModel @Inject constructor(
                 }
             }
         )
+    }
+
+    private suspend fun createCheckList(useRecommend: Boolean = true) {
+        if (useRecommend) {
+            _createLoadingVisible.value = true
+        } else {
+            _loadingVisible.value = true
+        }
+
+        val delayAsync = async { delay(2000L) }
+        val newScheduleAsync = async {
+            val stepState = state.value
+            postNewScheduleUseCase(
+                PostNewScheduleUseCase.Param(
+                    country = Country(
+                        id = stepState.country?.id ?: "",
+                        name = stepState.country?.text ?: ""
+                    ),
+                    scheduleStartTime = stepState.startDate?.unixMillis() ?: 0,
+                    scheduleEndTime = stepState.endDate?.unixMillis() ?: 0,
+                    travelWith = stepState.travelWith.filter { it.key.isNotBlank() }
+                        .map { it.key },
+                    travelKind = stepState.travelKind.map { it.key },
+                )
+            ).get()
+        }
+        listOf(delayAsync, newScheduleAsync).awaitAll()
+        val id = newScheduleAsync.await().id
+        setEffect {
+            StepEffect.NavigateToCheckList(id)
+        }
     }
 }

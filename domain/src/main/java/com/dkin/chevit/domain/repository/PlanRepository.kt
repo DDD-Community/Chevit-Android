@@ -10,6 +10,7 @@ import com.dkin.chevit.domain.model.Country
 import com.dkin.chevit.domain.model.FormattedTime
 import com.dkin.chevit.domain.model.News
 import com.dkin.chevit.domain.model.Plan
+import com.dkin.chevit.domain.model.PlanType
 import com.dkin.chevit.domain.model.TravelKind
 import com.dkin.chevit.domain.model.TravelWith
 import com.dkin.chevit.domain.model.WeatherList
@@ -31,7 +32,7 @@ interface PlanRepository {
 
     suspend fun newTemplate(subject: String, color: ColorType, refPlanId: String?): Plan
 
-    suspend fun fetchMyPlanList(): DomainListModel<Plan>
+    suspend fun fetchMyPlanList(deviceId: String, typ: PlanType): DomainListModel<Plan>
 
     suspend fun updateTemplate(planId: String, subject: String, color: ColorType): Plan
 

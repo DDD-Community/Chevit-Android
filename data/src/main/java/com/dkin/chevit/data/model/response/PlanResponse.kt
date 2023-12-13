@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class PlanResponse(
     @SerialName("planId") val planId: String,
-    @SerialName("planType") val planType: PlanTypeResponse,
+    @SerialName("planType") val planTypeResponse: PlanTypeResponse,
     @SerialName("owner") val owner: OwnerResponse,
     @SerialName("isPublic") val isPublic: Boolean,
     @SerialName("createdTime") val createdTime: Long,

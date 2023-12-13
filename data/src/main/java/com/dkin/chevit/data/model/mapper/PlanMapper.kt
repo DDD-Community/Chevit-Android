@@ -7,7 +7,7 @@ internal object PlanMapper : Mapper<PlanResponse, Plan> {
     override fun mapDomain(input: PlanResponse): Plan = with(input) {
         Plan(
             id = planId,
-            planType = PlanTypeMapper.mapDomain(planType),
+            planType = PlanTypeMapper.mapDomain(planTypeResponse),
             owner = OwnerMapper.mapDomain(owner),
             isPublic = isPublic,
             createdTime = FormattedTimeMapper.mapDomain(createdTime),

@@ -77,6 +77,7 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initCollect()
+        viewModel.dispatch(HomeIntent.ViewCreated)
         myPageViewModel.dispatch(MyPageIntent.ViewCreated)
     }
 

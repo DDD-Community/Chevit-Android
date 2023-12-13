@@ -39,6 +39,11 @@ class MyCheckList :
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.initMyChecklist()
+    }
+
     override fun processEffect(effect: MyCheckListEffect) {
         when (effect) {
             is MyCheckListEffect.NavigateToCheckList -> deepLink(DeepLink.CheckList(effect.id)) {
