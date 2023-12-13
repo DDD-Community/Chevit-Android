@@ -27,6 +27,6 @@ class PostNewScheduleUseCase(
         val scheduleEndTime: Long,
         val travelWith: List<String>,
         val travelKind: List<String>,
-        val refPlanId: String
+        val refPlanId: String? = ""
     )
 }

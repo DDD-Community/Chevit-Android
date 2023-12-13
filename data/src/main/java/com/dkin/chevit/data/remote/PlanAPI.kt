@@ -19,6 +19,7 @@ import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * 체크리스트 관련 API
@@ -28,7 +29,7 @@ internal interface PlanAPI {
      * 여행 국가 검색
      */
     @GET("searchCountry")
-    suspend fun searchCountryList(query: String): List<LocaleResponse>
+    suspend fun searchCountryList(@Query("q") query: String): List<LocaleResponse>
 
     /**
      * 여행 동반자 목록

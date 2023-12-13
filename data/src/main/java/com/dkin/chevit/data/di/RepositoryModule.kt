@@ -2,9 +2,11 @@ package com.dkin.chevit.data.di
 
 import com.dkin.chevit.data.repository.AuthRepositoryImpl
 import com.dkin.chevit.data.repository.NotificationRepositoryImpl
+import com.dkin.chevit.data.repository.PlanRepositoryImpl
 import com.dkin.chevit.data.repository.ServiceRepositoryImpl
 import com.dkin.chevit.domain.repository.AuthRepository
 import com.dkin.chevit.domain.repository.NotificationRepository
+import com.dkin.chevit.domain.repository.PlanRepository
 import com.dkin.chevit.domain.repository.ServiceRepository
 import dagger.Binds
 import dagger.Module
@@ -28,4 +30,9 @@ internal abstract class RepositoryModule {
     abstract fun bindServiceRepository(
         impl: ServiceRepositoryImpl
     ): ServiceRepository
+
+    @Binds
+    abstract fun bindPlanRepository(
+        impl: PlanRepositoryImpl
+    ): PlanRepository
 }

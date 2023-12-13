@@ -40,6 +40,7 @@ import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconCloseCircleFill
 import com.dkin.chevit.presentation.resource.icon.IconMapPinFill
 import com.dkin.chevit.presentation.resource.icon.IconSearch
+import com.dkin.chevit.presentation.step.StepIntent
 import com.dkin.chevit.presentation.step.StepViewModel
 import com.dkin.chevit.presentation.step.model.CountryModel
 
@@ -58,7 +59,7 @@ fun WhereContents(
 
     LaunchedEffect(input) {
         if (input.isNotBlank()) {
-            viewModel.searchCountryList(input)
+            viewModel.dispatch(StepIntent.SearchCountry(input))
         }
     }
 

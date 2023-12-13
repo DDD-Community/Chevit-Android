@@ -10,6 +10,7 @@ import com.dkin.chevit.presentation.step.model.TravelWith
 import java.time.LocalDate
 
 sealed interface StepIntent : ViewIntent {
+    data class SearchCountry(val keyword: String) : StepIntent
 }
 
 @Stable

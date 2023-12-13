@@ -2,19 +2,35 @@ package com.dkin.chevit.presentation.step
 
 import androidx.lifecycle.viewModelScope
 import com.dkin.chevit.core.mvi.MVIViewModel
+import com.dkin.chevit.domain.base.get
+import com.dkin.chevit.domain.base.getOrNull
+import com.dkin.chevit.domain.base.onComplete
+import com.dkin.chevit.domain.model.Country
+import com.dkin.chevit.domain.usecase.plan.GetTravelKindsListUseCase
+import com.dkin.chevit.domain.usecase.plan.GetTravelWithListUseCase
+import com.dkin.chevit.domain.usecase.plan.PostNewScheduleUseCase
+import com.dkin.chevit.domain.usecase.plan.SearchCountryListUseCase
+import com.dkin.chevit.presentation.common.ext.unixMillis
 import com.dkin.chevit.presentation.step.model.CountryModel
 import com.dkin.chevit.presentation.step.model.TravelKind
 import com.dkin.chevit.presentation.step.model.TravelWith
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
 
 @HiltViewModel
-class StepViewModel @Inject constructor() : MVIViewModel<StepIntent, StepState, StepEffect>() {
+class StepViewModel @Inject constructor(
+    private val getTravelKindsListUseCase: GetTravelKindsListUseCase,
+    private val getTravelWithListUseCase: GetTravelWithListUseCase,
+    private val searchCountryListUseCase: SearchCountryListUseCase,
+    private val postNewScheduleUseCase: PostNewScheduleUseCase
+) : MVIViewModel<StepIntent, StepState, StepEffect>() {
     private val _countryList: MutableStateFlow<List<CountryModel>> = MutableStateFlow(listOf())
     val countryList = _countryList.asStateFlow()
     private val _createLoadingVisible: MutableStateFlow<Boolean> = MutableStateFlow(false)
@@ -33,7 +49,7 @@ class StepViewModel @Inject constructor() : MVIViewModel<StepIntent, StepState, 
 
     override suspend fun processIntent(intent: StepIntent) {
         when (intent) {
-            else -> {}
+            is StepIntent.SearchCountry -> searchCountryList(intent.keyword)
         }
     }
 
@@ -63,20 +79,6 @@ class StepViewModel @Inject constructor() : MVIViewModel<StepIntent, StepState, 
         }
     }
 
-    fun searchCountryList(input: String) {
-        //TODO api
-        _countryList.value = listOf(
-            CountryModel(
-                name = "PARIS",
-                text = "파리, 프랑스"
-            ),
-            CountryModel(
-                name = "NEWYORK",
-                text = "뉴욕, 미국"
-            )
-        )
-    }
-
     fun onClickCountry(countryModel: CountryModel) {
         setState {
             copy(
@@ -88,21 +90,31 @@ class StepViewModel @Inject constructor() : MVIViewModel<StepIntent, StepState, 
     fun createCheckList(useRecommend: Boolean = true) {
         if (useRecommend) {
             _createLoadingVisible.value = true
-            viewModelScope.launch {
-                delay(2000L)
-                //TODO call api
-                setEffect {
-                    StepEffect.NavigateToCheckList("testId")
-                }
-            }
         } else {
             _loadingVisible.value = true
-            viewModelScope.launch {
-                delay(2000L)
-                //TODO call api
-                setEffect {
-                    StepEffect.NavigateToCheckList("testId")
-                }
+        }
+        viewModelScope.launch {
+            val delayAsync = async { delay(2000L) }
+            val newScheduleAsync = async {
+                val stepState = state.value
+                postNewScheduleUseCase(
+                    PostNewScheduleUseCase.Param(
+                        country = Country(
+                            id = stepState.country?.id ?: "",
+                            name = stepState.country?.text ?: ""
+                        ),
+                        scheduleStartTime = stepState.startDate?.unixMillis() ?: 0,
+                        scheduleEndTime = stepState.endDate?.unixMillis() ?: 0,
+                        travelWith = stepState.travelWith.filter { it.key.isNotBlank() }
+                            .map { it.key },
+                        travelKind = stepState.travelKind.map { it.key },
+                    )
+                ).get()
+            }
+            listOf(delayAsync, newScheduleAsync).awaitAll()
+            val id = newScheduleAsync.await().id
+            setEffect {
+                StepEffect.NavigateToCheckList(id)
             }
         }
     }
@@ -150,5 +162,23 @@ class StepViewModel @Inject constructor() : MVIViewModel<StepIntent, StepState, 
                 travelKind = newList
             )
         }
+    }
+
+    private suspend fun searchCountryList(input: String) {
+        val countries = searchCountryListUseCase(SearchCountryListUseCase.Param(input))
+        countries.onComplete(
+            doOnComplete = {},
+            doOnError = {
+                _countryList.value = listOf()
+            },
+            doOnSuccess = {
+                _countryList.value = this.list.map {
+                    CountryModel(
+                        it.id,
+                        it.name
+                    )
+                }
+            }
+        )
     }
 }

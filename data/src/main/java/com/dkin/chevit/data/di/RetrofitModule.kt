@@ -2,6 +2,7 @@ package com.dkin.chevit.data.di
 
 import com.dkin.chevit.data.remote.AuthAPI
 import com.dkin.chevit.data.remote.NotificationAPI
+import com.dkin.chevit.data.remote.PlanAPI
 import com.dkin.chevit.data.remote.ServiceAPI
 import dagger.Module
 import dagger.Provides
@@ -30,4 +31,10 @@ internal object RetrofitModule {
     fun provideServiceAPI(
         retrofit: Retrofit
     ): ServiceAPI = retrofit.create(ServiceAPI::class.java)
+
+    @Provides
+    @Singleton
+    fun providePlanAPI(
+        retrofit: Retrofit
+    ): PlanAPI = retrofit.create(PlanAPI::class.java)
 }
