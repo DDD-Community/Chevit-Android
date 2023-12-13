@@ -84,7 +84,11 @@ internal interface PlanAPI {
      * 여행 계획 "단" 한개 가져오기
      */
     @GET("plan/{planId}")
-    suspend fun fetchPlan(@Path("planId") planId: String): PlanResponse
+    suspend fun fetchPlan(
+        @Path("planId") planId: String,
+        @Query("Device-Id") deviceId: String,
+        @Query("typ") typ: String
+    ): PlanResponse
 
     /**
      * 여행 계획에 템플릿 덮어쓰기 (계획 <- 템플릿)

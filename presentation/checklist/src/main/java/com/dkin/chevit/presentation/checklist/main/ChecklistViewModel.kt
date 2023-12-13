@@ -1,12 +1,15 @@
 package com.dkin.chevit.presentation.checklist.main
 
 import com.dkin.chevit.core.mvi.MVIViewModel
+import com.dkin.chevit.domain.usecase.plan.GetChecklistUseCase
 import com.dkin.chevit.presentation.resource.TemplateColor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ChecklistViewModel @Inject constructor() :
+class ChecklistViewModel @Inject constructor(
+    private val getChecklistUseCase: GetChecklistUseCase
+) :
     MVIViewModel<ChecklistIntent, ChecklistState, ChecklistEffect>() {
 
     override fun createInitialState(): ChecklistState = ChecklistState.dummy()

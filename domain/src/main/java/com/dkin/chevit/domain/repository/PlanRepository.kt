@@ -38,7 +38,7 @@ interface PlanRepository {
 
     suspend fun deletePlan(planId: String): None
 
-    suspend fun fetchPlan(planId: String): Plan
+    suspend fun fetchPlan(planId: String, deviceId: String, typ: PlanType): Plan
 
     suspend fun copyTemplate(planId: String, refPlanId: String?): Plan
 

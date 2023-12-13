@@ -92,8 +92,8 @@ internal class PlanRepositoryImpl @Inject constructor(
         return None
     }
 
-    override suspend fun fetchPlan(planId: String): Plan {
-        return planAPI.fetchPlan(planId).let(PlanMapper::mapDomain)
+    override suspend fun fetchPlan(planId: String, deviceId: String, typ: PlanType): Plan {
+        return planAPI.fetchPlan(planId, deviceId, typ.name).let(PlanMapper::mapDomain)
     }
 
     override suspend fun copyTemplate(planId: String, refPlanId: String?): Plan {
