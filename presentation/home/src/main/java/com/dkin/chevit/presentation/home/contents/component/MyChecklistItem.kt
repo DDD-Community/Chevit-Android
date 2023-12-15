@@ -1,8 +1,10 @@
 package com.dkin.chevit.presentation.home.contents.component
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -23,17 +25,22 @@ import com.dkin.chevit.presentation.home.HomeState
 import com.dkin.chevit.presentation.home.model.CheckListItem
 import com.dkin.chevit.presentation.resource.ChevitTheme
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MyChecklistItem(
     item: CheckListItem,
     onClickItem: (id: String) -> Unit,
+    onLongClickItem: (id: String, title: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Box(modifier = Modifier
         .fillMaxWidth()
         .clip(RoundedCornerShape(12.dp))
         .background(color = ChevitTheme.colors.grey4)
-        .clickable { onClickItem(item.id) }
+        .combinedClickable(
+            onClick = { onClickItem(item.id) },
+            onLongClick = { onLongClickItem(item.id, item.title) }
+        )
     ) {
         AsyncImage(
             modifier = Modifier.fillMaxWidth(),

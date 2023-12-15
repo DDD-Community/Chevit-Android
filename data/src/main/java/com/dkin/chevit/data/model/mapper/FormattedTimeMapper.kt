@@ -10,7 +10,7 @@ import java.util.TimeZone
 
 internal object FormattedTimeMapper {
     fun mapDomain(unixMillis: Long, format: String = "yyyy.MM.dd"): FormattedTime {
-        val formatted = SimpleDateFormat(format, Locale.getDefault()).format(unixMillis)
+        val formatted = SimpleDateFormat(format, Locale.getDefault()).format(unixMillis * 1000)
         return FormattedTime(unixMillis = unixMillis, formatted = formatted)
     }
 

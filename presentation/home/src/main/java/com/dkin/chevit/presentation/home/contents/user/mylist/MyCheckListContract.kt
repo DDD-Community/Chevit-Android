@@ -7,7 +7,7 @@ import com.dkin.chevit.core.mvi.ViewState
 import com.dkin.chevit.presentation.home.model.CheckListItem
 
 sealed interface MyCheckListIntent : ViewIntent {
-
+    data class DeleteCheckList(val id: String) : MyCheckListIntent
 }
 
 @Stable
@@ -47,4 +47,5 @@ data class MyCheckListState(
 
 sealed interface MyCheckListEffect : ViewEffect {
     data class NavigateToCheckList(val id: String) : MyCheckListEffect
+    object DeletePlanFailed : MyCheckListEffect
 }

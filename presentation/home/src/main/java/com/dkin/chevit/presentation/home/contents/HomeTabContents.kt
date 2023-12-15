@@ -147,6 +147,7 @@ fun HomeTabContents(
                         MyChecklistItem(
                             item = it,
                             onClickItem = { id -> homeViewModel.onClickChecklist(id) },
+                            onLongClickItem = { _, _ -> },
                             modifier = Modifier.fillMaxWidth(),
                         )
                         Spacer(modifier = Modifier.height(20.dp))

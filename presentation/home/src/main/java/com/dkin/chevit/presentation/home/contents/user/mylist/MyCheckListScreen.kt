@@ -33,7 +33,8 @@ import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 fun MyCheckListScreen(
     onClickBack: () -> Unit,
     checkList: List<CheckListItem>,
-    onClickChecklist: (id: String) -> Unit
+    onClickChecklist: (id: String) -> Unit,
+    onLongClickChecklist: (id: String, title: String) -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxSize()
@@ -91,7 +92,9 @@ fun MyCheckListScreen(
                 items(count = checkList.size) {
                     MyChecklistItem(
                         item = checkList[it],
-                        onClickItem = { id -> onClickChecklist(id) })
+                        onClickItem = { id -> onClickChecklist(id) },
+                        onLongClickItem = { id, title -> onLongClickChecklist(id, title) }
+                    )
                 }
             }
         }
