@@ -5,9 +5,13 @@ import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
 import com.dkin.chevit.presentation.common.model.CategoryType
+import com.dkin.chevit.presentation.resource.TemplateColor
 
 sealed interface ChecklistIntent : ViewIntent {
     data class ChangeTemplateOpenSetting(val isOpen: Boolean) : ChecklistIntent
+    data class DeleteCategory(val planId: String, val categoryId: String) : ChecklistIntent
+    data class SaveTemplate(val title: String, val color: TemplateColor) : ChecklistIntent
+    data class RefreshChecklist(val planId: String) : ChecklistIntent
 }
 
 @Stable
@@ -42,6 +46,20 @@ data class ChecklistState(
     )
 
     companion object {
+        fun empty(): ChecklistState = ChecklistState(
+            id = "",
+            title = "",
+            date = "",
+            notice = Notice(
+                title = "",
+                url = ""
+            ),
+            weathers = listOf(),
+            weatherDetailUrl = "",
+            categories = listOf(),
+            isTemplateOpen = false
+        )
+
         fun dummy(): ChecklistState = ChecklistState(
             id = "",
             title = "파리, 프랑스",
@@ -130,4 +148,7 @@ sealed interface ChecklistEffect : ViewEffect {
     object NavigateToBringTemplate : ChecklistEffect
     data class NavigateToLink(val url: String) : ChecklistEffect
     data class NavigateToCategory(val categoryId: String) : ChecklistEffect
+    object SaveTemplateFailed : ChecklistEffect
+    object DeleteCategoryFailed : ChecklistEffect
+
 }

@@ -11,7 +11,7 @@ internal object ScheduleMapper : Mapper<ScheduleResponse, Schedule> {
             country = CountryMapper.mapDomain(country),
             startTime = FormattedTimeMapper.mapDomain(startTime),
             endTime = FormattedTimeMapper.mapDomain(endTime),
-            isProgress = FormattedTimeMapper.mapLocalDate(endTime)?.isBefore(LocalDateTime.now())
+            isProgress = FormattedTimeMapper.mapLocalDate(endTime)?.isAfter(LocalDateTime.now())
                 ?: false
         )
     }

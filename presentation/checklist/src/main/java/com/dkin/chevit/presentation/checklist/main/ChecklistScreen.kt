@@ -131,7 +131,7 @@ fun ChecklistScreen(
                             onCheckedChange = {
                                 viewModel.dispatch(
                                     ChecklistIntent.ChangeTemplateOpenSetting(
-                                        it
+                                        isOpen = it,
                                     )
                                 )
                             },

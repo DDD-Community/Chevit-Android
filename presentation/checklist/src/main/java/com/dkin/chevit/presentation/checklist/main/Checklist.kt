@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.URLUtil
+import android.widget.Toast
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.window.DialogProperties
@@ -27,7 +30,9 @@ import com.dkin.chevit.presentation.checklist.main.contents.MoreCategoryBottomSh
 import com.dkin.chevit.presentation.checklist.main.contents.SaveTemplateContents
 import com.dkin.chevit.presentation.deeplink.DeepLink
 import com.dkin.chevit.presentation.deeplink.deepLink
+import com.dkin.chevit.presentation.resource.ChevitDialog
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistEffect>() {
@@ -41,7 +46,7 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
             ChecklistEffect.NavigateToBringTemplate -> {
                 setFragmentResultListener(BRING_TEMPLATE_RESULT) { _, bundle ->
                     val result = bundle.getBoolean(BRING_TEMPLATE_RESULT)
-                    if (result) viewModel.refreshChecklist()
+                    if (result) viewModel.dispatch(ChecklistIntent.RefreshChecklist(planId))
                 }
                 deepLink(
                     DeepLink.BringTemplate(
@@ -68,6 +73,22 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                     )
                 ) { popUpTo(R.id.checklist) }
             }
+
+            ChecklistEffect.SaveTemplateFailed -> {
+                Toast.makeText(
+                    requireContext(),
+                    "템플릿 저장에 실패하였습니다.",
+                    Toast.LENGTH_SHORT,
+                ).show()
+            }
+
+            ChecklistEffect.DeleteCategoryFailed -> {
+                Toast.makeText(
+                    requireContext(),
+                    "카테고리 삭제에 실패하였습니다.",
+                    Toast.LENGTH_SHORT,
+                ).show()
+            }
         }
     }
 
@@ -84,6 +105,11 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "checklist") {
                     composable("checklist") {
+                        LaunchedEffect(Unit) {
+                            viewModel.saveTemplateSuccess.collect {
+                                if (it) navController.navigate("saveTemplate")
+                            }
+                        }
                         ChecklistScreen(
                             viewModel = viewModel,
                             onClickBack = { findNavController().popBackStack() },
@@ -105,7 +131,14 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                         dialogProperties = DialogProperties(usePlatformDefaultWidth = false)
                     ) {
                         SaveTemplateContents(
-                            saveTemplate = { title, color -> viewModel.saveTemplate(title, color) },
+                            saveTemplate = { title, color ->
+                                viewModel.dispatch(
+                                    ChecklistIntent.SaveTemplate(
+                                        title,
+                                        color
+                                    )
+                                )
+                            },
                             onClose = { navController.popBackStack() })
                     }
                     dialog(
@@ -152,9 +185,30 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                             },
                             deleteItem = {
                                 navController.popBackStack()
-                                viewModel.deleteCategory(planId, categoryId)
+                                viewModel.dispatch(
+                                    ChecklistIntent.DeleteCategory(
+                                        planId,
+                                        categoryId
+                                    )
+                                )
                             },
                             onClose = { navController.popBackStack() }
+                        )
+                    }
+                    dialog(
+                        route = "saveTemplate",
+                        dialogProperties = DialogProperties(usePlatformDefaultWidth = false),
+                    ) {
+                        ChevitDialog(
+                            title = "템플릿으로 저장되었습니다.",
+                            body = "저장된 템플릿을\n바로 확인하겠습니까?",
+                            onClickCancel = { navController.popBackStack() },
+                            onClickConfirm = {
+                                deepLink(DeepLink.Home) {
+                                    popUpTo(R.id.checklist) { inclusive = false }
+                                }
+                            },
+                            onDismissRequest = { navController.popBackStack() }
                         )
                     }
                 }
@@ -167,7 +221,7 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
         val id = arguments?.getString("planId")
         id?.let {
             planId = it
-            viewModel.setChecklistId(id)
+            viewModel.initChecklist(id)
         } ?: findNavController().popBackStack()
     }
 

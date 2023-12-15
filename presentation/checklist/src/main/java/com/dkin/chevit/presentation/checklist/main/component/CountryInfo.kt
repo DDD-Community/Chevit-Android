@@ -65,8 +65,8 @@ fun CountryInfo(
             ) {
                 Notice(notice.title)
             }
+            Spacer(modifier = Modifier.height(16.dp))
         }
-        Spacer(modifier = Modifier.height(16.dp))
         if (weathers.isNotEmpty()) {
             val pagerState = rememberPagerState(initialPage = 0)
             Box(
@@ -101,8 +101,8 @@ fun CountryInfo(
                 text = "날씨 정보 더보기",
                 style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.textCaption)
             )
+            Spacer(modifier = Modifier.height(24.dp))
         }
-        Spacer(modifier = Modifier.height(24.dp))
     }
 }
 

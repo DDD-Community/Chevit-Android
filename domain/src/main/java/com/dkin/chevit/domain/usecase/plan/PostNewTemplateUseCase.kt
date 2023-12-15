@@ -21,6 +21,6 @@ class PostNewTemplateUseCase(
     data class Param(
         val subject: String,
         val color: String,
-        val refPlanId: String?
+        val refPlanId: String? = ""
     )
 }
