@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
@@ -28,7 +29,12 @@ class EditCategory :
             setContent {
                 EditCategoryScreen(
                     viewModel = viewModel,
-                    onClickBack = { findNavController().popBackStack() }
+                    onClickBack = { findNavController().popBackStack() },
+                    saveCategory = { title, type ->
+                        viewModel.dispatch(
+                            EditCategoryIntent.UpdateCategory(title, type)
+                        )
+                    }
                 )
             }
         }
@@ -50,7 +56,10 @@ class EditCategory :
 
     override fun processEffect(effect: EditCategoryEffect) {
         when (effect) {
-            else -> {}
+            EditCategoryEffect.EditItemSuccess -> findNavController().popBackStack()
+            EditCategoryEffect.EditItemFailed -> {
+                Toast.makeText(requireContext(), "카테고리 수정에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

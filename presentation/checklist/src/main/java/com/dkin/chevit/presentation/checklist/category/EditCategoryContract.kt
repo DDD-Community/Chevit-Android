@@ -6,6 +6,7 @@ import com.dkin.chevit.core.mvi.ViewState
 import com.dkin.chevit.presentation.common.model.CategoryType
 
 sealed interface EditCategoryIntent : ViewIntent {
+    data class UpdateCategory(val title: String, val type: CategoryType) : EditCategoryIntent
 }
 
 data class EditCategoryState(
@@ -20,4 +21,6 @@ data class EditCategoryState(
 }
 
 sealed interface EditCategoryEffect : ViewEffect {
+    object EditItemSuccess : EditCategoryEffect
+    object EditItemFailed : EditCategoryEffect
 }

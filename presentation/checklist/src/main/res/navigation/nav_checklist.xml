@@ -32,6 +32,9 @@
         android:id="@+id/addCategory"
         android:name="com.dkin.chevit.presentation.checklist.category.AddCategory"
         android:label="AddCategory">
+        <argument
+            android:name="planId"
+            app:argType="string" />
         <deepLink app:uri="chevit://addCategory/{planId}" />
     </fragment>
 

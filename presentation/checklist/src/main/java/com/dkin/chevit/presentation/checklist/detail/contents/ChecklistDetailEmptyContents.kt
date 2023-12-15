@@ -20,7 +20,10 @@ import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.R
 
 @Composable
-fun ChecklistDetailEmptyContents(modifier: Modifier) {
+fun ChecklistDetailEmptyContents(
+    modifier: Modifier,
+    onClickAddItem: () -> Unit
+) {
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -43,7 +46,7 @@ fun ChecklistDetailEmptyContents(modifier: Modifier) {
             Spacer(modifier = Modifier.height(18.dp))
             ChevitButtonFillMedium(
                 modifier = Modifier.size(width = 187.dp, height = 54.dp),
-                onClick = {  }
+                onClick = { onClickAddItem() }
             ) {
                 Text(text = "추가하기")
             }

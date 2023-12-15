@@ -116,7 +116,8 @@ fun ChecklistDetailScreen(
                 ChecklistDetailEmptyContents(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .weight(1f)
+                        .weight(1f),
+                    onClickAddItem = navigateAddItem
                 )
             } else {
                 Spacer(modifier = Modifier.height(20.dp))

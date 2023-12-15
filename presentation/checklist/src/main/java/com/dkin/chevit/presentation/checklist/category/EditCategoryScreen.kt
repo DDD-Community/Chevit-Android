@@ -45,11 +45,12 @@ import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 @Composable
 fun EditCategoryScreen(
     viewModel: EditCategoryViewModel,
-    onClickBack: () -> Unit
+    onClickBack: () -> Unit,
+    saveCategory: (title: String, type: CategoryType) -> Unit
 ) {
     val state = viewModel.state.collectAsState().value
     var input by remember { mutableStateOf(state.title) }
-    var selectedCategory by remember { mutableStateOf<CategoryType>(state.type) }
+    var selectedCategory by remember { mutableStateOf(state.type) }
     var isValidInput by remember { mutableStateOf(true) }
     var saveable by remember { mutableStateOf(false) }
 
@@ -157,7 +158,7 @@ fun EditCategoryScreen(
             ChevitButtonFillMedium(
                 modifier = Modifier.fillMaxWidth(),
                 enabled = saveable,
-                onClick = { selectedCategory.let { viewModel.saveCategory(input, it) } }
+                onClick = { saveCategory(input, selectedCategory) }
             ) {
                 Text(text = "수정하기")
             }

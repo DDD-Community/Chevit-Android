@@ -155,7 +155,11 @@ fun AddCategoryScreen(
             ChevitButtonFillMedium(
                 modifier = Modifier.fillMaxWidth(),
                 enabled = saveable,
-                onClick = { selectedCategory?.let { viewModel.saveCategory(input, it) } }
+                onClick = {
+                    selectedCategory?.let {
+                        viewModel.dispatch(AddCategoryIntent.AddCategory(input, it))
+                    }
+                }
             ) {
                 Text(text = "저장하기")
             }
