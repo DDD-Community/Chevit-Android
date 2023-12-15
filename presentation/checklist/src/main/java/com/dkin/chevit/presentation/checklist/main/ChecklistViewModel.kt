@@ -123,7 +123,8 @@ class ChecklistViewModel @Inject constructor(
     }
 
     private suspend fun saveTemplate(title: String, color: TemplateColor) {
-        val saveTemplate = postNewTemplateUseCase(PostNewTemplateUseCase.Param(title, color.name))
+        val id = state.value.id
+        val saveTemplate = postNewTemplateUseCase(PostNewTemplateUseCase.Param(title, color.name, id))
         saveTemplate.onComplete(
             doOnComplete = {},
             doOnError = {

@@ -3,6 +3,7 @@ package com.dkin.chevit.data.remote
 import com.dkin.chevit.data.model.request.CategoryPayload
 import com.dkin.chevit.data.model.request.CheckItemCheckedPayload
 import com.dkin.chevit.data.model.request.CheckItemPayload
+import com.dkin.chevit.data.model.request.CopyTemplatePayload
 import com.dkin.chevit.data.model.request.NewSchedulePayload
 import com.dkin.chevit.data.model.request.NewTemplatePayload
 import com.dkin.chevit.data.model.request.UpdateTemplatePayload
@@ -96,7 +97,7 @@ internal interface PlanAPI {
     @PUT("plan/{planId}/copyTemplate")
     suspend fun copyTemplate(
         @Path("planId") planId: String,
-        @Field("refPlanId") refPlanId: String?
+        @Body body: CopyTemplatePayload
     ): PlanResponse
 
     /**

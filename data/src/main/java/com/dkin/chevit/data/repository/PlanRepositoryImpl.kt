@@ -13,6 +13,7 @@ import com.dkin.chevit.data.model.mapper.mapDomainList
 import com.dkin.chevit.data.model.request.CategoryPayload
 import com.dkin.chevit.data.model.request.CheckItemCheckedPayload
 import com.dkin.chevit.data.model.request.CheckItemPayload
+import com.dkin.chevit.data.model.request.CopyTemplatePayload
 import com.dkin.chevit.data.model.request.NewSchedulePayload
 import com.dkin.chevit.data.model.request.NewTemplatePayload
 import com.dkin.chevit.data.model.request.UpdateTemplatePayload
@@ -27,6 +28,7 @@ import com.dkin.chevit.domain.model.Country
 import com.dkin.chevit.domain.model.News
 import com.dkin.chevit.domain.model.Plan
 import com.dkin.chevit.domain.model.PlanType
+import com.dkin.chevit.domain.model.Template
 import com.dkin.chevit.domain.model.TravelKind
 import com.dkin.chevit.domain.model.TravelWith
 import com.dkin.chevit.domain.model.WeatherList
@@ -67,25 +69,29 @@ internal class PlanRepositoryImpl @Inject constructor(
         return planAPI.postNewSchedule(payload).let(PlanMapper::mapDomain)
     }
 
-    override suspend fun newTemplate(subject: String, color: ColorType, refPlanId: String?): Plan {
+    override suspend fun newTemplate(subject: String, color: ColorType, refPlanId: String): Template {
         val payload = NewTemplatePayload(
             subject = subject,
             color = color.toResponse(),
             refPlanId = refPlanId
         )
-        return planAPI.newTemplate(payload).let(PlanMapper::mapDomain)
+        return planAPI.newTemplate(payload).let(PlanMapper::mapDomainTemplate)
     }
 
-    override suspend fun fetchMyPlanList(typ: PlanType): DomainListModel<Plan> {
-        return planAPI.fetchMyPlanList(typ.name).mapDomainList(PlanMapper::mapDomain)
+    override suspend fun fetchMyPlanList(): DomainListModel<Plan> {
+        return planAPI.fetchMyPlanList(PlanType.SCHEDULE.name).mapDomainList(PlanMapper::mapDomain)
     }
 
-    override suspend fun updateTemplate(planId: String, subject: String, color: ColorType): Plan {
+    override suspend fun fetchMyTemplateList(): DomainListModel<Template> {
+        return planAPI.fetchMyPlanList(PlanType.TEMPLATE.name).mapDomainList(PlanMapper::mapDomainTemplate)
+    }
+
+    override suspend fun updateTemplate(planId: String, subject: String, color: ColorType): Template {
         val payload = UpdateTemplatePayload(
             subject = subject,
             color = color.toResponse()
         )
-        return planAPI.updateTemplate(planId, payload).let(PlanMapper::mapDomain)
+        return planAPI.updateTemplate(planId, payload).let(PlanMapper::mapDomainTemplate)
     }
 
     override suspend fun deletePlan(planId: String): None {
@@ -93,12 +99,19 @@ internal class PlanRepositoryImpl @Inject constructor(
         return None
     }
 
-    override suspend fun fetchPlan(planId: String, typ: PlanType): Plan {
-        return planAPI.fetchPlan(planId, typ.name).let(PlanMapper::mapDomain)
+    override suspend fun fetchPlan(planId: String): Plan {
+        return planAPI.fetchPlan(planId, PlanType.SCHEDULE.name).let(PlanMapper::mapDomain)
     }
 
-    override suspend fun copyTemplate(planId: String, refPlanId: String?): Plan {
-        return planAPI.copyTemplate(planId, refPlanId).let(PlanMapper::mapDomain)
+    override suspend fun fetchTemplate(planId: String): Template {
+        return planAPI.fetchPlan(planId, PlanType.TEMPLATE.name).let(PlanMapper::mapDomainTemplate)
+    }
+
+    override suspend fun copyTemplate(planId: String, refPlanId: String?): Template {
+        val payload = CopyTemplatePayload(
+            refPlanId = refPlanId
+        )
+        return planAPI.copyTemplate(planId, payload).let(PlanMapper::mapDomainTemplate)
     }
 
     override suspend fun fetchWeather(planId: String): WeatherList {

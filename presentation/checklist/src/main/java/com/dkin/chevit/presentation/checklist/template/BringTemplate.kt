@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
@@ -22,7 +24,9 @@ import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.checklist.main.Checklist
 import com.dkin.chevit.presentation.checklist.template.contents.TemplateDetailContents
 import com.dkin.chevit.presentation.checklist.template.contents.TemplateCategoryDetailContents
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BringTemplate :
     MVIComposeFragment<BringTemplateIntent, BringTemplateState, BringTemplateEffect>() {
     override val viewModel: BringTemplateViewModel by viewModels()
@@ -42,7 +46,7 @@ class BringTemplate :
                             modifier = Modifier.fillMaxSize(),
                             viewModel = viewModel,
                             onClickBack = { findNavController().popBackStack() },
-                            onClickTemplate = { id -> navController.navigate("categoryList/{$id}") }
+                            onClickTemplate = { id -> navController.navigate("categoryList/$id") }
                         )
                     }
                     composable(
@@ -52,14 +56,15 @@ class BringTemplate :
                         )
                     ) {
                         val templateId = it.arguments?.getString("templateId") ?: ""
-                        val templateDetail = viewModel.getTemplateDetail(templateId)
+                        viewModel.dispatch(BringTemplateIntent.GetTemplate(templateId))
+                        val templateDetail by viewModel.templateState.collectAsState()
                         TemplateDetailContents(
                             templateDetail = templateDetail,
                             onClickBack = { navController.popBackStack() },
                             onClickCategory = { categoryId ->
                                 navController.navigate("checklistDetail/${templateId}/${categoryId}")
                             },
-                            onClickBringTemplate = { viewModel.bringTemplate(templateId) }
+                            onClickBringTemplate = { viewModel.dispatch(BringTemplateIntent.BringTemplate(templateId)) }
                         )
                     }
                     composable(
@@ -71,8 +76,8 @@ class BringTemplate :
                     ) {
                         val templateId = it.arguments?.getString("templateId") ?: ""
                         val categoryId = it.arguments?.getString("categoryId") ?: ""
-                        val categoryDetail =
-                            viewModel.getChecklistDetailItems(templateId, categoryId)
+                        viewModel.dispatch(BringTemplateIntent.GetCategory(templateId, categoryId))
+                        val categoryDetail by viewModel.detailState.collectAsState()
                         TemplateCategoryDetailContents(
                             categoryDetail = categoryDetail,
                             onClickBack = { navController.popBackStack() }
@@ -87,7 +92,7 @@ class BringTemplate :
         super.onViewCreated(view, savedInstanceState)
         val id = arguments?.getString("planId")
         id?.let {
-            viewModel.setPlanId(it)
+            viewModel.initTemplateList(it)
         } ?: findNavController().popBackStack()
     }
 
@@ -105,6 +110,18 @@ class BringTemplate :
                     bundleOf(Checklist.BRING_TEMPLATE_RESULT to true)
                 )
                 findNavController().popBackStack()
+            }
+
+            BringTemplateEffect.GetTemplateListFail -> {
+                Toast.makeText(requireContext(), "템플릿 리스트를 가져오지 못했습니다.", Toast.LENGTH_LONG).show()
+            }
+
+            BringTemplateEffect.GetTemplateFail -> {
+                Toast.makeText(requireContext(), "템플릿을 가져오지 못했습니다.", Toast.LENGTH_LONG).show()
+            }
+
+            BringTemplateEffect.GetCategoryFail -> {
+                Toast.makeText(requireContext(), "체크리스트를 가져오지 못했습니다.", Toast.LENGTH_LONG).show()
             }
         }
     }

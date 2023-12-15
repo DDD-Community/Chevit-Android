@@ -86,7 +86,6 @@ class ChecklistDetailViewModel @Inject constructor(
                     }
                 }
             )
-
         }
     }
 

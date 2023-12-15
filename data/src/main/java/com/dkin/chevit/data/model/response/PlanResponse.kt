@@ -13,5 +13,6 @@ internal data class PlanResponse(
     @SerialName("isPublic") val isPublic: Boolean,
     @SerialName("createdTime") val createdTime: Long,
     @SerialName("categories") val categories: List<CategoryResponse>,
-    @SerialName("schedule") val schedule: ScheduleResponse
+    @SerialName("schedule") val schedule: ScheduleResponse? = null,
+    @SerialName("template") val template: TemplateResponse? = null
 ) : DataModel

@@ -11,10 +11,7 @@ class GetChecklistUseCase(
     private val planRepository: PlanRepository,
 ) : IOUseCase<GetChecklistUseCase.Param, Plan>(coroutineDispatcherProvider) {
     override suspend fun execute(params: Param): Plan {
-        return planRepository.fetchPlan(
-            params.planId,
-            typ = PlanType.SCHEDULE,
-        )
+        return planRepository.fetchPlan(params.planId,)
     }
 
     data class Param(

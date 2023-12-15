@@ -12,8 +12,6 @@ class GetMyChecklistUseCase(
     private val planRepository: PlanRepository,
 ) : IOUseCase<Unit, DomainListModel<Plan>>(coroutineDispatcherProvider) {
     override suspend fun execute(params: Unit): DomainListModel<Plan> {
-        return planRepository.fetchMyPlanList(
-            typ = PlanType.SCHEDULE,
-        )
+        return planRepository.fetchMyPlanList()
     }
 }

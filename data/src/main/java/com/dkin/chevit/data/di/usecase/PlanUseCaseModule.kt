@@ -1,7 +1,6 @@
 package com.dkin.chevit.data.di.usecase
 
 import com.dkin.chevit.domain.base.CoroutineDispatcherProvider
-import com.dkin.chevit.domain.provider.DeviceIdProvider
 import com.dkin.chevit.domain.repository.PlanRepository
 import com.dkin.chevit.domain.usecase.plan.CopyTemplateUseCase
 import com.dkin.chevit.domain.usecase.plan.DeleteCategoryUseCase
@@ -81,8 +80,7 @@ internal object PlanUseCaseModule {
     @Provides
     fun provideGetMyPlanListUseCase(
         coroutineDispatcherProvider: CoroutineDispatcherProvider,
-        planRepository: PlanRepository,
-        deviceIdProvider: DeviceIdProvider
+        planRepository: PlanRepository
     ) = GetMyChecklistUseCase(
         coroutineDispatcherProvider,
         planRepository
@@ -91,8 +89,7 @@ internal object PlanUseCaseModule {
     @Provides
     fun provideGetMyTemplateListUseCase(
         coroutineDispatcherProvider: CoroutineDispatcherProvider,
-        planRepository: PlanRepository,
-        deviceIdProvider: DeviceIdProvider
+        planRepository: PlanRepository
     ) = GetMyTemplateListUseCase(
         coroutineDispatcherProvider,
         planRepository
@@ -110,8 +107,7 @@ internal object PlanUseCaseModule {
     @Provides
     fun provideGetChecklistUseCase(
         coroutineDispatcherProvider: CoroutineDispatcherProvider,
-        planRepository: PlanRepository,
-        deviceIdProvider: DeviceIdProvider
+        planRepository: PlanRepository
     ) = GetChecklistUseCase(
         coroutineDispatcherProvider,
         planRepository
@@ -120,8 +116,7 @@ internal object PlanUseCaseModule {
     @Provides
     fun provideGetTemplateUseCase(
         coroutineDispatcherProvider: CoroutineDispatcherProvider,
-        planRepository: PlanRepository,
-        deviceIdProvider: DeviceIdProvider
+        planRepository: PlanRepository
     ) = GetTemplateUseCase(
         coroutineDispatcherProvider,
         planRepository

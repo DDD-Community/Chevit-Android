@@ -11,6 +11,7 @@ import com.dkin.chevit.domain.model.FormattedTime
 import com.dkin.chevit.domain.model.News
 import com.dkin.chevit.domain.model.Plan
 import com.dkin.chevit.domain.model.PlanType
+import com.dkin.chevit.domain.model.Template
 import com.dkin.chevit.domain.model.TravelKind
 import com.dkin.chevit.domain.model.TravelWith
 import com.dkin.chevit.domain.model.WeatherList
@@ -30,17 +31,21 @@ interface PlanRepository {
         refPlanId: String?
     ): Plan
 
-    suspend fun newTemplate(subject: String, color: ColorType, refPlanId: String?): Plan
+    suspend fun newTemplate(subject: String, color: ColorType, refPlanId: String): Template
 
-    suspend fun fetchMyPlanList(typ: PlanType): DomainListModel<Plan>
+    suspend fun fetchMyPlanList(): DomainListModel<Plan>
 
-    suspend fun updateTemplate(planId: String, subject: String, color: ColorType): Plan
+    suspend fun fetchMyTemplateList(): DomainListModel<Template>
+
+    suspend fun updateTemplate(planId: String, subject: String, color: ColorType): Template
 
     suspend fun deletePlan(planId: String): None
 
-    suspend fun fetchPlan(planId: String, typ: PlanType): Plan
+    suspend fun fetchPlan(planId: String): Plan
 
-    suspend fun copyTemplate(planId: String, refPlanId: String?): Plan
+    suspend fun fetchTemplate(planId: String): Template
+
+    suspend fun copyTemplate(planId: String, refPlanId: String?): Template
 
     suspend fun fetchWeather(planId: String): WeatherList
 

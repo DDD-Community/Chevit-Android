@@ -16,7 +16,6 @@ import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.SignOutClick
 import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.TermsClicked
 import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.ViewCreated
 import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.WithDrawClicked
-import com.dkin.chevit.presentation.home.contents.user.MyPageState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

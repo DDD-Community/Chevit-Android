@@ -107,7 +107,7 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                     composable("checklist") {
                         LaunchedEffect(Unit) {
                             viewModel.saveTemplateSuccess.collect {
-                                if (it) navController.navigate("saveTemplate")
+                                if (it) navController.navigate("saveTemplateSuccess")
                             }
                         }
                         ChecklistScreen(
@@ -138,6 +138,7 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                                         color
                                     )
                                 )
+                                navController.popBackStack()
                             },
                             onClose = { navController.popBackStack() })
                     }
@@ -196,7 +197,7 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                         )
                     }
                     dialog(
-                        route = "saveTemplate",
+                        route = "saveTemplateSuccess",
                         dialogProperties = DialogProperties(usePlatformDefaultWidth = false),
                     ) {
                         ChevitDialog(
