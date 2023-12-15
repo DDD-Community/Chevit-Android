@@ -3,6 +3,7 @@ package com.dkin.chevit.presentation.checklist.detail.contents
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -20,12 +21,15 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.checklist.detail.ChecklistDetailState
+import com.dkin.chevit.presentation.common.model.SortType
 import com.dkin.chevit.presentation.resource.ChevitFloatingButton
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
@@ -38,15 +42,17 @@ import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 fun ChecklistDetailListContents(
     detailItems: List<ChecklistDetailState.ChecklistDetailItem>,
     checkUnCompleted: Boolean,
-    onClickItem: (itemId: String) -> Unit,
+    searchKeyword: String,
+    sortType: SortType,
+    onClickItem: (itemId: String, checked: Boolean) -> Unit,
     navigateAddItem: () -> Unit,
     openMoreSheet: (itemId: String, title: String, memo: String, count: Int) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val detailList = if (checkUnCompleted) {
-        detailItems.filter { !it.checked }
+        detailItems.filter { !it.checked && it.title.contains(searchKeyword) }
     } else {
-        detailItems
+        detailItems.filter { it.title.contains(searchKeyword) }
     }
     val listState = rememberLazyListState()
     Column(modifier = modifier.fillMaxWidth()) {
@@ -64,6 +70,8 @@ fun ChecklistDetailListContents(
             LazyColumn(
                 state = listState,
                 contentPadding = PaddingValues(bottom = 10.dp),
+                reverseLayout = sortType == SortType.OLD,
+                verticalArrangement = Arrangement.Top
             ) {
                 items(
                     count = detailList.size
@@ -90,7 +98,7 @@ fun ChecklistDetailListContents(
 @Composable
 private fun DetailItem(
     item: ChecklistDetailState.ChecklistDetailItem,
-    onClickItem: (itemId: String) -> Unit,
+    onClickItem: (itemId: String, checked: Boolean) -> Unit,
     openMoreSheet: (itemId: String, title: String, memo: String, count: Int) -> Unit
 ) {
     Row(
@@ -103,7 +111,7 @@ private fun DetailItem(
             modifier = Modifier
                 .size(24.dp)
                 .clip(CircleShape)
-                .clickable { onClickItem(item.id) },
+                .clickable { onClickItem(item.id, !item.checked) },
             contentAlignment = Alignment.Center
         ) {
             Image(

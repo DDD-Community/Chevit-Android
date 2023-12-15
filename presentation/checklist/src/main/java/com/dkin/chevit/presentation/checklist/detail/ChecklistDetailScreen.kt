@@ -50,12 +50,9 @@ fun ChecklistDetailScreen(
     openMoreSheet: (itemId: String, title: String, memo: String, count: Int) -> Unit,
 ) {
     val detailState by viewModel.state.collectAsState()
+    val sortType by viewModel.sortType.collectAsState()
     var input by remember { mutableStateOf("") }
     var checkUnCompleted by rememberSaveable { mutableStateOf(false) }
-
-    LaunchedEffect(input) {
-        viewModel.searchItem(input)
-    }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
@@ -158,8 +155,14 @@ fun ChecklistDetailScreen(
                         .fillMaxWidth()
                         .weight(1f),
                     detailItems = detailState.detailItems,
+                    searchKeyword = input,
+                    sortType = sortType,
                     checkUnCompleted = checkUnCompleted,
-                    onClickItem = { itemId -> viewModel.checkItem(itemId) },
+                    onClickItem = { itemId, checked ->
+                        viewModel.dispatch(
+                            ChecklistDetailIntent.UpdateCheckItemChecked(itemId, checked)
+                        )
+                    },
                     navigateAddItem = navigateAddItem,
                     openMoreSheet = openMoreSheet
                 )

@@ -11,6 +11,7 @@ import com.dkin.chevit.data.model.mapper.TravelWithMapper
 import com.dkin.chevit.data.model.mapper.WeatherListMapper
 import com.dkin.chevit.data.model.mapper.mapDomainList
 import com.dkin.chevit.data.model.request.CategoryPayload
+import com.dkin.chevit.data.model.request.CheckItemCheckedPayload
 import com.dkin.chevit.data.model.request.CheckItemPayload
 import com.dkin.chevit.data.model.request.NewSchedulePayload
 import com.dkin.chevit.data.model.request.NewTemplatePayload
@@ -75,8 +76,8 @@ internal class PlanRepositoryImpl @Inject constructor(
         return planAPI.newTemplate(payload).let(PlanMapper::mapDomain)
     }
 
-    override suspend fun fetchMyPlanList(deviceId: String, typ: PlanType): DomainListModel<Plan> {
-        return planAPI.fetchMyPlanList(deviceId, typ.name).mapDomainList(PlanMapper::mapDomain)
+    override suspend fun fetchMyPlanList(typ: PlanType): DomainListModel<Plan> {
+        return planAPI.fetchMyPlanList(typ.name).mapDomainList(PlanMapper::mapDomain)
     }
 
     override suspend fun updateTemplate(planId: String, subject: String, color: ColorType): Plan {
@@ -92,8 +93,8 @@ internal class PlanRepositoryImpl @Inject constructor(
         return None
     }
 
-    override suspend fun fetchPlan(planId: String, deviceId: String, typ: PlanType): Plan {
-        return planAPI.fetchPlan(planId, deviceId, typ.name).let(PlanMapper::mapDomain)
+    override suspend fun fetchPlan(planId: String, typ: PlanType): Plan {
+        return planAPI.fetchPlan(planId, typ.name).let(PlanMapper::mapDomain)
     }
 
     override suspend fun copyTemplate(planId: String, refPlanId: String?): Plan {
@@ -182,6 +183,7 @@ internal class PlanRepositoryImpl @Inject constructor(
         checkItemId: String,
         checked: Boolean
     ): CheckItem {
-        return planAPI.checkCheckItem(planId, checkItemId, checked).let(CheckItemMapper::mapDomain)
+        val payload = CheckItemCheckedPayload(checked)
+        return planAPI.checkCheckItem(planId, checkItemId, payload).let(CheckItemMapper::mapDomain)
     }
 }

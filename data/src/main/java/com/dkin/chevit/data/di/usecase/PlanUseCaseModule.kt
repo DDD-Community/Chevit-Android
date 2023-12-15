@@ -85,8 +85,7 @@ internal object PlanUseCaseModule {
         deviceIdProvider: DeviceIdProvider
     ) = GetMyChecklistUseCase(
         coroutineDispatcherProvider,
-        planRepository,
-        deviceIdProvider
+        planRepository
     )
 
     @Provides
@@ -96,8 +95,7 @@ internal object PlanUseCaseModule {
         deviceIdProvider: DeviceIdProvider
     ) = GetMyTemplateListUseCase(
         coroutineDispatcherProvider,
-        planRepository,
-        deviceIdProvider
+        planRepository
     )
 
     @Provides
@@ -116,8 +114,7 @@ internal object PlanUseCaseModule {
         deviceIdProvider: DeviceIdProvider
     ) = GetChecklistUseCase(
         coroutineDispatcherProvider,
-        planRepository,
-        deviceIdProvider
+        planRepository
     )
 
     @Provides
@@ -127,8 +124,7 @@ internal object PlanUseCaseModule {
         deviceIdProvider: DeviceIdProvider
     ) = GetTemplateUseCase(
         coroutineDispatcherProvider,
-        planRepository,
-        deviceIdProvider
+        planRepository
     )
 
     @Provides

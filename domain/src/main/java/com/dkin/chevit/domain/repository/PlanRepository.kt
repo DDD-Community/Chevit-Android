@@ -32,13 +32,13 @@ interface PlanRepository {
 
     suspend fun newTemplate(subject: String, color: ColorType, refPlanId: String?): Plan
 
-    suspend fun fetchMyPlanList(deviceId: String, typ: PlanType): DomainListModel<Plan>
+    suspend fun fetchMyPlanList(typ: PlanType): DomainListModel<Plan>
 
     suspend fun updateTemplate(planId: String, subject: String, color: ColorType): Plan
 
     suspend fun deletePlan(planId: String): None
 
-    suspend fun fetchPlan(planId: String, deviceId: String, typ: PlanType): Plan
+    suspend fun fetchPlan(planId: String, typ: PlanType): Plan
 
     suspend fun copyTemplate(planId: String, refPlanId: String?): Plan
 

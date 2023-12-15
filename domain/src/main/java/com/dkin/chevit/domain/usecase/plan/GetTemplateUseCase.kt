@@ -4,17 +4,15 @@ import com.dkin.chevit.domain.base.CoroutineDispatcherProvider
 import com.dkin.chevit.domain.base.IOUseCase
 import com.dkin.chevit.domain.model.Plan
 import com.dkin.chevit.domain.model.PlanType
-import com.dkin.chevit.domain.provider.DeviceIdProvider
 import com.dkin.chevit.domain.repository.PlanRepository
 
 class GetTemplateUseCase(
     coroutineDispatcherProvider: CoroutineDispatcherProvider,
     private val planRepository: PlanRepository,
-    private val deviceIdProvider: DeviceIdProvider,
 ) : IOUseCase<GetTemplateUseCase.Param, Plan>(coroutineDispatcherProvider) {
     override suspend fun execute(params: Param): Plan {
         return planRepository.fetchPlan(
-            params.planId, deviceId = deviceIdProvider.getDeviceId(),
+            params.planId,
             typ = PlanType.SCHEDULE,
         )
     }

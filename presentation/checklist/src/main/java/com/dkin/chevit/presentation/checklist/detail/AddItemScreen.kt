@@ -205,7 +205,10 @@ fun AddItemScreen(
                     .fillMaxWidth()
                     .height(54.dp),
                 enabled = isValidInput,
-                onClick = { viewModel.addItem(title = title, memo = memo, count = count) }
+                onClick = {
+                    viewModel.dispatch(ChecklistDetailIntent.AddCheckItem(content = title, memo = memo, quantity = count))
+                    onClickBack()
+                }
             ) {
                 Text(text = "추가하기")
             }

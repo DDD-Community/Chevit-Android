@@ -210,12 +210,12 @@ fun EditItemScreen(
                     .height(54.dp),
                 enabled = isValidInput,
                 onClick = {
-                    viewModel.editItem(
-                        itemId = itemId,
-                        title = title,
-                        memo = memo,
-                        count = count
+                    viewModel.dispatch(
+                        ChecklistDetailIntent.UpdateCheckItem(
+                            checkItemId = itemId, content = title, memo = memo, quantity = count
+                        )
                     )
+                    onClickBack()
                 }
             ) {
                 Text(text = "수정하기")

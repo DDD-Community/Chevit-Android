@@ -1,6 +1,7 @@
 package com.dkin.chevit.data.remote
 
 import com.dkin.chevit.data.model.request.CategoryPayload
+import com.dkin.chevit.data.model.request.CheckItemCheckedPayload
 import com.dkin.chevit.data.model.request.CheckItemPayload
 import com.dkin.chevit.data.model.request.NewSchedulePayload
 import com.dkin.chevit.data.model.request.NewTemplatePayload
@@ -11,6 +12,7 @@ import com.dkin.chevit.data.model.response.LocaleResponse
 import com.dkin.chevit.data.model.response.NewsResponse
 import com.dkin.chevit.data.model.response.PlanResponse
 import com.dkin.chevit.data.model.response.WeatherListResponse
+import com.dkin.chevit.domain.base.None
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.Field
@@ -60,7 +62,6 @@ internal interface PlanAPI {
      */
     @GET("fetchMyPlanList")
     suspend fun fetchMyPlanList(
-        @Query("Device-Id") deviceId: String,
         @Query("typ") typ: String
     ): List<PlanResponse>
 
@@ -86,7 +87,6 @@ internal interface PlanAPI {
     @GET("plan/{planId}")
     suspend fun fetchPlan(
         @Path("planId") planId: String,
-        @Query("Device-Id") deviceId: String,
         @Query("typ") typ: String
     ): PlanResponse
 
@@ -184,6 +184,6 @@ internal interface PlanAPI {
     suspend fun checkCheckItem(
         @Path("planId") planId: String,
         @Path("checkItemId") checkItemId: String,
-        @Field("isCheck") checked: Boolean
+        @Body body: CheckItemCheckedPayload
     ): CheckItemResponse
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.ComposeView
@@ -27,7 +28,29 @@ class ChecklistDetail :
     MVIComposeFragment<ChecklistDetailIntent, ChecklistDetailState, ChecklistDetailEffect>() {
     override val viewModel: ChecklistDetailViewModel by viewModels()
 
-    override fun processEffect(effect: ChecklistDetailEffect) {}
+    override fun processEffect(effect: ChecklistDetailEffect) {
+        when (effect) {
+            ChecklistDetailEffect.GetChecklistFailed -> {
+                Toast.makeText(requireContext(), "체크리스트 가져오기에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+            }
+
+            ChecklistDetailEffect.AddItemFailed -> {
+                Toast.makeText(requireContext(), "아이템 추가에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+            }
+
+            ChecklistDetailEffect.CheckItemFailed -> {
+                Toast.makeText(requireContext(), "아이템 체크에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+            }
+
+            ChecklistDetailEffect.DeleteItemFailed -> {
+                Toast.makeText(requireContext(), "아이템 삭제에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+            }
+
+            ChecklistDetailEffect.EditItemFailed -> {
+                Toast.makeText(requireContext(), "아이템 업데이트에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
 
     override fun processState(state: ChecklistDetailState) {}
 
@@ -74,7 +97,10 @@ class ChecklistDetail :
                         EditItemScreen(
                             viewModel = viewModel,
                             onClickBack = { navController.popBackStack() },
-                            itemId = itemId, savedTitle = title, savedMemo = memo, savedCount = count
+                            itemId = itemId,
+                            savedTitle = title,
+                            savedMemo = memo,
+                            savedCount = count
                         )
                     }
                     dialog(
@@ -84,7 +110,14 @@ class ChecklistDetail :
                         val sortType by viewModel.sortType.collectAsState()
                         ChecklistDetailSortContents(
                             selectedType = sortType,
-                            onClickType = { type -> viewModel.sortItem(type) },
+                            onClickType = { type ->
+                                viewModel.dispatch(
+                                    ChecklistDetailIntent.SortItem(
+                                        type
+                                    )
+                                )
+                                navController.popBackStack()
+                            },
                             onClose = { navController.popBackStack() }
                         )
                     }
@@ -107,7 +140,14 @@ class ChecklistDetail :
                             navigateEditItem = {
                                 navController.navigate("editItem/${itemId}?title=${title}?memo=${memo}?count=${count}")
                             },
-                            deleteItem = { viewModel.removeItem(itemId) },
+                            deleteItem = {
+                                viewModel.dispatch(
+                                    ChecklistDetailIntent.DeleteCheckItem(
+                                        itemId
+                                    )
+                                )
+                                navController.popBackStack()
+                            },
                             onClose = { navController.popBackStack() }
                         )
                     }
