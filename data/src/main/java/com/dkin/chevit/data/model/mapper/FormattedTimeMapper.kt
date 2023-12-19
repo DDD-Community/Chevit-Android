@@ -14,6 +14,11 @@ internal object FormattedTimeMapper {
         return FormattedTime(unixMillis = unixMillis, formatted = formatted)
     }
 
+    fun mapCreatedTime(unixMillis: Long, format: String = "yyyy.MM.dd"): FormattedTime {
+        val formatted = SimpleDateFormat(format, Locale.getDefault()).format(unixMillis)
+        return FormattedTime(unixMillis = unixMillis, formatted = formatted)
+    }
+
     fun mapLocalDate(unixMillis: Long): LocalDateTime? {
         return LocalDateTime.ofInstant(
             Instant.ofEpochMilli(unixMillis),

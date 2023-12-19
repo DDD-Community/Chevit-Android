@@ -9,7 +9,7 @@ internal object CategoryMapper : Mapper<CategoryResponse, Category> {
             id = id,
             icon = CategoryIconTypeMapper.mapDomain(icon),
             subject = subject,
-            createdTime = FormattedTimeMapper.mapDomain(createdTime),
+            createdTime = FormattedTimeMapper.mapCreatedTime(createdTime),
             checkedCount = checkedCount,
             checkList = checkList.map(CheckItemMapper::mapDomain)
         )

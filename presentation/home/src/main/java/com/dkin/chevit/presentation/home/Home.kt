@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -96,6 +97,20 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
         when (effect) {
             is TemplateEffect.NavigateToTemplate -> {
                 deepLink(DeepLink.TemplateDetail(effect.id)) { popUpTo(R.id.home) }
+            }
+
+            is TemplateEffect.NavigateToAddCategory -> {
+                deepLink(DeepLink.AddCategory(planId = effect.planId)) { popUpTo(R.id.home) }
+            }
+
+            TemplateEffect.DeleteTemplateFail ->  {
+                Toast.makeText(requireContext(), "템플릿 삭제에 실패하였습니다.", Toast.LENGTH_LONG).show()
+            }
+            TemplateEffect.GetTemplateListFail -> {
+                Toast.makeText(requireContext(), "템플릿 불러오기에 실패하였습니다.", Toast.LENGTH_LONG).show()
+            }
+            TemplateEffect.SaveTemplateFail -> {
+                Toast.makeText(requireContext(), "템플릿 저장에 실패하였습니다.", Toast.LENGTH_LONG).show()
             }
         }
     }

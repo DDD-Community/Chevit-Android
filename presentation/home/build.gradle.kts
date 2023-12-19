@@ -22,4 +22,5 @@ dependencies {
     implementation(project(":presentation:common"))
     implementation(libs.compose.navigation)
     implementation(libs.coil.compose)
+    implementation(libs.lottie.compose)
 }

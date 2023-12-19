@@ -4,19 +4,31 @@ import androidx.compose.runtime.Stable
 import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
+import com.dkin.chevit.presentation.common.model.SortType
 import com.dkin.chevit.presentation.home.contents.template.model.Template
 import com.dkin.chevit.presentation.resource.TemplateColor
 
-sealed interface TemplateIntent : ViewIntent
+sealed interface TemplateIntent : ViewIntent {
+    object GetTemplateList : TemplateIntent
+    data class ClickTemplate(val id: String) : TemplateIntent
+    data class SortTemplate(val type: SortType) : TemplateIntent
+    data class RemoveTemplate(val planId: String) : TemplateIntent
+    data class SaveTemplate(val title: String, val color: TemplateColor) : TemplateIntent
+    data class UpdateTemplate(val id: String, val title: String, val color: TemplateColor) : TemplateIntent
+}
 
 @Stable
 sealed interface TemplateState : ViewState {
-    object EMPTY : TemplateState
+    object Loading : TemplateState
     data class Available(
         val templateList: List<Template>
     ) : TemplateState
 
     companion object {
+        fun empty(): TemplateState = Available(
+            templateList = listOf()
+        )
+
         fun dummy(): TemplateState = Available(
             listOf(
                 Template(
@@ -68,4 +80,8 @@ sealed interface TemplateState : ViewState {
 
 sealed interface TemplateEffect : ViewEffect {
     data class NavigateToTemplate(val id: String) : TemplateEffect
+    data class NavigateToAddCategory(val planId: String) : TemplateEffect
+    object GetTemplateListFail : TemplateEffect
+    object DeleteTemplateFail : TemplateEffect
+    object SaveTemplateFail : TemplateEffect
 }

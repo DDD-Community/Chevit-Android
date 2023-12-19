@@ -36,7 +36,10 @@ fun TemplateTabContents(
             val sortType by templateViewModel.sortType.collectAsState()
             TemplateSortContents(
                 selectedType = sortType,
-                onClickType = { type -> templateViewModel.sortTemplate(type) },
+                onClickType = { type ->
+                    templateViewModel.dispatch(TemplateIntent.SortTemplate(type))
+                    navController.popBackStack()
+                },
                 onClose = { navController.popBackStack() }
             )
         }
@@ -56,9 +59,13 @@ fun TemplateTabContents(
             MoreBottomSheet(
                 title = title,
                 navigateEditItem = {
+                    navController.popBackStack()
                     navController.navigate("editTemplate/${planId}?title=${title}?color=${color}")
                 },
-                deleteItem = { templateViewModel.removeTemplate(planId) },
+                deleteItem = {
+                    templateViewModel.dispatch(TemplateIntent.RemoveTemplate(planId))
+                    navController.popBackStack()
+                },
                 onClose = { navController.popBackStack() }
             )
         }
@@ -67,7 +74,15 @@ fun TemplateTabContents(
             dialogProperties = DialogProperties(usePlatformDefaultWidth = false)
         ) {
             AddTemplateBottomSheet(
-                saveTemplate = { title, color -> templateViewModel.saveTemplate(title, color) },
+                saveTemplate = { title, color ->
+                    templateViewModel.dispatch(
+                        TemplateIntent.SaveTemplate(
+                            title,
+                            color
+                        )
+                    )
+                    navController.popBackStack()
+                },
                 onClose = { navController.popBackStack() }
             )
         }
@@ -87,7 +102,16 @@ fun TemplateTabContents(
             EditTemplateBottomSheet(
                 title = savedTitle,
                 color = getTemplateColorByName(savedColor),
-                editTemplate = {title, color -> templateViewModel.editTemplate(planId, title, color) },
+                editTemplate = { title, color ->
+                    templateViewModel.dispatch(
+                        TemplateIntent.UpdateTemplate(
+                            planId,
+                            title,
+                            color
+                        )
+                    )
+                    navController.popBackStack()
+                },
                 onClose = { navController.popBackStack() }
             )
         }

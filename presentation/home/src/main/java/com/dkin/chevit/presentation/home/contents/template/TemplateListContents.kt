@@ -1,14 +1,16 @@
 package com.dkin.chevit.presentation.home.contents.template
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,15 +21,23 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.dkin.chevit.presentation.common.model.SortType
 import com.dkin.chevit.presentation.home.contents.template.model.Template
 import com.dkin.chevit.presentation.resource.ChevitButtonFillMedium
 import com.dkin.chevit.presentation.resource.ChevitFloatingButton
@@ -37,6 +47,7 @@ import com.dkin.chevit.presentation.resource.TemplateColor
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconFilterFill
 import com.dkin.chevit.presentation.resource.util.clickableNoRipple
+import kotlinx.coroutines.launch
 
 @Composable
 fun TemplateListContents(
@@ -46,7 +57,21 @@ fun TemplateListContents(
     navigateToSortTemplate: () -> Unit,
     openEditBottomSheet: (id: String, title: String, color: TemplateColor) -> Unit
 ) {
-    val state = templateViewModel.templateState.collectAsState().value
+    val state = templateViewModel.state.collectAsState().value
+    val sortType by templateViewModel.sortType.collectAsState()
+    val progress by templateViewModel.progress.collectAsState()
+    val scope = rememberCoroutineScope()
+    val composition by rememberLottieComposition(
+        LottieCompositionSpec.RawRes(
+            R.raw.loading
+        )
+    )
+
+    LaunchedEffect(Unit) {
+        scope.launch {
+            templateViewModel.dispatch(TemplateIntent.GetTemplateList)
+        }
+    }
 
     Column(modifier = modifier) {
         Row(
@@ -71,83 +96,144 @@ fun TemplateListContents(
         }
         when (state) {
             is TemplateState.Available -> {
-                Box(
-                    modifier = modifier
-                        .fillMaxWidth()
-                        .weight(1f)
-                        .padding(horizontal = 24.dp)
-                ) {
-                    val listState = rememberLazyListState()
-                    val templateList = state.templateList
-                    LazyColumn(
-                        state = listState,
-                        contentPadding = PaddingValues(top = 30.dp, bottom = 14.dp),
-                        verticalArrangement = Arrangement.spacedBy(24.dp)
-                    ) {
-                        items(count = templateList.size) {
-                            TemplateItem(
-                                template = templateList[it],
-                                onClick = { id -> templateViewModel.onClickTemplate(id) },
-                                onLongClick = { id, title, color ->
-                                    openEditBottomSheet(
-                                        id,
-                                        title,
-                                        color
-                                    )
-                                }
-                            )
-                        }
-                    }
-                    Box(
+                if (state.templateList.isEmpty()) {
+                    TemplateEmpty(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(bottom = 24.dp)
-                            .align(Alignment.BottomEnd)
+                            .weight(1f),
+                        navigateToAddTemplate = navigateToAddTemplate
+                    )
+                } else {
+                    Box(
+                        modifier = modifier
+                            .fillMaxWidth()
+                            .weight(1f),
+                        contentAlignment = Alignment.Center
                     ) {
-                        ChevitFloatingButton(
-                            modifier = Modifier.align(Alignment.BottomEnd),
-                            onClick = { navigateToAddTemplate() }
+                        TemplateAvailable(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(horizontal = 24.dp),
+                            templateList = state.templateList,
+                            sortType = sortType,
+                            onClickTemplate = { id ->
+                                templateViewModel.dispatch(
+                                    TemplateIntent.ClickTemplate(id)
+                                )
+                            },
+                            openEditBottomSheet = openEditBottomSheet,
+                            navigateToAddTemplate = navigateToAddTemplate
                         )
+                        if (progress) {
+                            LottieAnimation(
+                                modifier = Modifier.size(128.dp),
+                                composition = composition,
+                                iterations = LottieConstants.IterateForever,
+                            )
+                        }
                     }
                 }
             }
 
-            TemplateState.EMPTY -> {
+            TemplateState.Loading -> {
                 Box(
-                    Modifier
+                    modifier = Modifier
                         .fillMaxWidth()
-                        .weight(1f), contentAlignment = Alignment.Center
+                        .weight(1f),
+                    contentAlignment = Alignment.Center
                 ) {
-                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                        Image(
-                            modifier = Modifier
-                                .size(140.dp),
-                            painter = painterResource(id = R.drawable.ic_empty_template),
-                            contentDescription = "",
-                        )
-                        Spacer(modifier = Modifier.height(12.dp))
-                        Text(
-                            text = "생성된 항목이 없어요\n나만의 템플릿을 만들어 보아요!",
-                            textAlign = TextAlign.Center,
-                            style = ChevitTheme.typhography.bodyLarge.copy(
-                                color = ChevitTheme.colors.textSecondary
-                            )
-                        )
-                        Spacer(modifier = Modifier.height(18.dp))
-                        ChevitButtonFillMedium(
-                            modifier = Modifier.size(width = 187.dp, height = 54.dp),
-                            onClick = { navigateToAddTemplate() }
-                        ) {
-                            Text(text = "추가하기")
-                        }
-                    }
-
+                    LottieAnimation(
+                        modifier = Modifier.size(128.dp),
+                        composition = composition,
+                        iterations = LottieConstants.IterateForever,
+                    )
                 }
             }
         }
     }
 }
 
+@Composable
+private fun TemplateAvailable(
+    modifier: Modifier,
+    templateList: List<Template>,
+    sortType: SortType,
+    onClickTemplate: (id: String) -> Unit,
+    openEditBottomSheet: (id: String, title: String, color: TemplateColor) -> Unit,
+    navigateToAddTemplate: () -> Unit
+) {
+    Box(modifier = modifier) {
+        val listState = rememberLazyListState()
+        LazyColumn(
+            state = listState,
+            contentPadding = PaddingValues(top = 30.dp, bottom = 14.dp),
+            verticalArrangement = Arrangement.spacedBy(24.dp),
+            reverseLayout = sortType == SortType.OLD,
+        ) {
+            items(count = templateList.size) {
+                TemplateItem(
+                    template = templateList[it],
+                    onClick = { id -> onClickTemplate(id) },
+                    onLongClick = { id, title, color ->
+                        openEditBottomSheet(
+                            id,
+                            title,
+                            color
+                        )
+                    }
+                )
+            }
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 24.dp)
+                .align(Alignment.BottomEnd)
+        ) {
+            ChevitFloatingButton(
+                modifier = Modifier.align(Alignment.BottomEnd),
+                onClick = navigateToAddTemplate
+            )
+        }
+    }
+}
+
+@Composable
+private fun TemplateEmpty(
+    modifier: Modifier,
+    navigateToAddTemplate: () -> Unit
+) {
+    Box(
+        modifier = modifier,
+        contentAlignment = Alignment.Center
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Image(
+                modifier = Modifier
+                    .size(140.dp),
+                painter = painterResource(id = R.drawable.ic_empty_template),
+                contentDescription = "",
+            )
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "생성된 항목이 없어요\n나만의 템플릿을 만들어 보아요!",
+                textAlign = TextAlign.Center,
+                style = ChevitTheme.typhography.bodyLarge.copy(
+                    color = ChevitTheme.colors.textSecondary
+                )
+            )
+            Spacer(modifier = Modifier.height(18.dp))
+            ChevitButtonFillMedium(
+                modifier = Modifier.size(width = 187.dp, height = 54.dp),
+                onClick = { navigateToAddTemplate() }
+            ) {
+                Text(text = "추가하기")
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun TemplateItem(
     template: Template,
@@ -160,12 +246,12 @@ private fun TemplateItem(
             .height(90.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(color = template.colorType.color)
-            .pointerInput(Unit) {
-                detectTapGestures(
-                    onPress = { onClick(template.id) },
-                    onLongPress = { onLongClick(template.id, template.title, template.colorType) },
-                )
-            }
+            .combinedClickable(
+                onClick = { onClick(template.id) },
+                onLongClick = {
+                    onLongClick(template.id, template.title, template.colorType)
+                }
+            )
     ) {
         Column(
             modifier = Modifier
@@ -182,7 +268,7 @@ private fun TemplateItem(
                 overflow = TextOverflow.Ellipsis
             )
             Text(
-                text = "생성일:${template.date}",
+                text = "생성일 : ${template.date}",
                 style = ChevitTheme.typhography.bodySmall.copy(
                     color = ChevitTheme.colors.white
                 ),

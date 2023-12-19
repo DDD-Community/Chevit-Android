@@ -10,7 +10,7 @@ internal object CheckItemMapper : Mapper<CheckItemResponse, CheckItem> {
             content = content,
             memo = memo,
             quantity = quantity,
-            createdTime = FormattedTimeMapper.mapDomain(createdTime),
+            createdTime = FormattedTimeMapper.mapCreatedTime(createdTime),
             checked = checked
         )
     }
