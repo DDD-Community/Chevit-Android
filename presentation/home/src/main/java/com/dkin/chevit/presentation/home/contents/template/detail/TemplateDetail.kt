@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
@@ -18,6 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navArgument
 import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.deeplink.DeepLink
@@ -27,7 +27,7 @@ import com.dkin.chevit.presentation.home.contents.template.MoreBottomSheet
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class TemplateDetail:
+class TemplateDetail :
     MVIComposeFragment<TemplateDetailIntent, TemplateDetailState, TemplateDetailEffect>() {
     override val viewModel: TemplateDetailViewModel by viewModels()
 
@@ -80,7 +80,7 @@ class TemplateDetail:
                             },
                             deleteItem = {
                                 navController.popBackStack()
-                                viewModel.deleteCategory(planId, categoryId)
+                                viewModel.dispatch(TemplateDetailIntent.DeleteCategory(categoryId))
                             },
                             onClose = { navController.popBackStack() }
                         )
@@ -95,13 +95,12 @@ class TemplateDetail:
         val id = arguments?.getString("planId")
         id?.let {
             planId = it
-            //todo if planId.isEmpty return
-            viewModel.getTemplateList(it)
-        }
+            viewModel.dispatch(TemplateDetailIntent.InitTemplateDetail(it))
+        } ?: findNavController().popBackStack()
     }
 
     override fun processEffect(effect: TemplateDetailEffect) {
-        when(effect) {
+        when (effect) {
             TemplateDetailEffect.NavigateToAddCategory -> {
                 deepLink(
                     DeepLink.AddCategory(
@@ -109,6 +108,7 @@ class TemplateDetail:
                     )
                 ) { popUpTo(R.id.templateDetail) }
             }
+
             is TemplateDetailEffect.NavigateToChecklistDetail -> {
                 deepLink(
                     DeepLink.CheckListDetail(
@@ -117,6 +117,13 @@ class TemplateDetail:
                     )
                 ) { popUpTo(R.id.templateDetail) }
             }
+
+            TemplateDetailEffect.DeleteCategoryFailed ->
+                Toast.makeText(requireContext(), "카테고리 삭제에 실패하였습니다.", Toast.LENGTH_SHORT).show()
+
+
+            TemplateDetailEffect.GetTemplateFail ->
+                Toast.makeText(requireContext(), "템플릿을 가져오지 못했습니다.", Toast.LENGTH_LONG).show()
         }
     }
 

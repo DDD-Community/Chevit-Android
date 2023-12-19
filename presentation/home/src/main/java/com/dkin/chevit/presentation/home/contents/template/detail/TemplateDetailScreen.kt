@@ -36,6 +36,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.dkin.chevit.presentation.common.model.CategoryType
 import com.dkin.chevit.presentation.resource.ChevitButtonFillMedium
 import com.dkin.chevit.presentation.resource.ChevitFloatingButton
@@ -57,80 +61,130 @@ fun TemplateDetailScreen(
 ) {
     val state by viewModel.state.collectAsState()
 
-    Column(
-        modifier = modifier.fillMaxSize()
-    ) {
-        TopBar(modifier = Modifier.fillMaxWidth(), title = state.title, onClickBack = onClickBack)
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(4.dp)
-                .background(color = ChevitTheme.colors.grey0)
-        )
-        Spacer(Modifier.height(24.dp))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp), verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                modifier = Modifier.weight(1f),
-                text = "체크리스트 템플릿",
-                style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
-            )
-            if (state.categories.isNotEmpty()) {
-                Text(
-                    text = "공개",
-                    style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textSecondary),
-                )
-                Spacer(modifier = Modifier.width(6.dp))
-                Switch(
-                    modifier = Modifier.size(width = 48.dp, height = 24.dp),
-                    checked = state.isTemplateOpen,
-                    onCheckedChange = {
-                        viewModel.dispatch(
-                            TemplateDetailIntent.ChangeTemplateOpenSetting(
-                                it
-                            )
-                        )
-                    },
-                    colors = SwitchDefaults.colors(
-                        checkedThumbColor = ChevitTheme.colors.white,
-                        checkedTrackColor = ChevitTheme.colors.blue7,
-                        checkedBorderColor = Color.Unspecified,
-                        uncheckedThumbColor = ChevitTheme.colors.white,
-                        uncheckedTrackColor = ChevitTheme.colors.grey2,
-                        uncheckedBorderColor = Color.Unspecified,
-                    ),
-                )
-            }
-        }
-        Spacer(modifier = Modifier.height(20.dp))
-        if (state.categories.isEmpty()) {
-            CategoryEmptyContents(
-                addCategory = { viewModel.onClickAddCategory() }
-            )
-        } else {
-            Box(modifier = Modifier.weight(1f)) {
-                CategoryListContents(
-                    categories = state.categories,
-                    onClickCategory = { id -> viewModel.onClickCategory(id) },
-                    onLongClickCategory = openCategoryMoreSheet
+    when (val detailState = state) {
+        TemplateDetailState.Loading -> {
+            Column(
+                modifier = modifier.fillMaxSize()
+            ) {
+                TopBar(
+                    modifier = Modifier.fillMaxWidth(),
+                    title = "",
+                    onClickBack = onClickBack
                 )
                 Box(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 24.dp, end = 24.dp)
-                        .align(Alignment.BottomEnd)
+                        .height(4.dp)
+                        .background(color = ChevitTheme.colors.grey0)
+                )
+                Spacer(Modifier.height(24.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp), verticalAlignment = Alignment.CenterVertically
                 ) {
-                    ChevitFloatingButton(
-                        modifier = Modifier.align(Alignment.BottomEnd),
-                        onClick = { viewModel.onClickAddCategory() }
+                    Text(
+                        modifier = Modifier.weight(1f),
+                        text = "체크리스트 템플릿",
+                        style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                    )
+                }
+                Spacer(modifier = Modifier.height(40.dp))
+                Box(
+                    modifier = Modifier.fillMaxWidth().weight(1f),
+                    contentAlignment = Alignment.TopCenter
+                ) {
+                    val composition by rememberLottieComposition(
+                        LottieCompositionSpec.RawRes(
+                            R.raw.loading
+                        )
+                    )
+                    LottieAnimation(
+                        modifier = Modifier.size(128.dp),
+                        composition = composition,
+                        iterations = LottieConstants.IterateForever,
+                    )
+                }
+            }
+        }
+
+        is TemplateDetailState.Available -> {
+            Column(
+                modifier = modifier.fillMaxSize()
+            ) {
+                TopBar(
+                    modifier = Modifier.fillMaxWidth(),
+                    title = detailState.title,
+                    onClickBack = onClickBack
+                )
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(4.dp)
+                        .background(color = ChevitTheme.colors.grey0)
+                )
+                Spacer(Modifier.height(24.dp))
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp), verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        modifier = Modifier.weight(1f),
+                        text = "체크리스트 템플릿",
+                        style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                    )
+                    if (detailState.categories.isNotEmpty()) {
+                        Text(
+                            text = "공개",
+                            style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textSecondary),
+                        )
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Switch(
+                            modifier = Modifier.size(width = 48.dp, height = 24.dp),
+                            checked = detailState.isTemplateOpen,
+                            onCheckedChange = {
+                                viewModel.dispatch(
+                                    TemplateDetailIntent.ChangeTemplateOpenSetting(
+                                        it
+                                    )
+                                )
+                            },
+                            colors = SwitchDefaults.colors(
+                                checkedThumbColor = ChevitTheme.colors.white,
+                                checkedTrackColor = ChevitTheme.colors.blue7,
+                                checkedBorderColor = Color.Unspecified,
+                                uncheckedThumbColor = ChevitTheme.colors.white,
+                                uncheckedTrackColor = ChevitTheme.colors.grey2,
+                                uncheckedBorderColor = Color.Unspecified,
+                            ),
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(20.dp))
+                if (detailState.categories.isEmpty()) {
+                    CategoryEmptyContents(
+                        addCategory = { viewModel.dispatch(TemplateDetailIntent.NavigateToAddCategory) }
+                    )
+                } else {
+                    TemplateDetailListContents(
+                        modifier = Modifier.weight(1f),
+                        categories = detailState.categories,
+                        onClickCategory = { id ->
+                            viewModel.dispatch(
+                                TemplateDetailIntent.ClickCategory(
+                                    id
+                                )
+                            )
+                        },
+                        openCategoryMoreSheet = openCategoryMoreSheet,
+                        addCategory = { viewModel.dispatch(TemplateDetailIntent.NavigateToAddCategory) }
                     )
                 }
             }
         }
     }
+
 }
 
 @Composable
@@ -154,6 +208,34 @@ private fun TopBar(modifier: Modifier, title: String, onClickBack: () -> Unit) {
             textAlign = TextAlign.Center,
             style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
         )
+    }
+}
+
+@Composable
+private fun TemplateDetailListContents(
+    modifier: Modifier,
+    categories: List<TemplateDetailState.Available.Category>,
+    onClickCategory: (id: String) -> Unit,
+    openCategoryMoreSheet: (id: String, title: String, type: CategoryType) -> Unit,
+    addCategory: () -> Unit
+) {
+    Box(modifier = modifier) {
+        CategoryListContents(
+            categories = categories,
+            onClickCategory = { id -> onClickCategory(id) },
+            onLongClickCategory = openCategoryMoreSheet
+        )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 24.dp, end = 24.dp)
+                .align(Alignment.BottomEnd)
+        ) {
+            ChevitFloatingButton(
+                modifier = Modifier.align(Alignment.BottomEnd),
+                onClick = addCategory
+            )
+        }
     }
 }
 
@@ -194,7 +276,7 @@ private fun CategoryEmptyContents(
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun CategoryListContents(
-    categories: List<TemplateDetailState.Category>,
+    categories: List<TemplateDetailState.Available.Category>,
     onClickCategory: (categoryId: String) -> Unit,
     onLongClickCategory: (id: String, title: String, type: CategoryType) -> Unit,
 ) {
