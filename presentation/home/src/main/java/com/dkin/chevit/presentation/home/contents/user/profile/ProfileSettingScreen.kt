@@ -45,13 +45,10 @@ fun ProfileSettingScreen(
     onClickBack: () -> Unit,
     onClickImage: () -> Unit,
 ) {
-    val state by viewModel.state.collectAsState()
-    var name by remember { mutableStateOf(state.name) }
-    var imageUrl by remember { mutableStateOf(state.imageUrl) }
-    var isValidInput by remember { mutableStateOf(false) }
+    val settingState by viewModel.state.collectAsState()
 
-    LaunchedEffect(name) {
-        isValidInput = name.isNotBlank() && name.length < 8 && imageUrl.isNotBlank()
+    LaunchedEffect(Unit) {
+        viewModel.dispatch(ProfileSettingIntent.Initialize)
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -78,99 +75,120 @@ fun ProfileSettingScreen(
         }
         Spacer(modifier = Modifier.height(92.dp))
 
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Box(modifier = Modifier.clickableNoRipple { onClickImage() }) {
-                Box(
+        when (val state = settingState) {
+            ProfileSettingState.Loading -> {
+                Column(
                     modifier = Modifier
-                        .size(128.dp)
-                        .clip(CircleShape)
-                        .align(Alignment.Center),
-                ) {
-                    AsyncImage(
-                        modifier = Modifier.fillMaxWidth(),
-                        model = ImageRequest.Builder(LocalContext.current)
-                            .data(imageUrl)
-                            .crossfade(true)
-                            .build(),
-                        contentDescription = "",
-                        contentScale = ContentScale.Fit,
-                        error = painterResource(id = R.drawable.ic_profile_empty)
-                    )
-                }
-                Box(
-                    modifier = Modifier
-                        .size(32.dp)
-                        .clip(CircleShape)
-                        .background(color = ChevitTheme.colors.black)
-                        .align(Alignment.BottomEnd)
-                        .padding(4.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Icon(
-                        imageVector = ChevitIcon.IconCameraFill,
-                        contentDescription = "",
-                        tint = ChevitTheme.colors.white
-                    )
-                }
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {}
             }
 
-            Spacer(modifier = Modifier.height(32.dp))
+            is ProfileSettingState.Stable -> {
+                var name by remember { mutableStateOf(state.name) }
+                var imageUrl by remember { mutableStateOf(state.imageUrl) }
+                var isValidInput by remember { mutableStateOf(false) }
 
-            ChevitInput(
-                value = name,
-                onValueChange = { name = it },
-                placeholder = {
-                    Text(
-                        modifier = Modifier,
-                        text = "닉네임 최대 8글자",
-                        style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
-                    )
-                },
-                trailingIcon = {
-                    if (name.isNotEmpty()) {
-                        Icon(
+                LaunchedEffect(name) {
+                    isValidInput = name.isNotBlank() && name.length < 8 && imageUrl.isNotBlank()
+                }
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Box(modifier = Modifier.clickableNoRipple { onClickImage() }) {
+                        Box(
                             modifier = Modifier
-                                .size(20.dp)
-                                .clickableNoRipple {
-                                    name = ""
-                                },
-                            imageVector = ChevitIcon.IconCloseCircleFill,
-                            contentDescription = "",
+                                .size(128.dp)
+                                .clip(CircleShape)
+                                .align(Alignment.Center),
+                        ) {
+                            AsyncImage(
+                                modifier = Modifier.fillMaxWidth(),
+                                model = ImageRequest.Builder(LocalContext.current)
+                                    .data(imageUrl)
+                                    .crossfade(true)
+                                    .build(),
+                                contentDescription = "",
+                                contentScale = ContentScale.Fit,
+                                error = painterResource(id = R.drawable.ic_profile_empty)
+                            )
+                        }
+                        Box(
+                            modifier = Modifier
+                                .size(32.dp)
+                                .clip(CircleShape)
+                                .background(color = ChevitTheme.colors.black)
+                                .align(Alignment.BottomEnd)
+                                .padding(4.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = ChevitIcon.IconCameraFill,
+                                contentDescription = "",
+                                tint = ChevitTheme.colors.white
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(32.dp))
+
+                    ChevitInput(
+                        value = name,
+                        onValueChange = { name = it },
+                        placeholder = {
+                            Text(
+                                modifier = Modifier,
+                                text = "닉네임 최대 8글자",
+                                style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
+                            )
+                        },
+                        trailingIcon = {
+                            if (name.isNotEmpty()) {
+                                Icon(
+                                    modifier = Modifier
+                                        .size(20.dp)
+                                        .clickableNoRipple {
+                                            name = ""
+                                        },
+                                    imageVector = ChevitIcon.IconCloseCircleFill,
+                                    contentDescription = "",
+                                )
+                            }
+                        }
+                    )
+                    if (!isValidInput) {
+                        Spacer(modifier = Modifier.height(12.dp))
+                        Text(
+                            modifier = Modifier.fillMaxWidth(),
+                            text = "8자 이내 한글 혹은 영문을 입력해 주세요.",
+                            style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textCaption),
+                            textAlign = TextAlign.Center
                         )
                     }
                 }
-            )
-            if (!isValidInput) {
-                Spacer(modifier = Modifier.height(12.dp))
-                Text(
-                    modifier = Modifier.fillMaxWidth(),
-                    text = "8자 이내 한글 혹은 영문을 입력해 주세요.",
-                    style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textCaption),
-                    textAlign = TextAlign.Center
-                )
-            }
-        }
 
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        ) {
-            ChevitButtonFillLarge(
-                modifier = Modifier.fillMaxWidth(),
-                enabled = isValidInput,
-                onClick = {
-                    viewModel.saveProfile(name, imageUrl)
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp)
+                ) {
+                    ChevitButtonFillLarge(
+                        modifier = Modifier.fillMaxWidth(),
+                        enabled = isValidInput,
+                        onClick = {
+                            viewModel.saveProfile(name, imageUrl)
+                        }
+                    ) {
+                        Text(text = "저장하기")
+                    }
                 }
-            ) {
-                Text(text = "저장하기")
+                Spacer(modifier = Modifier.height(24.dp))
             }
         }
-        Spacer(modifier = Modifier.height(24.dp))
     }
 }

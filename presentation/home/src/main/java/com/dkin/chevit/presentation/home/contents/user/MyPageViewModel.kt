@@ -7,8 +7,6 @@ import com.dkin.chevit.domain.usecase.auth.GetUserUseCase
 import com.dkin.chevit.domain.usecase.auth.SignOutUseCase
 import com.dkin.chevit.domain.usecase.auth.WithDrawUserUseCase
 import com.dkin.chevit.domain.usecase.notification.UpdateNotificationEnableStateUseCase
-import com.dkin.chevit.presentation.home.contents.user.MyPageEffect
-import com.dkin.chevit.presentation.home.contents.user.MyPageIntent
 import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.AlarmSwitchClicked
 import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.NotificationSettingClicked
 import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.ProfileSettingClicked
