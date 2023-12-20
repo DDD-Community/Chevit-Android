@@ -43,7 +43,7 @@ class MyCheckList :
                         val state by viewModel.state.collectAsState()
                         MyCheckListScreen(
                             onClickBack = { findNavController().popBackStack() },
-                            checkList = state.checkList,
+                            state = state,
                             onClickChecklist = { id -> viewModel.onClickChecklist(id) },
                             onLongClickChecklist = { id, title -> navController.navigate("more/${id}?title=${title}") }
                         )

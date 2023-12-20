@@ -21,8 +21,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -40,7 +38,7 @@ import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 
 @Composable
 fun ChecklistDetailListContents(
-    detailItems: List<ChecklistDetailState.ChecklistDetailItem>,
+    detailItems: List<ChecklistDetailState.Available.ChecklistDetailItem>,
     checkUnCompleted: Boolean,
     searchKeyword: String,
     sortType: SortType,
@@ -97,7 +95,7 @@ fun ChecklistDetailListContents(
 
 @Composable
 private fun DetailItem(
-    item: ChecklistDetailState.ChecklistDetailItem,
+    item: ChecklistDetailState.Available.ChecklistDetailItem,
     onClickItem: (itemId: String, checked: Boolean) -> Unit,
     openMoreSheet: (itemId: String, title: String, memo: String, count: Int) -> Unit
 ) {

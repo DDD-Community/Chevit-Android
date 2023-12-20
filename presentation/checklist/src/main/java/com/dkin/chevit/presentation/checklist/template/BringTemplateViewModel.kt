@@ -29,12 +29,12 @@ class BringTemplateViewModel @Inject constructor(
 ) : MVIViewModel<BringTemplateIntent, BringTemplateState, BringTemplateEffect>() {
 
     private val _templateState: MutableStateFlow<TemplateDetailState> =
-        MutableStateFlow(TemplateDetailState.empty())
+        MutableStateFlow(TemplateDetailState.Loading)
     val templateState = _templateState.asStateFlow()
     private val _detailState: MutableStateFlow<TemplateCategoryDetailState> =
-        MutableStateFlow(TemplateCategoryDetailState.empty())
+        MutableStateFlow(TemplateCategoryDetailState.Loading)
     val detailState = _detailState.asStateFlow()
-    override fun createInitialState() = BringTemplateState.empty()
+    override fun createInitialState() = BringTemplateState.Loading
 
     override suspend fun processIntent(intent: BringTemplateIntent) {
         when (intent) {
@@ -59,10 +59,10 @@ class BringTemplateViewModel @Inject constructor(
                 doOnSuccess = {
                     val plan = this.list
                     setState {
-                        copy(
+                        BringTemplateState.Available(
                             planId = planId,
                             templateList = plan.map {
-                                BringTemplateState.Template(
+                                BringTemplateState.Available.Template(
                                     id = it.id,
                                     title = it.template.subject,
                                     date = it.createdTime.formatted,
@@ -86,10 +86,10 @@ class BringTemplateViewModel @Inject constructor(
             doOnSuccess = {
                 val template = this
                 _templateState.update {
-                    TemplateDetailState(
+                    TemplateDetailState.Available(
                         templateName = template.template.subject,
                         categories = template.categoryList.map {
-                            ChecklistState.Category(
+                            ChecklistState.Available.Category(
                                 categoryId = it.id,
                                 title = it.subject,
                                 categoryType = getCategoryTypeByName(it.icon.name),
@@ -118,10 +118,10 @@ class BringTemplateViewModel @Inject constructor(
             doOnSuccess = {
                 val category = this
                 _detailState.update {
-                    TemplateCategoryDetailState(
+                    TemplateCategoryDetailState.Available(
                         categoryName = category.subject,
                         detailItems = category.checkList.map {
-                            ChecklistDetailState.ChecklistDetailItem(
+                            ChecklistDetailState.Available.ChecklistDetailItem(
                                 id = it.id,
                                 checked = it.checked,
                                 title = it.content,
@@ -137,16 +137,25 @@ class BringTemplateViewModel @Inject constructor(
     }
 
     private suspend fun bringTemplate(templateId: String) {
-        val planId = state.value.planId
-        val templateUseCase = copyTemplateUseCase(CopyTemplateUseCase.Param(planId = planId, refPlanId = templateId))
-        templateUseCase.onComplete(
-            doOnComplete = {},
-            doOnError = {
-                setEffect { BringTemplateEffect.BringTemplateFail }
-            },
-            doOnSuccess = {
-                setEffect { BringTemplateEffect.BringTemplateSuccess }
-            }
-        )
+        val currentState = state.value
+        if (currentState is BringTemplateState.Available) {
+            val planId = currentState.planId
+            val templateUseCase =
+                copyTemplateUseCase(
+                    CopyTemplateUseCase.Param(
+                        planId = planId,
+                        refPlanId = templateId
+                    )
+                )
+            templateUseCase.onComplete(
+                doOnComplete = {},
+                doOnError = {
+                    setEffect { BringTemplateEffect.BringTemplateFail }
+                },
+                doOnSuccess = {
+                    setEffect { BringTemplateEffect.BringTemplateSuccess }
+                }
+            )
+        }
     }
 }

@@ -17,7 +17,7 @@ class MyCheckListViewModel @Inject constructor(
     private val deletePlanUseCase: DeletePlanUseCase
 ) : MVIViewModel<MyCheckListIntent, MyCheckListState, MyCheckListEffect>() {
 
-    override fun createInitialState() = MyCheckListState.empty()
+    override fun createInitialState() = MyCheckListState.Loading
 
     override suspend fun processIntent(intent: MyCheckListIntent) {
         when (intent) {
@@ -34,7 +34,7 @@ class MyCheckListViewModel @Inject constructor(
         viewModelScope.launch {
             val checklist = getMyChecklistUseCase(Unit).get()
             setState {
-                copy(
+                MyCheckListState.Available(
                     checkList = checklist.list.map {
                         CheckListItem(
                             id = it.id,

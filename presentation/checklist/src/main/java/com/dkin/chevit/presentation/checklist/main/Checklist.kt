@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.webkit.URLUtil
 import android.widget.Toast
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.window.DialogProperties
@@ -32,7 +31,6 @@ import com.dkin.chevit.presentation.deeplink.DeepLink
 import com.dkin.chevit.presentation.deeplink.deepLink
 import com.dkin.chevit.presentation.resource.ChevitDialog
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistEffect>() {

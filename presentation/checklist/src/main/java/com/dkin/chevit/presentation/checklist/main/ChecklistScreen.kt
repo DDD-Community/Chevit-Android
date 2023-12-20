@@ -28,6 +28,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.dkin.chevit.presentation.checklist.main.component.ChecklistTopBar
 import com.dkin.chevit.presentation.checklist.main.component.CountryInfo
 import com.dkin.chevit.presentation.checklist.main.contents.CategoryEmptyContents
@@ -35,6 +39,7 @@ import com.dkin.chevit.presentation.checklist.main.contents.CategoryListContents
 import com.dkin.chevit.presentation.common.model.CategoryType
 import com.dkin.chevit.presentation.resource.ChevitFloatingButton
 import com.dkin.chevit.presentation.resource.ChevitTheme
+import com.dkin.chevit.presentation.resource.R
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconArrowDownLine
 import com.dkin.chevit.presentation.resource.icon.IconArrowUpLine
@@ -48,6 +53,89 @@ fun ChecklistScreen(
     openCategoryMoreSheet: (id: String, title: String, type: CategoryType) -> Unit,
 ) {
     val checklistState by viewModel.state.collectAsState()
+
+    when (val state = checklistState) {
+        ChecklistState.Loading -> {
+            ChecklistLoading(
+                onClickBack = onClickBack
+            )
+        }
+
+        is ChecklistState.Available -> {
+            ChecklistAvailable(
+                checklistState = state,
+                onClickUrl = { url -> viewModel.onClickUrl(url) },
+                onCheckedChange = { isOpen ->
+                    viewModel.dispatch(
+                        ChecklistIntent.ChangeTemplateOpenSetting(
+                            isOpen = isOpen,
+                        )
+                    )
+                },
+                onClickCategory = { id -> viewModel.onClickCategory(id) },
+                onClickBack = onClickBack,
+                navigateAddCategory = navigateAddCategory,
+                openFloatingContents = openFloatingContents,
+                openCategoryMoreSheet = openCategoryMoreSheet
+            )
+        }
+    }
+}
+
+@Composable
+private fun ChecklistLoading(
+    onClickBack: () -> Unit,
+) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            ChecklistTopBar(
+                modifier = Modifier.fillMaxWidth(),
+                title = "",
+                onClickBack = onClickBack
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(4.dp)
+                    .background(color = ChevitTheme.colors.grey0)
+            )
+            Spacer(modifier = Modifier.height(24.dp))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                contentAlignment = Alignment.TopCenter
+            ) {
+                val composition by rememberLottieComposition(
+                    LottieCompositionSpec.RawRes(
+                        R.raw.loading
+                    )
+                )
+                LottieAnimation(
+                    modifier = Modifier.size(128.dp),
+                    composition = composition,
+                    iterations = LottieConstants.IterateForever,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun ChecklistAvailable(
+    checklistState: ChecklistState.Available,
+    onClickUrl: (url: String) -> Unit,
+    onCheckedChange: (isOpen: Boolean) -> Unit,
+    onClickCategory: (id: String) -> Unit,
+    onClickBack: () -> Unit,
+    navigateAddCategory: () -> Unit,
+    openFloatingContents: () -> Unit,
+    openCategoryMoreSheet: (id: String, title: String, type: CategoryType) -> Unit,
+) {
     var showCountryInfo by remember { mutableStateOf(true) }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -73,7 +161,7 @@ fun ChecklistScreen(
                         notice = checklistState.notice,
                         weathers = checklistState.weathers,
                         weatherDetailUrl = checklistState.weatherDetailUrl,
-                        onClickUrl = { url -> viewModel.onClickUrl(url) }
+                        onClickUrl = { url -> onClickUrl(url) }
                     )
                 }
                 Column(
@@ -129,11 +217,7 @@ fun ChecklistScreen(
                             modifier = Modifier.size(width = 48.dp, height = 24.dp),
                             checked = checklistState.isTemplateOpen,
                             onCheckedChange = {
-                                viewModel.dispatch(
-                                    ChecklistIntent.ChangeTemplateOpenSetting(
-                                        isOpen = it,
-                                    )
-                                )
+                                onCheckedChange(it)
                             },
                             colors = SwitchDefaults.colors(
                                 checkedThumbColor = ChevitTheme.colors.white,
@@ -154,8 +238,14 @@ fun ChecklistScreen(
                 } else {
                     CategoryListContents(
                         categories = checklistState.categories,
-                        onClickCategory = { id -> viewModel.onClickCategory(id) },
-                        onLongClickCategory = {id, title, type -> openCategoryMoreSheet(id, title, type)}
+                        onClickCategory = { id -> onClickCategory(id) },
+                        onLongClickCategory = { id, title, type ->
+                            openCategoryMoreSheet(
+                                id,
+                                title,
+                                type
+                            )
+                        }
                     )
                 }
             }

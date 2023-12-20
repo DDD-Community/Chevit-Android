@@ -30,7 +30,7 @@ class ChecklistViewModel @Inject constructor(
     private val _saveTemplateSuccess: MutableSharedFlow<Boolean> = MutableSharedFlow()
     val saveTemplateSuccess = _saveTemplateSuccess.asSharedFlow()
 
-    override fun createInitialState(): ChecklistState = ChecklistState.empty()
+    override fun createInitialState(): ChecklistState = ChecklistState.Loading
 
     override suspend fun processIntent(intent: ChecklistIntent) {
         when (intent) {
@@ -48,21 +48,40 @@ class ChecklistViewModel @Inject constructor(
         viewModelScope.launch {
             val checklist = getChecklistUseCase(GetChecklistUseCase.Param(id)).get()
             setState {
-                copy(
-                    id = id,
-                    title = checklist.schedule.country.name,
-                    date = "${checklist.schedule.startTime.formatted} ~ ${checklist.schedule.endTime.formatted}",
-                    categories = checklist.categoryList.map {
-                        ChecklistState.Category(
-                            categoryId = it.id,
-                            title = it.subject,
-                            categoryType = getCategoryTypeByName(it.icon.name),
-                            checked = it.checkedCount,
-                            total = it.checkList.size
-                        )
-                    },
-                    isTemplateOpen = checklist.isPublic,
-                )
+                val currentState = state.value
+                if (currentState is ChecklistState.Available) {
+                    currentState.copy(
+                        id = id,
+                        title = checklist.schedule.country.name,
+                        date = "${checklist.schedule.startTime.formatted} ~ ${checklist.schedule.endTime.formatted}",
+                        categories = checklist.categoryList.map {
+                            ChecklistState.Available.Category(
+                                categoryId = it.id,
+                                title = it.subject,
+                                categoryType = getCategoryTypeByName(it.icon.name),
+                                checked = it.checkedCount,
+                                total = it.checkList.size
+                            )
+                        },
+                        isTemplateOpen = checklist.isPublic,
+                    )
+                } else {
+                    ChecklistState.Available(
+                        id = id,
+                        title = checklist.schedule.country.name,
+                        date = "${checklist.schedule.startTime.formatted} ~ ${checklist.schedule.endTime.formatted}",
+                        categories = checklist.categoryList.map {
+                            ChecklistState.Available.Category(
+                                categoryId = it.id,
+                                title = it.subject,
+                                categoryType = getCategoryTypeByName(it.icon.name),
+                                checked = it.checkedCount,
+                                total = it.checkList.size
+                            )
+                        },
+                        isTemplateOpen = checklist.isPublic,
+                    )
+                }
             }
             getChecklistInfo(id)
         }
@@ -105,58 +124,98 @@ class ChecklistViewModel @Inject constructor(
         val notice = noticeAsync.await().getOrNull()
         val weather = weatherAsync.await().getOrNull()
         setState {
-            copy(
-                notice = ChecklistState.Notice(
-                    title = notice?.title ?: "",
-                    url = notice?.webUrl ?: ""
-                ),
-                weathers = weather?.weatherList?.map {
-                    ChecklistState.Weather(
-                        date = it.formattedTime.formatted,
-                        iconUrl = it.iconUrl,
-                        temperature = it.temperature
-                    )
-                } ?: listOf(),
-                weatherDetailUrl = weather?.webUrl ?: "",
-            )
+            val currentState = state.value
+            if (currentState is ChecklistState.Available) {
+                currentState.copy(
+                    notice = ChecklistState.Available.Notice(
+                        title = notice?.title ?: "",
+                        url = notice?.webUrl ?: ""
+                    ),
+                    weathers = weather?.weatherList?.map {
+                        ChecklistState.Available.Weather(
+                            date = it.formattedTime.formatted,
+                            iconUrl = it.iconUrl,
+                            temperature = it.temperature
+                        )
+                    } ?: listOf(),
+                    weatherDetailUrl = weather?.webUrl ?: "",
+                )
+            } else {
+                ChecklistState.Available(
+                    notice = ChecklistState.Available.Notice(
+                        title = notice?.title ?: "",
+                        url = notice?.webUrl ?: ""
+                    ),
+                    weathers = weather?.weatherList?.map {
+                        ChecklistState.Available.Weather(
+                            date = it.formattedTime.formatted,
+                            iconUrl = it.iconUrl,
+                            temperature = it.temperature
+                        )
+                    } ?: listOf(),
+                    weatherDetailUrl = weather?.webUrl ?: "",
+                )
+            }
         }
     }
 
     private suspend fun saveTemplate(title: String, color: TemplateColor) {
-        val id = state.value.id
-        val saveTemplate = postNewTemplateUseCase(PostNewTemplateUseCase.Param(title, color.name, id))
-        saveTemplate.onComplete(
-            doOnComplete = {},
-            doOnError = {
-                setEffect { ChecklistEffect.SaveTemplateFailed }
-            },
-            doOnSuccess = {
-                viewModelScope.launch {
-                    _saveTemplateSuccess.emit(true)
+        val currentState = state.value
+        if (currentState is ChecklistState.Available) {
+            val id = currentState.id
+            val saveTemplate =
+                postNewTemplateUseCase(PostNewTemplateUseCase.Param(title, color.name, id))
+            saveTemplate.onComplete(
+                doOnComplete = {},
+                doOnError = {
+                    setEffect { ChecklistEffect.SaveTemplateFailed }
+                },
+                doOnSuccess = {
+                    viewModelScope.launch {
+                        _saveTemplateSuccess.emit(true)
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 
     private fun refreshChecklist(planId: String) {
         viewModelScope.launch {
+            val currentState = state.value
             val checklist = getChecklistUseCase(GetChecklistUseCase.Param(planId)).get()
             setState {
-                copy(
-                    id = id,
-                    title = checklist.schedule.country.name,
-                    date = "${checklist.schedule.startTime.formatted} ~ ${checklist.schedule.endTime.formatted}",
-                    categories = checklist.categoryList.map {
-                        ChecklistState.Category(
-                            categoryId = it.id,
-                            title = it.subject,
-                            categoryType = getCategoryTypeByName(it.icon.name),
-                            checked = it.checkedCount,
-                            total = it.checkList.size
-                        )
-                    },
-                    isTemplateOpen = checklist.isPublic,
-                )
+                if (currentState is ChecklistState.Available) {
+                    currentState.copy(
+                        title = checklist.schedule.country.name,
+                        date = "${checklist.schedule.startTime.formatted} ~ ${checklist.schedule.endTime.formatted}",
+                        categories = checklist.categoryList.map {
+                            ChecklistState.Available.Category(
+                                categoryId = it.id,
+                                title = it.subject,
+                                categoryType = getCategoryTypeByName(it.icon.name),
+                                checked = it.checkedCount,
+                                total = it.checkList.size
+                            )
+                        },
+                        isTemplateOpen = checklist.isPublic,
+                    )
+                } else {
+                    ChecklistState.Available(
+                        id = planId,
+                        title = checklist.schedule.country.name,
+                        date = "${checklist.schedule.startTime.formatted} ~ ${checklist.schedule.endTime.formatted}",
+                        categories = checklist.categoryList.map {
+                            ChecklistState.Available.Category(
+                                categoryId = it.id,
+                                title = it.subject,
+                                categoryType = getCategoryTypeByName(it.icon.name),
+                                checked = it.checkedCount,
+                                total = it.checkList.size
+                            )
+                        },
+                        isTemplateOpen = checklist.isPublic,
+                    )
+                }
             }
         }
     }

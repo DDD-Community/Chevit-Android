@@ -30,6 +30,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.dkin.chevit.presentation.checklist.detail.ChecklistDetailState
 import com.dkin.chevit.presentation.checklist.template.model.TemplateCategoryDetailState
 import com.dkin.chevit.presentation.resource.ChevitTextField
@@ -49,6 +53,60 @@ fun TemplateCategoryDetailContents(
     categoryDetail: TemplateCategoryDetailState,
     onClickBack: () -> Unit
 ) {
+    when (categoryDetail) {
+        TemplateCategoryDetailState.Loading -> {
+            Column(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(58.dp)
+                        .padding(vertical = 16.dp, horizontal = 24.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Icon(
+                        modifier = Modifier
+                            .align(Alignment.CenterStart)
+                            .clickableNoRipple { onClickBack() },
+                        imageVector = ChevitIcon.IconArrowLeftLine,
+                        contentDescription = "",
+                    )
+                }
+                Spacer(modifier = Modifier.height(24.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    contentAlignment = Alignment.TopCenter
+                ) {
+                    val composition by rememberLottieComposition(
+                        LottieCompositionSpec.RawRes(
+                            R.raw.loading
+                        )
+                    )
+                    LottieAnimation(
+                        modifier = Modifier.size(128.dp),
+                        composition = composition,
+                        iterations = LottieConstants.IterateForever,
+                    )
+                }
+            }
+        }
+        is TemplateCategoryDetailState.Available -> {
+            TemplateCategoryDetailAvailable(
+                categoryDetail = categoryDetail,
+                onClickBack = onClickBack
+            )
+        }
+    }
+}
+
+@Composable
+private fun TemplateCategoryDetailAvailable(
+    categoryDetail: TemplateCategoryDetailState.Available,
+    onClickBack: () -> Unit
+) {
     var input by remember { mutableStateOf("") }
     var detailList by remember {
         mutableStateOf(categoryDetail.detailItems)
@@ -61,6 +119,7 @@ fun TemplateCategoryDetailContents(
             categoryDetail.detailItems
         }
     }
+
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
@@ -184,7 +243,7 @@ fun TemplateCategoryDetailContents(
 
 @Composable
 private fun DetailItem(
-    item: ChecklistDetailState.ChecklistDetailItem,
+    item: ChecklistDetailState.Available.ChecklistDetailItem,
 ) {
     Column {
         Row(

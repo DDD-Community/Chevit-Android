@@ -35,8 +35,8 @@ import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CountryInfo(
-    notice: ChecklistState.Notice,
-    weathers: List<ChecklistState.Weather>,
+    notice: ChecklistState.Available.Notice,
+    weathers: List<ChecklistState.Available.Weather>,
     weatherDetailUrl: String,
     onClickUrl: (url: String) -> Unit,
 ) {
@@ -122,7 +122,7 @@ private fun Notice(title: String) {
 }
 
 @Composable
-private fun Weather(weather: ChecklistState.Weather) {
+private fun Weather(weather: ChecklistState.Available.Weather) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

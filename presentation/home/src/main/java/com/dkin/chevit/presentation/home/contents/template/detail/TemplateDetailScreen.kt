@@ -78,18 +78,6 @@ fun TemplateDetailScreen(
                         .background(color = ChevitTheme.colors.grey0)
                 )
                 Spacer(Modifier.height(24.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp), verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        modifier = Modifier.weight(1f),
-                        text = "체크리스트 템플릿",
-                        style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
-                    )
-                }
-                Spacer(modifier = Modifier.height(40.dp))
                 Box(
                     modifier = Modifier.fillMaxWidth().weight(1f),
                     contentAlignment = Alignment.TopCenter

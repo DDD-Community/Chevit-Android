@@ -1,5 +1,6 @@
 package com.dkin.chevit.presentation.home.contents.template.detail
 
+import androidx.compose.runtime.Stable
 import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
@@ -14,6 +15,7 @@ sealed interface TemplateDetailIntent : ViewIntent {
     data class ChangeTemplateOpenSetting(val isOpen: Boolean) : TemplateDetailIntent
 }
 
+@Stable
 sealed interface TemplateDetailState : ViewState {
     object Loading : TemplateDetailState
     data class Available(

@@ -40,7 +40,7 @@ import com.dkin.chevit.presentation.resource.icon.TemplateCheckOn
 @Composable
 fun CategoryListContents(
     modifier: Modifier = Modifier,
-    categories: List<ChecklistState.Category>,
+    categories: List<ChecklistState.Available.Category>,
     onClickCategory: (categoryId: String) -> Unit,
     onLongClickCategory: (categoryId: String, title: String, type: CategoryType) -> Unit = { _, _, _ -> }
 ) {

@@ -11,37 +11,41 @@ sealed interface MyCheckListIntent : ViewIntent {
 }
 
 @Stable
-data class MyCheckListState(
-    val checkList: List<CheckListItem>,
-) : ViewState {
+sealed interface MyCheckListState : ViewState {
+    object Loading : MyCheckListState
 
-    companion object {
-        fun empty(): MyCheckListState = MyCheckListState(listOf())
-        fun dummy(): MyCheckListState = MyCheckListState(
-            listOf(
-                CheckListItem(
-                    id = "0",
-                    title = "파리, 프랑스",
-                    date = "2023.07.16 ~ 2023.07.20",
-                    isProgress = true,
-                    backgroundUrl = "",
-                ),
-                CheckListItem(
-                    id = "1",
-                    title = "오사카, 일본",
-                    date = "2023.07.10 ~ 2023.07.12",
-                    isProgress = true,
-                    backgroundUrl = "",
-                ),
-                CheckListItem(
-                    id = "2",
-                    title = "토론토, 캐나다",
-                    date = "2023.07.01 ~ 2023.07.10",
-                    isProgress = true,
-                    backgroundUrl = "",
-                ),
+    data class Available(
+        val checkList: List<CheckListItem>,
+    ) : MyCheckListState {
+
+        companion object {
+            fun empty(): Available = Available(listOf())
+            fun dummy(): Available = Available(
+                listOf(
+                    CheckListItem(
+                        id = "0",
+                        title = "파리, 프랑스",
+                        date = "2023.07.16 ~ 2023.07.20",
+                        isProgress = true,
+                        backgroundUrl = "",
+                    ),
+                    CheckListItem(
+                        id = "1",
+                        title = "오사카, 일본",
+                        date = "2023.07.10 ~ 2023.07.12",
+                        isProgress = true,
+                        backgroundUrl = "",
+                    ),
+                    CheckListItem(
+                        id = "2",
+                        title = "토론토, 캐나다",
+                        date = "2023.07.01 ~ 2023.07.10",
+                        isProgress = true,
+                        backgroundUrl = "",
+                    ),
+                )
             )
-        )
+        }
     }
 }
 

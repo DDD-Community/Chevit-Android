@@ -19,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -26,6 +27,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.LottieConstants
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.R
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
@@ -69,55 +74,82 @@ fun BringTemplateScreen(
                 .height(4.dp)
                 .background(color = ChevitTheme.colors.grey0)
         )
-        if (state.templateList.isEmpty()) {
-            Box(
-                Modifier
-                    .fillMaxWidth()
-                    .weight(1f), contentAlignment = Alignment.Center
-            ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(
-                        modifier = Modifier
-                            .size(140.dp),
-                        painter = painterResource(id = R.drawable.ic_empty_template),
-                        contentDescription = "",
-                    )
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Text(
-                        text = "아직 생성된 템플릿이 없어요!\n나만의 템플릿을 만들고 추가해 보세요.",
-                        textAlign = TextAlign.Center,
-                        style = ChevitTheme.typhography.bodyLarge.copy(
-                            color = ChevitTheme.colors.textSecondary
+        when (state) {
+            BringTemplateState.Loading -> {
+                Spacer(modifier = Modifier.height(24.dp))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
+                    contentAlignment = Alignment.TopCenter
+                ) {
+                    val composition by rememberLottieComposition(
+                        LottieCompositionSpec.RawRes(
+                            R.raw.loading
                         )
+                    )
+                    LottieAnimation(
+                        modifier = Modifier.size(128.dp),
+                        composition = composition,
+                        iterations = LottieConstants.IterateForever,
                     )
                 }
-
             }
-        } else {
-            Spacer(modifier = Modifier.height(24.dp))
-            Text(
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
-                text = "원하는 템플릿을 선택해 주세요.",
-                style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
-            )
-            Box(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .weight(1f)
-                    .padding(horizontal = 24.dp)
-            ) {
-                val listState = rememberLazyListState()
-                val templateList = state.templateList
-                LazyColumn(
-                    state = listState,
-                    contentPadding = PaddingValues(top = 28.dp, bottom = 14.dp),
-                    verticalArrangement = Arrangement.spacedBy(24.dp)
-                ) {
-                    items(count = templateList.size) {
-                        TemplateItem(
-                            template = templateList[it],
-                            onClick = { id -> onClickTemplate(id) },
-                        )
+
+            is BringTemplateState.Available -> {
+                if (state.templateList.isEmpty()) {
+                    Box(
+                        Modifier
+                            .fillMaxWidth()
+                            .weight(1f), contentAlignment = Alignment.Center
+                    ) {
+                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                            Image(
+                                modifier = Modifier
+                                    .size(140.dp),
+                                painter = painterResource(id = R.drawable.ic_empty_template),
+                                contentDescription = "",
+                            )
+                            Spacer(modifier = Modifier.height(12.dp))
+                            Text(
+                                text = "아직 생성된 템플릿이 없어요!\n나만의 템플릿을 만들고 추가해 보세요.",
+                                textAlign = TextAlign.Center,
+                                style = ChevitTheme.typhography.bodyLarge.copy(
+                                    color = ChevitTheme.colors.textSecondary
+                                )
+                            )
+                        }
+
+                    }
+                } else {
+                    Spacer(modifier = Modifier.height(24.dp))
+                    Text(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 24.dp),
+                        text = "원하는 템플릿을 선택해 주세요.",
+                        style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                    )
+                    Box(
+                        modifier = modifier
+                            .fillMaxWidth()
+                            .weight(1f)
+                            .padding(horizontal = 24.dp)
+                    ) {
+                        val listState = rememberLazyListState()
+                        val templateList = state.templateList
+                        LazyColumn(
+                            state = listState,
+                            contentPadding = PaddingValues(top = 28.dp, bottom = 14.dp),
+                            verticalArrangement = Arrangement.spacedBy(24.dp)
+                        ) {
+                            items(count = templateList.size) {
+                                TemplateItem(
+                                    template = templateList[it],
+                                    onClick = { id -> onClickTemplate(id) },
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -127,7 +159,7 @@ fun BringTemplateScreen(
 
 @Composable
 private fun TemplateItem(
-    template: BringTemplateState.Template,
+    template: BringTemplateState.Available.Template,
     onClick: (id: String) -> Unit,
 ) {
     Box(

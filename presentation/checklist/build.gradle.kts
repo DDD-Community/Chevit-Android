@@ -22,4 +22,5 @@ dependencies {
     implementation(project(":presentation:deeplink"))
     implementation(libs.coil.compose)
     implementation(libs.compose.navigation)
+    implementation(libs.lottie.compose)
 }

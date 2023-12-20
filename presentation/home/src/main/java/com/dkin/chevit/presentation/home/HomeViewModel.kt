@@ -12,7 +12,7 @@ class HomeViewModel @Inject constructor(
     private val getMyChecklistUseCase: GetMyChecklistUseCase
 ) : MVIViewModel<HomeIntent, HomeState, HomeEffect>() {
 
-    override fun createInitialState(): HomeState = HomeState.empty()
+    override fun createInitialState(): HomeState = HomeState.Loading
 
     override suspend fun processIntent(intent: HomeIntent) {
         when (intent) {
@@ -36,17 +36,32 @@ class HomeViewModel @Inject constructor(
     private suspend fun getMyChecklist() {
         val checklist = getMyChecklistUseCase(Unit).get()
         setState {
-            copy(
-                checkList = checklist.list.map {
-                    CheckListItem(
-                        id = it.id,
-                        title = it.schedule.country.name,
-                        date = "${it.schedule.startTime.formatted} ~ ${it.schedule.endTime.formatted}",
-                        isProgress = it.schedule.isProgress,
-                        backgroundUrl = it.schedule.backgroundImageUrl
-                    )
-                }
-            )
+            val currentState = state.value
+            if (currentState is HomeState.Stable) {
+                currentState.copy(
+                    checkList = checklist.list.map {
+                        CheckListItem(
+                            id = it.id,
+                            title = it.schedule.country.name,
+                            date = "${it.schedule.startTime.formatted} ~ ${it.schedule.endTime.formatted}",
+                            isProgress = it.schedule.isProgress,
+                            backgroundUrl = it.schedule.backgroundImageUrl
+                        )
+                    }
+                )
+            } else {
+                HomeState.Stable(
+                    checkList = checklist.list.map {
+                        CheckListItem(
+                            id = it.id,
+                            title = it.schedule.country.name,
+                            date = "${it.schedule.startTime.formatted} ~ ${it.schedule.endTime.formatted}",
+                            isProgress = it.schedule.isProgress,
+                            backgroundUrl = it.schedule.backgroundImageUrl
+                        )
+                    }
+                )
+            }
         }
     }
 }
