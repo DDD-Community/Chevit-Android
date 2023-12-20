@@ -7,7 +7,7 @@ import com.dkin.chevit.core.mvi.ViewState
 import com.dkin.chevit.presentation.home.model.CheckListItem
 
 sealed interface HomeIntent : ViewIntent {
-    object ViewCreated : HomeIntent
+    object Initialize : HomeIntent
     data class NoticeClicked(
         val checked: Boolean
     ) : HomeIntent
@@ -20,7 +20,7 @@ sealed interface HomeState : ViewState {
     data class Stable(
         val userName: String = "",
         val profileUrl: String = "",
-        val checkList: List<CheckListItem>,
+        val checkList: List<CheckListItem> = listOf(),
     ) : HomeState {
         companion object {
             fun empty(): Stable =
