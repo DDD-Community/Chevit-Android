@@ -2,7 +2,9 @@ package com.dkin.chevit.presentation.checklist.detail
 
 import androidx.lifecycle.viewModelScope
 import com.dkin.chevit.core.mvi.MVIViewModel
+import com.dkin.chevit.domain.base.get
 import com.dkin.chevit.domain.base.onComplete
+import com.dkin.chevit.domain.model.CheckItem
 import com.dkin.chevit.domain.usecase.plan.DeleteCheckItemUseCase
 import com.dkin.chevit.domain.usecase.plan.GetCategoryUseCase
 import com.dkin.chevit.domain.usecase.plan.PostNewCheckItemUseCase
@@ -120,17 +122,35 @@ class ChecklistDetailViewModel @Inject constructor(
             checkItem.onComplete(
                 doOnComplete = {},
                 doOnError = {
-                    if (it is NullPointerException) {
-                        //성공했을 때 응답값이 null로 내려옴
-                        getChecklistDetail(currentState.planId, currentState.categoryId)
-                    } else {
-                        setEffect { ChecklistDetailEffect.CheckItemFailed }
-                    }
+                    setEffect { ChecklistDetailEffect.CheckItemFailed }
                 },
                 doOnSuccess = {
-                    getChecklistDetail(currentState.planId, currentState.categoryId)
+                    val res = checkItem.get()
+                    updateCheckItem(res)
                 }
             )
+        }
+    }
+
+    private fun updateCheckItem(item: CheckItem) {
+        setState {
+            val currentState = state.value
+            if (currentState is ChecklistDetailState.Available) {
+                val updated = currentState.detailItems.map {
+                    if (it.id == item.id) ChecklistDetailState.Available.ChecklistDetailItem(
+                        id = item.id,
+                        checked = item.checked,
+                        title = item.content,
+                        memo = item.memo,
+                        count = item.quantity
+                    ) else it
+                }
+                currentState.copy(
+                    detailItems = updated
+                )
+            } else {
+                currentState
+            }
         }
     }
 
