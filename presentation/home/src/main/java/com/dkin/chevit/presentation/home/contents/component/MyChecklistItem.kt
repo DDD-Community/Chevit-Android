@@ -7,6 +7,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -33,65 +35,68 @@ fun MyChecklistItem(
     onLongClickItem: (id: String, title: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Box(modifier = Modifier
-        .fillMaxWidth()
-        .clip(RoundedCornerShape(12.dp))
-        .background(color = ChevitTheme.colors.grey4)
-        .combinedClickable(
-            onClick = { onClickItem(item.id) },
-            onLongClick = { onLongClickItem(item.id, item.title) }
-        )
-    ) {
+    Box {
         AsyncImage(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxSize()
+                .clip(RoundedCornerShape(12.dp)),
             model = ImageRequest.Builder(LocalContext.current)
                 .data(item.backgroundUrl)
                 .crossfade(true)
                 .build(),
             contentDescription = "",
-            contentScale = ContentScale.FillWidth
+            contentScale = ContentScale.FillHeight
         )
-        Column(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(vertical = 12.5.dp, horizontal = 14.5.dp),
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(12.dp))
+            .combinedClickable(
+                onClick = { onClickItem(item.id) },
+                onLongClick = { onLongClickItem(item.id, item.title) }
+            )
         ) {
-            Box(
-                modifier = Modifier
+            Column(
+                modifier = modifier
                     .fillMaxWidth()
-                    .heightIn(min = 26.dp),
-                contentAlignment = Alignment.CenterEnd,
+                    .padding(vertical = 12.5.dp, horizontal = 14.5.dp),
             ) {
-                if (item.isProgress) {
-                    Box(
-                        modifier = Modifier
-                            .background(
-                                color = ChevitTheme.colors.grey10,
-                                shape = RoundedCornerShape(100.dp),
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(min = 26.dp),
+                    contentAlignment = Alignment.CenterEnd,
+                ) {
+                    if (item.isProgress) {
+                        Box(
+                            modifier = Modifier
+                                .background(
+                                    color = ChevitTheme.colors.grey10,
+                                    shape = RoundedCornerShape(100.dp),
+                                )
+                                .border(
+                                    width = 1.dp,
+                                    color = ChevitTheme.colors.grey4,
+                                    shape = RoundedCornerShape(100.dp),
+                                )
+                                .padding(horizontal = 14.dp, vertical = 4.dp),
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            Text(
+                                text = "진행중",
+                                style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.white),
                             )
-                            .border(
-                                width = 1.dp,
-                                color = ChevitTheme.colors.grey4,
-                                shape = RoundedCornerShape(100.dp),
-                            )
-                            .padding(horizontal = 14.dp, vertical = 4.dp),
-                        contentAlignment = Alignment.Center,
-                    ) {
-                        Text(
-                            text = "진행중",
-                            style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.white),
-                        )
+                        }
                     }
                 }
+                Text(
+                    text = item.title,
+                    style = ChevitTheme.typhography.headlineSmall.copy(color = ChevitTheme.colors.white),
+                )
+                Text(
+                    text = item.date,
+                    style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.white),
+                )
             }
-            Text(
-                text = item.title,
-                style = ChevitTheme.typhography.headlineSmall.copy(color = ChevitTheme.colors.white),
-            )
-            Text(
-                text = item.date,
-                style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.white),
-            )
         }
     }
 }
