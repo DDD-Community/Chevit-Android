@@ -4,10 +4,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -21,8 +22,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
-import com.dkin.chevit.presentation.deeplink.DeepLink
-import com.dkin.chevit.presentation.deeplink.DeepLink.Companion
 import com.dkin.chevit.presentation.home.model.Terms
 import com.dkin.chevit.presentation.resource.ChevitBottomsheet
 import com.dkin.chevit.presentation.resource.ChevitDialog
@@ -43,6 +42,7 @@ fun UserTabContents(
         composable("user") {
             UserContents(
                 modifier = modifier,
+                navController = navController,
                 myViewModel = myViewModel,
                 versionName = versionName,
                 myPageState = myPageState,
@@ -92,7 +92,7 @@ fun UserTabContents(
             }
         }
         dialog(
-            route = "chevit://terms",
+            route = "terms",
             dialogProperties = DialogProperties(usePlatformDefaultWidth = false)
         ) {
             val itemList = listOf(Terms.SERVICE, Terms.PRIVACY)
@@ -133,21 +133,26 @@ fun TermsItem(
     item: Terms,
     onClickItem: (item: Terms) -> Unit,
 ) {
-    Column(modifier = Modifier.clickable { onClickItem(item) }) {
-        Spacer(modifier = Modifier.height(16.dp))
+    Column(
+        modifier = Modifier
+            .clickable { onClickItem(item) }
+    ) {
         Text(
-            modifier = Modifier.weight(1f),
+            modifier = Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(top = 16.dp)
+                .padding(bottom = 16.dp),
             text = item.title,
             style = ChevitTheme.typhography.headlineSmall.copy(color = ChevitTheme.colors.textPrimary),
             overflow = TextOverflow.Ellipsis,
             maxLines = 1
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(1.dp)
+                .background(color = ChevitTheme.colors.grey0)
+        )
     }
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(1.dp)
-            .background(color = ChevitTheme.colors.grey0)
-    )
 }
