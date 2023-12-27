@@ -23,7 +23,6 @@ import com.dkin.chevit.presentation.deeplink.DeepLink
 import com.dkin.chevit.presentation.deeplink.DeepLink.OnBoarding
 import com.dkin.chevit.presentation.deeplink.DeepLink.Profile
 import com.dkin.chevit.presentation.deeplink.deepLink
-import com.dkin.chevit.presentation.deeplink.navController
 import com.dkin.chevit.presentation.home.contents.template.TemplateEffect
 import com.dkin.chevit.presentation.home.contents.template.TemplateState
 import com.dkin.chevit.presentation.home.contents.template.TemplateViewModel

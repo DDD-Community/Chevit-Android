@@ -1,6 +1,7 @@
 package com.dkin.chevit.data.repository
 
 import com.dkin.chevit.data.model.request.SignUpPayload
+import com.dkin.chevit.data.model.request.UpdateUserPayload
 import com.dkin.chevit.data.model.response.toUser
 import com.dkin.chevit.data.remote.AuthAPI
 import com.dkin.chevit.domain.model.UserState
@@ -22,6 +23,13 @@ internal class AuthRepositoryImpl @Inject constructor(
         return runCatching {
             val payload = SignUpPayload(name = name)
             authAPI.signUpUser(body = payload).toUser()
+        }.getOrDefault(UserState.Guest)
+    }
+
+    override suspend fun updateUser(name: String?, profileImage: String?): UserState {
+        return runCatching {
+            val payload = UpdateUserPayload(name = name, profileImage = profileImage)
+            authAPI.updateUser(body = payload).toUser()
         }.getOrDefault(UserState.Guest)
     }
 
