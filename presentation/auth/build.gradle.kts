@@ -21,6 +21,8 @@ dependencies {
     implementation(project(":presentation:common"))
     implementation(project(":presentation:deeplink"))
 
+    implementation(libs.androidx.browser)
+
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
     implementation(libs.playservices.auth)

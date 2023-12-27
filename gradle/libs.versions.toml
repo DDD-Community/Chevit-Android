@@ -21,6 +21,7 @@ data-store = "1.0.0"
 material = "1.9.0"
 protobuf-plugin = "0.9.1"
 protobuf = "3.18.0"
+browser = "1.4.0"
 
 # Firebase
 google-services = "4.3.15"
@@ -73,6 +74,7 @@ androidx-recyclerView = { module = "androidx.recyclerview:recyclerview", version
 androidx-startup = { module = "androidx.startup:startup-runtime", version.ref = "startup" }
 androidx-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "data-store" }
+androidx-browser = { module = "androidx.browser:browser", version.ref = "browser" }
 
 #Compose
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }

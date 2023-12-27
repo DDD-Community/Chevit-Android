@@ -8,6 +8,7 @@ apply(from = project.rootProject.file("gradle-scripts/base.gradle"))
 apply(from = project.rootProject.file("gradle-scripts/compose.gradle"))
 apply(from = project.rootProject.file("gradle-scripts/hilt.gradle"))
 apply(from = project.rootProject.file("gradle-scripts/serialization.gradle"))
+apply(from = project.rootProject.file("gradle-scripts/parcelable.gradle"))
 apply(from = project.rootProject.file("gradle-scripts/navigation.gradle"))
 
 android {
@@ -23,4 +24,5 @@ dependencies {
     implementation(libs.compose.navigation)
     implementation(libs.coil.compose)
     implementation(libs.lottie.compose)
+    implementation(libs.androidx.browser)
 }

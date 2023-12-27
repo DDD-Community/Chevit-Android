@@ -8,18 +8,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.deeplink.DeepLink
 import com.dkin.chevit.presentation.deeplink.DeepLink.OnBoarding
+import com.dkin.chevit.presentation.deeplink.DeepLink.Profile
 import com.dkin.chevit.presentation.deeplink.deepLink
+import com.dkin.chevit.presentation.deeplink.navController
 import com.dkin.chevit.presentation.home.contents.template.TemplateEffect
 import com.dkin.chevit.presentation.home.contents.template.TemplateState
 import com.dkin.chevit.presentation.home.contents.template.TemplateViewModel
@@ -27,7 +31,8 @@ import com.dkin.chevit.presentation.home.contents.user.MyPageEffect
 import com.dkin.chevit.presentation.home.contents.user.MyPageEffect.NavigateToNotificationSetting
 import com.dkin.chevit.presentation.home.contents.user.MyPageEffect.NavigateToOnBoarding
 import com.dkin.chevit.presentation.home.contents.user.MyPageEffect.NavigateToProfileSetting
-import com.dkin.chevit.presentation.home.contents.user.MyPageEffect.NavigateToTerms
+import com.dkin.chevit.presentation.home.contents.user.MyPageEffect.ShowTermsBottomSheet
+import com.dkin.chevit.presentation.home.contents.user.MyPageEffect.ShowTermsWebView
 import com.dkin.chevit.presentation.home.contents.user.MyPageIntent
 import com.dkin.chevit.presentation.home.contents.user.MyPageState
 import com.dkin.chevit.presentation.home.contents.user.MyPageViewModel
@@ -102,12 +107,14 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
                 deepLink(DeepLink.AddCategory(planId = effect.planId)) { popUpTo(R.id.home) }
             }
 
-            TemplateEffect.DeleteTemplateFail ->  {
+            TemplateEffect.DeleteTemplateFail -> {
                 Toast.makeText(requireContext(), "템플릿 삭제에 실패하였습니다.", Toast.LENGTH_LONG).show()
             }
+
             TemplateEffect.GetTemplateListFail -> {
                 Toast.makeText(requireContext(), "템플릿 불러오기에 실패하였습니다.", Toast.LENGTH_LONG).show()
             }
+
             TemplateEffect.SaveTemplateFail -> {
                 Toast.makeText(requireContext(), "템플릿 저장에 실패하였습니다.", Toast.LENGTH_LONG).show()
             }
@@ -125,12 +132,20 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
                 startActivity(settingsIntent)
             }
 
-            NavigateToProfileSetting -> deepLink(DeepLink.Profile) { popUpTo(R.id.home) }
-
-            NavigateToTerms -> {}
+            NavigateToProfileSetting -> deepLink(Profile) { popUpTo(R.id.home) }
 
             NavigateToOnBoarding -> deepLink(OnBoarding) {
                 popUpTo(R.id.home) { inclusive = true }
+            }
+
+            is ShowTermsBottomSheet -> {
+                deepLink(DeepLink.Terms)
+            }
+
+            is ShowTermsWebView -> {
+                CustomTabsIntent.Builder()
+                    .build()
+                    .launchUrl(requireContext(), effect.url.toUri())
             }
         }
     }

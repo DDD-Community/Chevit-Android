@@ -1,11 +1,14 @@
 package com.dkin.chevit.presentation.auth.signup
 
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.net.toUri
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import com.dkin.chevit.core.mvi.MVIFragment
 import com.dkin.chevit.presentation.auth.R
 import com.dkin.chevit.presentation.auth.databinding.FragmentSignUpBinding
 import com.dkin.chevit.presentation.auth.signup.SignUpEffect.NavigateToHome
+import com.dkin.chevit.presentation.auth.signup.SignUpEffect.ShowTermsService
 import com.dkin.chevit.presentation.common.ext.setTextIfNewWithSelection
 import com.dkin.chevit.presentation.deeplink.DeepLink.Home
 import com.dkin.chevit.presentation.deeplink.deepLink
@@ -27,8 +30,14 @@ class SignUp : MVIFragment<FragmentSignUpBinding, SignUpIntent, SignUpState, Sig
         cbServiceTerms.setOnCheckedChangeListener { _, isChecked ->
             setIntent(SignUpIntent.TermsServiceClicked(isChecked))
         }
+        tvShowServiceTerms.setOnClickListener {
+            setIntent(SignUpIntent.ShowTermsServiceClicked)
+        }
         cbPrivacyTerms.setOnCheckedChangeListener { _, isChecked ->
             setIntent(SignUpIntent.TermsPrivacyClicked(isChecked))
+        }
+        tvShowPrivacyTerms.setOnClickListener {
+            setIntent(SignUpIntent.ShowTermsPrivacyClicked)
         }
         btnSignUp.setOnClickListener {
             setIntent(SignUpIntent.SubmitClicked)
@@ -47,6 +56,12 @@ class SignUp : MVIFragment<FragmentSignUpBinding, SignUpIntent, SignUpState, Sig
     override fun processEffect(effect: SignUpEffect) = when (effect) {
         NavigateToHome -> deepLink(Home) {
             popUpTo(R.id.auth) { inclusive = true }
+        }
+
+        is ShowTermsService -> {
+            CustomTabsIntent.Builder()
+                .build()
+                .launchUrl(requireContext(), effect.webUrl.toUri())
         }
     }
 }
