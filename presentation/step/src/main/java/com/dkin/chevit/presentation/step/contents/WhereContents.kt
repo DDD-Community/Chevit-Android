@@ -59,6 +59,7 @@ fun WhereContents(
     val stepState by viewModel.state.collectAsState()
     val countryList by viewModel.countryList.collectAsState()
     var input by remember { mutableStateOf("") }
+    var selectedCountry by remember { mutableStateOf("") }
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
     val searchEvent = remember {
@@ -122,17 +123,21 @@ fun WhereContents(
             }
         )
         Spacer(modifier = Modifier.height(11.dp))
+
         Box(modifier = Modifier.weight(1f)) {
-            CountryList(
-                modifier = Modifier.fillMaxWidth(),
-                countryList = countryList,
-                onClick = { country ->
-                    keyboardController?.hide()
-                    focusManager.clearFocus()
-                    input = country.text
-                    viewModel.onClickCountry(country)
-                }
-            )
+            if (selectedCountry != input) {
+                CountryList(
+                    modifier = Modifier.fillMaxWidth(),
+                    countryList = countryList,
+                    onClick = { country ->
+                        keyboardController?.hide()
+                        focusManager.clearFocus()
+                        input = country.text
+                        selectedCountry = input
+                        viewModel.onClickCountry(country)
+                    }
+                )
+            }
         }
         Spacer(modifier = Modifier.height(8.dp))
         ChevitButtonFillLarge(
