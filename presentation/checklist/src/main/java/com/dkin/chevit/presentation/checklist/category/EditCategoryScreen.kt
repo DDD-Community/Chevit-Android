@@ -130,28 +130,29 @@ fun EditCategoryScreen(
             LazyVerticalGrid(
                 modifier = Modifier.weight(1f),
                 columns = GridCells.Fixed(5),
-                horizontalArrangement = Arrangement.spacedBy(22.dp),
                 verticalArrangement = Arrangement.spacedBy(22.dp),
                 contentPadding = PaddingValues(vertical = 18.dp)
             ) {
                 items(categories) { category ->
                     val isSelected = category == selectedCategory
-                    Box(
-                        modifier = Modifier
-                            .size(48.dp)
-                            .background(color = ChevitTheme.colors.grey0, shape = CircleShape)
-                            .border(
-                                width = if (isSelected) 1.dp else (-1).dp,
-                                color = ChevitTheme.colors.grey10,
-                                shape = CircleShape,
+                    Box(modifier = Modifier, contentAlignment = Alignment.Center) {
+                        Box(
+                            modifier = Modifier
+                                .size(48.dp)
+                                .background(color = ChevitTheme.colors.grey0, shape = CircleShape)
+                                .border(
+                                    width = if (isSelected) 1.dp else (-1).dp,
+                                    color = ChevitTheme.colors.grey10,
+                                    shape = CircleShape,
+                                )
+                                .clickable { selectedCategory = category },
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Image(
+                                painter = painterResource(id = category.getCategoryIconResId()),
+                                contentDescription = ""
                             )
-                            .clickable { selectedCategory = category },
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Image(
-                            painter = painterResource(id = category.getCategoryIconResId()),
-                            contentDescription = ""
-                        )
+                        }
                     }
                 }
             }
