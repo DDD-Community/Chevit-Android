@@ -21,7 +21,7 @@ internal object FormattedTimeMapper {
 
     fun mapLocalDate(unixMillis: Long): LocalDateTime? {
         return LocalDateTime.ofInstant(
-            Instant.ofEpochMilli(unixMillis),
+            Instant.ofEpochMilli(unixMillis * 1000),
             TimeZone.getDefault().toZoneId()
         )
     }
