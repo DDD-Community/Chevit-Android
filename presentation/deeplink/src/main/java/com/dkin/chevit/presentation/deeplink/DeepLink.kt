@@ -31,8 +31,8 @@ sealed interface DeepLink {
         override val deepLink: String = "$SCHEME://profile"
     }
 
-    object Step : DeepLink {
-        override val deepLink: String = "$SCHEME://step"
+    data class Step(val nickname: String) : DeepLink {
+        override val deepLink: String = "$SCHEME://step/$nickname"
     }
 
     data class CheckList(val id: String) : DeepLink {

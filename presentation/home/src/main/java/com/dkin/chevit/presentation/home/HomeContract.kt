@@ -63,7 +63,7 @@ sealed interface HomeState : ViewState {
 }
 
 sealed interface HomeEffect : ViewEffect {
-    object NavigateToAddCheckList : HomeEffect
+    data class NavigateToAddCheckList(val nickname: String) : HomeEffect
 
     data class NavigateToCheckList(val id: String) : HomeEffect
 }

@@ -9,6 +9,9 @@
         android:id="@+id/step"
         android:name="com.dkin.chevit.presentation.step.Step"
         android:label="Step">
-        <deepLink app:uri="chevit://step" />
+        <argument
+            android:name="nickname"
+            app:argType="string" />
+        <deepLink app:uri="chevit://step/{nickname}" />
     </fragment>
 </navigation>

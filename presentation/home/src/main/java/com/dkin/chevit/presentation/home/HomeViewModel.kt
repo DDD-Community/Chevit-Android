@@ -1,6 +1,5 @@
 package com.dkin.chevit.presentation.home
 
-import androidx.lifecycle.viewModelScope
 import com.dkin.chevit.core.mvi.MVIViewModel
 import com.dkin.chevit.domain.base.getOrNull
 import com.dkin.chevit.domain.usecase.auth.GetUserUseCase
@@ -8,7 +7,6 @@ import com.dkin.chevit.domain.usecase.plan.GetMyChecklistUseCase
 import com.dkin.chevit.presentation.home.model.CheckListItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -16,6 +14,7 @@ class HomeViewModel @Inject constructor(
     private val getMyChecklistUseCase: GetMyChecklistUseCase,
     private val getUserUseCase: GetUserUseCase,
 ) : MVIViewModel<HomeIntent, HomeState, HomeEffect>() {
+    private var nickname = ""
 
     override fun createInitialState(): HomeState = HomeState.Loading
 
@@ -30,7 +29,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onClickAddChecklist() {
-        setEffect { HomeEffect.NavigateToAddCheckList }
+        setEffect { HomeEffect.NavigateToAddCheckList(nickname) }
     }
 
     fun onClickChecklist(id: String) {
@@ -45,6 +44,7 @@ class HomeViewModel @Inject constructor(
         val checklist = checklistAsync.await().getOrNull()
         setState {
             val currentState = state.value
+            nickname = user?.name ?: ""
             if (currentState is HomeState.Stable) {
                 currentState.copy(
                     userName = user?.name ?: currentState.userName,

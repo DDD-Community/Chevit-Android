@@ -1,9 +1,7 @@
 package com.dkin.chevit.presentation.step
 
-import androidx.lifecycle.viewModelScope
 import com.dkin.chevit.core.mvi.MVIViewModel
 import com.dkin.chevit.domain.base.get
-import com.dkin.chevit.domain.base.getOrNull
 import com.dkin.chevit.domain.base.onComplete
 import com.dkin.chevit.domain.model.Country
 import com.dkin.chevit.domain.usecase.plan.GetTravelKindsListUseCase
@@ -19,8 +17,6 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import java.time.LocalDate
 import javax.inject.Inject
 
@@ -29,7 +25,7 @@ class StepViewModel @Inject constructor(
     private val getTravelKindsListUseCase: GetTravelKindsListUseCase,
     private val getTravelWithListUseCase: GetTravelWithListUseCase,
     private val searchCountryListUseCase: SearchCountryListUseCase,
-    private val postNewScheduleUseCase: PostNewScheduleUseCase
+    private val postNewScheduleUseCase: PostNewScheduleUseCase,
 ) : MVIViewModel<StepIntent, StepState, StepEffect>() {
     private val _countryList: MutableStateFlow<List<CountryModel>> = MutableStateFlow(listOf())
     val countryList = _countryList.asStateFlow()
@@ -40,11 +36,6 @@ class StepViewModel @Inject constructor(
     private val _userNickname: MutableStateFlow<String> = MutableStateFlow("")
     val userNickname = _userNickname.asStateFlow()
 
-    init {
-        //TODO 닉네임 datastore에서 가져오기
-        _userNickname.value = "민지"
-    }
-
     override fun createInitialState(): StepState = StepState.empty()
 
     override suspend fun processIntent(intent: StepIntent) {
@@ -52,6 +43,10 @@ class StepViewModel @Inject constructor(
             is StepIntent.SearchCountry -> searchCountryList(intent.keyword)
             is StepIntent.CreateChecklist -> createCheckList(intent.useRecommend)
         }
+    }
+
+    fun setNickname(name: String) {
+        _userNickname.value = name
     }
 
     fun clearCountry() {

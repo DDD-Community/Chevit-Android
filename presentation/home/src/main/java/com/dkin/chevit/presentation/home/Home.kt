@@ -87,8 +87,9 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
 
     override fun processEffect(effect: HomeEffect) {
         when (effect) {
-            HomeEffect.NavigateToAddCheckList ->
-                deepLink(DeepLink.Step) { popUpTo(R.id.home) }
+            is HomeEffect.NavigateToAddCheckList -> {
+                deepLink(DeepLink.Step(effect.nickname)) { popUpTo(R.id.home) }
+            }
 
             is HomeEffect.NavigateToCheckList -> {
                 deepLink(DeepLink.CheckList(effect.id)) { popUpTo(R.id.home) }

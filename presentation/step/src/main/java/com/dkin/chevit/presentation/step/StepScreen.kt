@@ -142,6 +142,12 @@ fun StepScreen(
 fun CreateCheckListLoading(
     nickname: String
 ) {
+    val text = if (nickname.isBlank()) {
+        "딱맞는 체크리스트를\\n만들고 있어요!"
+    } else {
+        "${nickname}님께\n딱맞는 체크리스트를\n만들고 있어요!"
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -160,7 +166,7 @@ fun CreateCheckListLoading(
             Spacer(Modifier.height(32.dp))
             Text(
                 modifier = Modifier,
-                text = "${nickname}님께\n딱맞는 체크리스트를\n만들고 있어요!",
+                text = text,
                 style = ChevitTheme.typhography.headlineLarge.copy(color = ChevitTheme.colors.textPrimary),
                 textAlign = TextAlign.Center
             )
