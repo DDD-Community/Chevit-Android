@@ -122,32 +122,33 @@ fun TemplateDetailScreen(
                         text = "체크리스트 템플릿",
                         style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
                     )
-                    if (detailState.categories.isNotEmpty()) {
-                        Text(
-                            text = "공개",
-                            style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textSecondary),
-                        )
-                        Spacer(modifier = Modifier.width(6.dp))
-                        Switch(
-                            modifier = Modifier.size(width = 48.dp, height = 24.dp),
-                            checked = detailState.isTemplateOpen,
-                            onCheckedChange = {
-                                viewModel.dispatch(
-                                    TemplateDetailIntent.ChangeTemplateOpenSetting(
-                                        it
-                                    )
-                                )
-                            },
-                            colors = SwitchDefaults.colors(
-                                checkedThumbColor = ChevitTheme.colors.white,
-                                checkedTrackColor = ChevitTheme.colors.blue7,
-                                checkedBorderColor = Color.Unspecified,
-                                uncheckedThumbColor = ChevitTheme.colors.white,
-                                uncheckedTrackColor = ChevitTheme.colors.grey2,
-                                uncheckedBorderColor = Color.Unspecified,
-                            ),
-                        )
-                    }
+                    //템플릿 공개여부 오픈스펙 제외
+//                    if (detailState.categories.isNotEmpty()) {
+//                        Text(
+//                            text = "공개",
+//                            style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textSecondary),
+//                        )
+//                        Spacer(modifier = Modifier.width(6.dp))
+//                        Switch(
+//                            modifier = Modifier.size(width = 48.dp, height = 24.dp),
+//                            checked = detailState.isTemplateOpen,
+//                            onCheckedChange = {
+//                                viewModel.dispatch(
+//                                    TemplateDetailIntent.ChangeTemplateOpenSetting(
+//                                        it
+//                                    )
+//                                )
+//                            },
+//                            colors = SwitchDefaults.colors(
+//                                checkedThumbColor = ChevitTheme.colors.white,
+//                                checkedTrackColor = ChevitTheme.colors.blue7,
+//                                checkedBorderColor = Color.Unspecified,
+//                                uncheckedThumbColor = ChevitTheme.colors.white,
+//                                uncheckedTrackColor = ChevitTheme.colors.grey2,
+//                                uncheckedBorderColor = Color.Unspecified,
+//                            ),
+//                        )
+//                    }
                 }
                 Spacer(modifier = Modifier.height(20.dp))
                 if (detailState.categories.isEmpty()) {
