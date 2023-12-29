@@ -102,14 +102,14 @@ private fun DetailItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 24.dp, vertical = 20.dp),
+            .padding(horizontal = 24.dp, vertical = 20.dp)
+            .clickable { onClickItem(item.id, !item.checked) },
         verticalAlignment = Alignment.Top
     ) {
         Box(
             modifier = Modifier
                 .size(24.dp)
-                .clip(CircleShape)
-                .clickable { onClickItem(item.id, !item.checked) },
+                .clip(CircleShape),
             contentAlignment = Alignment.Center
         ) {
             Image(
@@ -138,15 +138,20 @@ private fun DetailItem(
                 )
             }
         }
-        Spacer(modifier = Modifier.width(12.dp))
-        Icon(
-            modifier = Modifier
-                .size(24.dp)
-                .clickableNoRipple { openMoreSheet(item.id, item.title, item.memo, item.count) },
-            imageVector = ChevitIcon.IconMoreLine,
-            contentDescription = item.title,
-        )
         Spacer(modifier = Modifier.width(6.dp))
+        Box(modifier = Modifier
+            .padding(horizontal = 6.dp)
+            .clickableNoRipple {
+                openMoreSheet(item.id, item.title, item.memo, item.count)
+            }
+        ) {
+            Icon(
+                modifier = Modifier
+                    .size(24.dp),
+                imageVector = ChevitIcon.IconMoreLine,
+                contentDescription = item.title,
+            )
+        }
     }
 }
 
