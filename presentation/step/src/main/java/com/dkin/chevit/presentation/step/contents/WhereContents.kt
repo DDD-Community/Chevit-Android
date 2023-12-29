@@ -43,8 +43,13 @@ import com.dkin.chevit.presentation.resource.icon.IconSearch
 import com.dkin.chevit.presentation.step.StepIntent
 import com.dkin.chevit.presentation.step.StepViewModel
 import com.dkin.chevit.presentation.step.model.CountryModel
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.debounce
 
-@OptIn(ExperimentalComposeUiApi::class)
+@OptIn(ExperimentalComposeUiApi::class, FlowPreview::class)
 @Composable
 fun WhereContents(
     modifier: Modifier,
@@ -56,11 +61,26 @@ fun WhereContents(
     var input by remember { mutableStateOf("") }
     val keyboardController = LocalSoftwareKeyboardController.current
     val focusManager = LocalFocusManager.current
+    val searchEvent = remember {
+        MutableSharedFlow<String>(
+            replay = 0,
+            extraBufferCapacity = 1,
+            onBufferOverflow = BufferOverflow.DROP_OLDEST
+        )
+    }
 
     LaunchedEffect(input) {
         if (input.isNotBlank()) {
-            viewModel.dispatch(StepIntent.SearchCountry(input))
+            searchEvent.tryEmit(input)
         }
+    }
+
+    LaunchedEffect(true) {
+        searchEvent
+            .debounce(300L)
+            .collect { input ->
+                viewModel.dispatch(StepIntent.SearchCountry(input))
+            }
     }
 
     Column(modifier) {
