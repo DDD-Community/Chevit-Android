@@ -4,6 +4,7 @@ import androidx.compose.runtime.Stable
 import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
+import com.dkin.chevit.presentation.home.model.Terms
 
 sealed interface MyPageIntent : ViewIntent {
     object ViewCreated : MyPageIntent
@@ -13,6 +14,8 @@ sealed interface MyPageIntent : ViewIntent {
     object ProfileSettingClicked : MyPageIntent
     object TermsClicked : MyPageIntent
     object NotificationSettingClicked : MyPageIntent
+    @JvmInline
+    value class TermsBottomSheetClicked(val item: Terms) : MyPageIntent
 }
 
 @Stable
@@ -29,9 +32,13 @@ data class MyPageState(
 sealed interface MyPageEffect : ViewEffect {
     object NavigateToProfileSetting : MyPageEffect
 
-    object NavigateToTerms : MyPageEffect
 
     object NavigateToNotificationSetting : MyPageEffect
 
     object NavigateToOnBoarding : MyPageEffect
+
+    object ShowTermsBottomSheet : MyPageEffect
+
+    @JvmInline
+    value class ShowTermsWebView(val url: String) : MyPageEffect
 }

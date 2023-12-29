@@ -3,7 +3,6 @@ package com.dkin.chevit.presentation.auth.signup
 import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
-import com.dkin.chevit.presentation.auth.R
 
 sealed interface SignUpIntent : ViewIntent {
     @JvmInline
@@ -15,8 +14,11 @@ sealed interface SignUpIntent : ViewIntent {
     @JvmInline
     value class TermsServiceClicked(val checked: Boolean) : SignUpIntent
 
+    object ShowTermsServiceClicked : SignUpIntent
+
     @JvmInline
     value class TermsPrivacyClicked(val checked: Boolean) : SignUpIntent
+    object ShowTermsPrivacyClicked : SignUpIntent
 
     object SubmitClicked : SignUpIntent
 }
@@ -34,4 +36,6 @@ data class SignUpState(
 
 sealed interface SignUpEffect : ViewEffect {
     object NavigateToHome : SignUpEffect
+    @JvmInline
+    value class ShowTermsService(val webUrl: String) : SignUpEffect
 }

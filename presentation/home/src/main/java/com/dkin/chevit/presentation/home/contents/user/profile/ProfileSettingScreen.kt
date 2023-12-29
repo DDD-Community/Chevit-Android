@@ -1,6 +1,5 @@
 package com.dkin.chevit.presentation.home.contents.user.profile
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -29,13 +28,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.dkin.chevit.presentation.resource.R
 import com.dkin.chevit.presentation.resource.ChevitButtonFillLarge
 import com.dkin.chevit.presentation.resource.ChevitInput
 import com.dkin.chevit.presentation.resource.ChevitTheme
+import com.dkin.chevit.presentation.resource.R
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconArrowLeftLine
-import com.dkin.chevit.presentation.resource.icon.IconCameraFill
 import com.dkin.chevit.presentation.resource.icon.IconCloseCircleFill
 import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 
@@ -100,7 +98,7 @@ fun ProfileSettingScreen(
                         .weight(1f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Box(modifier = Modifier.clickableNoRipple { onClickImage() }) {
+                    Box(modifier = Modifier.clickableNoRipple { /*onClickImage()*/ }) {
                         Box(
                             modifier = Modifier
                                 .size(128.dp)
@@ -118,21 +116,21 @@ fun ProfileSettingScreen(
                                 error = painterResource(id = R.drawable.ic_profile_empty)
                             )
                         }
-                        Box(
-                            modifier = Modifier
-                                .size(32.dp)
-                                .clip(CircleShape)
-                                .background(color = ChevitTheme.colors.black)
-                                .align(Alignment.BottomEnd)
-                                .padding(4.dp),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(
-                                imageVector = ChevitIcon.IconCameraFill,
-                                contentDescription = "",
-                                tint = ChevitTheme.colors.white
-                            )
-                        }
+//                        Box(
+//                            modifier = Modifier
+//                                .size(32.dp)
+//                                .clip(CircleShape)
+//                                .background(color = ChevitTheme.colors.black)
+//                                .align(Alignment.BottomEnd)
+//                                .padding(4.dp),
+//                            contentAlignment = Alignment.Center
+//                        ) {
+//                            Icon(
+//                                imageVector = ChevitIcon.IconCameraFill,
+//                                contentDescription = "",
+//                                tint = ChevitTheme.colors.white
+//                            )
+//                        }
                     }
 
                     Spacer(modifier = Modifier.height(32.dp))
@@ -181,7 +179,7 @@ fun ProfileSettingScreen(
                         modifier = Modifier.fillMaxWidth(),
                         enabled = isValidInput,
                         onClick = {
-                            viewModel.saveProfile(name, imageUrl)
+                            viewModel.dispatch(ProfileSettingIntent.SaveProfile(name, imageUrl))
                         }
                     ) {
                         Text(text = "저장하기")

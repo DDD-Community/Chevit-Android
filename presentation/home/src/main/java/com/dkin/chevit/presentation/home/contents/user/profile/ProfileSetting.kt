@@ -14,6 +14,8 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.findNavController
 import com.dkin.chevit.core.mvi.MVIComposeFragment
+import com.dkin.chevit.presentation.deeplink.navPopBack
+import com.dkin.chevit.presentation.home.contents.user.profile.ProfileSettingEffect.NavPopBack
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,7 +25,7 @@ class ProfileSetting :
 
     override fun processEffect(effect: ProfileSettingEffect) {
         when (effect) {
-            else -> {}
+            NavPopBack -> navPopBack()
         }
     }
 

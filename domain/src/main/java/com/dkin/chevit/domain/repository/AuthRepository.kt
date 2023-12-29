@@ -7,6 +7,8 @@ interface AuthRepository {
 
     suspend fun signUpUser(name: String): UserState
 
+    suspend fun updateUser(name: String?, profileImage: String?): UserState
+
     suspend fun signOutUser(): UserState
 
     suspend fun withDrawUser(): UserState

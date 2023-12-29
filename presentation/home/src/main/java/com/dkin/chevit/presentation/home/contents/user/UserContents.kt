@@ -37,11 +37,20 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import coil.request.ImageRequest.Builder
+import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.AlarmSwitchClicked
+import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.NotificationSettingClicked
+import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.ProfileSettingClicked
+import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.TermsClicked
 import com.dkin.chevit.presentation.resource.ChevitButtonChip
 import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.R
+import com.dkin.chevit.presentation.resource.R.drawable
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconArrowRight
 import com.dkin.chevit.presentation.resource.icon.IconWarningFill
@@ -50,6 +59,7 @@ import com.dkin.chevit.presentation.resource.util.rememberLifecycleEvent
 @Composable
 fun UserContents(
     modifier: Modifier = Modifier,
+    navController: NavHostController,
     myViewModel: MyPageViewModel,
     versionName: String,
     myPageState: MyPageState,
@@ -88,13 +98,13 @@ fun UserContents(
             ) {
                 AsyncImage(
                     modifier = Modifier.fillMaxWidth(),
-                    model = ImageRequest.Builder(LocalContext.current)
+                    model = Builder(LocalContext.current)
                         .data(myPageState.profileUrl)
                         .crossfade(true)
                         .build(),
                     contentDescription = "",
                     contentScale = ContentScale.Fit,
-                    error = painterResource(id = R.drawable.ic_profile_empty)
+                    error = painterResource(id = drawable.ic_profile_empty)
                 )
             }
             Spacer(modifier = Modifier.height(20.dp))
@@ -106,7 +116,7 @@ fun UserContents(
             )
             Spacer(modifier = Modifier.height(12.dp))
             ChevitButtonChip(
-                onClick = { myViewModel.dispatch(MyPageIntent.ProfileSettingClicked) },
+                onClick = { myViewModel.dispatch(ProfileSettingClicked) },
                 text = "프로필 설정",
             )
             Spacer(modifier = Modifier.height(52.dp))
@@ -136,14 +146,14 @@ fun UserContents(
             }
             AlarmSetting(
                 checked = myPageState.notificationEnabled,
-                onClickItem = { myViewModel.dispatch(MyPageIntent.AlarmSwitchClicked(it)) },
+                onClickItem = { myViewModel.dispatch(AlarmSwitchClicked(it)) },
                 onClickNotificationSetting = {
-                    myViewModel.dispatch(MyPageIntent.NotificationSettingClicked)
+                    myViewModel.dispatch(NotificationSettingClicked)
                 }
             )
             UserItem(
                 title = "이용약관",
-                onClickItem = { myViewModel.dispatch(MyPageIntent.TermsClicked) }
+                onClickItem = {  navController.navigate("terms") }
             ) {
                 Icon(
                     imageVector = ChevitIcon.IconArrowRight,
