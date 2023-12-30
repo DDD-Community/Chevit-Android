@@ -54,7 +54,7 @@ class Splash : MVIFragment<FragmentSplashBinding, SplashIntent, SplashState, Spl
                 popUpTo(R.id.splash) { inclusive = true }
             }
 
-            NavigateToHome -> deepLink(Home) {
+            NavigateToHome -> deepLink(Home()) {
                 popUpTo(R.id.splash) { inclusive = true }
             }
 

@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -31,10 +33,11 @@ fun HomeScreen(
     templateViewModel: TemplateViewModel,
     myPageViewModel: MyPageViewModel,
     versionName: String,
-    openMyCheckList: () -> Unit
+    initialPage: Int,
+    openMyCheckList: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
-    val pagerState = rememberPagerState(initialPage = 0)
+    val pagerState = rememberPagerState(initialPage = initialPage)
     val tabIndex = pagerState.currentPage
     val tabList: List<HomeTab> =
         listOf(HomeTab.HOME, HomeTab.TEMPLATE, HomeTab.USER)

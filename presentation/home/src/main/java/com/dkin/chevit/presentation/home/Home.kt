@@ -49,6 +49,7 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
+        val startIndex = arguments?.getInt("startIndex") ?: 0
         val window = requireActivity().window
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.setDecorFitsSystemWindows(true)
@@ -73,6 +74,7 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
                         requireContext().packageName,
                         0,
                     ).versionName,
+                    initialPage = startIndex,
                     openMyCheckList = { deepLink(DeepLink.MyCheckList) { popUpTo(R.id.home) } }
                 )
             }

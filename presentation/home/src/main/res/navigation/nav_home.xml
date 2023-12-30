@@ -9,7 +9,10 @@
         android:id="@+id/home"
         android:name="com.dkin.chevit.presentation.home.Home"
         android:label="Home">
-        <deepLink app:uri="chevit://home" />
+        <argument
+            android:name="startIndex"
+            app:argType="integer" />
+        <deepLink app:uri="chevit://home/{startIndex}" />
     </fragment>
 
     <fragment

@@ -92,7 +92,7 @@ class SignIn : MVIFragment<FragmentSignInBinding, SignInIntent, SignInState, Sig
     override fun processEffect(effect: SignInEffect) =
         when (effect) {
             NavigateHome ->
-                deepLink(DeepLink.Home) {
+                deepLink(DeepLink.Home()) {
                     popUpTo(R.id.auth) { inclusive = false }
                 }
 

@@ -211,7 +211,7 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                             body = "저장된 템플릿을\n바로 확인하겠습니까?",
                             onClickCancel = { navController.popBackStack() },
                             onClickConfirm = {
-                                deepLink(DeepLink.Home) {
+                                deepLink(DeepLink.Home(1)) {
                                     popUpTo(R.id.checklist) { inclusive = false }
                                 }
                             },
