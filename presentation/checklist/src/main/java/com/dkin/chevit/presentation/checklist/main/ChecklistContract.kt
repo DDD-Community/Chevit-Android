@@ -154,5 +154,6 @@ sealed interface ChecklistEffect : ViewEffect {
     data class NavigateToCategory(val categoryId: String) : ChecklistEffect
     object SaveTemplateFailed : ChecklistEffect
     object DeleteCategoryFailed : ChecklistEffect
+    object GetChecklistFailed : ChecklistEffect
 
 }

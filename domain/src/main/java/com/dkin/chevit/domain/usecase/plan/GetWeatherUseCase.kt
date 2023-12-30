@@ -10,7 +10,8 @@ class GetWeatherUseCase(
     private val planRepository: PlanRepository
 ) : IOUseCase<GetWeatherUseCase.Param, WeatherList>(coroutineDispatcherProvider) {
     override suspend fun execute(params: Param): WeatherList {
-        return planRepository.fetchWeather(params.planId)
+        val result = planRepository.fetchWeather(params.planId)
+        return result
     }
 
     data class Param(val planId: String)

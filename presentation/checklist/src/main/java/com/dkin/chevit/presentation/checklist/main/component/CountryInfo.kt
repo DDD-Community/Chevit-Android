@@ -88,7 +88,7 @@ fun CountryInfo(
                 HorizontalPager(
                     modifier = Modifier,
                     state = pagerState,
-                    pageSpacing = 28.dp,
+                    pageSpacing = 22.dp,
                     pageSize = PageSize.Fixed(50.dp),
                     pageCount = weathers.size
                 ) {
@@ -139,7 +139,8 @@ private fun Weather(weather: ChecklistState.Available.Weather) {
                     width = 1.dp,
                     color = ChevitTheme.colors.blue1,
                     shape = CircleShape,
-                )
+                ),
+            contentAlignment = Alignment.Center
         ) {
             AsyncImage(
                 modifier = Modifier.size(40.dp),

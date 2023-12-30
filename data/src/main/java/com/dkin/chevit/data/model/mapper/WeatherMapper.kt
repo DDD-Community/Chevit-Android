@@ -8,7 +8,7 @@ internal object WeatherMapper : Mapper<WeatherResponse, Weather> {
         Weather(
             formattedTime = FormattedTimeMapper.mapDomain(date.unixMillis, "MM.dd"),
             iconUrl = iconUrl,
-            temperature = temp.formatted,
+            temperature = temp.formatted ?: "",
         )
     }
 }

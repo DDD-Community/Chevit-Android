@@ -87,6 +87,14 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
                     Toast.LENGTH_SHORT,
                 ).show()
             }
+
+            ChecklistEffect.GetChecklistFailed -> {
+                Toast.makeText(
+                    requireContext(),
+                    "체크리스트를 가져오지 못했습니다.",
+                    Toast.LENGTH_SHORT,
+                ).show()
+            }
         }
     }
 
@@ -220,7 +228,7 @@ class Checklist : MVIComposeFragment<ChecklistIntent, ChecklistState, ChecklistE
         val id = arguments?.getString("planId")
         id?.let {
             planId = it
-            viewModel.initChecklist(id)
+            viewModel.getChecklist(id, true)
         } ?: findNavController().popBackStack()
     }
 

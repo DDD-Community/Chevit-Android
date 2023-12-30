@@ -10,18 +10,13 @@ import java.util.TimeZone
 
 internal object FormattedTimeMapper {
     fun mapDomain(unixMillis: Long, format: String = "yyyy.MM.dd"): FormattedTime {
-        val formatted = SimpleDateFormat(format, Locale.getDefault()).format(unixMillis * 1000)
-        return FormattedTime(unixMillis = unixMillis, formatted = formatted)
-    }
-
-    fun mapCreatedTime(unixMillis: Long, format: String = "yyyy.MM.dd"): FormattedTime {
         val formatted = SimpleDateFormat(format, Locale.getDefault()).format(unixMillis)
         return FormattedTime(unixMillis = unixMillis, formatted = formatted)
     }
 
     fun mapLocalDate(unixMillis: Long): LocalDateTime? {
         return LocalDateTime.ofInstant(
-            Instant.ofEpochMilli(unixMillis * 1000),
+            Instant.ofEpochMilli(unixMillis),
             TimeZone.getDefault().toZoneId()
         )
     }

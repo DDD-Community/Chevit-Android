@@ -16,7 +16,7 @@ internal object PlanMapper : Mapper<PlanResponse, Plan> {
             planType = PlanTypeMapper.mapDomain(planTypeResponse),
             owner = OwnerMapper.mapDomain(owner),
             isPublic = isPublic,
-            createdTime = FormattedTimeMapper.mapCreatedTime(createdTime),
+            createdTime = FormattedTimeMapper.mapDomain(createdTime),
             categoryList = categories.map(CategoryMapper::mapDomain),
             schedule = schedule?.let { ScheduleMapper.mapDomain(it) } ?: Schedule(
                 backgroundImageUrl = "",
@@ -34,7 +34,7 @@ internal object PlanMapper : Mapper<PlanResponse, Plan> {
             planType = PlanTypeMapper.mapDomain(planTypeResponse),
             owner = OwnerMapper.mapDomain(owner),
             isPublic = isPublic,
-            createdTime = FormattedTimeMapper.mapCreatedTime(createdTime),
+            createdTime = FormattedTimeMapper.mapDomain(createdTime),
             categoryList = categories.map(CategoryMapper::mapDomain),
             template = template?.let { TemplateMapper.mapDomain(it) } ?: TemplateDetail(
                 colorType = ColorType.DAWN, subject = ""
