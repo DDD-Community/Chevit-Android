@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.Lint
+import com.android.build.api.dsl.LintOptions
 import java.io.FileInputStream
 import java.util.Properties
 
@@ -16,11 +18,13 @@ apply(from = project.rootProject.file("gradle-scripts/firebase.gradle"))
 
 android {
     namespace = "com.dkin.chevit.app"
-
     defaultConfig {
         applicationId = "com.dkin.chevit"
         versionCode = 1
         versionName = "1.0"
+    }
+    lint {
+        disable.add("Instantiatable")
     }
     signingConfigs {
         register("release") {
