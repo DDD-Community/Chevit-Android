@@ -24,7 +24,7 @@ jobs:
       uses: gradle/gradle-build-action@v2
       timeout-minutes: 10
       with:
-        arguments: :app:assembleDebug
+        arguments: :app:assembleRelease
 
     - name: Setup OutputFileName
       run: |
