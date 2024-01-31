@@ -9,3 +9,8 @@ apply(from = project.rootProject.file("gradle-scripts/base.gradle"))
 android {
     namespace = "com.dkin.chevit.core"
 }
+
+dependencies {
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.crashlytics)
+}

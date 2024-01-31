@@ -13,7 +13,12 @@ class TokenInterceptor(
             .newBuilder()
             .headers(
                 chain.request().headers.newBuilder()
-                    .add(HEADER_FIREBASE_TOKEN, "Bearer ${tokenProvider.getFirebaseToken()}")
+                    .apply {
+                        val token = tokenProvider.getFirebaseToken()
+                        if (token.isNotBlank()) {
+                            add(HEADER_FIREBASE_TOKEN, "Bearer ${tokenProvider.getFirebaseToken()}")
+                        }
+                    }
                     .build()
             )
             .build()

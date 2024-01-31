@@ -2,6 +2,7 @@ package com.dkin.chevit.core.base
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart
@@ -29,6 +30,7 @@ abstract class BaseViewModel : ViewModel() {
      */
     protected open fun handleException(exception: Throwable) {
         Timber.e(exception)
+        FirebaseCrashlytics.getInstance().recordException(exception)
     }
 
     /**
