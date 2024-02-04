@@ -91,21 +91,16 @@ class SignIn : MVIFragment<FragmentSignInBinding, SignInIntent, SignInState, Sig
 
     override fun processEffect(effect: SignInEffect) =
         when (effect) {
-            NavigateHome ->
-                deepLink(DeepLink.Home()) {
-                    popUpTo(R.id.auth) { inclusive = false }
-                }
+            NavigateHome -> deepLink(DeepLink.Home()) {
+                popUpTo(R.id.auth) { inclusive = false }
+            }
 
-            is NavigateSignUp ->
-                deepLink(DeepLink.SignUp) {
-                    popUpTo(R.id.auth) { inclusive = false }
-                }
+            is NavigateSignUp -> deepLink(DeepLink.SignUp) {
+                popUpTo(R.id.auth) { inclusive = false }
+            }
 
-            ShowSignInFailed ->
-                Toast.makeText(
-                    requireContext(),
-                    "Sign in failed",
-                    Toast.LENGTH_SHORT,
-                ).show()
+            is ShowSignInFailed -> {
+                Toast.makeText(requireContext(), effect.message, Toast.LENGTH_SHORT).show()
+            }
         }
 }

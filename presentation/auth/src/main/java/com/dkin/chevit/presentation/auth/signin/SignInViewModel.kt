@@ -12,28 +12,32 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SignInViewModel @Inject constructor(
-    private val getUserStateUseCase: GetUserStateUseCase,
-) : MVIViewModel<SignInIntent, SignInState, SignInEffect>() {
-    override fun createInitialState(): SignInState = SignInState
+class SignInViewModel
+    @Inject
+    constructor(
+        private val getUserStateUseCase: GetUserStateUseCase,
+    ) : MVIViewModel<SignInIntent, SignInState, SignInEffect>() {
+        override fun createInitialState(): SignInState = SignInState
 
-    override suspend fun processIntent(intent: SignInIntent) =
-        when (intent) {
-            SignInSuccess -> signIn()
-            is SignInFailure -> showSignInFailed()
+        override suspend fun processIntent(intent: SignInIntent) =
+            when (intent) {
+                SignInSuccess -> signIn()
+                is SignInFailure -> showSignInFailed(intent.throwable)
+            }
+
+        private suspend fun signIn() {
+            val effect =
+                when (getUserStateUseCase(Unit).get()) {
+                    is User -> SignInEffect.NavigateHome
+                    is NotRegister -> SignInEffect.NavigateSignUp
+                    Guest -> SignInEffect.ShowSignInFailed("Sign in failed (Guest)")
+                }
+            setEffect { effect }
         }
 
-    private suspend fun signIn() {
-        val effect =
-            when (getUserStateUseCase(Unit).get()) {
-                is User -> SignInEffect.NavigateHome
-                is NotRegister -> SignInEffect.NavigateSignUp
-                Guest -> SignInEffect.ShowSignInFailed
-            }
-        setEffect { effect }
+        private fun showSignInFailed(throwable: Throwable) {
+            handleException(throwable)
+            val message = throwable.message?.takeIf { it.isNotBlank() } ?: "Sign in failed"
+            setEffect { SignInEffect.ShowSignInFailed(message) }
+        }
     }
-
-    private fun showSignInFailed() {
-        setEffect { SignInEffect.ShowSignInFailed }
-    }
-}

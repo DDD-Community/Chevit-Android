@@ -52,7 +52,6 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
         val startIndex = arguments?.getInt("startIndex") ?: 0
         val window = requireActivity().window
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.setDecorFitsSystemWindows(true)
             window.statusBarColor = Color.TRANSPARENT
         } else {
             window.statusBarColor = Color.TRANSPARENT

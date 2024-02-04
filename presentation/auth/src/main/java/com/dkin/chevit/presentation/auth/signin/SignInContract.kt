@@ -18,5 +18,6 @@ sealed interface SignInEffect : ViewEffect {
 
     object NavigateHome : SignInEffect
 
-    object ShowSignInFailed : SignInEffect
+    @JvmInline
+    value class ShowSignInFailed(val message: String) : SignInEffect
 }

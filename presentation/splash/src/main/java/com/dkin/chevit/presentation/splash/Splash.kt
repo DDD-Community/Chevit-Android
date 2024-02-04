@@ -31,7 +31,6 @@ class Splash : MVIFragment<FragmentSplashBinding, SplashIntent, SplashState, Spl
     ): View? {
         val window = requireActivity().window
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.setDecorFitsSystemWindows(false)
             window.statusBarColor = Color.TRANSPARENT
         } else {
             window.statusBarColor = Color.TRANSPARENT
