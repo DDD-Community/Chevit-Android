@@ -46,7 +46,7 @@ coil = "2.4.0"
 coil-compose = "2.4.0"
 
 # Lottie
-lottie-compose = "6.3.0"
+lottie-compose = "6.5.2"
 
 # Logger
 timber = "5.0.1"
