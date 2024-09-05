@@ -43,7 +43,7 @@ chucker = "4.0.0"
 
 # Coil
 coil = "2.4.0"
-coil-compose = "2.4.0"
+coil-compose = "2.7.0"
 
 # Lottie
 lottie-compose = "6.3.0"
