@@ -33,7 +33,7 @@ firebase-bom = "33.2.0"
 compose-bom = "2024.09.00"
 
 # DI
-hilt = "2.51.1"
+hilt = "2.52"
 dagger = "2.52"
 
 # Network
