@@ -34,7 +34,7 @@ compose-bom = "2024.09.00"
 
 # DI
 hilt = "2.51.1"
-dagger = "2.51.1"
+dagger = "2.52"
 
 # Network
 okhttp = "4.12.0"
