@@ -68,7 +68,7 @@ fun CountryInfo(
             Spacer(modifier = Modifier.height(16.dp))
         }
         if (weathers.isNotEmpty()) {
-            val pagerState = rememberPagerState(initialPage = 0)
+            val pagerState = rememberPagerState(initialPage = 0){ weathers.size }
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -89,8 +89,7 @@ fun CountryInfo(
                     modifier = Modifier,
                     state = pagerState,
                     pageSpacing = 22.dp,
-                    pageSize = PageSize.Fixed(50.dp),
-                    pageCount = weathers.size
+                    pageSize = PageSize.Fixed(50.dp)
                 ) {
                     Weather(weathers[it])
                 }

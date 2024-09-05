@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -219,7 +220,7 @@ fun CountryItem(
         modifier
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
-                indication = rememberRipple(color = ChevitTheme.colors.blue2),
+                indication = ripple(color = ChevitTheme.colors.blue2),
             ) { onClick(country) }
             .padding(horizontal = 12.dp, vertical = 18.dp)
     ) {

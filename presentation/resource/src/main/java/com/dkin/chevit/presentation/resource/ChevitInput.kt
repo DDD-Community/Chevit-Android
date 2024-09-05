@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChevitInput(
     value: String,
@@ -23,6 +22,9 @@ fun ChevitInput(
     trailingIcon: @Composable() (() -> Unit)? = null,
 ) {
     Column {
+        TextFieldDefaults.colors(
+            focusedTextColor = ChevitTheme.colors.grey10,
+        )
         TextField(
             modifier = modifier,
             value = value,
@@ -31,14 +33,10 @@ fun ChevitInput(
             singleLine = true,
             shape = RoundedCornerShape(8.dp),
             textStyle = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey10),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
+            colors = TextFieldDefaults.colors(
                 focusedTextColor = ChevitTheme.colors.grey10,
                 unfocusedTextColor = ChevitTheme.colors.grey10,
                 disabledTextColor = ChevitTheme.colors.grey10,
-                focusedBorderColor = if (isInputError) ChevitTheme.colors.statusError else ChevitTheme.colors.grey4,
-                unfocusedBorderColor = if (isInputError) ChevitTheme.colors.statusError else ChevitTheme.colors.grey4,
-                disabledBorderColor = if (isInputError) ChevitTheme.colors.statusError else ChevitTheme.colors.grey4,
-                errorBorderColor = if (isInputError) ChevitTheme.colors.statusError else ChevitTheme.colors.grey4,
                 focusedLeadingIconColor = ChevitTheme.colors.grey10,
                 unfocusedLeadingIconColor = ChevitTheme.colors.grey4,
                 disabledLeadingIconColor = ChevitTheme.colors.grey4,
