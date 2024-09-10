@@ -5,15 +5,17 @@ import com.dkin.chevit.domain.repository.AuthRepository
 import com.dkin.chevit.domain.repository.NotificationRepository
 import com.dkin.chevit.domain.usecase.notification.GetNotificationInBoxItemUseCase
 import com.dkin.chevit.domain.usecase.notification.GetNotificationSettingUseCase
+import com.dkin.chevit.domain.usecase.notification.SyncFirebaseMessageTokenUseCase
 import com.dkin.chevit.domain.usecase.notification.UpdateNotificationEnableStateUseCase
 import com.dkin.chevit.domain.usecase.notification.UpdatePushTokenUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 internal object NotificationUseCaseModule {
     @Provides
     fun provideGetNotificationSettingUseCase(
@@ -22,6 +24,17 @@ internal object NotificationUseCaseModule {
     ) = GetNotificationSettingUseCase(
         coroutineDispatcherProvider,
         authRepository
+    )
+
+    @Provides
+    fun provideSyncFirebaseMessageTokenUseCase(
+        coroutineDispatcherProvider: CoroutineDispatcherProvider,
+        notificationRepository: NotificationRepository,
+        updatePushTokenUseCase: UpdatePushTokenUseCase
+    ) = SyncFirebaseMessageTokenUseCase(
+        coroutineDispatcherProvider,
+        notificationRepository,
+        updatePushTokenUseCase
     )
 
     @Provides

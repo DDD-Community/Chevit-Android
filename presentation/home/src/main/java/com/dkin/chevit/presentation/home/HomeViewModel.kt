@@ -3,6 +3,7 @@ package com.dkin.chevit.presentation.home
 import com.dkin.chevit.core.mvi.MVIViewModel
 import com.dkin.chevit.domain.base.getOrNull
 import com.dkin.chevit.domain.usecase.auth.GetUserUseCase
+import com.dkin.chevit.domain.usecase.notification.SyncFirebaseMessageTokenUseCase
 import com.dkin.chevit.domain.usecase.plan.GetMyChecklistUseCase
 import com.dkin.chevit.presentation.home.model.CheckListItem
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,6 +14,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getMyChecklistUseCase: GetMyChecklistUseCase,
     private val getUserUseCase: GetUserUseCase,
+    private val syncFirebaseMessageTokenUseCase: SyncFirebaseMessageTokenUseCase
 ) : MVIViewModel<HomeIntent, HomeState, HomeEffect>() {
     private var nickname = ""
 
@@ -21,6 +23,7 @@ class HomeViewModel @Inject constructor(
     override suspend fun processIntent(intent: HomeIntent) {
         when (intent) {
             HomeIntent.Initialize -> {
+                syncFirebaseMessageToken()
                 getHomeTabInfo()
             }
 
@@ -34,6 +37,10 @@ class HomeViewModel @Inject constructor(
 
     fun onClickChecklist(id: String) {
         setEffect { HomeEffect.NavigateToCheckList(id) }
+    }
+
+    private suspend fun syncFirebaseMessageToken() {
+        syncFirebaseMessageTokenUseCase(Unit)
     }
 
     private suspend fun getHomeTabInfo() {

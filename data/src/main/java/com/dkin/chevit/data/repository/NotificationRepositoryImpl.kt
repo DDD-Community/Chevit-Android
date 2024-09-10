@@ -10,11 +10,19 @@ import com.dkin.chevit.domain.base.None
 import com.dkin.chevit.domain.model.Notification
 import com.dkin.chevit.domain.model.NotificationSetting
 import com.dkin.chevit.domain.repository.NotificationRepository
+import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withTimeout
 import javax.inject.Inject
 
 internal class NotificationRepositoryImpl @Inject constructor(
-    private val notificationAPI: NotificationAPI
+    private val notificationAPI: NotificationAPI,
+    private val firebaseMessaging: FirebaseMessaging
 ) : NotificationRepository {
+    override suspend fun getPushToken(): String {
+        return runCatching { firebaseMessaging.token.await() }.getOrDefault("")
+    }
+
     override suspend fun updatePushToken(token: String): None {
         val payload = NotificationSettingUpdatePayload(pushToken = token)
         notificationAPI.updatePushToken(body = payload)
