@@ -20,7 +20,6 @@ class ChevitFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        Timber.d("onNewToken : $token")
         processLifecycleScope.launch {
             val param = UpdatePushTokenUseCase.Param(token)
             updatePushTokenUseCase(param)

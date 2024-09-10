@@ -14,6 +14,8 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":domain"))
 
-    implementation(libs.firebase.messaging.ktx)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.messaging)
+
     implementation(libs.androidx.lifecycle.process)
 }
