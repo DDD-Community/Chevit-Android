@@ -1,18 +1,31 @@
 package com.dkin.chevit.presentation.notification
 
+import android.Manifest.permission.POST_NOTIFICATIONS
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.pm.PackageManager.PERMISSION_GRANTED
+import androidx.core.app.ActivityCompat
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.dkin.chevit.domain.usecase.notification.UpdatePushTokenUseCase
 import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
+import com.dkin.chevit.presentation.resource.R as ChevitResource
 
 @AndroidEntryPoint
 class ChevitFirebaseMessagingService : FirebaseMessagingService() {
     @Inject
     lateinit var updatePushTokenUseCase: UpdatePushTokenUseCase
+
+    @Inject
+    lateinit var notificationManagerCompat: NotificationManagerCompat
 
     private val processLifecycleScope by lazy {
         ProcessLifecycleOwner.get().lifecycleScope
@@ -24,5 +37,46 @@ class ChevitFirebaseMessagingService : FirebaseMessagingService() {
             val param = UpdatePushTokenUseCase.Param(token)
             updatePushTokenUseCase(param)
         }
+    }
+
+    override fun onMessageReceived(message: RemoteMessage) {
+        super.onMessageReceived(message)
+        if (hasNotificationChannel().not()) {
+            createNotificationChannel()
+        }
+        if (ActivityCompat.checkSelfPermission(this, POST_NOTIFICATIONS) == PERMISSION_GRANTED) {
+            notificationManagerCompat.notify(message.hashCode(), message.toNotification())
+        }
+    }
+
+    private fun RemoteMessage.toNotification(): Notification {
+        val notification =
+            NotificationCompat.Builder(this@ChevitFirebaseMessagingService, "default")
+                .setColor(
+                    ContextCompat.getColor(
+                        this@ChevitFirebaseMessagingService,
+                        ChevitResource.color.blue_7
+                    )
+                )
+                .setSmallIcon(com.dkin.chevit.presentation.resource.R.drawable.ic_notification_logo)
+                .setContentTitle(notification?.title)
+                .setContentText(notification?.body)
+                .setAutoCancel(true)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .build()
+        return notification
+    }
+
+    private fun createNotificationChannel() {
+        val channel = NotificationChannel(
+            "default",
+            "알림 기본 채널",
+            NotificationManager.IMPORTANCE_HIGH
+        )
+        notificationManagerCompat.createNotificationChannel(channel)
+    }
+
+    private fun hasNotificationChannel(): Boolean {
+        return notificationManagerCompat.getNotificationChannel("default") != null
     }
 }
