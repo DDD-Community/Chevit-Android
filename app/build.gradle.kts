@@ -19,8 +19,8 @@ android {
     namespace = "com.dkin.chevit.app"
     defaultConfig {
         applicationId = "com.dkin.chevit"
-        versionCode = 6
-        versionName = "1.0.5"
+        versionCode = 7
+        versionName = "1.0.6"
     }
     lint {
         disable.add("Instantiatable")
