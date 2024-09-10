@@ -13,6 +13,7 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":domain"))
+    implementation(project(":presentation:resource"))
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.messaging)
