@@ -1,5 +1,8 @@
 package com.dkin.chevit.presentation.home.contents.user.profile
 
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -8,9 +11,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.resource.ChevitBottomsheet
@@ -18,19 +23,29 @@ import com.dkin.chevit.presentation.resource.ChevitTheme
 
 @Composable
 fun EditProfileImageContents(
-    viewModel: ProfileSettingViewModel,
     onClickBack: () -> Unit,
+    changeImage: (uri: Uri?) -> Unit
 ) {
+    val launcher = rememberLauncherForActivityResult(
+        contract =
+        ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        changeImage(uri)
+        onClickBack()
+    }
+
     ChevitBottomsheet(
         modifier = Modifier.fillMaxSize(),
         onClickBackground = onClickBack
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Column(
-                modifier = Modifier.fillMaxWidth().clickable {
-                    viewModel.openAlbum()
-                    onClickBack()
-                }
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(8.dp))
+                    .clickable {
+                        launcher.launch("image/*")
+                    }
             ) {
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
@@ -48,10 +63,13 @@ fun EditProfileImageContents(
                     .background(color = ChevitTheme.colors.grey0)
             )
             Column(
-                modifier = Modifier.fillMaxWidth().clickable {
-                    viewModel.resetProfileImage()
-                    onClickBack()
-                }
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clip(RoundedCornerShape(8.dp))
+                    .clickable {
+                        changeImage(null)
+                        onClickBack()
+                    }
             ) {
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(

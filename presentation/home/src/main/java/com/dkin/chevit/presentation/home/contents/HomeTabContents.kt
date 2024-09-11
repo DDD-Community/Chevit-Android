@@ -238,7 +238,7 @@ private fun HomeStable(
                             .crossfade(true)
                             .build(),
                         contentDescription = "",
-                        contentScale = ContentScale.Fit,
+                        contentScale = ContentScale.FillBounds,
                         error = painterResource(id = R.drawable.ic_profile_empty)
                     )
                 }

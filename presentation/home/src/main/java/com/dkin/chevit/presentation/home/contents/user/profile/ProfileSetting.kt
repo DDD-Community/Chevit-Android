@@ -4,10 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
@@ -40,10 +46,22 @@ class ProfileSetting :
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 val navController = rememberNavController()
+                val settingState by viewModel.state.collectAsStateWithLifecycle()
+                var imageUrl by remember { mutableStateOf("") }
+
+                LaunchedEffect(settingState) {
+                    val state = settingState
+                    if (state is ProfileSettingState.Stable) {
+                        imageUrl = state.imageUrl
+                    }
+                }
+
                 NavHost(navController = navController, startDestination = "settingMain") {
                     composable("settingMain") {
                         ProfileSettingScreen(
                             viewModel = viewModel,
+                            settingState = settingState,
+                            imageUrl = imageUrl,
                             onClickBack = { findNavController().popBackStack() },
                             onClickImage = { navController.navigate("editImage") }
                         )
@@ -53,8 +71,8 @@ class ProfileSetting :
                         dialogProperties = DialogProperties(usePlatformDefaultWidth = false)
                     ) {
                         EditProfileImageContents(
-                            viewModel = viewModel,
-                            onClickBack = { navController.popBackStack() }
+                            onClickBack = { navController.popBackStack() },
+                            changeImage = { uri -> imageUrl = uri.toString() }
                         )
                     }
                 }

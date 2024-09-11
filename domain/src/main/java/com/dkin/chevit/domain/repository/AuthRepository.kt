@@ -1,5 +1,6 @@
 package com.dkin.chevit.domain.repository
 
+import com.dkin.chevit.domain.model.ProfileImageData
 import com.dkin.chevit.domain.model.UserState
 
 interface AuthRepository {
@@ -12,4 +13,6 @@ interface AuthRepository {
     suspend fun signOutUser(): UserState
 
     suspend fun withDrawUser(): UserState
+
+    suspend fun getProfileUploadURL(fileSize: Int): ProfileImageData
 }

@@ -1,9 +1,11 @@
 package com.dkin.chevit.data.repository
 
+import com.dkin.chevit.data.model.request.ProfileImageUploadPayload
 import com.dkin.chevit.data.model.request.SignUpPayload
 import com.dkin.chevit.data.model.request.UpdateUserPayload
 import com.dkin.chevit.data.model.response.toUser
 import com.dkin.chevit.data.remote.AuthAPI
+import com.dkin.chevit.domain.model.ProfileImageData
 import com.dkin.chevit.domain.model.UserState
 import com.dkin.chevit.domain.repository.AuthRepository
 import com.google.firebase.auth.FirebaseAuth
@@ -42,5 +44,20 @@ internal class AuthRepositoryImpl @Inject constructor(
         authAPI.deleteUser()
         auth.signOut()
         return getUserState()
+    }
+
+    override suspend fun getProfileUploadURL(fileSize: Int): ProfileImageData {
+        val result = authAPI.getProfileUploadURL(
+            ProfileImageUploadPayload(
+                fileSize = fileSize,
+                mimeType = "image/png"
+            )
+        )
+        return ProfileImageData(
+            uploadMethod = result.uploadMethod,
+            uploadURL = result.uploadURL,
+            uploadHeaders = "{\"Content-Type\": [\"image/png\"]}",
+            imageURL = result.imageURL,
+        )
     }
 }

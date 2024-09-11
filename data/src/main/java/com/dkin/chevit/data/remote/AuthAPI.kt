@@ -1,8 +1,10 @@
 package com.dkin.chevit.data.remote
 
+import com.dkin.chevit.data.model.request.ProfileImageUploadPayload
 import com.dkin.chevit.data.model.request.SignUpPayload
 import com.dkin.chevit.data.model.request.UpdateUserPayload
 import com.dkin.chevit.data.model.request.ValidationNicknamePayload
+import com.dkin.chevit.data.model.response.ProfileImageUploadResponse
 import com.dkin.chevit.data.model.response.UserResponse
 import retrofit2.Response
 import retrofit2.http.Body
@@ -29,4 +31,7 @@ internal interface AuthAPI {
 
     @DELETE("deleteUser")
     suspend fun deleteUser(): Response<Unit>
+
+    @POST("getProfileUploadURL")
+    suspend fun getProfileUploadURL(@Body body: ProfileImageUploadPayload): ProfileImageUploadResponse
 }

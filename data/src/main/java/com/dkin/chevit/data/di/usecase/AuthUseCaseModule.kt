@@ -2,6 +2,7 @@ package com.dkin.chevit.data.di.usecase
 
 import com.dkin.chevit.domain.base.CoroutineDispatcherProvider
 import com.dkin.chevit.domain.repository.AuthRepository
+import com.dkin.chevit.domain.usecase.auth.GetProfileImageDataUseCase
 import com.dkin.chevit.domain.usecase.auth.GetUserStateUseCase
 import com.dkin.chevit.domain.usecase.auth.GetUserUseCase
 import com.dkin.chevit.domain.usecase.auth.SignOutUseCase
@@ -66,6 +67,15 @@ internal object AuthUseCaseModule {
         coroutineDispatcherProvider: CoroutineDispatcherProvider,
         authRepository: AuthRepository,
     ) = WithDrawUserUseCase(
+        coroutineDispatcherProvider,
+        authRepository
+    )
+
+    @Provides
+    fun provideGetProfileImageDataUseCase(
+        coroutineDispatcherProvider: CoroutineDispatcherProvider,
+        authRepository: AuthRepository,
+    ) = GetProfileImageDataUseCase(
         coroutineDispatcherProvider,
         authRepository
     )

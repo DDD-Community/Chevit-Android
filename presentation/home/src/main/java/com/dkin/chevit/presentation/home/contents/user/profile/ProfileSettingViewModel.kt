@@ -3,6 +3,7 @@ package com.dkin.chevit.presentation.home.contents.user.profile
 import com.dkin.chevit.core.mvi.MVIViewModel
 import com.dkin.chevit.domain.base.get
 import com.dkin.chevit.domain.base.onComplete
+import com.dkin.chevit.domain.usecase.auth.GetProfileImageDataUseCase
 import com.dkin.chevit.domain.usecase.auth.GetUserUseCase
 import com.dkin.chevit.domain.usecase.auth.UpdateUserUseCase
 import com.dkin.chevit.presentation.home.contents.user.profile.ProfileSettingIntent.Initialize
@@ -14,6 +15,7 @@ import javax.inject.Inject
 class ProfileSettingViewModel @Inject constructor(
     private val getUserUseCase: GetUserUseCase,
     private val updateUserUseCase: UpdateUserUseCase,
+    private val getProfileImageDataUseCase: GetProfileImageDataUseCase
 ) : MVIViewModel<ProfileSettingIntent, ProfileSettingState, ProfileSettingEffect>() {
 
     override fun createInitialState(): ProfileSettingState = ProfileSettingState.Loading
@@ -36,6 +38,7 @@ class ProfileSettingViewModel @Inject constructor(
     }
 
     private suspend fun saveProfile(name: String, imageUrl: String) {
+        //TODO getProfileImageDataUseCase > url 받아와서 updateUser
         val param = UpdateUserUseCase.Params(
             name = name.takeIf { it.isNotBlank() },
             profileImage = imageUrl.takeIf { it.isNotBlank() }
@@ -43,13 +46,5 @@ class ProfileSettingViewModel @Inject constructor(
         updateUserUseCase(param).onComplete {
             setEffect { ProfileSettingEffect.NavPopBack }
         }
-    }
-
-    fun openAlbum() {
-        //TODO
-    }
-
-    fun resetProfileImage() {
-        //TODO
     }
 }
