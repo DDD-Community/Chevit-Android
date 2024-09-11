@@ -37,7 +37,7 @@ fun ChevitButtonChip(
         modifier = modifier,
         enabled = enabled,
         shape = RoundedCornerShape(100.dp),
-        containerColor = Color.Unspecified,
+        containerColor = Color.White,
         contentColor = if (selected) ChevitTheme.colors.blue7 else ChevitTheme.colors.grey4,
         focusedContentColor = ChevitTheme.colors.blue4,
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),

@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChevitTextField(
     value: String,
@@ -45,6 +44,16 @@ fun ChevitTextField(
             focusedPlaceholderColor = ChevitTheme.colors.grey4,
             unfocusedPlaceholderColor = ChevitTheme.colors.grey4,
             disabledPlaceholderColor = ChevitTheme.colors.grey4,
+            disabledContainerColor = ChevitTheme.colors.white,
+            focusedContainerColor = ChevitTheme.colors.white,
+            errorContainerColor = ChevitTheme.colors.white,
+            unfocusedContainerColor = ChevitTheme.colors.white,
+            focusedIndicatorColor = ChevitTheme.colors.grey4,
+            unfocusedIndicatorColor = ChevitTheme.colors.grey4,
+            disabledIndicatorColor = ChevitTheme.colors.grey4,
+            errorIndicatorColor = ChevitTheme.colors.grey4,
+            cursorColor = ChevitTheme.colors.grey4,
+            errorCursorColor = ChevitTheme.colors.grey4,
         ),
         placeholder = placeholder,
         leadingIcon = leadingIcon,
