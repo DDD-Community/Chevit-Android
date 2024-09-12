@@ -7,7 +7,7 @@ import com.dkin.chevit.core.mvi.ViewState
 
 sealed interface ProfileSettingIntent : ViewIntent {
     data object Initialize : ProfileSettingIntent
-    data class SaveProfile(val name: String, val imageUrl: String) : ProfileSettingIntent
+    data class SaveProfile(val name: String, val imageUrl: String, val isNewImage: Boolean) : ProfileSettingIntent
 }
 
 @Stable

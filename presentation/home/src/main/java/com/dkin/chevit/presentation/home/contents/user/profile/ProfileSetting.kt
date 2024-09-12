@@ -48,6 +48,7 @@ class ProfileSetting :
                 val navController = rememberNavController()
                 val settingState by viewModel.state.collectAsStateWithLifecycle()
                 var imageUrl by remember { mutableStateOf("") }
+                var imageChanged by remember { mutableStateOf(false) }
 
                 LaunchedEffect(settingState) {
                     val state = settingState
@@ -62,6 +63,7 @@ class ProfileSetting :
                             viewModel = viewModel,
                             settingState = settingState,
                             imageUrl = imageUrl,
+                            imageChanged = imageChanged,
                             onClickBack = { findNavController().popBackStack() },
                             onClickImage = { navController.navigate("editImage") }
                         )
@@ -72,7 +74,10 @@ class ProfileSetting :
                     ) {
                         EditProfileImageContents(
                             onClickBack = { navController.popBackStack() },
-                            changeImage = { uri -> imageUrl = uri.toString() }
+                            changeImage = { uri ->
+                                imageUrl = uri.toString()
+                                imageChanged = true
+                            }
                         )
                     }
                 }

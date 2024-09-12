@@ -5,15 +5,21 @@ import com.dkin.chevit.data.model.request.SignUpPayload
 import com.dkin.chevit.data.model.request.UpdateUserPayload
 import com.dkin.chevit.data.model.response.toUser
 import com.dkin.chevit.data.remote.AuthAPI
+import com.dkin.chevit.domain.base.None
 import com.dkin.chevit.domain.model.ProfileImageData
 import com.dkin.chevit.domain.model.UserState
 import com.dkin.chevit.domain.repository.AuthRepository
 import com.google.firebase.auth.FirebaseAuth
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 import javax.inject.Inject
 
 internal class AuthRepositoryImpl @Inject constructor(
     private val authAPI: AuthAPI,
-    private val auth: FirebaseAuth
+    private val auth: FirebaseAuth,
 ) : AuthRepository {
     override suspend fun getUserState(): UserState {
         return runCatching {
@@ -50,14 +56,29 @@ internal class AuthRepositoryImpl @Inject constructor(
         val result = authAPI.getProfileUploadURL(
             ProfileImageUploadPayload(
                 fileSize = fileSize,
-                mimeType = "image/png"
+                mimeType = "image/jpeg"
             )
         )
         return ProfileImageData(
             uploadMethod = result.uploadMethod,
             uploadURL = result.uploadURL,
-            uploadHeaders = "{\"Content-Type\": [\"image/png\"]}",
+            uploadHeaders = "{\"Content-Type\": [\"image/jpeg\"]}",
             imageURL = result.imageURL,
         )
+    }
+
+    override suspend fun uploadProfileImage(
+        uploadURL: String,
+        uploadMethod: String,
+        uploadHeaders: String,
+        file: File
+    ): None {
+        val requestFile: RequestBody = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        val uploadFile = MultipartBody.Part.createFormData(
+            "bgImages",
+            "profile.jpg",
+            requestFile
+        )
+       return authAPI.uploadProfileImage(uploadURL, uploadFile)
     }
 }

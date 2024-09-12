@@ -43,6 +43,7 @@ fun ProfileSettingScreen(
     viewModel: ProfileSettingViewModel,
     settingState: ProfileSettingState,
     imageUrl: String,
+    imageChanged: Boolean,
     onClickBack: () -> Unit,
     onClickImage: () -> Unit,
 ) {
@@ -183,7 +184,8 @@ fun ProfileSettingScreen(
                         onClick = {
                             viewModel.dispatch(ProfileSettingIntent.SaveProfile(
                                 name,
-                                imageUrl
+                                imageUrl,
+                                imageChanged
                             ))
                         }
                     ) {
