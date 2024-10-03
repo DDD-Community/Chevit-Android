@@ -18,6 +18,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import retrofit2.Converter
 import retrofit2.Retrofit
+import javax.inject.Named
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -63,8 +64,29 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
+    @Named("Pure")
+    fun providePureOkHttpClient() = OkHttpClient.Builder()
+        .connectTimeout(20, TimeUnit.SECONDS)
+        .readTimeout(20, TimeUnit.SECONDS)
+        .writeTimeout(20, TimeUnit.SECONDS)
+        .build()
+
+    @Provides
+    @Singleton
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
+        @JsonConverter jsonConverter: Converter.Factory,
+    ): Retrofit = Retrofit.Builder()
+        .client(okHttpClient)
+        .addConverterFactory(jsonConverter)
+        .baseUrl(BuildConfig.API_URL)
+        .build()
+
+    @Provides
+    @Singleton
+    @Named("Pure")
+    fun providePureRetrofit(
+        @Named("Pure") okHttpClient: OkHttpClient,
         @JsonConverter jsonConverter: Converter.Factory,
     ): Retrofit = Retrofit.Builder()
         .client(okHttpClient)
