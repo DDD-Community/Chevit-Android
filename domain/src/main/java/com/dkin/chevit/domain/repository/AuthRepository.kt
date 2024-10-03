@@ -18,5 +18,5 @@ interface AuthRepository {
 
     suspend fun getProfileUploadURL(fileSize: Int): ProfileImageData
 
-    suspend fun uploadProfileImage(uploadURL: String, uploadMethod: String, uploadHeaders: String, file: File): None
+    suspend fun uploadProfileImage(uploadURL: String, uploadMethod: String, uploadHeaders: String, file: File)
 }

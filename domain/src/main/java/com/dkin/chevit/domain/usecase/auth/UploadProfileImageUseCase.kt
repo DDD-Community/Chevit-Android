@@ -11,12 +11,13 @@ class UploadProfileImageUseCase(
     private val authRepository: AuthRepository,
 ) : IOUseCase<UploadProfileImageUseCase.Param, None>(coroutineDispatcherProvider = coroutineDispatcherProvider) {
     override suspend fun execute(params: Param): None {
-        return authRepository.uploadProfileImage(
+        authRepository.uploadProfileImage(
             uploadURL = params.uploadURL,
             uploadMethod = params.uploadMethod,
             uploadHeaders = params.uploadHeaders,
             file = params.file
         )
+        return None
     }
 
     data class Param(

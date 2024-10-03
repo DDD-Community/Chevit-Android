@@ -5,6 +5,7 @@ import com.dkin.chevit.data.model.request.SignUpPayload
 import com.dkin.chevit.data.model.request.UpdateUserPayload
 import com.dkin.chevit.data.model.response.toUser
 import com.dkin.chevit.data.remote.AuthAPI
+import com.dkin.chevit.data.remote.ImageAPI
 import com.dkin.chevit.domain.base.None
 import com.dkin.chevit.domain.model.ProfileImageData
 import com.dkin.chevit.domain.model.UserState
@@ -19,6 +20,7 @@ import javax.inject.Inject
 
 internal class AuthRepositoryImpl @Inject constructor(
     private val authAPI: AuthAPI,
+    private val imageAPI: ImageAPI,
     private val auth: FirebaseAuth,
 ) : AuthRepository {
     override suspend fun getUserState(): UserState {
@@ -72,8 +74,8 @@ internal class AuthRepositoryImpl @Inject constructor(
         uploadMethod: String,
         uploadHeaders: String,
         file: File
-    ): None {
+    ) {
         val requestFile: RequestBody = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
-        return authAPI.uploadProfileImage(uploadURL, requestFile)
+        return imageAPI.uploadProfileImage(uploadURL, requestFile)
     }
 }

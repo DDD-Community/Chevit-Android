@@ -40,10 +40,4 @@ internal interface AuthAPI {
 
     @POST("getProfileUploadURL")
     suspend fun getProfileUploadURL(@Body body: ProfileImageUploadPayload): ProfileImageUploadResponse
-
-    @PUT
-    suspend fun uploadProfileImage(
-        @Url url: String,
-        @Body file: RequestBody
-    ): None
 }
