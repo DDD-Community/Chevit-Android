@@ -74,11 +74,6 @@ internal class AuthRepositoryImpl @Inject constructor(
         file: File
     ): None {
         val requestFile: RequestBody = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
-        val uploadFile = MultipartBody.Part.createFormData(
-            "bgImages",
-            "profile.jpg",
-            requestFile
-        )
-       return authAPI.uploadProfileImage(uploadURL, uploadFile)
+        return authAPI.uploadProfileImage(uploadURL, requestFile)
     }
 }

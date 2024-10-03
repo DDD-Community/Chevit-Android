@@ -8,6 +8,7 @@ import com.dkin.chevit.data.model.response.ProfileImageUploadResponse
 import com.dkin.chevit.data.model.response.UserResponse
 import com.dkin.chevit.domain.base.None
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
@@ -40,10 +41,9 @@ internal interface AuthAPI {
     @POST("getProfileUploadURL")
     suspend fun getProfileUploadURL(@Body body: ProfileImageUploadPayload): ProfileImageUploadResponse
 
-    @Multipart
-    @POST
+    @PUT
     suspend fun uploadProfileImage(
         @Url url: String,
-        @Part image: MultipartBody.Part
+        @Body file: RequestBody
     ): None
 }
