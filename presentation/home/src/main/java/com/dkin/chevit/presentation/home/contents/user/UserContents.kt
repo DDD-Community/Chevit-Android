@@ -103,7 +103,7 @@ fun UserContents(
                         .crossfade(true)
                         .build(),
                     contentDescription = "",
-                    contentScale = ContentScale.Fit,
+                    contentScale = ContentScale.FillBounds,
                     error = painterResource(id = drawable.ic_profile_empty)
                 )
             }

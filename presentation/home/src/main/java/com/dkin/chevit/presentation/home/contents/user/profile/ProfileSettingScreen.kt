@@ -1,5 +1,6 @@
 package com.dkin.chevit.presentation.home.contents.user.profile
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,7 +14,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,16 +34,19 @@ import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.R
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconArrowLeftLine
+import com.dkin.chevit.presentation.resource.icon.IconCameraFill
 import com.dkin.chevit.presentation.resource.icon.IconCloseCircleFill
 import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 
 @Composable
 fun ProfileSettingScreen(
     viewModel: ProfileSettingViewModel,
+    settingState: ProfileSettingState,
+    imageUrl: String,
     onClickBack: () -> Unit,
     onClickImage: () -> Unit,
+    onClickSave: (name: String) -> Unit,
 ) {
-    val settingState by viewModel.state.collectAsState()
 
     LaunchedEffect(Unit) {
         viewModel.dispatch(ProfileSettingIntent.Initialize)
@@ -73,7 +76,7 @@ fun ProfileSettingScreen(
         }
         Spacer(modifier = Modifier.height(92.dp))
 
-        when (val state = settingState) {
+        when (settingState) {
             ProfileSettingState.Loading -> {
                 Column(
                     modifier = Modifier
@@ -84,12 +87,12 @@ fun ProfileSettingScreen(
             }
 
             is ProfileSettingState.Stable -> {
-                var name by remember { mutableStateOf(state.name) }
-                var imageUrl by remember { mutableStateOf(state.imageUrl) }
+                var name by remember { mutableStateOf(settingState.name) }
                 var isValidInput by remember { mutableStateOf(false) }
 
                 LaunchedEffect(name) {
-                    isValidInput = name.isNotBlank() && name.length < 8 && imageUrl.isNotBlank()
+                    isValidInput =
+                        name.isNotBlank() && name.length < 8 && settingState.imageUrl.isNotBlank()
                 }
 
                 Column(
@@ -98,7 +101,7 @@ fun ProfileSettingScreen(
                         .weight(1f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Box(modifier = Modifier.clickableNoRipple { /*onClickImage()*/ }) {
+                    Box(modifier = Modifier.clickableNoRipple { onClickImage() }) {
                         Box(
                             modifier = Modifier
                                 .size(128.dp)
@@ -112,25 +115,25 @@ fun ProfileSettingScreen(
                                     .crossfade(true)
                                     .build(),
                                 contentDescription = "",
-                                contentScale = ContentScale.Fit,
+                                contentScale = ContentScale.FillBounds,
                                 error = painterResource(id = R.drawable.ic_profile_empty)
                             )
                         }
-//                        Box(
-//                            modifier = Modifier
-//                                .size(32.dp)
-//                                .clip(CircleShape)
-//                                .background(color = ChevitTheme.colors.black)
-//                                .align(Alignment.BottomEnd)
-//                                .padding(4.dp),
-//                            contentAlignment = Alignment.Center
-//                        ) {
-//                            Icon(
-//                                imageVector = ChevitIcon.IconCameraFill,
-//                                contentDescription = "",
-//                                tint = ChevitTheme.colors.white
-//                            )
-//                        }
+                        Box(
+                            modifier = Modifier
+                                .size(32.dp)
+                                .clip(CircleShape)
+                                .background(color = ChevitTheme.colors.black)
+                                .align(Alignment.BottomEnd)
+                                .padding(4.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                imageVector = ChevitIcon.IconCameraFill,
+                                contentDescription = "",
+                                tint = ChevitTheme.colors.white
+                            )
+                        }
                     }
 
                     Spacer(modifier = Modifier.height(32.dp))
@@ -179,7 +182,7 @@ fun ProfileSettingScreen(
                         modifier = Modifier.fillMaxWidth(),
                         enabled = isValidInput,
                         onClick = {
-                            viewModel.dispatch(ProfileSettingIntent.SaveProfile(name, imageUrl))
+                            onClickSave(name)
                         }
                     ) {
                         Text(text = "저장하기")

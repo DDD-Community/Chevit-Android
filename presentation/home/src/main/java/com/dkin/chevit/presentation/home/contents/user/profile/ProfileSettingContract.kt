@@ -4,15 +4,17 @@ import androidx.compose.runtime.Stable
 import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
+import java.io.File
 
 sealed interface ProfileSettingIntent : ViewIntent {
-    object Initialize : ProfileSettingIntent
+    data object Initialize : ProfileSettingIntent
+    data class SaveImageProfile(val name: String, val imageUrl: String, val file: File) : ProfileSettingIntent
     data class SaveProfile(val name: String, val imageUrl: String) : ProfileSettingIntent
 }
 
 @Stable
 sealed interface ProfileSettingState : ViewState {
-    object Loading : ProfileSettingState
+    data object Loading : ProfileSettingState
     data class Stable(
         val name: String,
         val imageUrl: String
@@ -25,5 +27,5 @@ sealed interface ProfileSettingState : ViewState {
 
 
 sealed interface ProfileSettingEffect : ViewEffect {
-    object NavPopBack : ProfileSettingEffect
+    data object NavPopBack : ProfileSettingEffect
 }

@@ -2,11 +2,13 @@ package com.dkin.chevit.data.di.usecase
 
 import com.dkin.chevit.domain.base.CoroutineDispatcherProvider
 import com.dkin.chevit.domain.repository.AuthRepository
+import com.dkin.chevit.domain.usecase.auth.GetProfileImageDataUseCase
 import com.dkin.chevit.domain.usecase.auth.GetUserStateUseCase
 import com.dkin.chevit.domain.usecase.auth.GetUserUseCase
 import com.dkin.chevit.domain.usecase.auth.SignOutUseCase
 import com.dkin.chevit.domain.usecase.auth.SignUpUserUseCase
 import com.dkin.chevit.domain.usecase.auth.UpdateUserUseCase
+import com.dkin.chevit.domain.usecase.auth.UploadProfileImageUseCase
 import com.dkin.chevit.domain.usecase.auth.WithDrawUserUseCase
 import dagger.Module
 import dagger.Provides
@@ -66,6 +68,24 @@ internal object AuthUseCaseModule {
         coroutineDispatcherProvider: CoroutineDispatcherProvider,
         authRepository: AuthRepository,
     ) = WithDrawUserUseCase(
+        coroutineDispatcherProvider,
+        authRepository
+    )
+
+    @Provides
+    fun provideGetProfileImageDataUseCase(
+        coroutineDispatcherProvider: CoroutineDispatcherProvider,
+        authRepository: AuthRepository,
+    ) = GetProfileImageDataUseCase(
+        coroutineDispatcherProvider,
+        authRepository
+    )
+
+    @Provides
+    fun provideUploadProfileImageUseCase(
+        coroutineDispatcherProvider: CoroutineDispatcherProvider,
+        authRepository: AuthRepository,
+    ) = UploadProfileImageUseCase(
         coroutineDispatcherProvider,
         authRepository
     )
