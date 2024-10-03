@@ -43,9 +43,9 @@ fun ProfileSettingScreen(
     viewModel: ProfileSettingViewModel,
     settingState: ProfileSettingState,
     imageUrl: String,
-    imageChanged: Boolean,
     onClickBack: () -> Unit,
     onClickImage: () -> Unit,
+    onClickSave: (name: String) -> Unit,
 ) {
 
     LaunchedEffect(Unit) {
@@ -182,11 +182,7 @@ fun ProfileSettingScreen(
                         modifier = Modifier.fillMaxWidth(),
                         enabled = isValidInput,
                         onClick = {
-                            viewModel.dispatch(ProfileSettingIntent.SaveProfile(
-                                name,
-                                imageUrl,
-                                imageChanged
-                            ))
+                            onClickSave(name)
                         }
                     ) {
                         Text(text = "저장하기")

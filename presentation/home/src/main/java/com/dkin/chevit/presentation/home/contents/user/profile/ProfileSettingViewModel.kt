@@ -1,6 +1,5 @@
 package com.dkin.chevit.presentation.home.contents.user.profile
 
-import androidx.core.net.toUri
 import androidx.lifecycle.viewModelScope
 import com.dkin.chevit.core.mvi.MVIViewModel
 import com.dkin.chevit.domain.base.get
@@ -11,6 +10,7 @@ import com.dkin.chevit.domain.usecase.auth.UpdateUserUseCase
 import com.dkin.chevit.domain.usecase.auth.UploadProfileImageUseCase
 import com.dkin.chevit.presentation.home.contents.user.profile.ProfileSettingIntent.Initialize
 import com.dkin.chevit.presentation.home.contents.user.profile.ProfileSettingIntent.SaveProfile
+import com.dkin.chevit.presentation.home.contents.user.profile.ProfileSettingIntent.SaveImageProfile
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.io.File
@@ -29,7 +29,8 @@ class ProfileSettingViewModel @Inject constructor(
     override suspend fun processIntent(intent: ProfileSettingIntent) {
         when (intent) {
             Initialize -> getProfile()
-            is SaveProfile -> saveProfile(intent.name, intent.imageUrl, intent.isNewImage)
+            is SaveImageProfile -> saveProfileWithImage(intent.name, intent.imageUrl, intent.file)
+            is SaveProfile -> updateProfile(intent.name, intent.imageUrl)
         }
     }
 
@@ -43,31 +44,24 @@ class ProfileSettingViewModel @Inject constructor(
         }
     }
 
-    private suspend fun saveProfile(name: String, imageUrl: String, isNewImage: Boolean) {
-        if (isNewImage) {
-            kotlin.runCatching {
-                val imageUri = imageUrl.toUri()
-                val filePath = imageUri.path ?: ""
-                val imageFile = File(filePath)
-                getProfileImageDataUseCase(
-                    params = GetProfileImageDataUseCase.Param(
-                        fileSize = imageFile.length().toInt()
-                    )
-                ).onComplete {
-                    saveImageWithUpdateProfile(
-                        name = name,
-                        imageUrl = imageUrl,
-                        newImageUrl = imageURL,
-                        uploadURL = uploadURL,
-                        uploadMethod = uploadMethod,
-                        uploadHeaders = uploadHeaders,
-                        file = imageFile
-                    )
-                }
-            }.onFailure {
-                updateProfile(name, imageUrl)
+    private suspend fun saveProfileWithImage(name: String, imageUrl: String, file: File,) {
+        kotlin.runCatching {
+            getProfileImageDataUseCase(
+                params = GetProfileImageDataUseCase.Param(
+                    fileSize = file.length().toInt()
+                )
+            ).onComplete {
+                saveImageWithUpdateProfile(
+                    name = name,
+                    imageUrl = imageUrl,
+                    newImageUrl = imageURL,
+                    uploadURL = uploadURL,
+                    uploadMethod = uploadMethod,
+                    uploadHeaders = uploadHeaders,
+                    file = file
+                )
             }
-        } else {
+        }.onFailure {
             updateProfile(name, imageUrl)
         }
     }

@@ -4,10 +4,12 @@ import androidx.compose.runtime.Stable
 import com.dkin.chevit.core.mvi.ViewEffect
 import com.dkin.chevit.core.mvi.ViewIntent
 import com.dkin.chevit.core.mvi.ViewState
+import java.io.File
 
 sealed interface ProfileSettingIntent : ViewIntent {
     data object Initialize : ProfileSettingIntent
-    data class SaveProfile(val name: String, val imageUrl: String, val isNewImage: Boolean) : ProfileSettingIntent
+    data class SaveImageProfile(val name: String, val imageUrl: String, val file: File) : ProfileSettingIntent
+    data class SaveProfile(val name: String, val imageUrl: String) : ProfileSettingIntent
 }
 
 @Stable

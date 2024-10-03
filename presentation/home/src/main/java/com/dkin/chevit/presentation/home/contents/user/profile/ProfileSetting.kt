@@ -1,6 +1,7 @@
 package com.dkin.chevit.presentation.home.contents.user.profile
 
 import android.os.Bundle
+import android.os.FileUtils.copy
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.window.DialogProperties
+import androidx.core.content.FileProvider
+import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
@@ -23,6 +26,9 @@ import com.dkin.chevit.core.mvi.MVIComposeFragment
 import com.dkin.chevit.presentation.deeplink.navPopBack
 import com.dkin.chevit.presentation.home.contents.user.profile.ProfileSettingEffect.NavPopBack
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
+import java.io.FileOutputStream
+
 
 @AndroidEntryPoint
 class ProfileSetting :
@@ -63,9 +69,15 @@ class ProfileSetting :
                             viewModel = viewModel,
                             settingState = settingState,
                             imageUrl = imageUrl,
-                            imageChanged = imageChanged,
                             onClickBack = { findNavController().popBackStack() },
-                            onClickImage = { navController.navigate("editImage") }
+                            onClickImage = { navController.navigate("editImage") },
+                            onClickSave = { name ->
+                                saveProfileSetting(
+                                    name,
+                                    imageUrl,
+                                    imageChanged
+                                )
+                            }
                         )
                     }
                     dialog(
@@ -82,6 +94,40 @@ class ProfileSetting :
                     }
                 }
             }
+        }
+    }
+
+    private fun saveProfileSetting(name: String, imageUrl: String, imageChanged: Boolean) {
+        val directory = File(requireContext().cacheDir, "images")
+        directory.mkdirs() // 임시 파일이 위치할 폴더를 생성한다.
+
+        if (imageChanged) {
+            val file = File.createTempFile(
+                "selected_image",
+                ".jpg",
+                directory,
+            ) // 해당 폴더에 임시 파일을 만든다.
+
+            val authority = requireContext().packageName + ".fileprovider" //
+            val outputFileUri = FileProvider.getUriForFile(requireContext(), authority, file)
+
+            FileOutputStream(file).use { outputStream ->
+                requireContext().contentResolver.openInputStream(imageUrl.toUri())
+                    .use { inputStream ->
+                        inputStream?.copyTo(outputStream)
+                        outputStream.flush()
+                    }
+            }
+            viewModel.dispatch(ProfileSettingIntent.SaveImageProfile(
+                name,
+                outputFileUri.toString(),
+                file
+            ))
+        } else {
+            viewModel.dispatch(ProfileSettingIntent.SaveProfile(
+                name,
+                imageUrl,
+            ))
         }
     }
 }
