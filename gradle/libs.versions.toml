@@ -31,7 +31,7 @@ firebase-performance = "1.4.2"
 firebase-bom = "33.3.0"
 
 # Compose
-compose-bom = "2024.09.02"
+compose-bom = "2024.10.00"
 compose-hilt-navigation = "1.2.0"
 
 # DI
