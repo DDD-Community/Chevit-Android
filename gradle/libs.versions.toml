@@ -20,7 +20,7 @@ play-services-auth = "20.6.0"
 data-store = "1.0.0"
 material = "1.9.0"
 protobuf-plugin = "0.9.1"
-protobuf = "3.18.0"
+protobuf = "4.27.5"
 browser = "1.4.0"
 lifecycleProcess = "2.8.6"
 
