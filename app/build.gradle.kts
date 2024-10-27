@@ -5,7 +5,6 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.compose.compiler)
 }
 
 apply(from = project.rootProject.file("gradle-scripts/base.gradle"))
@@ -52,9 +51,6 @@ android {
                 "proguard-rules.pro",
             )
         }
-    }
-    buildFeatures {
-        buildConfig = true
     }
 }
 

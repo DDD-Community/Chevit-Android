@@ -7,14 +7,14 @@ import com.dkin.chevit.core.mvi.ViewState
 import java.io.File
 
 sealed interface ProfileSettingIntent : ViewIntent {
-    data object Initialize : ProfileSettingIntent
+    object Initialize : ProfileSettingIntent
     data class SaveImageProfile(val name: String, val imageUrl: String, val file: File) : ProfileSettingIntent
     data class SaveProfile(val name: String, val imageUrl: String) : ProfileSettingIntent
 }
 
 @Stable
 sealed interface ProfileSettingState : ViewState {
-    data object Loading : ProfileSettingState
+    object Loading : ProfileSettingState
     data class Stable(
         val name: String,
         val imageUrl: String
@@ -27,5 +27,5 @@ sealed interface ProfileSettingState : ViewState {
 
 
 sealed interface ProfileSettingEffect : ViewEffect {
-    data object NavPopBack : ProfileSettingEffect
+    object NavPopBack : ProfileSettingEffect
 }

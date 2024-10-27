@@ -25,3 +25,4 @@ output-metadata.json
 **/output-metadata.json
 *.zip
 *.apk
+.java-version

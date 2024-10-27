@@ -15,6 +15,10 @@ android {
         release {
             debuggable false
             minifyEnabled true
+            consumerProguardFiles 'consumer-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),
+                    'proguard-rules.pro',
+                    'proguard-fixed-r8.pro'
         }
     }
 

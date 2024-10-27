@@ -1,11 +1,11 @@
 package com.dkin.chevit.presentation.home.contents.user.profile
 
 import android.os.Bundle
-import android.os.FileUtils.copy
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -16,7 +16,6 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.FileProvider
 import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
@@ -52,7 +51,7 @@ class ProfileSetting :
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 val navController = rememberNavController()
-                val settingState by viewModel.state.collectAsStateWithLifecycle()
+                val settingState by viewModel.state.collectAsState()
                 var imageUrl by remember { mutableStateOf("") }
                 var imageChanged by remember { mutableStateOf(false) }
 

@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChevitTextField(
     value: String,
@@ -29,10 +30,14 @@ fun ChevitTextField(
         singleLine = maxLines == 1,
         shape = RoundedCornerShape(8.dp),
         textStyle = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey10),
-        colors = TextFieldDefaults.colors(
+        colors = TextFieldDefaults.outlinedTextFieldColors(
             focusedTextColor = ChevitTheme.colors.grey10,
             unfocusedTextColor = ChevitTheme.colors.grey10,
             disabledTextColor = ChevitTheme.colors.grey10,
+            focusedBorderColor = if (isInputError) ChevitTheme.colors.statusError else ChevitTheme.colors.grey4,
+            unfocusedBorderColor = if (isInputError) ChevitTheme.colors.statusError else ChevitTheme.colors.grey4,
+            disabledBorderColor = if (isInputError) ChevitTheme.colors.statusError else ChevitTheme.colors.grey4,
+            errorBorderColor = if (isInputError) ChevitTheme.colors.statusError else ChevitTheme.colors.grey4,
             focusedLeadingIconColor = ChevitTheme.colors.grey10,
             unfocusedLeadingIconColor = ChevitTheme.colors.grey4,
             disabledLeadingIconColor = ChevitTheme.colors.grey4,
@@ -44,16 +49,6 @@ fun ChevitTextField(
             focusedPlaceholderColor = ChevitTheme.colors.grey4,
             unfocusedPlaceholderColor = ChevitTheme.colors.grey4,
             disabledPlaceholderColor = ChevitTheme.colors.grey4,
-            disabledContainerColor = ChevitTheme.colors.white,
-            focusedContainerColor = ChevitTheme.colors.white,
-            errorContainerColor = ChevitTheme.colors.white,
-            unfocusedContainerColor = ChevitTheme.colors.white,
-            focusedIndicatorColor = ChevitTheme.colors.grey4,
-            unfocusedIndicatorColor = ChevitTheme.colors.grey4,
-            disabledIndicatorColor = ChevitTheme.colors.grey4,
-            errorIndicatorColor = ChevitTheme.colors.grey4,
-            cursorColor = ChevitTheme.colors.grey4,
-            errorCursorColor = ChevitTheme.colors.grey4,
         ),
         placeholder = placeholder,
         leadingIcon = leadingIcon,
