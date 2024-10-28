@@ -90,7 +90,7 @@ compose-uiToolingPreview = { group = "androidx.compose.ui", name = "ui-tooling-p
 compose-test-uiManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 compose-test-ui = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 compose-viewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
-compose-hiltViewModel = { group = "androidx.hilt", name = "hilt-navigation-compose", version = "1.0.0" }
+compose-hiltViewModel = { group = "androidx.hilt", name = "hilt-navigation-compose", version = "1.2.0" }
 
 # Firebase
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
