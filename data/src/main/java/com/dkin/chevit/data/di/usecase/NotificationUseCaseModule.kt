@@ -15,7 +15,7 @@ import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.components.SingletonComponent
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ViewModelComponent::class)
 internal object NotificationUseCaseModule {
     @Provides
     fun provideGetNotificationSettingUseCase(

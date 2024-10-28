@@ -5,7 +5,6 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.com.android.application)
     alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.compose.compiler)
 }
 
 apply(from = project.rootProject.file("gradle-scripts/base.gradle"))
@@ -19,8 +18,8 @@ android {
     namespace = "com.dkin.chevit.app"
     defaultConfig {
         applicationId = "com.dkin.chevit"
-        versionCode = 7
-        versionName = "1.0.6"
+        versionCode = 8
+        versionName = "1.0.7"
     }
     lint {
         disable.add("Instantiatable")
@@ -52,9 +51,6 @@ android {
                 "proguard-rules.pro",
             )
         }
-    }
-    buildFeatures {
-        buildConfig = true
     }
 }
 

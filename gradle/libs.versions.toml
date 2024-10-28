@@ -1,60 +1,60 @@
 [versions]
 # Plugin
-ksp = "2.0.20-1.0.25"
-androidGradlePlugin = "8.6.0"
+ksp = "1.9.0-1.0.13"
+androidGradlePlugin = "8.0.2"
 
 # Kotlin
-kotlin = "2.0.20"
-coroutines = "1.9.0"
+kotlin = "1.8.10"
+coroutines = "1.7.3"
 
 # AndroidX
-ktx = "1.13.1"
-lifecycle = "2.8.5"
-appCompat = "1.7.0"
-activity = "1.9.2"
-fragment = "1.8.3"
-recyclerView = "1.3.2"
-navigation = "2.8.0"
+ktx = "1.9.0"
+lifecycle = "2.5.1"
+appCompat = "1.6.1"
+activity = "1.6.1"
+fragment = "1.5.5"
+recyclerView = "1.2.1"
+navigation = "2.5.3"
 startup = "1.1.1"
-play-services-auth = "21.2.0"
-data-store = "1.1.1"
-material = "1.12.0"
-protobuf-plugin = "0.9.4"
-protobuf = "3.25.1"
-browser = "1.8.0"
-lifecycleProcess = "2.8.5"
+play-services-auth = "20.6.0"
+data-store = "1.0.0"
+material = "1.9.0"
+protobuf-plugin = "0.9.1"
+protobuf = "3.18.0"
+browser = "1.4.0"
+lifecycleProcess = "2.8.6"
 
 # Firebase
-google-services = "4.4.2"
-firebase-crashlytics = "3.0.2"
+google-services = "4.3.15"
+firebase-crashlytics = "2.9.4"
 firebase-performance = "1.4.2"
-firebase-bom = "33.3.0"
+firebase-bom = "32.1.1"
 
 # Compose
-compose-bom = "2024.09.02"
-compose-hilt-navigation = "1.2.0"
+compose-bom = "2023.04.01"
 
 # DI
-hilt = "2.52"
-dagger = "2.52"
+hilt = "2.47"
+hiltExt = "1.0.0"
+dagger = "2.47"
 
 # Network
-okhttp = "4.12.0"
-retrofit = "2.11.0"
-chucker = "4.0.0"
+okhttp = "4.11.0"
+retrofit = "2.9.0"
+chucker = "3.5.2"
 
 # Coil
-coil = "2.7.0"
-coil-compose = "2.7.0"
+coil = "2.4.0"
+coil-compose = "2.4.0"
 
 # Lottie
-lottie-compose = "6.5.2"
+lottie-compose = "6.1.0"
 
 # Logger
 timber = "5.0.1"
 junit = "4.13.2"
-androidx-test-ext-junit = "1.2.1"
-espresso-core = "3.6.1"
+androidx-test-ext-junit = "1.1.5"
+espresso-core = "3.5.1"
 
 [libraries]
 #Kotlin
@@ -63,7 +63,7 @@ kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", 
 kotlin-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlin-coroutines-jvm = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core-jvm", version.ref = "coroutines" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
-kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version = "1.7.2" }
+kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version = "1.5.1" }
 
 #AndroidX
 androidx-ktx = { module = "androidx.core:core-ktx", version.ref = "ktx" }
@@ -83,14 +83,14 @@ compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-
 compose-ui = { group = "androidx.compose.ui", name = "ui" }
 compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
-compose-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.3.0" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.1.0-alpha07" }
 compose-uiGraphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose-uiTooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-uiToolingPreview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 compose-test-uiManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 compose-test-ui = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 compose-viewModel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycle" }
-compose-hiltViewModel = { group = "androidx.hilt", name = "hilt-navigation-compose", version = "1.2.0" }
+compose-hiltViewModel = { group = "androidx.hilt", name = "hilt-navigation-compose", version = "1.0.0" }
 
 # Firebase
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
@@ -132,6 +132,8 @@ dagger-compiler = { group = "com.google.dagger", name = "dagger-compiler", versi
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-ext-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltExt" }
+hilt-ext-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltExt" }
 
 #Coil
 coil-core = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
@@ -161,7 +163,6 @@ com-android-library = { id = "com.android.library", version.ref = "androidGradle
 com-android-test = { id = "com.android.test", version.ref = "androidGradlePlugin" }
 com-google-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 com-google-protobuf = { id = "com.google.protobuf", version.ref = "protobuf-plugin" }
-compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics" }

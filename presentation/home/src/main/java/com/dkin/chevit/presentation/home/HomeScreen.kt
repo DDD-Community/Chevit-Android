@@ -37,10 +37,10 @@ fun HomeScreen(
     openMyCheckList: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
+    val pagerState = rememberPagerState(initialPage = initialPage)
+    val tabIndex = pagerState.currentPage
     val tabList: List<HomeTab> =
         listOf(HomeTab.HOME, HomeTab.TEMPLATE, HomeTab.USER)
-    val pagerState = rememberPagerState(initialPage = initialPage) { tabList.size }
-    val tabIndex = pagerState.currentPage
 
     Column(
         modifier = modifier.fillMaxSize(),
@@ -50,6 +50,7 @@ fun HomeScreen(
                 .fillMaxWidth()
                 .weight(1f),
             state = pagerState,
+            pageCount = tabList.size,
             userScrollEnabled = false,
         ) {
             Box(modifier = Modifier.fillMaxSize()) {
@@ -88,3 +89,4 @@ fun HomeScreen(
 enum class HomeTab(val desc: String) {
     HOME("홈"), SEARCH("탐색"), TEMPLATE("템플릿"), USER("내정보")
 }
+

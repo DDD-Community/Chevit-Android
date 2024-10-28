@@ -2,6 +2,9 @@ android {
     buildFeatures {
         compose = true
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.3"
+    }
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
@@ -15,3 +18,4 @@ dependencies {
     implementation(libs.compose.uiToolingPreview)
     implementation(libs.compose.material3)
 }
+

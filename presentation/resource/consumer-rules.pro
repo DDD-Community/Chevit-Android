@@ -1,0 +1,2 @@
+-dontwarn com.dkin.chevit.presentation.resource.R$color
+-dontwarn com.dkin.chevit.presentation.resource.R$drawable

@@ -3,9 +3,9 @@ package com.dkin.chevit.domain.model
 import com.dkin.chevit.domain.base.DomainModel
 
 sealed interface UserState : DomainModel {
-    data object Guest : UserState
+    object Guest : UserState
 
-    data object NotRegister : UserState
+    object NotRegister : UserState
 
     data class User(
         val id: String,

@@ -1,6 +1,6 @@
-apply plugin: "com.google.devtools.ksp"
+apply plugin: "kotlin-kapt"
 
 dependencies {
     implementation libs.dagger.core
-    ksp libs.dagger.compiler
+    kapt libs.dagger.compiler
 }

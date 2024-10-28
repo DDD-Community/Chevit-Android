@@ -48,7 +48,7 @@ fun ChevitCalendar(
     var monthState: YearMonth by remember { mutableStateOf(YearMonth.now()) }
     val daysOfWeek = remember { (DayOfWeek.values().takeLast(1) + DayOfWeek.values().dropLast(1)) }
     val pagerItemCount = 12 //1년만 가능
-    val listState = rememberPagerState(initialPage = pagerItemCount) { pagerItemCount }
+    val listState = rememberPagerState(initialPage = pagerItemCount)
     val weeks = monthState.getWeeks(
         firstDayOfTheWeek = daysOfWeek.first(),
         currentDay = LocalDate.now(),
@@ -89,6 +89,7 @@ fun ChevitCalendar(
         HorizontalPager(
             modifier = Modifier.fillMaxWidth(),
             state = listState,
+            pageCount = pagerItemCount,
             userScrollEnabled = false
         ) {
             Column {

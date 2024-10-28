@@ -11,7 +11,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import com.dkin.chevit.domain.usecase.notification.UpdatePushTokenUseCase
+import com.dkin.chevit.domain.repository.NotificationRepository
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,10 +22,11 @@ import com.dkin.chevit.presentation.resource.R as ChevitResource
 @AndroidEntryPoint
 class ChevitFirebaseMessagingService : FirebaseMessagingService() {
     @Inject
-    lateinit var updatePushTokenUseCase: UpdatePushTokenUseCase
+    lateinit var notificationRepository: NotificationRepository
 
-    @Inject
-    lateinit var notificationManagerCompat: NotificationManagerCompat
+    private val notificationManagerCompat: NotificationManagerCompat by lazy {
+        NotificationManagerCompat.from(this)
+    }
 
     private val processLifecycleScope by lazy {
         ProcessLifecycleOwner.get().lifecycleScope
@@ -34,8 +35,7 @@ class ChevitFirebaseMessagingService : FirebaseMessagingService() {
     override fun onNewToken(token: String) {
         super.onNewToken(token)
         processLifecycleScope.launch {
-            val param = UpdatePushTokenUseCase.Param(token)
-            updatePushTokenUseCase(param)
+            notificationRepository.updatePushToken(token)
         }
     }
 
@@ -58,7 +58,7 @@ class ChevitFirebaseMessagingService : FirebaseMessagingService() {
                         ChevitResource.color.blue_7
                     )
                 )
-                .setSmallIcon(com.dkin.chevit.presentation.resource.R.drawable.ic_notification_logo)
+                .setSmallIcon(ChevitResource.drawable.ic_notification_logo)
                 .setContentTitle(notification?.title)
                 .setContentText(notification?.body)
                 .setAutoCancel(true)
