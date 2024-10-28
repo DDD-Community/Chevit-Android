@@ -41,7 +41,6 @@ import com.dkin.chevit.presentation.resource.ChevitTheme
 import com.dkin.chevit.presentation.resource.R
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconArrowLeftLine
-import com.dkin.chevit.presentation.resource.icon.IconCheckboxCheckedBlue
 import com.dkin.chevit.presentation.resource.icon.IconCheckboxUncheckedGrey
 import com.dkin.chevit.presentation.resource.icon.IconCloseCircleFill
 import com.dkin.chevit.presentation.resource.icon.IconMoreLine
@@ -143,7 +142,7 @@ private fun TemplateCategoryDetailAvailable(
                     modifier = Modifier.align(Alignment.Center),
                     text = categoryDetail.categoryName,
                     textAlign = TextAlign.Center,
-                    style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
+                    style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
                 )
             }
             Spacer(modifier = Modifier.height(20.dp))
@@ -163,7 +162,7 @@ private fun TemplateCategoryDetailAvailable(
                         Text(
                             modifier = Modifier,
                             text = "찾고싶은 아이템을 검색해 보세요.",
-                            style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
+                            style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
                         )
                     },
                     leadingIcon = {
@@ -211,7 +210,7 @@ private fun TemplateCategoryDetailAvailable(
                         Text(
                             text = "체크리스트 항목이 없어요.\n챙겨야 할 체크리스트를 추가해 보아요!",
                             textAlign = TextAlign.Center,
-                            style = ChevitTheme.typhography.bodyLarge.copy(
+                            style = ChevitTheme.typography.bodyLarge.copy(
                                 color = ChevitTheme.colors.textSecondary
                             )
                         )
@@ -269,7 +268,7 @@ private fun DetailItem(
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = if (item.count > 1) "${item.title} ${item.count}" else item.title,
-                    style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textPrimary),
+                    style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.textPrimary),
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1
                 )
@@ -278,7 +277,7 @@ private fun DetailItem(
                     Text(
                         modifier = Modifier.fillMaxWidth(),
                         text = item.memo,
-                        style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.grey5),
+                        style = ChevitTheme.typography.bodySmall.copy(color = ChevitTheme.colors.grey5),
                         overflow = TextOverflow.Ellipsis,
                         maxLines = 1
                     )

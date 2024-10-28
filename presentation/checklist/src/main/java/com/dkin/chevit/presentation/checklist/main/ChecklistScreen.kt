@@ -11,11 +11,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -26,7 +23,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
@@ -153,7 +149,7 @@ private fun ChecklistAvailable(
                 )
                 Text(
                     text = checklistState.date,
-                    style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textCaption),
+                    style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.textCaption),
                 )
                 Spacer(modifier = Modifier.height(16.dp))
                 if (showCountryInfo) {
@@ -205,13 +201,13 @@ private fun ChecklistAvailable(
                     Text(
                         modifier = Modifier.weight(1f),
                         text = "체크리스트 템플릿",
-                        style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                        style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
                     )
                     //템플릿 공개여부 오픈스펙 제외
 //                    if (checklistState.categories.isNotEmpty()) {
 //                        Text(
 //                            text = "공개",
-//                            style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textSecondary),
+//                            style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.textSecondary),
 //                        )
 //                        Spacer(modifier = Modifier.width(6.dp))
 //                        Switch(

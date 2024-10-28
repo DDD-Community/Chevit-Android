@@ -65,7 +65,7 @@ fun BringTemplateScreen(
                 modifier = Modifier.align(Alignment.Center),
                 text = "내 템플릿",
                 textAlign = TextAlign.Center,
-                style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
+                style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
             )
         }
         Box(
@@ -114,7 +114,7 @@ fun BringTemplateScreen(
                             Text(
                                 text = "아직 생성된 템플릿이 없어요!\n나만의 템플릿을 만들고 추가해 보세요.",
                                 textAlign = TextAlign.Center,
-                                style = ChevitTheme.typhography.bodyLarge.copy(
+                                style = ChevitTheme.typography.bodyLarge.copy(
                                     color = ChevitTheme.colors.textSecondary
                                 )
                             )
@@ -128,7 +128,7 @@ fun BringTemplateScreen(
                             .fillMaxWidth()
                             .padding(horizontal = 24.dp),
                         text = "원하는 템플릿을 선택해 주세요.",
-                        style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                        style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
                     )
                     Box(
                         modifier = modifier
@@ -178,7 +178,7 @@ private fun TemplateItem(
         ) {
             Text(
                 text = template.title,
-                style = ChevitTheme.typhography.headlineSmall.copy(
+                style = ChevitTheme.typography.headlineSmall.copy(
                     color = ChevitTheme.colors.white
                 ),
                 maxLines = 1,
@@ -186,7 +186,7 @@ private fun TemplateItem(
             )
             Text(
                 text = "생성일:${template.date}",
-                style = ChevitTheme.typhography.bodySmall.copy(
+                style = ChevitTheme.typography.bodySmall.copy(
                     color = ChevitTheme.colors.white
                 ),
                 maxLines = 1,

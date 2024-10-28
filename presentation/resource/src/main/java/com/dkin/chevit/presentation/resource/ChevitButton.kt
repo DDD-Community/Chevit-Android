@@ -41,7 +41,7 @@ fun ChevitButtonChip(
         contentColor = if (selected) ChevitTheme.colors.blue7 else ChevitTheme.colors.grey4,
         focusedContentColor = ChevitTheme.colors.blue4,
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
-        textStyle = ChevitTheme.typhography.bodyLarge,
+        textStyle = ChevitTheme.typography.bodyLarge,
         borderColor = if (selected) ChevitTheme.colors.blue7 else ChevitTheme.colors.grey4,
         borderWidth = if (selected) 2.dp else 1.dp
     ) {
@@ -67,7 +67,7 @@ fun ChevitButtonFillLarge(
         disabledContainerColor = ChevitTheme.colors.blue1,
         disabledContentColor = ChevitTheme.colors.white,
         contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
-        textStyle = ChevitTheme.typhography.headlineMedium,
+        textStyle = ChevitTheme.typography.headlineMedium,
         content = content,
     )
 }
@@ -90,7 +90,7 @@ fun ChevitButtonFillMedium(
         disabledContainerColor = ChevitTheme.colors.blue1,
         disabledContentColor = ChevitTheme.colors.white,
         contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
-        textStyle = ChevitTheme.typhography.headlineSmall,
+        textStyle = ChevitTheme.typography.headlineSmall,
         content = content,
     )
 }
@@ -117,7 +117,7 @@ fun ChevitButtonLineLarge(
         borderColor = if (selected) ChevitTheme.colors.blue8 else ChevitTheme.colors.blue6,
         pressedBorderColor = ChevitTheme.colors.blue8,
         contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
-        textStyle = ChevitTheme.typhography.headlineMedium,
+        textStyle = ChevitTheme.typography.headlineMedium,
         content = content,
     )
 }
@@ -144,7 +144,7 @@ fun ChevitButtonLineMedium(
         borderColor = if (selected) ChevitTheme.colors.blue7 else ChevitTheme.colors.blue6,
         pressedBorderColor = ChevitTheme.colors.blue7,
         contentPadding = PaddingValues(horizontal = 32.dp, vertical = 16.dp),
-        textStyle = ChevitTheme.typhography.headlineSmall,
+        textStyle = ChevitTheme.typography.headlineSmall,
         content = content,
     )
 }

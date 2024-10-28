@@ -2,7 +2,6 @@ package com.dkin.chevit.presentation.resource
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -28,7 +27,7 @@ fun ChevitTextField(
         maxLines = maxLines,
         singleLine = maxLines == 1,
         shape = RoundedCornerShape(8.dp),
-        textStyle = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey10),
+        textStyle = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.grey10),
         colors = TextFieldDefaults.colors(
             focusedTextColor = ChevitTheme.colors.grey10,
             unfocusedTextColor = ChevitTheme.colors.grey10,

@@ -98,13 +98,13 @@ private fun HomeLoading(
                 ) {
                     Text(
                         text = "",
-                        style = ChevitTheme.typhography.headlineLarge.copy(
+                        style = ChevitTheme.typography.headlineLarge.copy(
                             color = ChevitTheme.colors.textPrimary,
                         ),
                     )
                     Text(
                         text = "여행 준비를 시작해볼까요?",
-                        style = ChevitTheme.typhography.headlineMedium.copy(
+                        style = ChevitTheme.typography.headlineMedium.copy(
                             color = ChevitTheme.colors.textPrimary,
                         ),
                     )
@@ -123,7 +123,7 @@ private fun HomeLoading(
             Spacer(Modifier.height(32.dp))
             Text(
                 text = "준비물을 빼먹지 않도록,\n채빗이 필수 아이템을 추천해 드려요.",
-                style = ChevitTheme.typhography.bodyLarge.copy(
+                style = ChevitTheme.typography.bodyLarge.copy(
                     color = ChevitTheme.colors.textPrimary,
                 ),
             )
@@ -165,7 +165,7 @@ private fun HomeLoading(
             ) {
             Text(
                 text = "나의 체크리스트",
-                style = ChevitTheme.typhography.headlineMedium.copy(
+                style = ChevitTheme.typography.headlineMedium.copy(
                     color = ChevitTheme.colors.textPrimary,
                 ),
             )
@@ -215,13 +215,13 @@ private fun HomeStable(
                 ) {
                     Text(
                         text = "${userName}님!",
-                        style = ChevitTheme.typhography.headlineLarge.copy(
+                        style = ChevitTheme.typography.headlineLarge.copy(
                             color = ChevitTheme.colors.textPrimary,
                         ),
                     )
                     Text(
                         text = "여행 준비를 시작해볼까요?",
-                        style = ChevitTheme.typhography.headlineMedium.copy(
+                        style = ChevitTheme.typography.headlineMedium.copy(
                             color = ChevitTheme.colors.textPrimary,
                         ),
                     )
@@ -246,7 +246,7 @@ private fun HomeStable(
             Spacer(Modifier.height(32.dp))
             Text(
                 text = "준비물을 빼먹지 않도록,\n채빗이 필수 아이템을 추천해 드려요.",
-                style = ChevitTheme.typhography.bodyLarge.copy(
+                style = ChevitTheme.typography.bodyLarge.copy(
                     color = ChevitTheme.colors.textPrimary,
                 ),
             )
@@ -287,7 +287,7 @@ private fun HomeStable(
         ) {
             Text(
                 text = "나의 체크리스트",
-                style = ChevitTheme.typhography.headlineMedium.copy(
+                style = ChevitTheme.typography.headlineMedium.copy(
                     color = ChevitTheme.colors.textPrimary,
                 ),
             )

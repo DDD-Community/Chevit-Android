@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 @Stable
-data class ChevitTyphography(
+data class ChevitTypography(
     val displayLarge: TextStyle = TextStyle(
         fontWeight = FontWeight.Bold,
         lineHeight = 52.sp,

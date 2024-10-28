@@ -44,7 +44,7 @@ fun ChecklistMoreBottomSheet(
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
                     text = title,
-                    style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                    style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1
                 )
@@ -56,7 +56,7 @@ fun ChecklistMoreBottomSheet(
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = "삭제하기",
-                    style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textPrimary),
+                    style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.textPrimary),
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1
                 )

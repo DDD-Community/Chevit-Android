@@ -101,7 +101,7 @@ fun TemplateDetailContents(
                         modifier = Modifier.align(Alignment.Center),
                         text = templateDetail.templateName,
                         textAlign = TextAlign.Center,
-                        style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
+                        style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
                     )
                 }
                 Box(
@@ -127,7 +127,7 @@ fun TemplateDetailContents(
                             Text(
                                 text = "작성한 카테고리가 없어요!\n카테고리를 추가하여 쉽게 관리해 보세요.",
                                 textAlign = TextAlign.Center,
-                                style = ChevitTheme.typhography.bodyLarge.copy(
+                                style = ChevitTheme.typography.bodyLarge.copy(
                                     color = ChevitTheme.colors.textSecondary
                                 )
                             )
@@ -140,7 +140,7 @@ fun TemplateDetailContents(
                             .fillMaxWidth()
                             .padding(horizontal = 24.dp),
                         text = "체크리스트 템플릿",
-                        style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                        style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
                     )
                     Spacer(modifier = Modifier.height(20.dp))
                     CategoryListContents(

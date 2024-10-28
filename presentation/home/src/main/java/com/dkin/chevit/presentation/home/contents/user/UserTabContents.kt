@@ -144,7 +144,7 @@ fun TermsItem(
                 .padding(top = 16.dp)
                 .padding(bottom = 16.dp),
             text = item.title,
-            style = ChevitTheme.typhography.headlineSmall.copy(color = ChevitTheme.colors.textPrimary),
+            style = ChevitTheme.typography.headlineSmall.copy(color = ChevitTheme.colors.textPrimary),
             overflow = TextOverflow.Ellipsis,
             maxLines = 1
         )

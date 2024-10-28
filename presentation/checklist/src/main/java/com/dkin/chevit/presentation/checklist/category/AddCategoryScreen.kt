@@ -73,12 +73,12 @@ fun AddCategoryScreen(
             Spacer(modifier = Modifier.height(25.dp))
             Text(
                 text = "새 카테고리",
-                style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
             )
             Spacer(modifier = Modifier.height(18.dp))
             Text(
                 text = "카테고리 제목을 입력해 주세요.",
-                style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.grey6),
+                style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.grey6),
             )
             Spacer(modifier = Modifier.height(8.dp))
             ChevitTextField(
@@ -92,7 +92,7 @@ fun AddCategoryScreen(
                     Text(
                         modifier = Modifier,
                         text = "ex. 기내 아이템",
-                        style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
+                        style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
                     )
                 },
                 trailingIcon = {
@@ -116,13 +116,13 @@ fun AddCategoryScreen(
                         .fillMaxWidth()
                         .padding(horizontal = 8.dp),
                     text = "최대 8글자까지 입력해주세요.",
-                    style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.statusError),
+                    style = ChevitTheme.typography.bodySmall.copy(color = ChevitTheme.colors.statusError),
                 )
             }
             Spacer(modifier = Modifier.height(32.dp))
             Text(
                 text = "아이콘",
-                style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
             )
             LazyVerticalGrid(
                 modifier = Modifier.weight(1f),
@@ -188,7 +188,7 @@ private fun TopBar(modifier: Modifier, onClickBack: () -> Unit) {
             modifier = Modifier.align(Alignment.Center),
             text = "카테고리 추가하기",
             textAlign = TextAlign.Center,
-            style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
+            style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
         )
     }
 }

@@ -48,9 +48,9 @@ private fun SortItem(type: SortType, selected: Boolean, onClickType: (type: Sort
                 modifier = Modifier.weight(1f),
                 text = type.title,
                 style = if (selected) {
-                    ChevitTheme.typhography.headlineSmall.copy(color = ChevitTheme.colors.textPrimary)
+                    ChevitTheme.typography.headlineSmall.copy(color = ChevitTheme.colors.textPrimary)
                 } else {
-                    ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textCaption)
+                    ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.textCaption)
                 },
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1

@@ -28,7 +28,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -84,7 +83,7 @@ fun TemplateListContents(
             Text(
                 modifier = Modifier.weight(1f),
                 text = "내 템플릿",
-                style = ChevitTheme.typhography.headlineMedium.copy(
+                style = ChevitTheme.typography.headlineMedium.copy(
                     color = ChevitTheme.colors.textPrimary,
                 ),
             )
@@ -218,7 +217,7 @@ private fun TemplateEmpty(
             Text(
                 text = "생성된 항목이 없어요\n나만의 템플릿을 만들어 보아요!",
                 textAlign = TextAlign.Center,
-                style = ChevitTheme.typhography.bodyLarge.copy(
+                style = ChevitTheme.typography.bodyLarge.copy(
                     color = ChevitTheme.colors.textSecondary
                 )
             )
@@ -261,7 +260,7 @@ private fun TemplateItem(
         ) {
             Text(
                 text = template.title,
-                style = ChevitTheme.typhography.headlineSmall.copy(
+                style = ChevitTheme.typography.headlineSmall.copy(
                     color = ChevitTheme.colors.white
                 ),
                 maxLines = 1,
@@ -269,7 +268,7 @@ private fun TemplateItem(
             )
             Text(
                 text = "생성일 : ${template.date}",
-                style = ChevitTheme.typhography.bodySmall.copy(
+                style = ChevitTheme.typography.bodySmall.copy(
                     color = ChevitTheme.colors.white
                 ),
                 maxLines = 1,

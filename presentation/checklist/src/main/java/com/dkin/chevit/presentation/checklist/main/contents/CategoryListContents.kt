@@ -88,7 +88,7 @@ fun CategoryListContents(
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(
                         text = category.title,
-                        style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.grey10),
+                        style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.grey10),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -109,12 +109,12 @@ fun CategoryListContents(
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
                             text = "${category.checked}",
-                            style = ChevitTheme.typhography.caption
+                            style = ChevitTheme.typography.caption
                                 .copy(color = ChevitTheme.colors.grey10)
                         )
                         Text(
                             text = "/${category.total}",
-                            style = ChevitTheme.typhography.caption
+                            style = ChevitTheme.typography.caption
                                 .copy(color = if (completed) ChevitTheme.colors.grey10 else ChevitTheme.colors.grey5)
                         )
                     }

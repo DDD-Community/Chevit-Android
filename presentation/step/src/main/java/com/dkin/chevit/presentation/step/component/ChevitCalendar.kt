@@ -32,7 +32,6 @@ import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconArrowLeftLine
 import com.dkin.chevit.presentation.resource.icon.IconArrowRight
 import com.dkin.chevit.presentation.resource.util.clickableNoRipple
-import com.dkin.chevit.presentation.step.StepState
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.YearMonth
@@ -76,7 +75,7 @@ fun ChevitCalendar(
                         .weight(1f)
                         .padding(vertical = 12.dp),
                     text = dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.KOREA),
-                    style = ChevitTheme.typhography.headlineSmall.copy(
+                    style = ChevitTheme.typography.headlineSmall.copy(
                         color = when (dayOfWeek) {
                             DayOfWeek.SATURDAY -> ChevitTheme.colors.blue6
                             DayOfWeek.SUNDAY -> ChevitTheme.colors.statusCancel
@@ -224,7 +223,7 @@ private fun ChevitCalendarMonthHeader(
             modifier = Modifier.weight(1f),
             text = title,
             textAlign = TextAlign.Center,
-            style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
+            style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
         )
         Icon(
             modifier = Modifier.clickableNoRipple { onMonthChanged(month.plusMonths(1)) },

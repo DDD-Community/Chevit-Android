@@ -22,8 +22,6 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -31,7 +29,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -120,13 +117,13 @@ fun TemplateDetailScreen(
                     Text(
                         modifier = Modifier.weight(1f),
                         text = "체크리스트 템플릿",
-                        style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                        style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
                     )
                     //템플릿 공개여부 오픈스펙 제외
 //                    if (detailState.categories.isNotEmpty()) {
 //                        Text(
 //                            text = "공개",
-//                            style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textSecondary),
+//                            style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.textSecondary),
 //                        )
 //                        Spacer(modifier = Modifier.width(6.dp))
 //                        Switch(
@@ -195,7 +192,7 @@ private fun TopBar(modifier: Modifier, title: String, onClickBack: () -> Unit) {
             modifier = Modifier.align(Alignment.Center),
             text = title,
             textAlign = TextAlign.Center,
-            style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
+            style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
         )
     }
 }
@@ -247,7 +244,7 @@ private fun CategoryEmptyContents(
             Text(
                 text = "카테고리를 추가하여\n체크리스트를 만들어 볼까요?",
                 textAlign = TextAlign.Center,
-                style = ChevitTheme.typhography.bodyLarge.copy(
+                style = ChevitTheme.typography.bodyLarge.copy(
                     color = ChevitTheme.colors.textSecondary
                 )
             )
@@ -313,7 +310,7 @@ private fun CategoryListContents(
                     Spacer(modifier = Modifier.height(6.dp))
                     Text(
                         text = category.title,
-                        style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.grey10),
+                        style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.grey10),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -334,12 +331,12 @@ private fun CategoryListContents(
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
                             text = "${category.checked}",
-                            style = ChevitTheme.typhography.caption
+                            style = ChevitTheme.typography.caption
                                 .copy(color = ChevitTheme.colors.grey10)
                         )
                         Text(
                             text = "/${category.total}",
-                            style = ChevitTheme.typhography.caption
+                            style = ChevitTheme.typography.caption
                                 .copy(color = if (completed) ChevitTheme.colors.grey10 else ChevitTheme.colors.grey5)
                         )
                     }

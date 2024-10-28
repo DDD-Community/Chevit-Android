@@ -8,20 +8,20 @@ import androidx.compose.runtime.staticCompositionLocalOf
 
 @Composable
 fun ChevitTheme(
-    typhography: ChevitTyphography = ChevitTheme.typhography,
+    typography: ChevitTypography = ChevitTheme.typography,
     colors: ChevitColors = ChevitTheme.colors,
     content: @Composable () -> Unit,
 ) {
     CompositionLocalProvider(
         LocalColors provides colors,
-        LocalTypography provides typhography,
+        LocalTypography provides typography,
     ) {
-        ProvideTextStyle(typhography.bodyMedium, content = content)
+        ProvideTextStyle(typography.bodyMedium, content = content)
     }
 }
 
 val LocalColors = staticCompositionLocalOf { ChevitColors() }
-val LocalTypography = staticCompositionLocalOf { ChevitTyphography() }
+val LocalTypography = staticCompositionLocalOf { ChevitTypography() }
 
 object ChevitTheme {
     val colors: ChevitColors
@@ -29,7 +29,7 @@ object ChevitTheme {
         @ReadOnlyComposable
         get() = LocalColors.current
 
-    val typhography: ChevitTyphography
+    val typography: ChevitTypography
         @Composable
         @ReadOnlyComposable
         get() = LocalTypography.current

@@ -44,7 +44,7 @@ fun WhenContents(
         Text(
             modifier = Modifier,
             text = if (selectedDates.first == null) "언제 떠나시나요?" else "언제 돌아오시나요?",
-            style = ChevitTheme.typhography.headlineLarge.copy(color = ChevitTheme.colors.textPrimary)
+            style = ChevitTheme.typography.headlineLarge.copy(color = ChevitTheme.colors.textPrimary)
         )
         Spacer(modifier = Modifier.height(8.dp))
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -59,7 +59,7 @@ fun WhenContents(
             Text(
                 modifier = Modifier,
                 text = getWhenText(selectedDates.first, selectedDates.second),
-                style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary)
+                style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary)
             )
         }
 

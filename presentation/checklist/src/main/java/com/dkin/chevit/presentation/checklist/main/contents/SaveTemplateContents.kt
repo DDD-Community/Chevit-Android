@@ -8,12 +8,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -64,12 +62,12 @@ fun SaveTemplateContents(
             )
             Text(
                 text = "템플릿으로 저장하기",
-                style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
             )
             Spacer(modifier = Modifier.height(20.dp))
             Text(
                 text = "템플릿 제목을 입력해 주세요.",
-                style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.grey6),
+                style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.grey6),
             )
             Spacer(modifier = Modifier.height(8.dp))
             ChevitTextField(
@@ -82,7 +80,7 @@ fun SaveTemplateContents(
                     Text(
                         modifier = Modifier,
                         text = "ex. 자주 빠뜨리는 것",
-                        style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
+                        style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
                     )
                 },
                 trailingIcon = {
@@ -103,7 +101,7 @@ fun SaveTemplateContents(
             Spacer(modifier = Modifier.height(32.dp))
             Text(
                 text = "템플릿 색상을 선택해 주세요.",
-                style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.grey6),
+                style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.grey6),
             )
             Spacer(modifier = Modifier.height(12.dp))
 

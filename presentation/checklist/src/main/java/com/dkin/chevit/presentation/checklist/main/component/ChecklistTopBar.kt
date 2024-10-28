@@ -38,7 +38,7 @@ fun ChecklistTopBar(
             modifier = Modifier.align(Alignment.Center),
             text = title,
             textAlign = TextAlign.Center,
-            style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
+            style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
         )
     }
 }

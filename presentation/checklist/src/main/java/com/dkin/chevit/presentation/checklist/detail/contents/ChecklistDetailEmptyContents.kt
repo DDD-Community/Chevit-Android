@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
@@ -39,7 +38,7 @@ fun ChecklistDetailEmptyContents(
             Text(
                 text = "체크리스트 항목이 없어요.\n챙겨야 할 체크리스트를 추가해 보아요!",
                 textAlign = TextAlign.Center,
-                style = ChevitTheme.typhography.bodyLarge.copy(
+                style = ChevitTheme.typography.bodyLarge.copy(
                     color = ChevitTheme.colors.textSecondary
                 )
             )

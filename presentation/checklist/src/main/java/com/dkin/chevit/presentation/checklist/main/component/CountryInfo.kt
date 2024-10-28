@@ -98,7 +98,7 @@ fun CountryInfo(
             Text(
                 modifier = Modifier.clickableNoRipple { onClickUrl(weatherDetailUrl) },
                 text = "날씨 정보 더보기",
-                style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.textCaption)
+                style = ChevitTheme.typography.bodySmall.copy(color = ChevitTheme.colors.textCaption)
             )
             Spacer(modifier = Modifier.height(24.dp))
         }
@@ -109,12 +109,12 @@ fun CountryInfo(
 private fun Notice(title: String) {
     Text(
         text = "\uD83D\uDCE2",
-        style = ChevitTheme.typhography.headlineSmall,
+        style = ChevitTheme.typography.headlineSmall,
     )
     Spacer(modifier = Modifier.width(10.dp))
     Text(
         text = title,
-        style = ChevitTheme.typhography.headlineSmall.copy(color = ChevitTheme.colors.textPrimary),
+        style = ChevitTheme.typography.headlineSmall.copy(color = ChevitTheme.colors.textPrimary),
         overflow = TextOverflow.Ellipsis,
         maxLines = 1
     )
@@ -127,7 +127,7 @@ private fun Weather(weather: ChecklistState.Available.Weather) {
     ) {
         Text(
             text = weather.date,
-            style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textSecondary)
+            style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.textSecondary)
         )
         Spacer(modifier = Modifier.height(6.dp))
         Box(
@@ -153,7 +153,7 @@ private fun Weather(weather: ChecklistState.Available.Weather) {
         Spacer(modifier = Modifier.height(6.dp))
         Text(
             text = weather.temperature,
-            style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textSecondary)
+            style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.textSecondary)
         )
     }
 }

@@ -123,7 +123,7 @@ private fun DetailItem(
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = if (item.count > 1) "${item.title} ${item.count}" else item.title,
-                style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textPrimary),
+                style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.textPrimary),
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1
             )
@@ -132,7 +132,7 @@ private fun DetailItem(
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = item.memo,
-                    style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.grey5),
+                    style = ChevitTheme.typography.bodySmall.copy(color = ChevitTheme.colors.grey5),
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1
                 )

@@ -62,7 +62,7 @@ fun MyCheckListScreen(
                 modifier = Modifier.align(Alignment.Center),
                 text = "내 체크리스트",
                 textAlign = TextAlign.Center,
-                style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
+                style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
             )
         }
 
@@ -102,13 +102,13 @@ fun MyCheckListScreen(
                         Text(
                             text = "체크리스트",
                             textAlign = TextAlign.Start,
-                            style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
+                            style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
                             text = "${state.checkList.size}",
                             textAlign = TextAlign.Start,
-                            style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.blue7)
+                            style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.blue7)
                         )
                     }
                     LazyColumn(

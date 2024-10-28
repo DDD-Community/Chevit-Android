@@ -39,7 +39,7 @@ fun ChecklistDetailTopBar(
             modifier = Modifier.weight(1f),
             text = title,
             textAlign = TextAlign.Center,
-            style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
+            style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
         )
         Icon(
             modifier = Modifier.clickableNoRipple { onClickFilter() },
@@ -72,7 +72,7 @@ fun ChecklistDetailEditTopBar(
             modifier = Modifier.align(Alignment.Center),
             text = title,
             textAlign = TextAlign.Center,
-            style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
+            style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
         )
     }
 }

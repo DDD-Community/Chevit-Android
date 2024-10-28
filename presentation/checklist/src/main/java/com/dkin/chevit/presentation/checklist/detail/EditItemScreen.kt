@@ -67,12 +67,12 @@ fun EditItemScreen(
         ) {
             Text(
                 text = "아이템",
-                style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
             )
             Spacer(modifier = Modifier.height(18.dp))
             Text(
                 text = "챙겨야 할 아이템을 입력해 주세요.",
-                style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.grey6),
+                style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.grey6),
             )
             Spacer(modifier = Modifier.height(8.dp))
             ChevitTextField(
@@ -85,7 +85,7 @@ fun EditItemScreen(
                     Text(
                         modifier = Modifier,
                         text = "ex. 여권 (최대 15글자)",
-                        style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
+                        style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
                     )
                 },
                 trailingIcon = {
@@ -107,12 +107,12 @@ fun EditItemScreen(
 
             Text(
                 text = "메모",
-                style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
             )
             Spacer(modifier = Modifier.height(18.dp))
             Text(
                 text = "필요시, 기억해야할 내용을 입력해 주세요.",
-                style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.grey6),
+                style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.grey6),
             )
             Spacer(modifier = Modifier.height(8.dp))
             ChevitTextField(
@@ -126,7 +126,7 @@ fun EditItemScreen(
                     Text(
                         modifier = Modifier,
                         text = "ex. 프린트하기 (최대 20글자)",
-                        style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
+                        style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
                     )
                 },
                 trailingIcon = {
@@ -150,7 +150,7 @@ fun EditItemScreen(
                 Text(
                     modifier = Modifier.weight(1f),
                     text = "수량",
-                    style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                    style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
                 )
                 Row(
                     modifier = Modifier
@@ -180,7 +180,7 @@ fun EditItemScreen(
                     ) {
                         Text(
                             text = "$count",
-                            style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary),
+                            style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary),
                         )
                     }
                     Spacer(modifier = Modifier.width(1.dp))

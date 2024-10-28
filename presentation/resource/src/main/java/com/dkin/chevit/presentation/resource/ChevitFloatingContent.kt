@@ -50,7 +50,7 @@ fun ChevitFloatingContent(
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = item.title,
-                    style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textPrimary),
+                    style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.textPrimary),
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1
                 )

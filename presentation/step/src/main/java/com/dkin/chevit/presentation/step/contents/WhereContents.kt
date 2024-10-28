@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.ripple
@@ -47,7 +46,6 @@ import com.dkin.chevit.presentation.step.model.CountryModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 
 @OptIn(ExperimentalComposeUiApi::class, FlowPreview::class)
@@ -99,7 +97,7 @@ fun WhereContents(
                 Text(
                     modifier = Modifier,
                     text = "도시를 입력해주세요.",
-                    style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
+                    style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
                 )
             },
             leadingIcon = {
@@ -159,14 +157,14 @@ fun WhereTitle(
     Text(
         modifier = modifier,
         text = "어디로 떠나시나요?",
-        style = ChevitTheme.typhography.headlineLarge.copy(color = ChevitTheme.colors.textPrimary)
+        style = ChevitTheme.typography.headlineLarge.copy(color = ChevitTheme.colors.textPrimary)
     )
     Spacer(modifier = Modifier.height(8.dp))
     if (countryText.isNullOrEmpty()) {
         Text(
             modifier = Modifier,
             text = "여행가고자 하는 도시를 검색 목록에서 선택해 주세요",
-            style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary)
+            style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary)
         )
     } else {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -179,7 +177,7 @@ fun WhereTitle(
             Text(
                 modifier = Modifier,
                 text = countryText,
-                style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary),
+                style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary),
             )
         }
     }
@@ -227,7 +225,7 @@ fun CountryItem(
         Text(
             modifier = Modifier,
             text = country.text,
-            style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textPrimary),
+            style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.textPrimary),
         )
     }
 }

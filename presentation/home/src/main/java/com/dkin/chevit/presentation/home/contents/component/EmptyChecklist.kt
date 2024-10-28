@@ -37,7 +37,7 @@ fun EmptyChecklist(modifier: Modifier) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = "생성된 체크리스트가 없어요\n여행 일정을 추가해서 만들어 보아요!",
-                style = ChevitTheme.typhography.bodyLarge.copy(
+                style = ChevitTheme.typography.bodyLarge.copy(
                     color = ChevitTheme.colors.textSecondary,
                 ),
                 textAlign = TextAlign.Center,

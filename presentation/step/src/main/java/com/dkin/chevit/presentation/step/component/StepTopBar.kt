@@ -42,7 +42,7 @@ fun StepTopBar(
             modifier = Modifier.align(Alignment.Center),
             text = "새 체크리스트",
             textAlign = TextAlign.Center,
-            style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
+            style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
         )
         Icon(
             modifier = Modifier

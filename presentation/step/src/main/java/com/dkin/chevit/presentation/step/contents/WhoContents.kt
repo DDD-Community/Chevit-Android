@@ -50,13 +50,13 @@ fun WhoContents(
         Text(
             modifier = Modifier,
             text = "누구와 함께 떠나시나요?",
-            style = ChevitTheme.typhography.headlineLarge.copy(color = ChevitTheme.colors.textPrimary)
+            style = ChevitTheme.typography.headlineLarge.copy(color = ChevitTheme.colors.textPrimary)
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             modifier = Modifier,
             text = "여행 인원을 선택해 주세요.",
-            style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary)
+            style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary)
         )
         Spacer(modifier = Modifier.height(24.dp))
         ChevitButtonLineLarge(
@@ -72,7 +72,7 @@ fun WhoContents(
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Start,
                 text = "\uD83D\uDE4B 혼자 가요!",
-                style = ChevitTheme.typhography.headlineSmall
+                style = ChevitTheme.typography.headlineSmall
             )
         }
         Spacer(modifier = Modifier.height(12.dp))
@@ -91,7 +91,7 @@ fun WhoContents(
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Start,
                 text = "\uD83D\uDC68\u200D\uD83D\uDC69\u200D\uD83D\uDC66 동반자가 있어요!",
-                style = ChevitTheme.typhography.headlineSmall
+                style = ChevitTheme.typography.headlineSmall
             )
         }
         Spacer(modifier = Modifier.height(24.dp))
@@ -118,7 +118,7 @@ fun WhoContents(
                 .align(Alignment.CenterHorizontally)
                 .clickableNoRipple { viewModel.dispatch(StepIntent.CreateChecklist(false)) },
             text = "추천없이 만들기",
-            style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textCaption),
+            style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.textCaption),
             textAlign = TextAlign.Center,
         )
         Spacer(modifier = Modifier.height(12.dp))

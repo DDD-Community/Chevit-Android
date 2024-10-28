@@ -62,12 +62,12 @@ fun AddTemplateBottomSheet(
             )
             Text(
                 text = "새 템플릿 만들기",
-                style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
             )
             Spacer(modifier = Modifier.height(20.dp))
             Text(
                 text = "템플릿 제목을 입력해 주세요.",
-                style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.grey6),
+                style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.grey6),
             )
             Spacer(modifier = Modifier.height(8.dp))
             ChevitTextField(
@@ -80,7 +80,7 @@ fun AddTemplateBottomSheet(
                     Text(
                         modifier = Modifier,
                         text = "ex. 자주 빠뜨리는 것",
-                        style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
+                        style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
                     )
                 },
                 trailingIcon = {
@@ -101,7 +101,7 @@ fun AddTemplateBottomSheet(
             Spacer(modifier = Modifier.height(32.dp))
             Text(
                 text = "템플릿 색상을 선택해 주세요.",
-                style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.grey6),
+                style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.grey6),
             )
             Spacer(modifier = Modifier.height(12.dp))
 

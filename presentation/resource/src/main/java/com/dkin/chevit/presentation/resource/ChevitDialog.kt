@@ -40,7 +40,7 @@ fun ChevitDialog(
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = title,
-                    style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
+                    style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary),
                     textAlign = TextAlign.Center
                 )
                 Spacer(modifier = Modifier.height(8.dp))
@@ -52,7 +52,7 @@ fun ChevitDialog(
                 ) {
                     Text(
                         text = body,
-                        style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textSecondary),
+                        style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.textSecondary),
                         textAlign = TextAlign.Center
                     )
                 }

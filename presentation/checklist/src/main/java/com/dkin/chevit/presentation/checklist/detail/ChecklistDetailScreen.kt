@@ -161,7 +161,7 @@ private fun ChecklistDetailAvailable(
                     Text(
                         modifier = Modifier,
                         text = "찾고싶은 아이템을 검색해 보세요.",
-                        style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
+                        style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
                     )
                 },
                 leadingIcon = {
@@ -226,7 +226,7 @@ private fun ChecklistDetailAvailable(
                 Spacer(modifier = Modifier.width(4.dp))
                 Text(
                     text = "미달성 항목만 보기",
-                    style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.textSecondary),
+                    style = ChevitTheme.typography.bodySmall.copy(color = ChevitTheme.colors.textSecondary),
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1
                 )

@@ -38,18 +38,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
-import coil.request.ImageRequest
 import coil.request.ImageRequest.Builder
 import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.AlarmSwitchClicked
 import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.NotificationSettingClicked
 import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.ProfileSettingClicked
-import com.dkin.chevit.presentation.home.contents.user.MyPageIntent.TermsClicked
 import com.dkin.chevit.presentation.resource.ChevitButtonChip
 import com.dkin.chevit.presentation.resource.ChevitTheme
-import com.dkin.chevit.presentation.resource.R
 import com.dkin.chevit.presentation.resource.R.drawable
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.IconArrowRight
@@ -79,7 +74,7 @@ fun UserContents(
         ) {
             Text(
                 text = "마이페이지",
-                style = ChevitTheme.typhography.headlineMedium.copy(
+                style = ChevitTheme.typography.headlineMedium.copy(
                     color = ChevitTheme.colors.textPrimary,
                 ),
             )
@@ -110,7 +105,7 @@ fun UserContents(
             Spacer(modifier = Modifier.height(20.dp))
             Text(
                 text = "${myPageState.userName} 님",
-                style = ChevitTheme.typhography.headlineMedium.copy(
+                style = ChevitTheme.typography.headlineMedium.copy(
                     color = ChevitTheme.colors.textPrimary,
                 ),
             )
@@ -141,7 +136,7 @@ fun UserContents(
             UserItem(title = "버전정보") {
                 Text(
                     text = versionName,
-                    style = ChevitTheme.typhography.headlineSmall.copy(color = ChevitTheme.colors.grey8),
+                    style = ChevitTheme.typography.headlineSmall.copy(color = ChevitTheme.colors.grey8),
                 )
             }
             AlarmSetting(
@@ -205,7 +200,7 @@ private fun UserItem(
         Text(
             modifier = Modifier.weight(1f),
             text = title,
-            style = ChevitTheme.typhography.bodyLarge.copy(
+            style = ChevitTheme.typography.bodyLarge.copy(
                 color = ChevitTheme.colors.grey10,
             ),
         )
@@ -252,7 +247,7 @@ private fun AlarmSetting(
             Text(
                 modifier = Modifier.weight(1f),
                 text = "알림설정",
-                style = ChevitTheme.typhography.bodyLarge.copy(
+                style = ChevitTheme.typography.bodyLarge.copy(
                     color = ChevitTheme.colors.grey10,
                 ),
             )
@@ -290,14 +285,14 @@ private fun AlarmSetting(
                     Column {
                         Text(
                             text = "기기 알림이 꺼져있어요!",
-                            style = ChevitTheme.typhography.bodyMedium.copy(
+                            style = ChevitTheme.typography.bodyMedium.copy(
                                 color = ChevitTheme.colors.textPrimary
                             )
                         )
                         Spacer(modifier = Modifier.height(10.dp))
                         Text(
                             text = "설정에서 알림을 켜주세요.",
-                            style = ChevitTheme.typhography.bodyMedium.copy(
+                            style = ChevitTheme.typography.bodyMedium.copy(
                                 color = ChevitTheme.colors.textSecondary
                             )
                         )
@@ -308,7 +303,7 @@ private fun AlarmSetting(
                         ) {
                             Text(
                                 text = "기기 알림 설정하러 가기",
-                                style = ChevitTheme.typhography.bodySmall.copy(
+                                style = ChevitTheme.typography.bodySmall.copy(
                                     color = ChevitTheme.colors.blue5
                                 )
                             )

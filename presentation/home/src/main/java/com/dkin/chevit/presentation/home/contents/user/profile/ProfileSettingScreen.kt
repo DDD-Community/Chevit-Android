@@ -71,7 +71,7 @@ fun ProfileSettingScreen(
                 modifier = Modifier.align(Alignment.Center),
                 text = "프로필 설정",
                 textAlign = TextAlign.Center,
-                style = ChevitTheme.typhography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
+                style = ChevitTheme.typography.headlineMedium.copy(color = ChevitTheme.colors.textPrimary)
             )
         }
         Spacer(modifier = Modifier.height(92.dp))
@@ -145,7 +145,7 @@ fun ProfileSettingScreen(
                             Text(
                                 modifier = Modifier,
                                 text = "닉네임 최대 8글자",
-                                style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
+                                style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.grey4),
                             )
                         },
                         trailingIcon = {
@@ -167,7 +167,7 @@ fun ProfileSettingScreen(
                         Text(
                             modifier = Modifier.fillMaxWidth(),
                             text = "8자 이내 한글 혹은 영문을 입력해 주세요.",
-                            style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textCaption),
+                            style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.textCaption),
                             textAlign = TextAlign.Center
                         )
                     }

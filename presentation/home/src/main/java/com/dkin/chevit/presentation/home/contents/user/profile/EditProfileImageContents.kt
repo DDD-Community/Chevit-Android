@@ -50,7 +50,7 @@ fun EditProfileImageContents(
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = "사진 보관함에서 선택",
-                    style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary),
+                    style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary),
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1
                 )
@@ -74,7 +74,7 @@ fun EditProfileImageContents(
                 Spacer(modifier = Modifier.height(16.dp))
                 Text(
                     text = "기본 이미지로 변경",
-                    style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary),
+                    style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary),
                     overflow = TextOverflow.Ellipsis,
                     maxLines = 1
                 )

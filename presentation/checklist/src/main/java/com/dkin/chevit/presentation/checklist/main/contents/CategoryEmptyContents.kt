@@ -36,7 +36,7 @@ fun CategoryEmptyContents(
             Text(
                 text = "카테고리를 추가하여\n체크리스트를 만들어 볼까요?",
                 textAlign = TextAlign.Center,
-                style = ChevitTheme.typhography.bodyLarge.copy(
+                style = ChevitTheme.typography.bodyLarge.copy(
                     color = ChevitTheme.colors.textSecondary
                 )
             )

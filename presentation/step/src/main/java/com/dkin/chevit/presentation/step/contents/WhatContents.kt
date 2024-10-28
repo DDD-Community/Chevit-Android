@@ -48,13 +48,13 @@ fun WhatContents(
         Text(
             modifier = Modifier,
             text = "어떤 여행을 떠나시나요?",
-            style = ChevitTheme.typhography.headlineLarge.copy(color = ChevitTheme.colors.textPrimary)
+            style = ChevitTheme.typography.headlineLarge.copy(color = ChevitTheme.colors.textPrimary)
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             modifier = Modifier,
             text = "여행 유형을 선택해 주세요.",
-            style = ChevitTheme.typhography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary)
+            style = ChevitTheme.typography.bodyLarge.copy(color = ChevitTheme.colors.textSecondary)
         )
         Spacer(modifier = Modifier.height(24.dp))
         Box(modifier = Modifier.weight(1f)) {
@@ -76,7 +76,7 @@ fun WhatContents(
                 .align(Alignment.CenterHorizontally)
                 .clickableNoRipple { viewModel.dispatch(StepIntent.CreateChecklist(false)) },
             text = "추천없이 만들기",
-            style = ChevitTheme.typhography.bodyMedium.copy(color = ChevitTheme.colors.textCaption),
+            style = ChevitTheme.typography.bodyMedium.copy(color = ChevitTheme.colors.textCaption),
             textAlign = TextAlign.Center,
         )
         Spacer(modifier = Modifier.height(12.dp))

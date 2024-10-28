@@ -167,7 +167,7 @@ fun CreateCheckListLoading(
             Text(
                 modifier = Modifier,
                 text = text,
-                style = ChevitTheme.typhography.headlineLarge.copy(color = ChevitTheme.colors.textPrimary),
+                style = ChevitTheme.typography.headlineLarge.copy(color = ChevitTheme.colors.textPrimary),
                 textAlign = TextAlign.Center
             )
         }

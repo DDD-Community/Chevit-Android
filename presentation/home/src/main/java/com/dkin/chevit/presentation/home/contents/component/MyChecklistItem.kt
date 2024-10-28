@@ -83,7 +83,7 @@ fun MyChecklistItem(
                     ) {
                         Text(
                             text = "진행중",
-                            style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.white),
+                            style = ChevitTheme.typography.bodySmall.copy(color = ChevitTheme.colors.white),
                         )
                     }
                 }
@@ -91,11 +91,11 @@ fun MyChecklistItem(
             Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Bottom) {
                 Text(
                     text = item.title,
-                    style = ChevitTheme.typhography.headlineSmall.copy(color = ChevitTheme.colors.white),
+                    style = ChevitTheme.typography.headlineSmall.copy(color = ChevitTheme.colors.white),
                 )
                 Text(
                     text = item.date,
-                    style = ChevitTheme.typhography.bodySmall.copy(color = ChevitTheme.colors.white),
+                    style = ChevitTheme.typography.bodySmall.copy(color = ChevitTheme.colors.white),
                 )
             }
 
