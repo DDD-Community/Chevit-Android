@@ -11,11 +11,16 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
+import com.dkin.chevit.domain.base.CoroutineDispatcherProvider
 import com.dkin.chevit.domain.repository.NotificationRepository
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
+import timber.log.Timber
 import javax.inject.Inject
 import com.dkin.chevit.presentation.resource.R as ChevitResource
 
@@ -23,6 +28,9 @@ import com.dkin.chevit.presentation.resource.R as ChevitResource
 class ChevitFirebaseMessagingService : FirebaseMessagingService() {
     @Inject
     lateinit var notificationRepository: NotificationRepository
+
+    @Inject
+    lateinit var dispatcher: CoroutineDispatcherProvider
 
     private val notificationManagerCompat: NotificationManagerCompat by lazy {
         NotificationManagerCompat.from(this)
@@ -32,9 +40,15 @@ class ChevitFirebaseMessagingService : FirebaseMessagingService() {
         ProcessLifecycleOwner.get().lifecycleScope
     }
 
+    private val coroutineScope by lazy {
+        processLifecycleScope + dispatcher.io + CoroutineExceptionHandler { _, exception ->
+            Timber.d(exception)
+        }
+    }
+
     override fun onNewToken(token: String) {
         super.onNewToken(token)
-        processLifecycleScope.launch {
+        coroutineScope.launch() {
             notificationRepository.updatePushToken(token)
         }
     }
