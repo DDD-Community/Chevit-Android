@@ -1,5 +1,7 @@
 import java.io.FileInputStream
 import java.util.Properties
+import java.text.SimpleDateFormat
+import java.util.Date
 
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
@@ -18,8 +20,8 @@ android {
     namespace = "com.dkin.chevit.app"
     defaultConfig {
         applicationId = "com.dkin.chevit"
-        versionCode = 8
-        versionName = "1.0.7"
+        versionCode = SimpleDateFormat("yyMMdd").format(Date()).toInt()
+        versionName = SimpleDateFormat("yy.MM.dd").format(Date())
     }
     lint {
         disable.add("Instantiatable")
