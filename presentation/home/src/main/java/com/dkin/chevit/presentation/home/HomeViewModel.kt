@@ -39,6 +39,10 @@ class HomeViewModel @Inject constructor(
         setEffect { HomeEffect.NavigateToCheckList(id) }
     }
 
+    fun onClickNotification() {
+        setEffect { HomeEffect.NavigateToNotificationList }
+    }
+
     private suspend fun syncFirebaseMessageToken() {
         syncFirebaseMessageTokenUseCase(Unit)
     }

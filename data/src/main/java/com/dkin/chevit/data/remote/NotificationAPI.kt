@@ -22,5 +22,5 @@ internal interface NotificationAPI {
     ): NotificationSettingResponse
 
     @GET("fetchNotificationList")
-    suspend fun fetchNotificationList(): List<NotificationResponse>
+    suspend fun fetchNotificationList(): NotificationResponse
 }

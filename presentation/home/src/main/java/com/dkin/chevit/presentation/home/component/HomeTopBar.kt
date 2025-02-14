@@ -13,10 +13,12 @@ import androidx.compose.ui.unit.dp
 import com.dkin.chevit.presentation.resource.icon.ChevitIcon
 import com.dkin.chevit.presentation.resource.icon.Logo
 import com.dkin.chevit.presentation.resource.icon.Notification
+import com.dkin.chevit.presentation.resource.util.clickableNoRipple
 
 @Composable
 fun HomeTopBar(
     modifier: Modifier = Modifier,
+    onClickNotification: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -27,8 +29,11 @@ fun HomeTopBar(
         Row {
             Image(imageVector = ChevitIcon.Logo, contentDescription = "Logo")
             Spacer(modifier = Modifier.weight(1f, true))
-            //알림 오픈스펙 제외
-            //Image(imageVector = ChevitIcon.Notification, contentDescription = "Notification")
+            Image(
+                modifier = Modifier.clickableNoRipple { onClickNotification() },
+                imageVector = ChevitIcon.Notification,
+                contentDescription = "Notification"
+            )
         }
     }
 }

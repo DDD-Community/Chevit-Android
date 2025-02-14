@@ -30,6 +30,13 @@
     </fragment>
 
     <fragment
+        android:id="@+id/notification"
+        android:name="com.dkin.chevit.presentation.home.contents.notification.NotificationList"
+        android:label="Notification">
+        <deepLink app:uri="chevit://notification" />
+    </fragment>
+
+    <fragment
         android:id="@+id/templateDetail"
         android:name="com.dkin.chevit.presentation.home.contents.template.detail.TemplateDetail"
         android:label="TemplateDetail">

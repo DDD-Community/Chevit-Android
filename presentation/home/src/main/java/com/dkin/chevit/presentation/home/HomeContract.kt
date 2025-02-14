@@ -66,4 +66,6 @@ sealed interface HomeEffect : ViewEffect {
     data class NavigateToAddCheckList(val nickname: String) : HomeEffect
 
     data class NavigateToCheckList(val id: String) : HomeEffect
+
+    object NavigateToNotificationList : HomeEffect
 }

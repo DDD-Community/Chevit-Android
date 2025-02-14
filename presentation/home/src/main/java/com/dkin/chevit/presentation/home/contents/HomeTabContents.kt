@@ -58,7 +58,9 @@ fun HomeTabContents(
     }
 
     Column(modifier = modifier.fillMaxWidth()) {
-        HomeTopBar()
+        HomeTopBar(
+            onClickNotification = { homeViewModel.onClickNotification() }
+        )
         when (homeState) {
             HomeState.Loading -> {
                 HomeLoading(
@@ -162,7 +164,7 @@ private fun HomeLoading(
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp)
                 .weight(1f),
-            ) {
+        ) {
             Text(
                 text = "나의 체크리스트",
                 style = ChevitTheme.typography.headlineMedium.copy(

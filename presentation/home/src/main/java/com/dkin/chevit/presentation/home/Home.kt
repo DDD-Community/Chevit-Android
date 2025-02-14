@@ -95,6 +95,10 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
             is HomeEffect.NavigateToCheckList -> {
                 deepLink(DeepLink.CheckList(effect.id)) { popUpTo(R.id.home) }
             }
+
+            HomeEffect.NavigateToNotificationList -> {
+                deepLink(DeepLink.NotificationList) { popUpTo(R.id.home) }
+            }
         }
     }
 

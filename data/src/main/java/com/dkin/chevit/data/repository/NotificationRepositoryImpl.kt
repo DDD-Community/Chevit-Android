@@ -1,18 +1,15 @@
 package com.dkin.chevit.data.repository
 
 import com.dkin.chevit.data.model.mapper.NotificationMapper
-import com.dkin.chevit.data.model.mapper.mapDomainList
 import com.dkin.chevit.data.model.request.NotificationSettingUpdatePayload
 import com.dkin.chevit.data.model.response.toNotificationSetting
 import com.dkin.chevit.data.remote.NotificationAPI
-import com.dkin.chevit.domain.base.DomainListModel
 import com.dkin.chevit.domain.base.None
-import com.dkin.chevit.domain.model.Notification
+import com.dkin.chevit.domain.model.NotificationList
 import com.dkin.chevit.domain.model.NotificationSetting
 import com.dkin.chevit.domain.repository.NotificationRepository
 import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withTimeout
 import javax.inject.Inject
 
 internal class NotificationRepositoryImpl @Inject constructor(
@@ -36,7 +33,7 @@ internal class NotificationRepositoryImpl @Inject constructor(
         return notificationAPI.updateNotification(body = payload).toNotificationSetting()
     }
 
-    override suspend fun fetchNotificationList(): DomainListModel<Notification> {
-        return notificationAPI.fetchNotificationList().mapDomainList(NotificationMapper::mapDomain)
+    override suspend fun fetchNotificationList(): NotificationList {
+        return notificationAPI.fetchNotificationList().let(NotificationMapper::mapDomain)
     }
 }
