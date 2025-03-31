@@ -54,7 +54,7 @@ lottie-compose = "6.1.0"
 timber = "5.0.1"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
-espresso-core = "3.5.1"
+espresso-core = "3.6.1"
 
 [libraries]
 #Kotlin
