@@ -1,10 +1,10 @@
 [versions]
 # Plugin
-ksp = "1.9.22-1.0.17"
+ksp = "2.0.21-1.0.28"
 androidGradlePlugin = "8.2.2"
 
 # Kotlin
-kotlin = "1.9.22"
+kotlin = "2.0.21"
 coroutines = "1.9.0"
 
 # AndroidX
@@ -171,6 +171,7 @@ firebase-performance = { id = "com.google.firebase.firebase-perf", version.ref =
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 org-jetbrains-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 com-google-dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
