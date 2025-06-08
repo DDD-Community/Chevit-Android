@@ -1,7 +1,7 @@
 [versions]
 # Plugin
 ksp = "2.0.21-1.0.28"
-androidGradlePlugin = "8.2.2"
+androidGradlePlugin = "8.10.1"
 
 # Kotlin
 kotlin = "2.0.21"

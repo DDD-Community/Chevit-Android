@@ -114,7 +114,7 @@ private fun EditText.textChanges(): Flow<CharSequence?> {
 fun EditText.showKeyboard() {
     requestFocus()
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    imm.showSoftInput(this, InputMethodManager.SHOW_FORCED)
+    imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
 }
 
 fun EditText.hideKeyboard() {

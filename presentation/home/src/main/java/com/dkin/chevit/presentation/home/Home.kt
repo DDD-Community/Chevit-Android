@@ -17,8 +17,11 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.dkin.chevit.core.mvi.MVIComposeFragment
+import kotlinx.coroutines.launch
 import com.dkin.chevit.presentation.deeplink.DeepLink
 import com.dkin.chevit.presentation.deeplink.DeepLink.OnBoarding
 import com.dkin.chevit.presentation.deeplink.DeepLink.Profile
@@ -160,24 +163,32 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
     private fun processState(state: MyPageState) {}
 
     private fun initCollect() {
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            templateViewModel.state.collect {
-                processState(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                templateViewModel.state.collect {
+                    processState(it)
+                }
             }
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            templateViewModel.effect.collect {
-                processEffect(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                templateViewModel.effect.collect {
+                    processEffect(it)
+                }
             }
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            myPageViewModel.state.collect {
-                processState(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                myPageViewModel.state.collect {
+                    processState(it)
+                }
             }
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            myPageViewModel.effect.collect {
-                processEffect(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                myPageViewModel.effect.collect {
+                    processEffect(it)
+                }
             }
         }
     }

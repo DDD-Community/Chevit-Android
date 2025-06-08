@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
 import com.dkin.chevit.core.base.BaseFragment
+import kotlinx.coroutines.launch
 
 abstract class MVIFragment<BINDING : ViewBinding, I : ViewIntent, S : ViewState, E : ViewEffect>(
     inflater: (LayoutInflater, ViewGroup?, Boolean) -> BINDING,
@@ -27,14 +30,18 @@ abstract class MVIFragment<BINDING : ViewBinding, I : ViewIntent, S : ViewState,
     }
 
     private fun initCollect() {
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.state.collect {
-                processState(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.state.collect {
+                    processState(it)
+                }
             }
         }
-        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
-            viewModel.effect.collect {
-                processEffect(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED) {
+                viewModel.effect.collect {
+                    processEffect(it)
+                }
             }
         }
     }

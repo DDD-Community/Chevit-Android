@@ -14,6 +14,9 @@ android {
     defaultConfig {
         buildConfigField("String", "API_URL", "\"https://jrq7w2orw3.execute-api.ap-northeast-2.amazonaws.com\"")
     }
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {

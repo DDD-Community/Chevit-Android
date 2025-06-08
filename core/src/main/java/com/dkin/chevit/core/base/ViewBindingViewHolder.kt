@@ -9,7 +9,7 @@ class ViewBindingViewHolder<BINDING : ViewBinding, ITEM>(
     private val onBindItem: BINDING.(ITEM) -> Unit,
 ) : RecyclerView.ViewHolder(binding.root) {
     init {
-        binding.onCreateViewHolderListener(::getAdapterPosition)
+        binding.onCreateViewHolderListener(::getBindingAdapterPosition)
     }
 
     fun bindItem(item: ITEM) {
