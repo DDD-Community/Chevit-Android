@@ -72,7 +72,7 @@ class Home : MVIComposeFragment<HomeIntent, HomeState, HomeEffect>() {
                     versionName = requireContext().packageManager.getPackageInfo(
                         requireContext().packageName,
                         0,
-                    ).versionName,
+                    ).versionName ?: "Unknown",
                     initialPage = startIndex,
                     openMyCheckList = { deepLink(DeepLink.MyCheckList) { popUpTo(R.id.home) } }
                 )
